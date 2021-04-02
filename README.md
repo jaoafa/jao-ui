@@ -1,2 +1,3 @@
 # jao-ui
-jao Component for Vue 💣✨
+
+> jao Component for Vue 💣✨
