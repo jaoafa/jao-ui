@@ -62,17 +62,17 @@ export default /*#__PURE__*/{
   </div>
 </template>
 
-<style scoped>
-  .jao-ui-sample {
-    display: block;
-    width: 400px;
-    margin: 25px auto;
-    border: 1px solid #ccc;
-    background: #eaeaea;
-    text-align: center;
-    padding: 25px;
-  }
-  .jao-ui-sample p {
-    margin: 0 0 1em;
-  }
+<style lang="scss" scoped>
+.jao-ui-sample {
+  display: block;
+  width: 400px;
+  margin: 25px auto;
+  border: 1px solid #ccc;
+  background: #eaeaea;
+  text-align: center;
+  padding: 25px;
+}
+.jao-ui-sample p {
+  margin: 0 0 1em;
+}
 </style>
