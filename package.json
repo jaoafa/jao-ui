@@ -1,6 +1,6 @@
 {
   "name": "jao-ui",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "dist/jao-ui.ssr.js",
   "browser": "dist/jao-ui.esm.js",
