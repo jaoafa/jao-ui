@@ -41,19 +41,19 @@
           size="large"
           icon
         >
-          A
+          <font-awesome-icon icon="bomb" />
         </j-button>
         <j-button
           size="medium"
           icon
         >
-          A
+          <font-awesome-icon icon="bomb" />
         </j-button>
         <j-button
           size="small"
           icon
         >
-          A
+          <font-awesome-icon icon="bomb" />
         </j-button>
       </div>
     </div>
@@ -64,21 +64,21 @@
           icon
           outlined
         >
-          A
+          <font-awesome-icon icon="bomb" />
         </j-button>
         <j-button
           size="medium"
           icon
           outlined
         >
-          A
+          <font-awesome-icon icon="bomb" />
         </j-button>
         <j-button
           size="small"
           icon
           outlined
         >
-          A
+          <font-awesome-icon icon="bomb" />
         </j-button>
       </div>
     </div>
@@ -87,9 +87,17 @@
 
 <script>
 import Vue from 'vue'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faBomb } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+library.add(faBomb)
 
 export default Vue.extend({
   name: 'ServeDev',
+  components: {
+    FontAwesomeIcon,
+  },
 })
 </script>
 
