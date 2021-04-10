@@ -193,7 +193,7 @@ export default {
   align-items: center;
   justify-content: center;
   appearance: none;
-  font-family: 'Noto Sans JP', sans-serif;
+  font: inherit;
   cursor: pointer;
   border: none;
   border-radius: 2px 2px 0 2px;

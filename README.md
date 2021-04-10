@@ -8,7 +8,7 @@ jao UI is Vue based component library for jao community that provides Minecraft 
 
 <p align="center">
   <a href="https://discord.com/invite/YjwYEBk">
-    <img src="https://discordapp.com/api/guilds/597378876556967936/widget.png" alt="Discord">
+    <img src="https://discord.com/api/guilds/597378876556967936/widget.png" alt="Discord">
   </a>
 </p>
 
