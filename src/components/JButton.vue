@@ -4,6 +4,7 @@
     :class="classes"
     :style="styles"
     class="j-button"
+    @click="click"
   >
     <span class="j-button__body">
       <slot />
@@ -173,6 +174,11 @@ export default {
         color: this.outlined ? this._color : getContrastColor(this._color),
         'background-color': this.outlined ? 'transparent' : this._color,
       }
+    },
+  },
+  methods: {
+    click (e) {
+      this.$emit('click', e)
     },
   },
 }
