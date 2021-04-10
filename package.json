@@ -17,7 +17,9 @@
     "build:ssr": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
     "build:es": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es",
     "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife",
-    "lint": "eslint . --ext .js,.vue"
+    "lint": "npm run lint:js & npm run lint:style",
+    "lint:js": "eslint . --ext .js,.vue --fix",
+    "lint:style": "stylelint \"**/*.vue\" --fix"
   },
   "dependencies": {},
   "devDependencies": {
@@ -43,6 +45,9 @@
     "rollup-plugin-vue": "^5.1.9",
     "sass": "^1.32.8",
     "sass-loader": "^10.1.1",
+    "stylelint": "^13.12.0",
+    "stylelint-config-recess-order": "^2.3.0",
+    "stylelint-config-standard": "^21.0.0",
     "vue": "^2.6.12",
     "vue-template-compiler": "^2.6.12"
   },
