@@ -1,6 +1,8 @@
+// Import base styles
+import '@/assets/_base.scss'
 
 // Import vue components
-import * as components from '@/lib-components/index'
+import * as components from '@/components/index'
 
 // install function executed by Vue.use()
 const install = function installJaoUi (Vue) {
@@ -14,4 +16,4 @@ export default install
 
 // To allow individual component use, export components
 // each can be registered via Vue.component()
-export * from '@/lib-components/index'
+export * from '@/components/index'
