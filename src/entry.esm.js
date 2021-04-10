@@ -1,3 +1,5 @@
+// Import base styles
+import '@/assets/_base.scss'
 
 // Import vue components
 import * as components from '@/components/index'

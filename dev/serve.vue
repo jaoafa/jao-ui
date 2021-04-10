@@ -1,18 +1,70 @@
+<template>
+  <div class="app">
+    <div class="container">
+      <div class="container__body">
+        <j-button size="large">
+          Button
+        </j-button>
+        <j-button size="medium">
+          Button
+        </j-button>
+        <j-button size="small">
+          Button
+        </j-button>
+      </div>
+    </div>
+    <div class="container">
+      <div class="container__body">
+        <j-button
+          size="large"
+          outlined
+        >
+          Button
+        </j-button>
+        <j-button
+          size="medium"
+          outlined
+        >
+          Button
+        </j-button>
+        <j-button
+          size="small"
+          outlined
+        >
+          Button
+        </j-button>
+      </div>
+    </div>
+  </div>
+</template>
+
 <script>
 import Vue from 'vue'
-// Uncomment import and local "components" registration if library is not registered globally.
-// import { JaoUiSample } from '@/entry.esm';
 
 export default Vue.extend({
   name: 'ServeDev',
-  // components: {
-  //  JaoUiSample,
-  // }
 })
 </script>
 
-<template>
-  <div id="app">
-    <jao-ui-sample />
-  </div>
-</template>
+<style lang="scss" scoped>
+.app {
+  padding: 24px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-auto-rows: auto;
+  gap: 8px;
+
+  & ~ & {
+    margin-top: 16px;
+  }
+
+  &__body {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+}
+</style>
