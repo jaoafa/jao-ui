@@ -15,5 +15,6 @@ module.exports = {
   plugins: ['vue'],
   rules: {
     'comma-dangle': ['error', 'always-multiline'],
+    'brace-style': ['error', 'stroustrup'],
   },
 }
