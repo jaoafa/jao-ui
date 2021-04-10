@@ -35,6 +35,53 @@
         </j-button>
       </div>
     </div>
+    <div class="container">
+      <div class="container__body">
+        <j-button
+          size="large"
+          icon
+        >
+          A
+        </j-button>
+        <j-button
+          size="medium"
+          icon
+        >
+          A
+        </j-button>
+        <j-button
+          size="small"
+          icon
+        >
+          A
+        </j-button>
+      </div>
+    </div>
+    <div class="container">
+      <div class="container__body">
+        <j-button
+          size="large"
+          icon
+          outlined
+        >
+          A
+        </j-button>
+        <j-button
+          size="medium"
+          icon
+          outlined
+        >
+          A
+        </j-button>
+        <j-button
+          size="small"
+          icon
+          outlined
+        >
+          A
+        </j-button>
+      </div>
+    </div>
   </div>
 </template>
 

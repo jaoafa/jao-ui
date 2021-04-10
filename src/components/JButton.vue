@@ -144,6 +144,10 @@ export default {
       default: false,
       type: Boolean,
     },
+    icon: {
+      default: false,
+      type: Boolean,
+    },
   },
   computed: {
     _tag () {
@@ -161,6 +165,7 @@ export default {
         'j-button--medium': this.size === 'medium',
         'j-button--small': this.size === 'small',
         'j-button--outlined': this.outlined,
+        'j-button--icon': this.icon,
       }
     },
     styles () {
@@ -175,6 +180,8 @@ export default {
 
 <style lang="scss" scoped>
 .j-button {
+  $root: #{&};
+
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -227,7 +234,6 @@ export default {
     font-size: 12px;
     font-weight: 700;
     line-height: 18px;
-    color: #ffb41d;
   }
 
   &--small {
@@ -246,9 +252,43 @@ export default {
       background-color: currentColor;
     }
   }
+
+  &--icon {
+    padding: 0 0 2px 0;
+    line-height: 1;
+    border-radius: 50%;
+
+    &#{$root} {
+      &--large {
+        width: 48px;
+        font-size: 20px;
+      }
+
+      &--medium {
+        width: 32px;
+        font-size: 16px;
+      }
+
+      &--small {
+        width: 24px;
+        font-size: 12px;
+      }
+    }
+
+    &::before,
+    &::after {
+      display: none;
+    }
+
+    *::after {
+      display: none;
+    }
+  }
 }
 
 .j-button__body {
+  border-radius: inherit;
+
   &::before {
     position: absolute;
     top: 0;
