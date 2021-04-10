@@ -66,12 +66,13 @@ export default /* #__PURE__ */{
 .jao-ui-sample {
   display: block;
   width: 400px;
-  margin: 25px auto;
-  border: 1px solid #ccc;
-  background: #eaeaea;
-  text-align: center;
   padding: 25px;
+  margin: 25px auto;
+  text-align: center;
+  background: #eaeaea;
+  border: 1px solid #ccc;
 }
+
 .jao-ui-sample p {
   margin: 0 0 1em;
 }
