@@ -1,7 +1,7 @@
 <template>
-  <div class="app">
-    <div class="container">
-      <div class="container__body">
+  <div class="dev-app">
+    <div class="dev-container">
+      <div class="dev-container__body">
         <j-button size="large">
           Button
         </j-button>
@@ -13,8 +13,8 @@
         </j-button>
       </div>
     </div>
-    <div class="container">
-      <div class="container__body">
+    <div class="dev-container">
+      <div class="dev-container__body">
         <j-button
           size="large"
           disabled
@@ -35,8 +35,8 @@
         </j-button>
       </div>
     </div>
-    <div class="container">
-      <div class="container__body">
+    <div class="dev-container">
+      <div class="dev-container__body">
         <j-button
           size="large"
           outlined
@@ -57,8 +57,8 @@
         </j-button>
       </div>
     </div>
-    <div class="container">
-      <div class="container__body">
+    <div class="dev-container">
+      <div class="dev-container__body">
         <j-button
           size="large"
           outlined
@@ -82,8 +82,8 @@
         </j-button>
       </div>
     </div>
-    <div class="container">
-      <div class="container__body">
+    <div class="dev-container">
+      <div class="dev-container__body">
         <j-button
           size="large"
           icon
@@ -104,8 +104,8 @@
         </j-button>
       </div>
     </div>
-    <div class="container">
-      <div class="container__body">
+    <div class="dev-container">
+      <div class="dev-container__body">
         <j-button
           size="large"
           disabled
@@ -129,8 +129,8 @@
         </j-button>
       </div>
     </div>
-    <div class="container">
-      <div class="container__body">
+    <div class="dev-container">
+      <div class="dev-container__body">
         <j-button
           size="large"
           icon
@@ -154,8 +154,8 @@
         </j-button>
       </div>
     </div>
-    <div class="container">
-      <div class="container__body">
+    <div class="dev-container">
+      <div class="dev-container__body">
         <j-button
           size="large"
           icon
@@ -182,8 +182,8 @@
         </j-button>
       </div>
     </div>
-    <div class="container">
-      <div class="container__body">
+    <div class="dev-container">
+      <div class="dev-container__body">
         <j-image
           :src="sampleImage"
           alt="Sample Image"
@@ -224,12 +224,43 @@ export default Vue.extend({
 })
 </script>
 
-<style lang="scss" scoped>
-.app {
+<style lang="scss">
+@import url(
+  'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap'
+);
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+*,
+::before,
+::after {
+  box-sizing: inherit;
+  background-repeat: no-repeat;
+}
+
+::before,
+::after {
+  text-decoration: inherit;
+  vertical-align: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  overflow-y: scroll;
+}
+
+body {
+  font-family: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic UI', sans-serif;
+}
+
+.dev-app {
   padding: 24px;
 }
 
-.container {
+.dev-container {
   display: grid;
   grid-template-columns: 100%;
   grid-auto-rows: auto;
