@@ -17,6 +17,28 @@
       <div class="container__body">
         <j-button
           size="large"
+          disabled
+        >
+          Button
+        </j-button>
+        <j-button
+          size="medium"
+          disabled
+        >
+          Button
+        </j-button>
+        <j-button
+          size="small"
+          disabled
+        >
+          Button
+        </j-button>
+      </div>
+    </div>
+    <div class="container">
+      <div class="container__body">
+        <j-button
+          size="large"
           outlined
         >
           Button
@@ -30,6 +52,31 @@
         <j-button
           size="small"
           outlined
+        >
+          Button
+        </j-button>
+      </div>
+    </div>
+    <div class="container">
+      <div class="container__body">
+        <j-button
+          size="large"
+          outlined
+          disabled
+        >
+          Button
+        </j-button>
+        <j-button
+          size="medium"
+          outlined
+          disabled
+        >
+          Button
+        </j-button>
+        <j-button
+          size="small"
+          outlined
+          disabled
         >
           Button
         </j-button>
@@ -61,6 +108,31 @@
       <div class="container__body">
         <j-button
           size="large"
+          disabled
+          icon
+        >
+          <font-awesome-icon icon="bomb" />
+        </j-button>
+        <j-button
+          size="medium"
+          disabled
+          icon
+        >
+          <font-awesome-icon icon="bomb" />
+        </j-button>
+        <j-button
+          size="small"
+          disabled
+          icon
+        >
+          <font-awesome-icon icon="bomb" />
+        </j-button>
+      </div>
+    </div>
+    <div class="container">
+      <div class="container__body">
+        <j-button
+          size="large"
           icon
           outlined
         >
@@ -76,6 +148,34 @@
         <j-button
           size="small"
           icon
+          outlined
+        >
+          <font-awesome-icon icon="bomb" />
+        </j-button>
+      </div>
+    </div>
+    <div class="container">
+      <div class="container__body">
+        <j-button
+          size="large"
+          icon
+          disabled
+          outlined
+        >
+          <font-awesome-icon icon="bomb" />
+        </j-button>
+        <j-button
+          size="medium"
+          icon
+          disabled
+          outlined
+        >
+          <font-awesome-icon icon="bomb" />
+        </j-button>
+        <j-button
+          size="small"
+          icon
+          disabled
           outlined
         >
           <font-awesome-icon icon="bomb" />
