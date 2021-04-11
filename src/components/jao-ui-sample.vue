@@ -1,3 +1,24 @@
+<template>
+  <div class="jao-ui-sample">
+    <p>The counter was {{ changedBy }} to <b>{{ counter }}</b>.</p>
+    <button @click="increment">
+      Click +1
+    </button>
+    <button @click="decrement">
+      Click -1
+    </button>
+    <button @click="increment(5)">
+      Click +5
+    </button>
+    <button @click="decrement(5)">
+      Click -5
+    </button>
+    <button @click="reset">
+      Reset
+    </button>
+  </div>
+</template>
+
 <script>
 
 export default /* #__PURE__ */{
@@ -40,27 +61,6 @@ export default /* #__PURE__ */{
   },
 }
 </script>
-
-<template>
-  <div class="jao-ui-sample">
-    <p>The counter was {{ changedBy }} to <b>{{ counter }}</b>.</p>
-    <button @click="increment">
-      Click +1
-    </button>
-    <button @click="decrement">
-      Click -1
-    </button>
-    <button @click="increment(5)">
-      Click +5
-    </button>
-    <button @click="decrement(5)">
-      Click -5
-    </button>
-    <button @click="reset">
-      Reset
-    </button>
-  </div>
-</template>
 
 <style lang="scss" scoped>
 .jao-ui-sample {

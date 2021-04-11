@@ -16,5 +16,8 @@ module.exports = {
   rules: {
     'comma-dangle': ['error', 'always-multiline'],
     'brace-style': ['error', 'stroustrup'],
+    'vue/component-tags-order': ['error', {
+      order: ['template', 'script', 'style'],
+    }],
   },
 }
