@@ -141,6 +141,10 @@ export default {
         return validateColor(val)
       },
     },
+    disabled: {
+      default: false,
+      type: Boolean,
+    },
     outlined: {
       default: false,
       type: Boolean,
@@ -165,14 +169,23 @@ export default {
         'j-button--large': this.size === 'large',
         'j-button--medium': this.size === 'medium',
         'j-button--small': this.size === 'small',
+        'j-button--disabled': this.disabled,
         'j-button--outlined': this.outlined,
         'j-button--icon': this.icon,
       }
     },
     styles () {
       return {
-        color: this.outlined ? this._color : getContrastColor(this._color),
-        'background-color': this.outlined ? 'transparent' : this._color,
+        color: this.disabled
+          ? colors['gray-200']
+          : this.outlined
+            ? this._color
+            : getContrastColor(this._color),
+        'background-color': this.outlined
+          ? 'transparent'
+          : this.disabled
+            ? colors['gray-100']
+            : this._color,
       }
     },
   },
@@ -193,7 +206,7 @@ export default {
   align-items: center;
   justify-content: center;
   appearance: none;
-  font-family: 'Noto Sans JP', sans-serif;
+  font: inherit;
   cursor: pointer;
   border: none;
   border-radius: 2px 2px 0 2px;
@@ -248,6 +261,10 @@ export default {
     font-size: 12px;
     font-weight: 700;
     line-height: 18px;
+  }
+
+  &--disabled {
+    pointer-events: none;
   }
 
   &--outlined {
