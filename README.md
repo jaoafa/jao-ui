@@ -14,8 +14,16 @@ jao UI is Vue based component library for jao community that provides Minecraft 
 
 ## 🚀 Install
 
+In the same directory as your `package.json` file, create or edit an `.npmrc` file to include a line this:
+
+```
+@jaoafa:registry=https://npm.pkg.github.com
+```
+
+and install the package.
+
 ```bash
-# Under Construction
+$ npm install @jaoafa/jao-ui
 ```
 
 ## 🛠 Contributing
