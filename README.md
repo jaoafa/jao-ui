@@ -7,6 +7,12 @@ jao UI is Vue based component library for jao community that provides Minecraft 
 </p>
 
 <p align="center">
+  <a href="https://github.com/jaoafa/jao-ui/releases">
+    <img src="https://img.shields.io/github/v/release/jaoafa/jao-ui" alt="release">
+  </a>
+  <a href="https://github.com/jaoafa/jao-ui/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/jaoafa/jao-ui" alt="license">
+  </a>
   <a href="https://discord.com/invite/YjwYEBk">
     <img src="https://discord.com/api/guilds/597378876556967936/widget.png" alt="Discord">
   </a>
