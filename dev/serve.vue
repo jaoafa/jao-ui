@@ -204,7 +204,6 @@
         <j-progress
           :size="48"
           :stroke="4"
-          :percentage="50"
           :indeterminate="true"
           color="primary"
         />
