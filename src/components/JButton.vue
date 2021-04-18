@@ -9,10 +9,19 @@
     <span class="j-button__body">
       <slot />
     </span>
+    <span class="j-button__loader">
+      <j-progress
+        :color="textColor"
+        :size="20"
+        :stroke="2"
+        indeterminate
+      />
+    </span>
   </component>
 </template>
 
 <script>
+import JProgress from '@/components/JProgress'
 import {
   colors,
   validateColor,
@@ -22,6 +31,9 @@ import {
 
 export default {
   name: 'JButton',
+  components: {
+    JProgress,
+  },
   props: {
     tag: {
       default: 'button',
@@ -61,6 +73,10 @@ export default {
       default: false,
       type: Boolean,
     },
+    loading: {
+      default: false,
+      type: Boolean,
+    },
     icon: {
       default: false,
       type: Boolean,
@@ -73,9 +89,6 @@ export default {
         this.tag ||
         'button'
     },
-    _color () {
-      return convertNameToHex(this.color)
-    },
     classes () {
       return {
         'j-button--large': this.size === 'large',
@@ -83,22 +96,31 @@ export default {
         'j-button--small': this.size === 'small',
         'j-button--disabled': this.disabled,
         'j-button--outlined': this.outlined,
+        'j-button--loading': this.loading,
         'j-button--icon': this.icon,
       }
     },
     styles () {
       return {
-        color: this.disabled
-          ? colors['gray-200']
-          : this.outlined
-            ? this._color
-            : getContrastColor(this._color),
-        'background-color': this.outlined
-          ? 'transparent'
-          : this.disabled
-            ? colors['gray-100']
-            : this._color,
+        color: this.textColor,
+        'background-color': this.backgroundColor,
       }
+    },
+    textColor () {
+      const color = convertNameToHex(this.color)
+      return this.disabled
+        ? colors['gray-200']
+        : this.outlined
+          ? color
+          : getContrastColor(color)
+    },
+    backgroundColor () {
+      const color = convertNameToHex(this.color)
+      return this.outlined
+        ? 'transparent'
+        : this.disabled
+          ? colors['gray-100']
+          : convertNameToHex(color)
     },
   },
   methods: {
@@ -188,6 +210,16 @@ export default {
     }
   }
 
+  &--loading {
+    & #{$root}__body {
+      opacity: 0;
+    }
+
+    & #{$root}__loader {
+      opacity: 1;
+    }
+  }
+
   &--icon {
     padding: 0 0 2px 0;
     line-height: 1;
@@ -250,5 +282,18 @@ export default {
     content: '';
     background-color: currentColor;
   }
+}
+
+.j-button__loader {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
 }
 </style>
