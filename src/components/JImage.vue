@@ -20,12 +20,20 @@
       <div
         v-show="!isLoaded"
         class="j-image__loader"
-      />
+      >
+        <j-progress
+          :size="40"
+          :indeterminate="true"
+          color="gray-300"
+        />
+      </div>
     </transition>
   </div>
 </template>
 
 <script>
+import JProgress from '@/components/JProgress'
+
 const sizeUnits = Object.freeze([
   'cm',
   'mm',
@@ -66,6 +74,9 @@ const validateSize = (val) => {
 
 export default {
   name: 'JImage',
+  components: {
+    JProgress,
+  },
   props: {
     src: {
       default: '',
