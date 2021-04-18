@@ -11,10 +11,6 @@
         <j-button size="small">
           Button
         </j-button>
-      </div>
-    </div>
-    <div class="dev-container">
-      <div class="dev-container__body">
         <j-button
           size="large"
           disabled
@@ -33,6 +29,24 @@
         >
           Button
         </j-button>
+        <j-button
+          size="large"
+          loading
+        >
+          Button
+        </j-button>
+        <j-button
+          size="medium"
+          loading
+        >
+          Button
+        </j-button>
+        <j-button
+          size="small"
+          loading
+        >
+          Button
+        </j-button>
       </div>
     </div>
     <div class="dev-container">
@@ -55,10 +69,6 @@
         >
           Button
         </j-button>
-      </div>
-    </div>
-    <div class="dev-container">
-      <div class="dev-container__body">
         <j-button
           size="large"
           outlined
@@ -80,6 +90,27 @@
         >
           Button
         </j-button>
+        <j-button
+          size="large"
+          outlined
+          loading
+        >
+          Button
+        </j-button>
+        <j-button
+          size="medium"
+          outlined
+          loading
+        >
+          Button
+        </j-button>
+        <j-button
+          size="small"
+          outlined
+          loading
+        >
+          Button
+        </j-button>
       </div>
     </div>
     <div class="dev-container">
@@ -102,10 +133,6 @@
         >
           <font-awesome-icon icon="bomb" />
         </j-button>
-      </div>
-    </div>
-    <div class="dev-container">
-      <div class="dev-container__body">
         <j-button
           size="large"
           disabled
@@ -127,6 +154,27 @@
         >
           <font-awesome-icon icon="bomb" />
         </j-button>
+        <j-button
+          size="large"
+          loading
+          icon
+        >
+          <font-awesome-icon icon="bomb" />
+        </j-button>
+        <j-button
+          size="medium"
+          loading
+          icon
+        >
+          <font-awesome-icon icon="bomb" />
+        </j-button>
+        <j-button
+          size="small"
+          loading
+          icon
+        >
+          <font-awesome-icon icon="bomb" />
+        </j-button>
       </div>
     </div>
     <div class="dev-container">
@@ -152,10 +200,6 @@
         >
           <font-awesome-icon icon="bomb" />
         </j-button>
-      </div>
-    </div>
-    <div class="dev-container">
-      <div class="dev-container__body">
         <j-button
           size="large"
           icon
@@ -176,6 +220,30 @@
           size="small"
           icon
           disabled
+          outlined
+        >
+          <font-awesome-icon icon="bomb" />
+        </j-button>
+        <j-button
+          size="large"
+          loading
+          icon
+          outlined
+        >
+          <font-awesome-icon icon="bomb" />
+        </j-button>
+        <j-button
+          size="medium"
+          loading
+          icon
+          outlined
+        >
+          <font-awesome-icon icon="bomb" />
+        </j-button>
+        <j-button
+          size="small"
+          loading
+          icon
           outlined
         >
           <font-awesome-icon icon="bomb" />
