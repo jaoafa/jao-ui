@@ -199,6 +199,41 @@
         />
       </div>
     </div>
+    <div class="dev-container">
+      <div class="dev-container__body">
+        <j-progress
+          :size="48"
+          :stroke="4"
+          :percentage="50"
+          :indeterminate="true"
+          color="primary"
+        />
+        <j-progress
+          :size="48"
+          :stroke="4"
+          :percentage="20"
+          color="secondary-100"
+        />
+        <j-progress
+          :size="48"
+          :stroke="4"
+          :percentage="40"
+          color="secondary-300"
+        />
+        <j-progress
+          :size="48"
+          :stroke="4"
+          :percentage="60"
+          color="secondary-500"
+        />
+        <j-progress
+          :size="48"
+          :stroke="4"
+          :percentage="80"
+          color="secondary-700"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
