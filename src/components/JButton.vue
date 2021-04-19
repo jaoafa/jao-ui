@@ -3,6 +3,7 @@
     :is="_tag"
     :class="classes"
     :style="styles"
+    :disabled="disabled ? 'disabled' : null"
     class="j-button"
     @click="click"
   >
