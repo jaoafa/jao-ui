@@ -33,44 +33,9 @@
 
 <script>
 import JProgress from '@/components/JProgress'
-
-const sizeUnits = Object.freeze([
-  'cm',
-  'mm',
-  'q',
-  'in',
-  'pc',
-  'pt',
-  'px',
-  'em',
-  'ex',
-  'ch',
-  'rem',
-  'lh',
-  'vw',
-  'vh',
-  'vmin',
-  'vmax',
-  '%',
-])
-
-const validateSize = (val) => {
-  // number
-  if (typeof val === 'number' && val - val === 0) {
-    return true
-  }
-  // string
-  else if (
-    val &&
-    new RegExp('^\\d+\\.?\\d+(' + sizeUnits.join('|') + ')$', 'g').test(val)
-  ) {
-    return true
-  }
-  // error
-  else {
-    return false
-  }
-}
+import {
+  validateSize,
+} from '@/utils/sizes'
 
 export default {
   name: 'JImage',
