@@ -14,7 +14,7 @@
         />
         <tbody class="j-table__body">
           <template v-if="!loading">
-            <template v-for="(item, index) in items">
+            <template v-for="(item, index) in _items">
               <tr
                 :key="index"
                 :style="{
@@ -90,6 +90,28 @@ export default {
     }
   },
   computed: {
+    _items () {
+      const items = [...this.items]
+      const sortBy = this.sortBy
+      const sortOrder = this.sortOrder === 'asc'
+      const sortFunction = (a, b) => {
+        a = a[sortBy] ? a[sortBy] : ''
+        b = b[sortBy] ? b[sortBy] : ''
+        if (a < b) {
+          return sortOrder ? -1 : 1
+        }
+        else if (a > b) {
+          return sortOrder ? 1 : -1
+        }
+        else {
+          return 0
+        }
+      }
+      if (sortBy) {
+        items.sort(sortFunction)
+      }
+      return items
+    },
     styles () {
       return {
         color: this.colors['gray-800'],
