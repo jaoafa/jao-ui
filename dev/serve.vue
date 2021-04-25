@@ -4,8 +4,8 @@
       <div style="width: 400px;">
         <j-table
           :headers="[
-            { label: 'ID', key: 'id' },
-            { label: '名前', key: 'name' },
+            { label: 'ID', key: 'id', sortable: true },
+            { label: '名前', key: 'name', sortable: true },
             { label: '初回ログイン', key: 'firstlogin' },
             { label: '最終ログイン', key: 'lastlogin' },
           ]"

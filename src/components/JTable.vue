@@ -8,6 +8,9 @@
         <j-table-header
           v-if="!hideHeader && !loading"
           :headers="headers"
+          :sort-by="sortBy"
+          :sort-order="sortOrder"
+          @click="toggleSort"
         />
         <tbody class="j-table__body">
           <template v-if="!loading">
@@ -80,6 +83,12 @@ export default {
       type: Boolean,
     },
   },
+  data () {
+    return {
+      sortBy: '',
+      sortOrder: 'asc',
+    }
+  },
   computed: {
     styles () {
       return {
@@ -88,6 +97,22 @@ export default {
     },
     colors () {
       return colors
+    },
+  },
+  methods: {
+    toggleSort (key) {
+      if (this.sortBy !== key) {
+        this.sortBy = key
+        this.sortOrder = 'asc'
+      }
+      else {
+        if (this.sortOrder === 'asc') {
+          this.sortOrder = 'desc'
+        }
+        else {
+          this.sortBy = ''
+        }
+      }
     },
   },
 }
