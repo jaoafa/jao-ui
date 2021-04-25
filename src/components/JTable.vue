@@ -5,18 +5,10 @@
   >
     <div class="j-table__wrapper">
       <table>
-        <thead
+        <j-table-header
           v-if="!hideHeader && !loading"
-          class="j-table__header"
-        >
-          <tr :style="{ 'background-color': colors['gray-200'] }">
-            <template v-for="item in headers">
-              <th :key="item.key">
-                <span>{{ item.label }}</span>
-              </th>
-            </template>
-          </tr>
-        </thead>
+          :headers="headers"
+        />
         <tbody class="j-table__body">
           <template v-if="!loading">
             <template v-for="(item, index) in items">
@@ -59,6 +51,7 @@
 
 <script>
 import JProgress from '@/components/JProgress'
+import JTableHeader from '@/components/JTableHeader'
 import {
   colors,
 } from '@/utils/colors'
@@ -67,19 +60,12 @@ export default {
   name: 'JTable',
   components: {
     JProgress,
+    JTableHeader,
   },
   props: {
     headers: {
       default: () => [],
       type: Array,
-      validator: (val) => {
-        return val.every((item) => {
-          return (
-            item.label &&
-            item.key
-          )
-        })
-      },
     },
     items: {
       default: () => [],
