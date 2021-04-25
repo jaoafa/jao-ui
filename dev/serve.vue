@@ -1,6 +1,62 @@
 <template>
   <div class="dev-app">
     <div class="dev-container">
+      <div style="width: 400px;">
+        <j-table
+          :headers="[
+            { label: 'ID', key: 'id' },
+            { label: '名前', key: 'name' },
+            { label: '初回ログイン', key: 'firstlogin' },
+            { label: '最終ログイン', key: 'lastlogin' },
+          ]"
+          :items="[
+            {
+              id: 1,
+              name: '佐藤',
+              firstlogin: '2020-04-01',
+              lastlogin: '2021-04-01'
+            },
+            {
+              id: 2,
+              name: '鈴木',
+              firstlogin: '2020-04-01',
+              lastlogin:'2021-04-05'
+            },
+            {
+              id: 3,
+              name: '高橋',
+              firstlogin: '2020-04-01',
+              lastlogin: '2021-04-10'
+            },
+            {
+              id: 4,
+              name: '田中',
+              firstlogin: '2020-04-01',
+              lastlogin: '2021-04-15'
+            },
+            {
+              id: 5,
+              name: '伊藤',
+              firstlogin: '2020-04-01',
+              lastlogin: '2021-04-20'
+            },
+            {
+              id: 6,
+              name: '渡辺',
+              firstlogin: '2020-04-01',
+              lastlogin: '2021-04-25'
+            },
+            {
+              id: 7,
+              name: '山本',
+              firstlogin: '2020-04-01',
+              lastlogin: '2021-04-30'
+            },
+          ]"
+        />
+      </div>
+    </div>
+    <div class="dev-container">
       <div class="dev-container__body">
         <j-button size="large">
           Button
