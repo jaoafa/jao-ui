@@ -5,7 +5,10 @@
   >
     <div class="j-table__wrapper">
       <table>
-        <thead class="j-table__header">
+        <thead
+          v-if="!hideHeader"
+          class="j-table__header"
+        >
           <tr :style="{ 'background-color': colors['gray-200'] }">
             <template v-for="item in headers">
               <th :key="item.key">
@@ -58,6 +61,10 @@ export default {
     items: {
       default: () => [],
       type: Array,
+    },
+    hideHeader: {
+      default: false,
+      type: Boolean,
     },
   },
   computed: {
