@@ -84,9 +84,13 @@ $root: '.j-table-header';
   &--sortable {
     cursor: pointer;
 
+    #{$root}__sort {
+      opacity: 0.2;
+    }
+
     &:hover {
       #{$root}__sort {
-        opacity: 0.4;
+        opacity: 0.5;
       }
     }
   }
@@ -126,7 +130,7 @@ $root: '.j-table-header';
   transition-duration: 0.2s;
   transition-property: opacity transform;
 
-  svg {
+  & > svg {
     fill: currentColor;
   }
 }
