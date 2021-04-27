@@ -70,7 +70,7 @@ export default {
   computed: {
     styles () {
       return {
-        'background-color': this.colors['gray-200'],
+        'background-color': this.colors['gray-100'],
       }
     },
     colors () {

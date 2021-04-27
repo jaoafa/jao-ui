@@ -53,6 +53,8 @@
               lastlogin: '2021-04-30'
             },
           ]"
+          :page="1"
+          :item-per-page="2"
         />
       </div>
     </div>

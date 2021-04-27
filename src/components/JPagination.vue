@@ -1,23 +1,24 @@
 <template>
   <nav class="j-pagination">
     <ul class="j-pagination__body">
-      <template v-if="page !== 1">
-        <li class="j-pagination__item">
-          <button
-            class="j-pagination__button"
-            @click="prev"
-          >
-            <span class="j-pagination__icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-              >
-                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
-              </svg>
-            </span>
-          </button>
-        </li>
-      </template>
+      <li
+        v-show="page > 1"
+        class="j-pagination__item"
+      >
+        <button
+          class="j-pagination__button"
+          @click="prev"
+        >
+          <span class="j-pagination__icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+            >
+              <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+            </svg>
+          </span>
+        </button>
+      </li>
       <template v-for="item in generateItems">
         <li
           :key="item.id"
@@ -35,23 +36,24 @@
           </component>
         </li>
       </template>
-      <template v-if="page !== length">
-        <li class="j-pagination__item">
-          <button
-            class="j-pagination__button"
-            @click="next"
-          >
-            <span class="j-pagination__icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-              >
-                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
-              </svg>
-            </span>
-          </button>
-        </li>
-      </template>
+      <li
+        v-show="page !== length"
+        class="j-pagination__item"
+      >
+        <button
+          class="j-pagination__button"
+          @click="next"
+        >
+          <span class="j-pagination__icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+            >
+              <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+            </svg>
+          </span>
+        </button>
+      </li>
     </ul>
   </nav>
 </template>

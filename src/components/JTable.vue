@@ -49,11 +49,19 @@
         </tbody>
       </table>
     </div>
+    <j-table-footer
+      v-if="!hideFooter && !loading"
+      :page="currentPage"
+      :item-per-page="itemPerPage"
+      :item-length="items.length"
+      @input="togglePage"
+    />
   </div>
 </template>
 
 <script>
 import JProgress from '@/components/JProgress'
+import JTableFooter from '@/components/JTableFooter'
 import JTableHeader from '@/components/JTableHeader'
 import {
   colors,
@@ -63,6 +71,7 @@ export default {
   name: 'JTable',
   components: {
     JProgress,
+    JTableFooter,
     JTableHeader,
   },
   props: {
@@ -78,15 +87,34 @@ export default {
       default: false,
       type: Boolean,
     },
+    hideFooter: {
+      default: false,
+      type: Boolean,
+    },
     loading: {
       default: false,
       type: Boolean,
+    },
+    page: {
+      default: 1,
+      type: Number,
+      validator: (val) => {
+        return (val % 1 === 0) && (val > 0)
+      },
+    },
+    itemPerPage: {
+      default: 10,
+      type: Number,
+      validator: (val) => {
+        return (val % 1 === 0) && (val > 0)
+      },
     },
   },
   data () {
     return {
       sortBy: '',
       sortOrder: 'asc',
+      currentPage: 1,
     }
   },
   computed: {
@@ -94,6 +122,8 @@ export default {
       const items = [...this.items]
       const sortBy = this.sortBy
       const sortOrder = this.sortOrder === 'asc'
+      const page = this.currentPage
+      const itemPerPage = this.itemPerPage
       const sortFunction = (a, b) => {
         a = a[sortBy] ? a[sortBy] : ''
         b = b[sortBy] ? b[sortBy] : ''
@@ -110,7 +140,7 @@ export default {
       if (sortBy) {
         items.sort(sortFunction)
       }
-      return items
+      return items.slice(itemPerPage * (page - 1), itemPerPage * page)
     },
     styles () {
       return {
@@ -120,6 +150,12 @@ export default {
     colors () {
       return colors
     },
+  },
+  created () {
+    this.currentPage = this.page
+    if (!this.items.length) {
+      this.currentPage = 0
+    }
   },
   methods: {
     toggleSort (key) {
@@ -135,6 +171,9 @@ export default {
           this.sortBy = ''
         }
       }
+    },
+    togglePage (key) {
+      this.currentPage = key
     },
   },
 }
