@@ -18,24 +18,22 @@
           </button>
         </li>
       </template>
-      <template v-if="!hideNumber">
-        <template v-for="item in generateItems">
-          <li
-            :key="item.id"
-            :class="{
-              'j-pagination__item': true,
-              'j-pagination__item--current': item.label === page,
-            }"
+      <template v-for="item in generateItems">
+        <li
+          :key="item.id"
+          :class="{
+            'j-pagination__item': true,
+            'j-pagination__item--current': item.label === page,
+          }"
+        >
+          <component
+            :is="item.tag"
+            :class="item.class"
+            @click="item.tag === 'button' ? input(item.label) : null"
           >
-            <component
-              :is="item.tag"
-              :class="item.class"
-              @click="item.tag === 'button' ? input(item.label) : null"
-            >
-              {{ item.label }}
-            </component>
-          </li>
-        </template>
+            {{ item.label }}
+          </component>
+        </li>
       </template>
       <template v-if="page !== length">
         <li class="j-pagination__item">
@@ -85,10 +83,6 @@ export default {
       validator: (val) => {
         return (val % 1 === 0) && (val >= 0)
       },
-    },
-    hideNumber: {
-      default: false,
-      type: Boolean,
     },
   },
   data () {
