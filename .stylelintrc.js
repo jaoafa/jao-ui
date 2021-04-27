@@ -3,5 +3,10 @@ module.exports = {
     'stylelint-config-standard',
     'stylelint-config-recess-order',
   ],
-  rules: {},
+  rules: {
+    'at-rule-no-unknown' : [
+      true,
+      { ignoreAtRules: ['use'] },
+    ],
+  },
 }
