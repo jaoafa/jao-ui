@@ -54,6 +54,7 @@ export default {
 
 <style lang="scss" scoped>
 @use 'src/sass/variables' as *;
+$root: '.j-table-footer';
 
 .j-table-footer {
   display: flex;

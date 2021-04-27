@@ -138,6 +138,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use 'src/sass/variables' as *;
+$root: '.j-image';
+
 .j-image {
   position: relative;
   display: flex;

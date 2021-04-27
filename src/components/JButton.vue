@@ -133,9 +133,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.j-button {
-  $root: #{&};
+@use 'src/sass/variables' as *;
+$root: '.j-button';
 
+.j-button {
   position: relative;
   display: inline-flex;
   align-items: center;

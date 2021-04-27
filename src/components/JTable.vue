@@ -1,8 +1,5 @@
 <template>
-  <div
-    :style="styles"
-    class="j-table"
-  >
+  <div class="j-table">
     <div class="j-table__wrapper">
       <table>
         <j-table-header
@@ -15,12 +12,7 @@
         <tbody class="j-table__body">
           <template v-if="!loading">
             <template v-for="(item, index) in _items">
-              <tr
-                :key="index"
-                :style="{
-                  'background-color': (index % 2 === 0) ? null : colors['gray-50']
-                }"
-              >
+              <tr :key="index">
                 <template v-for="column in headers">
                   <td :key="column.key">
                     <span>{{ item[column.key] ? item[column.key] : '' }}</span>
@@ -32,10 +24,7 @@
           <template v-else>
             <tr>
               <td>
-                <div
-                  class="j-table__progress"
-                  :style="{ color: colors['gray-300'] }"
-                >
+                <div class="j-table__progress">
                   <span>読み込み中...</span>
                   <j-progress
                     :size="20"
@@ -63,9 +52,6 @@
 import JProgress from '@/components/JProgress'
 import JTableFooter from '@/components/JTableFooter'
 import JTableHeader from '@/components/JTableHeader'
-import {
-  colors,
-} from '@/utils/colors'
 
 export default {
   name: 'JTable',
@@ -142,14 +128,6 @@ export default {
       }
       return items.slice(itemPerPage * (page - 1), itemPerPage * page)
     },
-    styles () {
-      return {
-        color: this.colors['gray-800'],
-      }
-    },
-    colors () {
-      return colors
-    },
   },
   created () {
     this.currentPage = this.page
@@ -180,11 +158,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.j-table {
-  $root: #{&};
+@use 'src/sass/variables' as *;
+$root: '.j-table';
 
+.j-table {
   max-width: 100%;
   font-size: 13px;
+  color: $color-gray-800;
   text-align: left;
 
   table {
@@ -204,10 +184,19 @@ export default {
   overflow-y: hidden;
 }
 
+.j-table__body {
+  tr {
+    &:nth-of-type(2n) {
+      background-color: $color-gray-50;
+    }
+  }
+}
+
 .j-table__progress {
   display: flex;
   align-items: center;
   justify-content: center;
+  color: $color-gray-300;
 
   * ~ * {
     margin-left: 8px;

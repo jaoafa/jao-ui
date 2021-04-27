@@ -1,8 +1,5 @@
 <template>
-  <thead
-    :style="styles"
-    class="j-table-header"
-  >
+  <thead class="j-table-header">
     <tr>
       <template v-for="item in headers">
         <th
@@ -36,10 +33,6 @@
 </template>
 
 <script>
-import {
-  colors,
-} from '@/utils/colors'
-
 export default {
   name: 'JTableHeader',
   props: {
@@ -67,16 +60,6 @@ export default {
       },
     },
   },
-  computed: {
-    styles () {
-      return {
-        'background-color': this.colors['gray-100'],
-      }
-    },
-    colors () {
-      return colors
-    },
-  },
   methods: {
     click (key) {
       this.$emit('click', key)
@@ -86,7 +69,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use 'src/sass/variables' as *;
 $root: '.j-table-header';
+
+.j-table-header {
+  background-color: $color-gray-100;
+}
 
 .j-table-header__item {
   height: 48px;

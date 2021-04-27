@@ -106,9 +106,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.j-progress {
-  $root: #{&};
+@use 'src/sass/variables' as *;
+$root: '.j-progress';
 
+.j-progress {
   display: inline-flex;
   transition-timing-function: ease-in-out;
   transition-duration: 0.3s;
