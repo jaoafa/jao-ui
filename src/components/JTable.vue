@@ -3,28 +3,17 @@
     <div class="j-table__wrapper">
       <table>
         <j-table-header
-          v-if="!hideHeader && !loading"
+          v-if="!hideHeader"
           :headers="headers"
           :sort-by="sortBy"
           :sort-order="sortOrder"
           @click="toggleSort"
         />
         <tbody class="j-table__body">
-          <template v-if="!loading">
-            <template v-for="(item, index) in _items">
-              <tr :key="index">
-                <template v-for="column in headers">
-                  <td :key="column.key">
-                    <span>{{ item[column.key] ? item[column.key] : '' }}</span>
-                  </td>
-                </template>
-              </tr>
-            </template>
-          </template>
-          <template v-else>
+          <template v-if="loading">
             <tr>
-              <td>
-                <div class="j-table__progress">
+              <td :colspan="headers.length">
+                <div class="j-table__empty">
                   <span>読み込み中...</span>
                   <j-progress
                     :size="20"
@@ -35,11 +24,33 @@
               </td>
             </tr>
           </template>
+          <template v-else>
+            <template v-if="items.length">
+              <template v-for="(item, index) in _items">
+                <tr :key="index">
+                  <template v-for="column in headers">
+                    <td :key="column.key">
+                      <span>{{ item[column.key] ? item[column.key] : '' }}</span>
+                    </td>
+                  </template>
+                </tr>
+              </template>
+            </template>
+            <template v-else>
+              <tr>
+                <td :colspan="headers.length">
+                  <div class="j-table__empty">
+                    <span>表示する項目がありません</span>
+                  </div>
+                </td>
+              </tr>
+            </template>
+          </template>
         </tbody>
       </table>
     </div>
     <j-table-footer
-      v-if="!hideFooter && !loading"
+      v-if="!hideFooter"
       :page="currentPage"
       :item-per-page="itemPerPage"
       :item-length="items.length"
@@ -192,7 +203,7 @@ $root: '.j-table';
   }
 }
 
-.j-table__progress {
+.j-table__empty {
   display: flex;
   align-items: center;
   justify-content: center;
