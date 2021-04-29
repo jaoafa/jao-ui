@@ -47,9 +47,14 @@ export default {
       const page = this.page
       const itemPerPage = this.itemPerPage
       const itemLength = this.itemLength
-      return itemPerPage * (page - 1) + 1 +
-        '-' +
-        (itemPerPage * page > itemLength ? itemLength : itemPerPage * page)
+      if (itemLength) {
+        return itemPerPage * (page - 1) + 1 +
+          '-' +
+          (itemPerPage * page > itemLength ? itemLength : itemPerPage * page)
+      }
+      else {
+        return ''
+      }
     },
     currentPage: {
       get () {
