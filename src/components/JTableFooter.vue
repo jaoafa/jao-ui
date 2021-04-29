@@ -1,5 +1,8 @@
 <template>
   <div class="j-table-footer">
+    <div class="j-table-footer__caption">
+      {{ caption }} 全{{ itemLength }}件
+    </div>
     <div class="j-table-footer__pagination">
       <j-pagination
         v-model="currentPage"
@@ -40,6 +43,14 @@ export default {
     length () {
       return Math.ceil(this.itemLength / this.itemPerPage)
     },
+    caption () {
+      const page = this.page
+      const itemPerPage = this.itemPerPage
+      const itemLength = this.itemLength
+      return itemPerPage * (page - 1) + 1 +
+        '-' +
+        (itemPerPage * page > itemLength ? itemLength : itemPerPage * page)
+    },
     currentPage: {
       get () {
         return this.page
@@ -68,6 +79,6 @@ $root: '.j-table-footer';
 }
 
 .j-table-footer__pagination {
-  padding-top: 4px;
+  padding: 4px 0 0 8px;
 }
 </style>
