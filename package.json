@@ -1,6 +1,6 @@
 {
   "name": "@jaoafa/jao-ui",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "jao UI Components with Vue.js.",
   "keywords": [
     "jaoafa",
@@ -74,6 +74,7 @@
     "build:ssr": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
     "build:es": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es",
     "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife",
+    "prepublish": "npm run build",
     "lint": "npm run lint:js & npm run lint:style",
     "lint:js": "eslint . --ext .js,.vue --fix",
     "lint:style": "stylelint \"**/*.vue\" --fix"
