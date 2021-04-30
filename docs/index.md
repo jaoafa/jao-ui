@@ -5,3 +5,4 @@
 - [Button](components/button.md)
 - [Image](components/image.md)
 - [Pagination](components/pagination.md)
+- [Progress](components/progress.md)
