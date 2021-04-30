@@ -1,12 +1,10 @@
 <template>
   <nav class="j-pagination">
     <ul class="j-pagination__body">
-      <li
-        v-show="page > 1"
-        class="j-pagination__item"
-      >
+      <li class="j-pagination__item">
         <button
           class="j-pagination__button"
+          :class="{ 'j-pagination__button--disabled': page < 2 }"
           @click="prev"
         >
           <span class="j-pagination__icon">
@@ -36,12 +34,10 @@
           </component>
         </li>
       </template>
-      <li
-        v-show="page !== length"
-        class="j-pagination__item"
-      >
+      <li class="j-pagination__item">
         <button
           class="j-pagination__button"
+          :class="{ 'j-pagination__button--disabled': page === length }"
           @click="next"
         >
           <span class="j-pagination__icon">
@@ -252,6 +248,11 @@ $root: '.j-pagination';
   outline: none;
   transition-duration: 0.1s;
   transition-property: background-color;
+
+  &--disabled {
+    color: $color-gray-300;
+    pointer-events: none;
+  }
 
   &:hover {
     background-color: rgba(0, 0, 0, 0.1);
