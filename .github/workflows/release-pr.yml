@@ -1,0 +1,35 @@
+on: create
+jobs:
+  release-pr:
+    if: ${{ contains(github.ref, 'refs/heads/release/v') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Extract version
+        shell: bash
+        run: |
+          echo "::set-output name=version::${GITHUB_REF#refs/heads/release/v}"
+        id: extract_version
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - name: Git config
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Update package version
+        shell: bash
+        run: |
+          npm version ${{ steps.extract_version.outputs.version }} -m "Release %s"
+      - name: Create pull request
+        shell: bash
+        run: |
+          hub push
+          hub pull-request -b main -m "Release v${{ steps.extract_version.outputs.version }}"
+          hub pull-request -b dev -m "Release v${{ steps.extract_version.outputs.version }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GIT_EDITOR: vim
