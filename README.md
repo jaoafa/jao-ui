@@ -34,24 +34,7 @@ $ npm install @jaoafa/jao-ui
 
 ## 🛠 Contributing
 
-Install [Node.js](https://nodejs.org/) and clone this repository.
-
-```bash
-$ npm install
-```
-
-This project is using [vue-sfc-rollup](https://github.com/team-innovation/vue-sfc-rollup) to build the environment.
-
-```bash
-# Development
-$ npm run serve
-
-# Lint
-$ npm run lint
-
-# Build
-$ npm run build
-```
+Developers interested in contributing should read [CONTRIBUTING.md](.github/CONTRIBUTING.md).
 
 ## 📑 License
 

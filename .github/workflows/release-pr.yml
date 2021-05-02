@@ -32,4 +32,3 @@ jobs:
           hub pull-request -b dev -m "Release v${{ steps.extract_version.outputs.version }}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GIT_EDITOR: vim
