@@ -106,7 +106,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@use 'src/sass/variables' as *;
+@use 'src/sass/_' as *;
 $root: '.j-progress';
 
 .j-progress {
