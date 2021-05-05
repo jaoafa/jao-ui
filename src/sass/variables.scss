@@ -1,3 +1,7 @@
+// colors
+// ----------------------------------------
+
+// primary
 $color-primary: #ffb41d;
 $color-primary-lighten: #fff8e2;
 $color-primary-900: #fd7217;
@@ -11,6 +15,7 @@ $color-primary-200: #ffe086;
 $color-primary-100: #ffecb5;
 $color-primary-50: #fff8e2;
 
+// secondary
 $color-secondary: #e91e62;
 $color-secondary-lighten: #fce4ec;
 $color-secondary-900: #880d4e;
@@ -24,6 +29,7 @@ $color-secondary-200: #f48fb0;
 $color-secondary-100: #f8bbd0;
 $color-secondary-50: #fce4ec;
 
+// grayscale
 $color-black: #000;
 $color-white: #fff;
 $color-gray-1000: #05081a;
@@ -38,9 +44,24 @@ $color-gray-200: #cdced1;
 $color-gray-100: #e6e7e9;
 $color-gray-50: #f2f2f3;
 
+// brand
 $color-brand-discord: #7289da;
 $color-brand-twitter: #1da1f2;
 $color-brand-facebook: #1877f2;
 $color-brand-line: #06c755;
 $color-brand-instagram: #e1306c;
 $color-brand-youtube: #f00;
+
+// sizes
+// ----------------------------------------
+
+// width
+$size-width-max: 1200px;
+
+// breakpoints
+$size-breakpoints: (
+  'sm':  'screen and (min-width: 576px)',
+  'md':  'screen and (min-width: 768px)',
+  'lg':  'screen and (min-width: 992px)',
+  'xl':  'screen and (min-width: 1200px)',
+);

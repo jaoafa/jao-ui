@@ -121,7 +121,7 @@ export default {
         ? 'transparent'
         : this.disabled
           ? colors['gray-100']
-          : convertNameToHex(color)
+          : color
     },
   },
   methods: {
@@ -133,7 +133,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@use 'src/sass/variables' as *;
+@use 'src/sass/_' as *;
 $root: '.j-button';
 
 .j-button {
