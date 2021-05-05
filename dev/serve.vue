@@ -1,64 +1,85 @@
 <template>
-  <div class="dev-app">
+  <div>
     <j-container>
-      <div style="width: 400px;">
-        <j-table
-          :headers="[
-            { label: 'ID', key: 'id', sortable: true },
-            { label: '名前', key: 'name', sortable: true },
-            { label: '初回ログイン', key: 'firstlogin' },
-            { label: '最終ログイン', key: 'lastlogin' },
-          ]"
-          :items="[
-            {
-              id: 1,
-              name: '佐藤',
-              firstlogin: '2020-04-01',
-              lastlogin: '2021-04-01'
-            },
-            {
-              id: 2,
-              name: '鈴木',
-              firstlogin: '2020-04-01',
-              lastlogin:'2021-04-05'
-            },
-            {
-              id: 3,
-              name: '高橋',
-              firstlogin: '2020-04-01',
-              lastlogin: '2021-04-10'
-            },
-            {
-              id: 4,
-              name: '田中',
-              firstlogin: '2020-04-01',
-              lastlogin: '2021-04-15'
-            },
-            {
-              id: 5,
-              name: '伊藤',
-              firstlogin: '2020-04-01',
-              lastlogin: '2021-04-20'
-            },
-            {
-              id: 6,
-              name: '渡辺',
-              firstlogin: '2020-04-01',
-              lastlogin: '2021-04-25'
-            },
-            {
-              id: 7,
-              name: '山本',
-              firstlogin: '2020-04-01',
-              lastlogin: '2021-04-30'
-            },
-          ]"
-          :item-per-page="2"
-        />
-      </div>
+      <j-row>
+        <j-col
+          :cols="12"
+          :cols-sm="10"
+          :cols-md="6"
+          :cols-lg="3"
+          :cols-xl="1"
+        >
+          <div style="padding: 8px; background-color: red;" />
+        </j-col>
+      </j-row>
     </j-container>
     <j-container>
-      <div class="dev-container__body">
+      <j-row>
+        <j-col
+          :cols="12"
+          :cols-sm="10"
+          :cols-md="8"
+          :cols-lg="6"
+          :cols-xl="5"
+        >
+          <j-table
+            :headers="[
+              { label: 'ID', key: 'id', sortable: true },
+              { label: '名前', key: 'name', sortable: true },
+              { label: '初回ログイン', key: 'firstlogin' },
+              { label: '最終ログイン', key: 'lastlogin' },
+            ]"
+            :items="[
+              {
+                id: 1,
+                name: '佐藤',
+                firstlogin: '2020-04-01',
+                lastlogin: '2021-04-01'
+              },
+              {
+                id: 2,
+                name: '鈴木',
+                firstlogin: '2020-04-01',
+                lastlogin:'2021-04-05'
+              },
+              {
+                id: 3,
+                name: '高橋',
+                firstlogin: '2020-04-01',
+                lastlogin: '2021-04-10'
+              },
+              {
+                id: 4,
+                name: '田中',
+                firstlogin: '2020-04-01',
+                lastlogin: '2021-04-15'
+              },
+              {
+                id: 5,
+                name: '伊藤',
+                firstlogin: '2020-04-01',
+                lastlogin: '2021-04-20'
+              },
+              {
+                id: 6,
+                name: '渡辺',
+                firstlogin: '2020-04-01',
+                lastlogin: '2021-04-25'
+              },
+              {
+                id: 7,
+                name: '山本',
+                firstlogin: '2020-04-01',
+                lastlogin: '2021-04-30'
+              },
+            ]"
+            :item-per-page="2"
+          />
+        </j-col>
+      </j-row>
+    </j-container>
+    <j-container>
+      <div class="dev-flex">
         <j-button size="large">
           Button
         </j-button>
@@ -107,7 +128,7 @@
       </div>
     </j-container>
     <j-container>
-      <div class="dev-container__body">
+      <div class="dev-flex">
         <j-button
           size="large"
           outlined
@@ -171,7 +192,7 @@
       </div>
     </j-container>
     <j-container>
-      <div class="dev-container__body">
+      <div class="dev-flex">
         <j-button
           size="large"
           icon
@@ -235,7 +256,7 @@
       </div>
     </j-container>
     <j-container>
-      <div class="dev-container__body">
+      <div class="dev-flex">
         <j-button
           size="large"
           icon
@@ -308,7 +329,7 @@
       </div>
     </j-container>
     <j-container>
-      <div class="dev-container__body">
+      <div class="dev-flex">
         <j-image
           :src="sampleImage"
           alt="Sample Image"
@@ -325,7 +346,7 @@
       </div>
     </j-container>
     <j-container>
-      <div class="dev-container__body">
+      <div class="dev-flex">
         <j-progress
           :size="48"
           :stroke="4"
@@ -415,20 +436,9 @@ body {
   font-family: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic UI', sans-serif;
 }
 
-.dev-container {
-  display: grid;
-  grid-template-columns: 100%;
-  grid-auto-rows: auto;
-  gap: 8px;
-
-  & ~ & {
-    margin-top: 16px;
-  }
-
-  &__body {
-    display: flex;
-    gap: 16px;
-    align-items: center;
-  }
+.dev-flex {
+  display: flex;
+  gap: 16px;
+  align-items: center;
 }
 </style>
