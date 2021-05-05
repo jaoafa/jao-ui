@@ -6,7 +6,7 @@ module.exports = {
   rules: {
     'at-rule-no-unknown' : [
       true,
-      { ignoreAtRules: ['use'] },
+      { ignoreAtRules: ['use', 'forward', 'mixin', 'include', 'for'] },
     ],
   },
 }
