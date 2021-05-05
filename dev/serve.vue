@@ -1,6 +1,6 @@
 <template>
   <div class="dev-app">
-    <div class="dev-container">
+    <j-container>
       <div style="width: 400px;">
         <j-table
           :headers="[
@@ -56,8 +56,8 @@
           :item-per-page="2"
         />
       </div>
-    </div>
-    <div class="dev-container">
+    </j-container>
+    <j-container>
       <div class="dev-container__body">
         <j-button size="large">
           Button
@@ -105,8 +105,8 @@
           Button
         </j-button>
       </div>
-    </div>
-    <div class="dev-container">
+    </j-container>
+    <j-container>
       <div class="dev-container__body">
         <j-button
           size="large"
@@ -169,8 +169,8 @@
           Button
         </j-button>
       </div>
-    </div>
-    <div class="dev-container">
+    </j-container>
+    <j-container>
       <div class="dev-container__body">
         <j-button
           size="large"
@@ -233,8 +233,8 @@
           <font-awesome-icon icon="bomb" />
         </j-button>
       </div>
-    </div>
-    <div class="dev-container">
+    </j-container>
+    <j-container>
       <div class="dev-container__body">
         <j-button
           size="large"
@@ -306,8 +306,8 @@
           <font-awesome-icon icon="bomb" />
         </j-button>
       </div>
-    </div>
-    <div class="dev-container">
+    </j-container>
+    <j-container>
       <div class="dev-container__body">
         <j-image
           :src="sampleImage"
@@ -323,8 +323,8 @@
           contain
         />
       </div>
-    </div>
-    <div class="dev-container">
+    </j-container>
+    <j-container>
       <div class="dev-container__body">
         <j-progress
           :size="48"
@@ -357,7 +357,7 @@
           color="secondary-700"
         />
       </div>
-    </div>
+    </j-container>
   </div>
 </template>
 
@@ -413,10 +413,6 @@ html {
 
 body {
   font-family: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic UI', sans-serif;
-}
-
-.dev-app {
-  padding: 24px;
 }
 
 .dev-container {
