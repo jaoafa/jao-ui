@@ -121,7 +121,7 @@ export default {
         ? 'transparent'
         : this.disabled
           ? colors['gray-100']
-          : convertNameToHex(color)
+          : color
     },
   },
   methods: {
