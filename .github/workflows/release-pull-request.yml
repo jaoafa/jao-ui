@@ -1,9 +1,10 @@
+name: PR
 on: create
 jobs:
-  release-pr:
+  release-pull-request:
     if: ${{ contains(github.ref, 'refs/heads/release/v') }}
     runs-on: ubuntu-latest
-    timeout-minutes: 3
+    timeout-minutes: 10
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -23,7 +24,7 @@ jobs:
       - name: Update package version
         shell: bash
         run: |
-          npm version ${{ steps.extract_version.outputs.version }} -m "Release %s"
+          npm version ${{ steps.extract_version.outputs.version }} -m "Release v%s"
       - name: Create pull request
         shell: bash
         run: |
