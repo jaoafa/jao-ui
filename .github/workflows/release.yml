@@ -1,0 +1,45 @@
+name: Release
+on:
+  pull_request:
+    branches:
+      - main
+    types: [closed]
+jobs:
+  release:
+    name: Release
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Extract version
+        shell: bash
+        run: |
+          echo "::set-output name=version::${BASE_BRANCH#release/v}"
+        id: extract_version
+        env:
+          BASE_BRANCH: ${{ github.base_ref }}
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - name: Git config
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Create tag
+        shell: bash
+        run: |
+          hub tag v${{ steps.extract_version.outputs.version }}
+          hub push origin v${{ steps.extract_version.outputs.version }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish package
+        shell: bash
+        run: |
+          npm install
+          npm pack
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
