@@ -19,7 +19,7 @@ jobs:
           echo "::set-output name=version::${BASE_BRANCH#release/v}"
         id: extract_version
         env:
-          BASE_BRANCH: ${{ github.base_ref }}
+          BASE_BRANCH: ${{ github.head_ref }}
       - name: Setup node
         uses: actions/setup-node@v2
         with:
@@ -35,11 +35,9 @@ jobs:
           hub push origin v${{ steps.extract_version.outputs.version }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install packages
+        run: npm install
       - name: Publish package
-        shell: bash
-        run: |
-          npm install
-          npm pack
-          npm publish
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
