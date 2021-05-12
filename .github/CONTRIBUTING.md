@@ -15,6 +15,8 @@ Any contribution to jao UI is more than welcome🚀
 
 単純な誤字や小さな変更でも、プルリクエストは大歓迎です！
 
+[コントリビューター行動規範](https://github.com/jaoafa/jao-ui/blob/main/.github/CODE_OF_CONDUCT.md) に反する内容を含むプルリクエストは受け入れておりません。
+
 ### Getting Started
 
 開発を開始するには、以下の手順で準備を行ってください。
