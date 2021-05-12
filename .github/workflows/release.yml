@@ -14,13 +14,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
       - name: Extract version
-        shell: bash
-        run: |
-          echo "::set-output name=version::${BASE_BRANCH#release/v}"
+        uses: martinbeentjes/npm-get-version-action@master
         id: extract_version
-        env:
-          BASE_BRANCH: ${{ github.head_ref }}
       - name: Setup node
         uses: actions/setup-node@v2
         with:
@@ -33,8 +36,8 @@ jobs:
       - name: Create tag
         shell: bash
         run: |
-          hub tag v${{ steps.extract_version.outputs.version }}
-          hub push origin v${{ steps.extract_version.outputs.version }}
+          hub tag v${{ steps.extract_version.outputs.current-version }}
+          hub push origin v${{ steps.extract_version.outputs.current-version }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Install packages
