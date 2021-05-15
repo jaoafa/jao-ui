@@ -39,7 +39,7 @@ export const colors = Object.freeze({
   'gray-100': '#e6e7e9',
   'gray-50': '#f2f2f3',
 
-  discord: '#7289da',
+  discord: '#5865f2',
   twitter: '#1da1f2',
   facebook: '#1877f2',
   line: '#06c755',
