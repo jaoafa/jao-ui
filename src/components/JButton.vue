@@ -108,11 +108,11 @@ export default {
       }
     },
     textColor () {
-      const color = convertNameToHex(this.color)
+      const color = this.color
       return this.disabled
         ? colors['gray-200']
         : this.outlined
-          ? color
+          ? convertNameToHex(color)
           : getContrastColor(color)
     },
     backgroundColor () {
