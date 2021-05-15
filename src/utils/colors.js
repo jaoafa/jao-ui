@@ -39,7 +39,7 @@ export const colors = Object.freeze({
   'gray-100': '#e6e7e9',
   'gray-50': '#f2f2f3',
 
-  discord: '#7289da',
+  discord: '#5865f2',
   twitter: '#1da1f2',
   facebook: '#1877f2',
   line: '#06c755',
@@ -84,11 +84,16 @@ export const convertHEXtoRGBA = (val) => {
 }
 
 export const getContrastColor = (val) => {
-  if (val.startsWith('#')) {
-    val = convertHEXtoRGBA(val)
+  const white = colors.white
+  const black = colors['gray-800']
+  if (!val.startsWith('rgb')) {
+    if (['twitter', 'line', 'instagram', 'youtube'].includes(val)) {
+      return white
+    }
+    val = convertHEXtoRGBA(convertNameToHex(val))
   }
   const arr = [...val.matchAll(/[0-9]+/g)]
   return (((arr[0] * 299) + (arr[1] * 587) + (arr[2] * 114)) / 1000) < 128
-    ? colors.white
-    : colors['gray-800']
+    ? white
+    : black
 }
