@@ -2,6 +2,8 @@
   <component
     :is="_tag"
     :class="classes"
+    :href="href"
+    :to="to"
     :style="styles"
     :disabled="disabled ? 'disabled' : null"
     class="j-button"
