@@ -2,7 +2,9 @@
   <component
     :is="_tag"
     :class="classes"
+    :href="href"
     :style="styles"
+    :to="to"
     class="j-card"
     @click="click"
   >

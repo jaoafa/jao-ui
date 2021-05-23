@@ -14,6 +14,7 @@
               alt="Sample Image"
               height="200px"
             />
+            テスト
           </j-card>
         </j-col>
       </j-row>
