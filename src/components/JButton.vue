@@ -145,6 +145,7 @@ $root: '.j-button';
   justify-content: center;
   appearance: none;
   font: inherit;
+  text-decoration: none;
   cursor: pointer;
   border: none;
   border-radius: 2px 2px 0 2px;
