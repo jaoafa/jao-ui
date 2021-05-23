@@ -2,6 +2,9 @@
   <component
     :is="_tag"
     :class="classes"
+    :href="href"
+    :to="to"
+    :target="target"
     :style="styles"
     :disabled="disabled ? 'disabled' : null"
     class="j-button"
@@ -51,6 +54,10 @@ export default {
     nuxt: {
       default: false,
       type: Boolean,
+    },
+    target: {
+      default: null,
+      type: String,
     },
     size: {
       default: 'medium',
@@ -143,6 +150,7 @@ $root: '.j-button';
   justify-content: center;
   appearance: none;
   font: inherit;
+  text-decoration: none;
   cursor: pointer;
   border: none;
   border-radius: 2px 2px 0 2px;
