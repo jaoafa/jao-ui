@@ -15,6 +15,7 @@
 |`outlined`|`boolean`|`false`|背景を透明にし、枠線を追加します。|
 |`size`|`string`|`'medium'`|指定された大きさをボタンに適用します。 `large` 、 `medium` 、 `small` の3サイズがあります。|
 |`tag`|`string`|`'button'`|指定されたタグをボタンに適用します。|
+|`target`|`string`|`null`|指定された値を `target` 属性としてコンポーネントに追加します。|
 |`to`|`string`|`null`|ボタンを `<router-link>` にし、 `to` Prop を適用します。|
 
 ## Events
