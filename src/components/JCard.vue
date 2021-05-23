@@ -11,6 +11,12 @@
 </template>
 
 <script>
+import {
+  convertNameToHex,
+  getContrastColor,
+  validateColor,
+} from '@/utils/colors'
+
 export default {
   name: 'JCard',
   props: {
@@ -30,6 +36,13 @@ export default {
       default: false,
       type: Boolean,
     },
+    color: {
+      default: 'white',
+      type: String,
+      validator: (val) => {
+        return validateColor(val)
+      },
+    },
   },
   computed: {
     _tag () {
@@ -42,7 +55,16 @@ export default {
       return {}
     },
     styles () {
-      return {}
+      return {
+        color: this.textColor,
+        'background-color': this.backgroundColor,
+      }
+    },
+    textColor () {
+      return getContrastColor(this.color)
+    },
+    backgroundColor () {
+      return convertNameToHex(this.color)
     },
   },
   methods: {
