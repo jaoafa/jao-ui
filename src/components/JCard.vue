@@ -19,6 +19,7 @@ import {
   getContrastColor,
   validateColor,
 } from '@/utils/colors'
+import { validateSize } from '@/utils/sizes'
 
 export default {
   name: 'JCard',
@@ -50,6 +51,48 @@ export default {
         return validateColor(val)
       },
     },
+    width: {
+      default: null,
+      type: [Number, String],
+      validator: (val) => {
+        return validateSize(val)
+      },
+    },
+    height: {
+      default: null,
+      type: [Number, String],
+      validator: (val) => {
+        return validateSize(val)
+      },
+    },
+    maxWidth: {
+      default: null,
+      type: [Number, String],
+      validator: (val) => {
+        return validateSize(val)
+      },
+    },
+    maxHeight: {
+      default: null,
+      type: [Number, String],
+      validator: (val) => {
+        return validateSize(val)
+      },
+    },
+    minWidth: {
+      default: null,
+      type: [Number, String],
+      validator: (val) => {
+        return validateSize(val)
+      },
+    },
+    minHeight: {
+      default: null,
+      type: [Number, String],
+      validator: (val) => {
+        return validateSize(val)
+      },
+    },
   },
   computed: {
     _tag () {
@@ -63,7 +106,13 @@ export default {
     },
     styles () {
       return {
+        width: this.width,
+        height: this.height,
         color: this.textColor,
+        'max-width': this.maxWidth,
+        'max-height': this.maxHeight,
+        'min-width': this.minWidth,
+        'min-height': this.minHeight,
         'background-color': this.backgroundColor,
       }
     },
