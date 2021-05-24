@@ -4,6 +4,7 @@
     :class="classes"
     :href="href"
     :style="styles"
+    :target="target"
     :to="to"
     class="j-card"
     @click="click"
@@ -37,6 +38,10 @@ export default {
     nuxt: {
       default: false,
       type: Boolean,
+    },
+    target: {
+      default: null,
+      type: String,
     },
     color: {
       default: 'white',
