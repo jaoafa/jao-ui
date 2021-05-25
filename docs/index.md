@@ -3,6 +3,7 @@
 ## Components
 
 - [Button](components/button.md)
+- [Card](components/card.md)
 - [Col](components/col.md)
 - [Containier](components/container.md)
 - [Image](components/image.md)

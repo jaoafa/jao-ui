@@ -4,6 +4,25 @@
       <j-row>
         <j-col
           :cols="12"
+          :cols-sm="6"
+          :cols-md="4"
+          :cols-lg="3"
+        >
+          <j-card>
+            <j-image
+              :src="sampleImage"
+              alt="Sample Image"
+              height="200px"
+            />
+            テスト
+          </j-card>
+        </j-col>
+      </j-row>
+    </j-container>
+    <j-container>
+      <j-row>
+        <j-col
+          :cols="12"
           :cols-sm="10"
           :cols-md="6"
           :cols-lg="3"
