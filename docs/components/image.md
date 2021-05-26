@@ -1,8 +1,8 @@
-# Image
+## Image
 
 `j-image` コンポーネントは、画像のコンポーネントです。
 
-## Props
+### Props
 
 |Name|Type|Default|Description|
 |:--|:--|:--|:--|
@@ -17,13 +17,3 @@
 |`src`|`string`|`''`|画像のURLを適用します。この項目は必須です。|
 |`srcset`|`string`|`null`|使用可能なソース画像のセットを示すカンマ区切りのリストです。|
 |`width`|`number\|string`|`null`|指定された幅を画像に適用します。|
-
-## Events
-
-|Name|Description|
-|:--|:--|
-
-## Slots
-
-|Name|Description|
-|:--|:--|
