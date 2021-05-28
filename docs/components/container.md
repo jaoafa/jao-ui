@@ -1,8 +1,8 @@
-# Container
+## Container
 
 `j-container` コンポーネントは、コンテンツ全体を中央寄せするコンテナのコンポーネントです。
 
-## Props
+### Props
 
 |Name|Type|Default|Description|
 |:--|:--|:--|:--|
@@ -10,12 +10,7 @@
 |`fluid`|`boolean`|`false`|最大幅の制限を削除します。|
 |`id`|`string`|`null`|タグに `id` 属性を追加します。|
 
-## Events
-
-|Name|Description|
-|:--|:--|
-
-## Slots
+### Slots
 
 |Name|Description|
 |:--|:--|

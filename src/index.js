@@ -1,4 +1,5 @@
 export { default as JButton } from '@/components/JButton.vue'
+export { default as JCard } from '@/components/JCard.vue'
 export { default as JCol } from '@/components/JCol.vue'
 export { default as JContainer } from '@/components/JContainer.vue'
 export { default as JImage } from '@/components/JImage.vue'

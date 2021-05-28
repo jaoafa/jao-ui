@@ -1,8 +1,8 @@
-# Table
+## Table
 
 `j-table` コンポーネントは、表のコンポーネントです。
 
-## Props
+### Props
 
 |Name|Type|Default|Description|
 |:--|:--|:--|:--|
@@ -13,13 +13,3 @@
 |`item-per-page`|`number`|`10`|1ページあたりに表示する項目の数を指定します。|
 |`loading`|`boolean`|`false`|ローディングアニメーションを表示します。|
 |`page`|`number`|`1`|現在選択しているページ番号を指定します。|
-
-## Events
-
-|Name|Description|
-|:--|:--|
-
-## Slots
-
-|Name|Description|
-|:--|:--|

@@ -40,9 +40,18 @@ jobs:
           hub push origin v${{ steps.extract_version.outputs.current-version }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Install packages
+      - name: Install dependencies
         run: npm install
-      - name: Publish package
-        run: npm publish
+      - name: Publish
+        run: npx can-npm-publish --verbose && npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Archive
+        run: npm pack
+      - name: Create release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: jaoafa-jao-ui-${{ steps.extract_version.outputs.current-version }}.tgz
+          tag_name: v${{ steps.extract_version.outputs.current-version }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

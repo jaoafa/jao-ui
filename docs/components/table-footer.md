@@ -1,8 +1,8 @@
-# TableFooter
+## TableFooter
 
 `j-table-footer` コンポーネントは、表のフッターのコンポーネントです。
 
-## Props
+### Props
 
 |Name|Type|Default|Description|
 |:--|:--|:--|:--|
@@ -10,13 +10,8 @@
 |`item-per-page`|`number`|`10`|1ページあたりに表示する項目の数を指定します。|
 |`item-length`|`number`|`0`|表に表示する項目の配列の長さを指定します。|
 
-## Events
+### Events
 
 |Name|Description|
 |:--|:--|
 |`input`|ページが選択されたときに発生するイベントです。|
-
-## Slots
-
-|Name|Description|
-|:--|:--|
