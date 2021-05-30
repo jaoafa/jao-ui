@@ -29,17 +29,12 @@ jobs:
         with:
           node-version: '14'
           registry-url: 'https://npm.pkg.github.com'
-      - name: Git config
-        run: |
-          git config --global user.name "GitHub Action"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - name: Create tag
-        shell: bash
-        run: |
-          hub tag v${{ steps.extract_version.outputs.current-version }}
-          hub push origin v${{ steps.extract_version.outputs.current-version }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: mathieudutour/github-tag-action@v5
+        with:
+          custom_tag: ${{ steps.extract_version.outputs.current-version }}
+          tag_prefix: v
+          github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Install dependencies
         run: npm install
       - name: Publish
