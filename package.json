@@ -63,11 +63,11 @@
     "stylelint": "^13.13.1",
     "stylelint-config-recess-order": "^2.4.0",
     "stylelint-config-standard": "^22.0.0",
-    "vue": "^2.6.12",
-    "vue-template-compiler": "^2.6.12"
+    "vue": "^2.6.13",
+    "vue-template-compiler": "^2.6.13"
   },
   "peerDependencies": {
-    "vue": "^2.6.12"
+    "vue": "^2.6.13"
   },
   "engines": {
     "node": ">=12"
