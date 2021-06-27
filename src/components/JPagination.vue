@@ -56,6 +56,8 @@
 
 <script>
 export default {
+  name: 'JPagination',
+
   model: {
     prop: 'page',
     event: 'input',
