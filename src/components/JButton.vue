@@ -2,11 +2,11 @@
   <component
     :is="_tag"
     :class="classes"
-    :href="href"
     :to="to"
     :target="target"
     :style="styles"
     :disabled="disabled ? 'disabled' : null"
+    v-bind="attrs"
     class="j-button"
     @click="click"
   >
@@ -113,6 +113,13 @@ export default {
         color: this.textColor,
         'background-color': this.backgroundColor,
       }
+    },
+    attrs () {
+      const res = {}
+      if (this.href) {
+        res.href = this.href
+      }
+      return res
     },
     textColor () {
       const color = this.color
