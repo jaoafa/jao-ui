@@ -34,6 +34,7 @@ import {
 
 export default {
   name: 'JProgress',
+
   props: {
     type: {
       default: 'circle',
@@ -75,11 +76,13 @@ export default {
       type: Boolean,
     },
   },
+
   data () {
     return {
       dashOffset: 0,
     }
   },
+
   computed: {
     _color () {
       return convertNameToHex(this.color)

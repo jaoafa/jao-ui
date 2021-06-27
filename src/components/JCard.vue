@@ -23,6 +23,7 @@ import { validateSize } from '@/utils/sizes'
 
 export default {
   name: 'JCard',
+
   props: {
     tag: {
       default: 'div',
@@ -94,6 +95,7 @@ export default {
       },
     },
   },
+
   computed: {
     _tag () {
       return (this.to && (this.nuxt ? 'nuxt-link' : 'router-link')) ||
@@ -128,6 +130,7 @@ export default {
       return convertNameToHex(this.color)
     },
   },
+
   methods: {
     click (e) {
       this.$emit('click', e)

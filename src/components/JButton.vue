@@ -35,9 +35,11 @@ import {
 
 export default {
   name: 'JButton',
+
   components: {
     JProgress,
   },
+
   props: {
     tag: {
       default: 'button',
@@ -90,6 +92,7 @@ export default {
       type: Boolean,
     },
   },
+
   computed: {
     _tag () {
       return (this.to && (this.nuxt ? 'nuxt-link' : 'router-link')) ||
@@ -138,6 +141,7 @@ export default {
           : color
     },
   },
+
   methods: {
     click (e) {
       this.$emit('click', e)

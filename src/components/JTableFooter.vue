@@ -18,13 +18,16 @@ import JPagination from '@/components/JPagination'
 
 export default {
   name: 'JTableFooter',
+
   components: {
     JPagination,
   },
+
   model: {
     prop: 'page',
     event: 'input',
   },
+
   props: {
     page: {
       default: 1,
@@ -39,6 +42,7 @@ export default {
       type: Number,
     },
   },
+
   computed: {
     length () {
       return Math.ceil(this.itemLength / this.itemPerPage)

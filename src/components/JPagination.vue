@@ -60,6 +60,7 @@ export default {
     prop: 'page',
     event: 'input',
   },
+
   props: {
     page: {
       default: 0,
@@ -83,11 +84,13 @@ export default {
       },
     },
   },
+
   data () {
     return {
       maxSize: 0,
     }
   },
+
   computed: {
     items () {
       if (this.totalVisible === 0) {
@@ -142,9 +145,11 @@ export default {
       })
     },
   },
+
   mounted () {
     this.$nextTick(this.resize)
   },
+
   methods: {
     input (val) {
       this.$emit('input', val)

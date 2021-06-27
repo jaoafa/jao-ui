@@ -35,6 +35,7 @@
 <script>
 export default {
   name: 'JTableHeader',
+
   props: {
     headers: {
       default: () => [],
@@ -60,6 +61,7 @@ export default {
       },
     },
   },
+
   methods: {
     click (key) {
       this.$emit('click', key)

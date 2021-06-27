@@ -66,11 +66,13 @@ import JTableHeader from '@/components/JTableHeader'
 
 export default {
   name: 'JTable',
+
   components: {
     JProgress,
     JTableFooter,
     JTableHeader,
   },
+
   props: {
     headers: {
       default: () => [],
@@ -107,6 +109,7 @@ export default {
       },
     },
   },
+
   data () {
     return {
       sortBy: '',
@@ -114,6 +117,7 @@ export default {
       currentPage: 1,
     }
   },
+
   computed: {
     _items () {
       const items = [...this.items]
@@ -140,12 +144,14 @@ export default {
       return items.slice(itemPerPage * (page - 1), itemPerPage * page)
     },
   },
+
   created () {
     this.currentPage = this.page
     if (!this.items.length) {
       this.currentPage = 0
     }
   },
+
   methods: {
     toggleSort (key) {
       if (this.sortBy !== key) {
