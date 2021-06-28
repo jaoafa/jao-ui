@@ -3,6 +3,7 @@
     <div class="j-table-footer__caption">
       {{ caption }} 全{{ itemLength }}件
     </div>
+
     <div class="j-table-footer__pagination">
       <j-pagination
         v-model="currentPage"
@@ -18,13 +19,16 @@ import JPagination from '@/components/JPagination'
 
 export default {
   name: 'JTableFooter',
+
   components: {
     JPagination,
   },
+
   model: {
     prop: 'page',
     event: 'input',
   },
+
   props: {
     page: {
       default: 1,
@@ -39,6 +43,7 @@ export default {
       type: Number,
     },
   },
+
   computed: {
     length () {
       return Math.ceil(this.itemLength / this.itemPerPage)

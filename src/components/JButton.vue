@@ -2,17 +2,18 @@
   <component
     :is="_tag"
     :class="classes"
-    :href="href"
+    :style="styles"
     :to="to"
     :target="target"
-    :style="styles"
     :disabled="disabled ? 'disabled' : null"
+    v-bind="attrs"
     class="j-button"
     @click="click"
   >
     <span class="j-button__body">
       <slot />
     </span>
+
     <span class="j-button__loader">
       <j-progress
         :color="textColor"
@@ -35,9 +36,11 @@ import {
 
 export default {
   name: 'JButton',
+
   components: {
     JProgress,
   },
+
   props: {
     tag: {
       default: 'button',
@@ -90,6 +93,7 @@ export default {
       type: Boolean,
     },
   },
+
   computed: {
     _tag () {
       return (this.to && (this.nuxt ? 'nuxt-link' : 'router-link')) ||
@@ -114,6 +118,13 @@ export default {
         'background-color': this.backgroundColor,
       }
     },
+    attrs () {
+      const res = {}
+      if (this.href) {
+        res.href = this.href
+      }
+      return res
+    },
     textColor () {
       const color = this.color
       return this.disabled
@@ -131,6 +142,7 @@ export default {
           : color
     },
   },
+
   methods: {
     click (e) {
       this.$emit('click', e)

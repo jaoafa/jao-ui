@@ -411,9 +411,11 @@ library.add(faBomb)
 
 export default Vue.extend({
   name: 'ServeDev',
+
   components: {
     FontAwesomeIcon,
   },
+
   data () {
     return {
       sampleImage:

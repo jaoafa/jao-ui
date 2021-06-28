@@ -16,6 +16,7 @@
         @load="onLoad"
       >
     </transition>
+
     <transition>
       <div
         v-show="!isLoaded"
@@ -39,9 +40,11 @@ import {
 
 export default {
   name: 'JImage',
+
   components: {
     JProgress,
   },
+
   props: {
     src: {
       default: '',
@@ -107,11 +110,13 @@ export default {
       type: Boolean,
     },
   },
+
   data () {
     return {
       isLoaded: false,
     }
   },
+
   computed: {
     classes () {
       return {
@@ -129,6 +134,7 @@ export default {
       }
     },
   },
+
   methods: {
     onLoad () {
       this.isLoaded = true

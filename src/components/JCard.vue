@@ -2,10 +2,10 @@
   <component
     :is="_tag"
     :class="classes"
-    :href="href"
     :style="styles"
-    :target="target"
     :to="to"
+    :target="target"
+    v-bind="attrs"
     class="j-card"
     @click="click"
   >
@@ -23,6 +23,7 @@ import { validateSize } from '@/utils/sizes'
 
 export default {
   name: 'JCard',
+
   props: {
     tag: {
       default: 'div',
@@ -94,6 +95,7 @@ export default {
       },
     },
   },
+
   computed: {
     _tag () {
       return (this.to && (this.nuxt ? 'nuxt-link' : 'router-link')) ||
@@ -118,6 +120,13 @@ export default {
         'background-color': this.backgroundColor,
       }
     },
+    attrs () {
+      const res = {}
+      if (this.href) {
+        res.href = this.href
+      }
+      return res
+    },
     link () {
       return !!(this.to || this.href)
     },
@@ -128,6 +137,7 @@ export default {
       return convertNameToHex(this.color)
     },
   },
+
   methods: {
     click (e) {
       this.$emit('click', e)
