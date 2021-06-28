@@ -2,10 +2,10 @@
   <component
     :is="_tag"
     :class="classes"
-    :href="href"
     :style="styles"
-    :target="target"
     :to="to"
+    :target="target"
+    v-bind="attrs"
     class="j-card"
     @click="click"
   >
@@ -119,6 +119,13 @@ export default {
         'min-height': this.minHeight,
         'background-color': this.backgroundColor,
       }
+    },
+    attrs () {
+      const res = {}
+      if (this.href) {
+        res.href = this.href
+      }
+      return res
     },
     link () {
       return !!(this.to || this.href)
