@@ -16,6 +16,7 @@
         @load="onLoad"
       >
     </transition>
+
     <transition>
       <div
         v-show="!isLoaded"

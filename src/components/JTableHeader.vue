@@ -16,6 +16,7 @@
           <span class="j-table-header__label">
             {{ item.label }}
           </span>
+
           <span class="j-table-header__sort">
             <svg
               xmlns="http://www.w3.org/2000/svg"

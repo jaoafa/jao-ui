@@ -17,6 +17,7 @@
           </span>
         </button>
       </li>
+
       <template v-for="item in generateItems">
         <li
           :key="item.id"
@@ -34,6 +35,7 @@
           </component>
         </li>
       </template>
+
       <li class="j-pagination__item">
         <button
           class="j-pagination__button"
@@ -98,7 +100,6 @@ export default {
       if (this.totalVisible === 0) {
         return []
       }
-
       const maxLength = Math.min(
         Math.max(0, this.totalVisible) || this.length,
         Math.max(0, this.maxSize) || this.length,
@@ -110,7 +111,6 @@ export default {
       else if (maxLength <= 4) {
         return [this.page]
       }
-
       const even = maxLength % 2 === 0 ? 1 : 0
       const left = Math.floor(maxLength / 2)
       const right = this.length - left + 1 + even

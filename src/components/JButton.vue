@@ -2,9 +2,9 @@
   <component
     :is="_tag"
     :class="classes"
+    :style="styles"
     :to="to"
     :target="target"
-    :style="styles"
     :disabled="disabled ? 'disabled' : null"
     v-bind="attrs"
     class="j-button"
@@ -13,6 +13,7 @@
     <span class="j-button__body">
       <slot />
     </span>
+
     <span class="j-button__loader">
       <j-progress
         :color="textColor"

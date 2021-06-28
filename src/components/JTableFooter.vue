@@ -3,6 +3,7 @@
     <div class="j-table-footer__caption">
       {{ caption }} 全{{ itemLength }}件
     </div>
+
     <div class="j-table-footer__pagination">
       <j-pagination
         v-model="currentPage"

@@ -9,6 +9,7 @@
           :sort-order="sortOrder"
           @click="toggleSort"
         />
+
         <tbody class="j-table__body">
           <template v-if="loading">
             <tr>
@@ -24,6 +25,7 @@
               </td>
             </tr>
           </template>
+
           <template v-else>
             <template v-if="items.length">
               <template v-for="(item, index) in _items">
@@ -36,6 +38,7 @@
                 </tr>
               </template>
             </template>
+
             <template v-else>
               <tr>
                 <td :colspan="headers.length">
@@ -49,6 +52,7 @@
         </tbody>
       </table>
     </div>
+
     <j-table-footer
       v-if="!hideFooter"
       :page="currentPage"
