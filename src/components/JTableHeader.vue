@@ -42,12 +42,7 @@ export default {
       default: () => [],
       type: Array,
       validator: (val) => {
-        return val.every((item) => {
-          return (
-            item.label &&
-            item.key
-          )
-        })
+        return val.every((item) => item.label && item.key)
       },
     },
     sortBy: {
