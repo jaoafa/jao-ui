@@ -19,6 +19,7 @@ import {
 
 export default {
   name: 'JContainer',
+
   props: {
     fluid: {
       default: false,
@@ -36,6 +37,7 @@ export default {
       type: String,
     },
   },
+
   computed: {
     classes () {
       return {

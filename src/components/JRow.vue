@@ -15,6 +15,7 @@ import {
 
 export default {
   name: 'JRow',
+
   props: {
     gapRow: {
       default: '24px',
@@ -35,6 +36,7 @@ export default {
       type: Boolean,
     },
   },
+
   computed: {
     classes () {
       return {}

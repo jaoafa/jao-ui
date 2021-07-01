@@ -10,6 +10,7 @@
 <script>
 export default {
   name: 'JCol',
+
   props: {
     cols: {
       default: 1,
@@ -47,6 +48,7 @@ export default {
       },
     },
   },
+
   computed: {
     classes () {
       const classes = {}
