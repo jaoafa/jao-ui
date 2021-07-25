@@ -16,6 +16,7 @@
           <span class="j-table-header__label">
             {{ item.label }}
           </span>
+
           <span class="j-table-header__sort">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -35,17 +36,13 @@
 <script>
 export default {
   name: 'JTableHeader',
+
   props: {
     headers: {
       default: () => [],
       type: Array,
       validator: (val) => {
-        return val.every((item) => {
-          return (
-            item.label &&
-            item.key
-          )
-        })
+        return val.every((item) => item.label && item.key)
       },
     },
     sortBy: {
@@ -60,6 +57,7 @@ export default {
       },
     },
   },
+
   methods: {
     click (key) {
       this.$emit('click', key)
