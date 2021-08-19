@@ -38,7 +38,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@fortawesome/vue-fontawesome": "^2.0.2",
-    "@rollup/plugin-alias": "^3.1.4",
+    "@rollup/plugin-alias": "^3.1.5",
     "@rollup/plugin-babel": "^5.2.2",
     "@rollup/plugin-commonjs": "^19.0.1",
     "@rollup/plugin-node-resolve": "^13.0.4",
