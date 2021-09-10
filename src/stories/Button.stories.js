@@ -54,6 +54,11 @@ export default {
     to: {
       description: 'ボタンを `<router-link>` にし、 `to` Prop を適用します。',
     },
+    // events
+    click: {
+      description: 'コンポーネントがクリックされたときに発生するイベントです。',
+      action: 'click',
+    },
     // slots
     default: {
       description: 'デフォルトのスロットです。',
@@ -75,7 +80,7 @@ const Template = (args, { argTypes }) => ({
   components: { JButton },
   template:
     `
-    <j-button @onClick="onClick" v-bind="$props">
+    <j-button @click="click" v-bind="$props">
       ${args.default}
     </j-button>
     `,
