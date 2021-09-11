@@ -152,7 +152,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@use 'src/sass/_' as *;
+@use 'src/sass' as *;
 $root: '.j-button';
 
 .j-button {

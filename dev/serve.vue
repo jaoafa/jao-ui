@@ -426,36 +426,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-@import url(
-  'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap'
-);
-
-* {
-  padding: 0;
-  margin: 0;
-}
-
-*,
-::before,
-::after {
-  box-sizing: inherit;
-  background-repeat: no-repeat;
-}
-
-::before,
-::after {
-  text-decoration: inherit;
-  vertical-align: inherit;
-}
-
-html {
-  box-sizing: border-box;
-  overflow-y: scroll;
-}
-
-body {
-  font-family: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic UI', sans-serif;
-}
+@use './serve.css';
 
 .dev-flex {
   display: flex;
