@@ -1,10 +1,11 @@
 <template>
-  <div
+  <component
+    :is="tag"
     :class="classes"
     class="j-col"
   >
     <slot />
-  </div>
+  </component>
 </template>
 
 <script>
@@ -12,6 +13,10 @@ export default {
   name: 'JCol',
 
   props: {
+    tag: {
+      default: 'div',
+      type: String,
+    },
     cols: {
       default: 1,
       type: Number,
@@ -51,7 +56,9 @@ export default {
 
   computed: {
     classes () {
-      const classes = {}
+      const classes = {
+        'j-col--no-gap': this.gap,
+      }
       const colsXs = this.cols
       const colsSm = this.colsSm
       const colsMd = this.colsMd
@@ -64,25 +71,39 @@ export default {
       classes[`j-col--xl-${colsXl}`] = colsXl ? true : null
       return classes
     },
+    gap () {
+      return !!this.$parent.$props.noGap
+    },
   },
 }
 </script>
 
 <style lang="scss" scoped>
 @use 'src/sass' as *;
+@use 'sass:math';
 $root: '.j-col';
 
 .j-col {
+  flex: 1 auto 0;
+  max-width: 100%;
+  padding: 12px;
+
+  &--no-gap {
+    padding: 0;
+  }
+
   @for $val from 1 through 12 {
     &--xs-#{$val} {
-      grid-column: span $val;
+      flex: 0 0 (math.div($val, 12) * 100%);
+      max-width: math.div($val, 12) * 100%;
     }
   }
 
   @include breakpoint(sm) {
     @for $val from 1 through 12 {
       &--sm-#{$val} {
-        grid-column: span $val;
+        flex: 0 0 (math.div($val, 12) * 100%);
+        max-width: math.div($val, 12) * 100%;
       }
     }
   }
@@ -90,7 +111,8 @@ $root: '.j-col';
   @include breakpoint(md) {
     @for $val from 1 through 12 {
       &--md-#{$val} {
-        grid-column: span $val;
+        flex: 0 0 (math.div($val, 12) * 100%);
+        max-width: math.div($val, 12) * 100%;
       }
     }
   }
@@ -98,7 +120,8 @@ $root: '.j-col';
   @include breakpoint(lg) {
     @for $val from 1 through 12 {
       &--lg-#{$val} {
-        grid-column: span $val;
+        flex: 0 0 (math.div($val, 12) * 100%);
+        max-width: math.div($val, 12) * 100%;
       }
     }
   }
@@ -106,7 +129,8 @@ $root: '.j-col';
   @include breakpoint(xl) {
     @for $val from 1 through 12 {
       &--xl-#{$val} {
-        grid-column: span $val;
+        flex: 0 0 (math.div($val, 12) * 100%);
+        max-width: math.div($val, 12) * 100%;
       }
     }
   }
