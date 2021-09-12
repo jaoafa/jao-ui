@@ -1,34 +1,36 @@
 <template>
-  <div
+  <component
+    :is="tag"
     :class="classes"
-    :style="styles"
     class="j-row"
   >
     <slot />
-  </div>
+  </component>
 </template>
 
 <script>
-import {
-  validateSize,
-} from '@/utils/sizes'
-
 export default {
   name: 'JRow',
 
   props: {
-    gapRow: {
-      default: '24px',
-      type: [Number, String],
+    tag: {
+      default: 'div',
+      type: String,
+    },
+    align: {
+      default: 'start',
+      type: String,
       validator: (val) => {
-        return validateSize(val)
+        return ['start', 'center', 'end', 'baseline', 'stretch']
+          .includes(val)
       },
     },
-    gapColumn: {
-      default: '24px',
-      type: [Number, String],
+    justify: {
+      default: 'start',
+      type: String,
       validator: (val) => {
-        return validateSize(val)
+        return ['start', 'center', 'end', 'space-between', 'space-around']
+          .includes(val)
       },
     },
     noGap: {
@@ -39,11 +41,18 @@ export default {
 
   computed: {
     classes () {
-      return {}
-    },
-    styles () {
       return {
-        gap: this.noGap ? null : `${this.gapRow} ${this.gapColumn}`,
+        'j-row--align-start': this.align === 'start',
+        'j-row--align-center': this.align === 'center',
+        'j-row--align-end': this.align === 'end',
+        'j-row--align-baseline': this.align === 'baseline',
+        'j-row--align-stretch': this.align === 'stretch',
+        'j-row--justify-start': this.justify === 'start',
+        'j-row--justify-center': this.justify === 'center',
+        'j-row--justify-end': this.justify === 'end',
+        'j-row--justify-between': this.justify === 'space-between',
+        'j-row--justify-around': this.justify === 'space-around',
+        'j-row--no-gap': this.noGap,
       }
     },
   },
@@ -55,8 +64,51 @@ export default {
 $root: '.j-row';
 
 .j-row {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-auto-rows: auto;
+  display: flex;
+  margin: -12px;
+
+  &--align-start {
+    align-items: flex-start;
+  }
+
+  &--align-center {
+    align-items: center;
+  }
+
+  &--align-end {
+    align-items: flex-end;
+  }
+
+  &--align-baseline {
+    align-items: baseline;
+  }
+
+  &--align-stretch {
+    align-items: stretch;
+  }
+
+  &--justify-start {
+    justify-content: flex-start;
+  }
+
+  &--justify-center {
+    justify-content: center;
+  }
+
+  &--justify-end {
+    justify-content: flex-end;
+  }
+
+  &--justify-between {
+    justify-content: space-between;
+  }
+
+  &--justify-around {
+    justify-content: space-around;
+  }
+
+  &--no-gap {
+    margin: 0;
+  }
 }
 </style>
