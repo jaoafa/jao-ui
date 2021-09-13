@@ -22,19 +22,19 @@ export default {
 
   props: {
     color: {
-      default: 'transparent',
       type: String,
+      default: 'transparent',
       validator: (val) => {
         return validateColor(val) || val === 'transparent'
       },
     },
     fluid: {
-      default: false,
       type: Boolean,
+      default: false,
     },
     id: {
-      default: null,
       type: String,
+      default: null,
     },
   },
 

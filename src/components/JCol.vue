@@ -14,43 +14,43 @@ export default {
 
   props: {
     cols: {
-      default: 1,
       type: Number,
+      default: 1,
       validator: (val) => {
         return val >= 1 && val <= 12
       },
     },
     colsLg: {
-      default: null,
       type: Number,
+      default: null,
       validator: (val) => {
         return val >= 1 && val <= 12
       },
     },
     colsMd: {
-      default: null,
       type: Number,
+      default: null,
       validator: (val) => {
         return val >= 1 && val <= 12
       },
     },
     colsSm: {
-      default: null,
       type: Number,
+      default: null,
       validator: (val) => {
         return val >= 1 && val <= 12
       },
     },
     colsXl: {
-      default: null,
       type: Number,
+      default: null,
       validator: (val) => {
         return val >= 1 && val <= 12
       },
     },
     tag: {
-      default: 'div',
       type: String,
+      default: 'div',
     },
   },
 

@@ -26,70 +26,70 @@ export default {
 
   props: {
     color: {
-      default: 'white',
       type: String,
+      default: 'white',
       validator: (val) => {
         return validateColor(val)
       },
     },
     height: {
-      default: null,
       type: [Number, String],
+      default: null,
       validator: (val) => {
         return validateSize(val)
       },
     },
     href: {
-      default: null,
       type: String,
+      default: null,
     },
     maxHeight: {
-      default: null,
       type: [Number, String],
+      default: null,
       validator: (val) => {
         return validateSize(val)
       },
     },
     maxWidth: {
-      default: null,
       type: [Number, String],
+      default: null,
       validator: (val) => {
         return validateSize(val)
       },
     },
     minHeight: {
-      default: null,
       type: [Number, String],
+      default: null,
       validator: (val) => {
         return validateSize(val)
       },
     },
     minWidth: {
-      default: null,
       type: [Number, String],
+      default: null,
       validator: (val) => {
         return validateSize(val)
       },
     },
     nuxt: {
-      default: false,
       type: Boolean,
+      default: false,
     },
     tag: {
-      default: 'div',
       type: String,
+      default: 'div',
     },
     target: {
-      default: null,
       type: String,
+      default: null,
     },
     to: {
-      default: null,
       type: String,
+      default: null,
     },
     width: {
-      default: null,
       type: [Number, String],
+      default: null,
       validator: (val) => {
         return validateSize(val)
       },

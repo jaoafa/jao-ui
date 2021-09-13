@@ -31,16 +31,16 @@ export default {
 
   props: {
     itemLength: {
-      default: 0,
       type: Number,
+      default: 0,
     },
     itemPerPage: {
-      default: 10,
       type: Number,
+      default: 10,
     },
     page: {
-      default: 1,
       type: Number,
+      default: 1,
     },
   },
 

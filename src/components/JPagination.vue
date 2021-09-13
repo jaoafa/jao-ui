@@ -67,22 +67,22 @@ export default {
 
   props: {
     length: {
-      default: 0,
       type: Number,
+      default: 0,
       validator: (val) => {
         return (val % 1 === 0) && (val >= 0)
       },
     },
     page: {
-      default: 0,
       type: Number,
+      default: 0,
       validator: (val) => {
         return (val % 1 === 0) && (val >= 0)
       },
     },
     totalVisible: {
-      default: 0,
       type: Number,
+      default: 0,
       validator: (val) => {
         return (val % 1 === 0) && (val >= 0)
       },

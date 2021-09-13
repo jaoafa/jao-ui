@@ -39,19 +39,19 @@ export default {
 
   props: {
     headers: {
-      default: () => [],
       type: Array,
+      default: () => [],
       validator: (val) => {
         return val.every((item) => item.label && item.key)
       },
     },
     sortBy: {
-      default: () => '',
       type: String,
+      default: () => '',
     },
     sortOrder: {
-      default: () => 'asc',
       type: String,
+      default: () => 'asc',
       validator: (val) => {
         return ['asc', 'desc'].includes(val)
       },

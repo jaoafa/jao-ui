@@ -47,64 +47,64 @@ export default {
 
   props: {
     alt: {
-      default: '',
       type: String,
+      default: '',
     },
     contain: {
-      default: false,
       type: Boolean,
+      default: false,
     },
     height: {
-      default: null,
       type: [Number, String],
+      default: null,
       validator: (val) => {
         return validateSize(val)
       },
     },
     maxHeight: {
-      default: null,
       type: [Number, String],
+      default: null,
       validator: (val) => {
         return validateSize(val)
       },
     },
     maxWidth: {
-      default: null,
       type: [Number, String],
+      default: null,
       validator: (val) => {
         return validateSize(val)
       },
     },
     minHeight: {
-      default: null,
       type: [Number, String],
+      default: null,
       validator: (val) => {
         return validateSize(val)
       },
     },
     minWidth: {
-      default: null,
       type: [Number, String],
+      default: null,
       validator: (val) => {
         return validateSize(val)
       },
     },
     sizes: {
-      default: null,
       type: String,
+      default: null,
     },
     src: {
-      default: '',
       type: String,
+      default: '',
       require: true,
     },
     srcset: {
-      default: null,
       type: String,
+      default: null,
     },
     width: {
-      default: null,
       type: [Number, String],
+      default: null,
       validator: (val) => {
         return validateSize(val)
       },

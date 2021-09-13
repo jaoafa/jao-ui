@@ -37,33 +37,33 @@ export default {
 
   props: {
     color: {
-      default: 'primary',
       type: String,
+      default: 'primary',
       validator: (val) => {
         return validateColor(val)
       },
     },
     indeterminate: {
-      default: false,
       type: Boolean,
+      default: false,
     },
     percentage: {
-      default: 0,
       type: Number,
+      default: 0,
       validator: (val) => {
         return val >= 0 && val <= 100
       },
     },
     size: {
-      default: 32,
       type: Number,
+      default: 32,
       validator: (val) => {
         return val > 0
       },
     },
     stroke: {
-      default: 4,
       type: Number,
+      default: 4,
       validator: (val) => {
         return val > 0
       },

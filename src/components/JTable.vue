@@ -79,35 +79,35 @@ export default {
 
   props: {
     headers: {
-      default: () => [],
       type: Array,
+      default: () => [],
     },
     hideFooter: {
-      default: false,
       type: Boolean,
+      default: false,
     },
     hideHeader: {
-      default: false,
       type: Boolean,
+      default: false,
     },
     items: {
-      default: () => [],
       type: Array,
+      default: () => [],
     },
     itemPerPage: {
-      default: 10,
       type: Number,
+      default: 10,
       validator: (val) => {
         return (val % 1 === 0) && (val > 0)
       },
     },
     loading: {
-      default: false,
       type: Boolean,
+      default: false,
     },
     page: {
-      default: 1,
       type: Number,
+      default: 1,
       validator: (val) => {
         return (val % 1 === 0) && (val > 0)
       },

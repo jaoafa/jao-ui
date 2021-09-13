@@ -43,54 +43,54 @@ export default {
 
   props: {
     color: {
-      default: 'primary',
       type: String,
+      default: 'primary',
       validator: (val) => {
         return validateColor(val)
       },
     },
     disabled: {
-      default: false,
       type: Boolean,
+      default: false,
     },
     href: {
-      default: null,
       type: String,
+      default: null,
     },
     icon: {
-      default: false,
       type: Boolean,
+      default: false,
     },
     loading: {
-      default: false,
       type: Boolean,
+      default: false,
     },
     nuxt: {
-      default: false,
       type: Boolean,
+      default: false,
     },
     outlined: {
-      default: false,
       type: Boolean,
+      default: false,
     },
     size: {
-      default: 'medium',
       type: String,
+      default: 'medium',
       validator: (val) => {
         return ['large', 'medium', 'small'].includes(val)
       },
     },
     tag: {
-      default: 'button',
       type: String,
+      default: 'button',
     },
     target: {
-      default: null,
       type: String,
+      default: null,
     },
     to: {
-      default: null,
       type: String,
+      default: null,
     },
   },
 

@@ -14,28 +14,28 @@ export default {
 
   props: {
     align: {
-      default: 'start',
       type: String,
+      default: 'start',
       validator: (val) => {
         return ['start', 'center', 'end', 'baseline', 'stretch']
           .includes(val)
       },
     },
     justify: {
-      default: 'start',
       type: String,
+      default: 'start',
       validator: (val) => {
         return ['start', 'center', 'end', 'space-between', 'space-around']
           .includes(val)
       },
     },
     noGap: {
-      default: false,
       type: Boolean,
+      default: false,
     },
     tag: {
-      default: 'div',
       type: String,
+      default: 'div',
     },
   },
 
