@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <j-app>
     <j-container>
       <j-row>
         <j-col
@@ -420,7 +420,7 @@
         color="secondary-700"
       />
     </j-container>
-  </div>
+  </j-app>
 </template>
 
 <script>
@@ -448,8 +448,6 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-@use './serve.css';
-
 .dev-flex {
   display: flex;
   gap: 16px;
