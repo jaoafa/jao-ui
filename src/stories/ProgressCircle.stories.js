@@ -1,8 +1,8 @@
-import JProgress from '@/components/JProgress.vue'
+import JProgressCircle from '@/components/JProgressCircle.vue'
 
 export default {
   title: 'Components/Progress',
-  component: JProgress,
+  component: JProgressCircle,
   argTypes: {
     // props
     color: {
@@ -20,15 +20,6 @@ export default {
     stroke: {
       description: '図形の線の太さを指定します。',
     },
-    type: {
-      description: '図形の形状を指定します。',
-      control: {
-        type: 'select',
-        options: [
-          'circle',
-        ],
-      },
-    },
     // events
     // slots
   },
@@ -36,14 +27,14 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { JProgress },
+  components: { JProgressCircle },
   template:
     `
-    <j-progress v-bind="$props" />
+    <j-progress-circle v-bind="$props" />
     `,
 })
 
-export const Circular = Template.bind({})
-Circular.args = {
+export const Circle = Template.bind({})
+Circle.args = {
   indeterminate: true,
 }

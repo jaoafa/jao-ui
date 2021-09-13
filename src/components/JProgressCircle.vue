@@ -1,14 +1,14 @@
 <template>
   <div
     :class="classes"
-    class="j-progress"
+    class="j-progress-circle"
   >
     <svg
       :width="size"
       :height="size"
       :viewbox="`0 0 ${size} ${size}`"
       xmlns="http://www.w3.org/2000/svg"
-      class="j-progress__svg"
+      class="j-progress-circle__svg"
       style="transform: rotate(-90deg);"
     >
       <circle
@@ -20,7 +20,7 @@
         :stroke-dasharray="indeterminate ? null : circumference"
         :stroke-dashoffset="indeterminate ? null : offset"
         fill="transparent"
-        class="j-progress__circle"
+        class="j-progress-circle__circle"
       />
     </svg>
   </div>
@@ -33,16 +33,9 @@ import {
 } from '@/utils/colors'
 
 export default {
-  name: 'JProgress',
+  name: 'JProgressCircle',
 
   props: {
-    type: {
-      default: 'circle',
-      type: String,
-      validator: (val) => {
-        return ['circle'].includes(val)
-      },
-    },
     color: {
       default: 'primary',
       type: String,
@@ -89,9 +82,7 @@ export default {
     },
     classes () {
       return {
-        'j-progress--circle': this.type === 'circle',
-        'j-progress--line': this.type === 'line',
-        'j-progress--indeterminate': this.indeterminate,
+        'j-progress-circle--indeterminate': this.indeterminate,
       }
     },
     radius () {
@@ -110,34 +101,32 @@ export default {
 
 <style lang="scss" scoped>
 @use 'src/sass' as *;
-$root: '.j-progress';
+$root: '.j-progress-circle';
 
-.j-progress {
+.j-progress-circle {
   display: inline-flex;
   transition-timing-function: ease-in-out;
   transition-duration: 0.3s;
 
-  &--circle {
-    &#{$root}--indeterminate {
-      & #{$root}__svg {
-        animation: progress-circle-turn 1.6s linear infinite;
-      }
+  &--indeterminate {
+    & #{$root}__svg {
+      animation: progress-circle-turn 1.6s linear infinite;
+    }
 
-      & #{$root}__circle {
-        stroke-dasharray: calc(80% * 3.14);
-        animation: progress-circle-dash 1.2s ease-in-out infinite;
-      }
+    & #{$root}__circle {
+      stroke-dasharray: calc(80% * 3.14);
+      animation: progress-circle-dash 1.2s ease-in-out infinite;
     }
   }
 }
 
-.j-progress__svg {
+.j-progress-circle__svg {
   stroke-linecap: round;
   transition-timing-function: inherit;
   transition-duration: inherit;
 }
 
-.j-progress__circle {
+.j-progress-circle__circle {
   transition-timing-function: inherit;
   transition-duration: inherit;
 }

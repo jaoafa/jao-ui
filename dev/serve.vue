@@ -366,31 +366,31 @@
     </j-container>
     <j-container>
       <div class="dev-flex">
-        <j-progress
+        <j-progress-circle
           :size="48"
           :stroke="4"
           :indeterminate="true"
           color="primary"
         />
-        <j-progress
+        <j-progress-circle
           :size="48"
           :stroke="4"
           :percentage="20"
           color="secondary-100"
         />
-        <j-progress
+        <j-progress-circle
           :size="48"
           :stroke="4"
           :percentage="40"
           color="secondary-300"
         />
-        <j-progress
+        <j-progress-circle
           :size="48"
           :stroke="4"
           :percentage="60"
           color="secondary-500"
         />
-        <j-progress
+        <j-progress-circle
           :size="48"
           :stroke="4"
           :percentage="80"
