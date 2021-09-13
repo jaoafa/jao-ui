@@ -22,7 +22,7 @@
         v-show="!isLoaded"
         class="j-image__loader"
       >
-        <j-progress
+        <j-progress-circle
           :size="40"
           :indeterminate="true"
           color="gray-300"
@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import JProgress from '@/components/JProgress'
+import JProgressCircle from '@/components/JProgressCircle'
 import {
   validateSize,
 } from '@/utils/sizes'
@@ -42,7 +42,7 @@ export default {
   name: 'JImage',
 
   components: {
-    JProgress,
+    JProgressCircle,
   },
 
   props: {

@@ -16,7 +16,7 @@
               <td :colspan="headers.length">
                 <div class="j-table__empty">
                   <span>読み込み中...</span>
-                  <j-progress
+                  <j-progress-circle
                     :size="20"
                     :stroke="2"
                     indeterminate
@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import JProgress from '@/components/JProgress'
+import JProgressCircle from '@/components/JProgressCircle'
 import JTableFooter from '@/components/JTableFooter'
 import JTableHeader from '@/components/JTableHeader'
 
@@ -72,7 +72,7 @@ export default {
   name: 'JTable',
 
   components: {
-    JProgress,
+    JProgressCircle,
     JTableFooter,
     JTableHeader,
   },

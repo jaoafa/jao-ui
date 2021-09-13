@@ -1,10 +1,13 @@
-import JProgress from '@/components/JProgress.vue'
+import JProgressBar from '@/components/JProgressBar.vue'
 
 export default {
   title: 'Components/Progress',
-  component: JProgress,
+  component: JProgressBar,
   argTypes: {
     // props
+    absolute: {
+      description: 'コンポーネントに `position:absolute;` を適用します。',
+    },
     color: {
       description: '指定された色をコンポーネントに適用します。',
     },
@@ -14,20 +17,8 @@ export default {
     percentage: {
       description: 'パーセントの値を指定します。',
     },
-    size: {
-      description: 'コンポーネントの大きさを指定します。',
-    },
     stroke: {
       description: '図形の線の太さを指定します。',
-    },
-    type: {
-      description: '図形の形状を指定します。',
-      control: {
-        type: 'select',
-        options: [
-          'circle',
-        ],
-      },
     },
     // events
     // slots
@@ -36,14 +27,14 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { JProgress },
+  components: { JProgressBar },
   template:
     `
-    <j-progress v-bind="$props" />
+    <j-progress-bar v-bind="$props" />
     `,
 })
 
-export const Circular = Template.bind({})
-Circular.args = {
+export const Bar = Template.bind({})
+Bar.args = {
   indeterminate: true,
 }

@@ -15,7 +15,7 @@
     </span>
 
     <span class="j-button__loader">
-      <j-progress
+      <j-progress-circle
         :color="textColor"
         :size="20"
         :stroke="2"
@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import JProgress from '@/components/JProgress'
+import JProgressCircle from '@/components/JProgressCircle'
 import {
   colors,
   validateColor,
@@ -38,7 +38,7 @@ export default {
   name: 'JButton',
 
   components: {
-    JProgress,
+    JProgressCircle,
   },
 
   props: {
