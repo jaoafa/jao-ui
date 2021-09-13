@@ -193,7 +193,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@use 'src/sass' as *;
+@use 'src/sass/includes' as *;
 $root: '.j-pagination';
 
 .j-pagination {

@@ -79,7 +79,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@use 'src/sass' as *;
+@use 'src/sass/includes' as *;
 @use 'sass:math';
 $root: '.j-col';
 
