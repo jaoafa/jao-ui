@@ -1,15 +1,12 @@
 <template>
-  <div
-    :class="classes"
-    class="j-progress-circle"
-  >
+  <div :class="classes" class="j-progress-circle">
     <svg
       :width="size"
       :height="size"
       :viewbox="`0 0 ${size} ${size}`"
       xmlns="http://www.w3.org/2000/svg"
       class="j-progress-circle__svg"
-      style="transform: rotate(-90deg);"
+      style="transform: rotate(-90deg)"
     >
       <circle
         :cx="size / 2"
@@ -27,71 +24,68 @@
 </template>
 
 <script>
-import {
-  validateColor,
-  convertNameToHex,
-} from '@/utils/colors'
+import { validateColor, convertNameToHex } from '@/utils/colors'
 
 export default {
   name: 'JProgressCircle',
 
   props: {
     color: {
-      default: 'primary',
       type: String,
+      default: 'primary',
       validator: (val) => {
         return validateColor(val)
       },
     },
-    size: {
-      default: 32,
+    indeterminate: {
+      type: Boolean,
+      default: false,
+    },
+    percentage: {
       type: Number,
+      default: 0,
+      validator: (val) => {
+        return val >= 0 && val <= 100
+      },
+    },
+    size: {
+      type: Number,
+      default: 32,
       validator: (val) => {
         return val > 0
       },
     },
     stroke: {
-      default: 4,
       type: Number,
+      default: 4,
       validator: (val) => {
         return val > 0
       },
     },
-    percentage: {
-      default: 0,
-      type: Number,
-      validator: (val) => {
-        return val >= 0 && val <= 100
-      },
-    },
-    indeterminate: {
-      default: false,
-      type: Boolean,
-    },
   },
 
-  data () {
+  data() {
     return {
       dashOffset: 0,
     }
   },
 
   computed: {
-    _color () {
+    _color() {
       return convertNameToHex(this.color)
     },
-    classes () {
+    classes() {
       return {
         'j-progress-circle--indeterminate': this.indeterminate,
       }
     },
-    radius () {
-      return (this.size / 2) - this.stroke
+    radius() {
+      return this.size / 2 - this.stroke
     },
-    circumference () {
+    circumference() {
       return this.radius * 2 * Math.PI
     },
-    offset () {
+    offset() {
       const length = this.circumference
       return length * (1 - this.percentage / 100)
     },
@@ -100,7 +94,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@use 'src/sass' as *;
+@use 'src/sass/includes' as *;
 $root: '.j-progress-circle';
 
 .j-progress-circle {

@@ -42,66 +42,68 @@ export default {
   },
 
   props: {
-    tag: {
-      default: 'button',
-      type: String,
-    },
-    href: {
-      default: null,
-      type: String,
-    },
-    to: {
-      default: null,
-      type: String,
-    },
-    nuxt: {
-      default: false,
-      type: Boolean,
-    },
-    target: {
-      default: null,
-      type: String,
-    },
-    size: {
-      default: 'medium',
-      type: String,
-      validator: (val) => {
-        return ['large', 'medium', 'small'].includes(val)
-      },
-    },
     color: {
-      default: 'primary',
       type: String,
+      default: 'primary',
       validator: (val) => {
         return validateColor(val)
       },
     },
     disabled: {
-      default: false,
       type: Boolean,
+      default: false,
     },
-    outlined: {
-      default: false,
-      type: Boolean,
-    },
-    loading: {
-      default: false,
-      type: Boolean,
+    href: {
+      type: String,
+      default: null,
     },
     icon: {
-      default: false,
       type: Boolean,
+      default: false,
+    },
+    loading: {
+      type: Boolean,
+      default: false,
+    },
+    nuxt: {
+      type: Boolean,
+      default: false,
+    },
+    outlined: {
+      type: Boolean,
+      default: false,
+    },
+    size: {
+      type: String,
+      default: 'medium',
+      validator: (val) => {
+        return ['large', 'medium', 'small'].includes(val)
+      },
+    },
+    tag: {
+      type: String,
+      default: 'button',
+    },
+    target: {
+      type: String,
+      default: null,
+    },
+    to: {
+      type: String,
+      default: null,
     },
   },
 
   computed: {
-    _tag () {
-      return (this.to && (this.nuxt ? 'nuxt-link' : 'router-link')) ||
+    _tag() {
+      return (
+        (this.to && (this.nuxt ? 'nuxt-link' : 'router-link')) ||
         (this.href && 'a') ||
         this.tag ||
         'button'
+      )
     },
-    classes () {
+    classes() {
       return {
         'j-button--large': this.size === 'large',
         'j-button--medium': this.size === 'medium',
@@ -112,39 +114,39 @@ export default {
         'j-button--icon': this.icon,
       }
     },
-    styles () {
+    styles() {
       return {
         color: this.textColor,
         'background-color': this.backgroundColor,
       }
     },
-    attrs () {
+    attrs() {
       const res = {}
       if (this.href) {
         res.href = this.href
       }
       return res
     },
-    textColor () {
+    textColor() {
       const color = this.color
       return this.disabled
         ? colors['gray-200']
         : this.outlined
-          ? convertNameToHex(color)
-          : getContrastColor(color)
+        ? convertNameToHex(color)
+        : getContrastColor(color)
     },
-    backgroundColor () {
+    backgroundColor() {
       const color = convertNameToHex(this.color)
       return this.outlined
         ? 'transparent'
         : this.disabled
-          ? colors['gray-100']
-          : color
+        ? colors['gray-100']
+        : color
     },
   },
 
   methods: {
-    click (e) {
+    click(e) {
       this.$emit('click', e)
     },
   },
@@ -152,7 +154,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@use 'src/sass' as *;
+@use 'src/sass/includes' as *;
 $root: '.j-button';
 
 .j-button {

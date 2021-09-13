@@ -48,7 +48,8 @@ export default {
       description: '指定されたタグをカードに適用します。',
     },
     target: {
-      description: '指定された値を `target` 属性としてコンポーネントに追加します。',
+      description:
+        '指定された値を `target` 属性としてコンポーネントに追加します。',
     },
     to: {
       description: 'カードを `<router-link>` にし、 `to` Prop を適用します。',
@@ -79,8 +80,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { JCard },
-  template:
-    `
+  template: `
     <j-card @click="click" v-bind="$props">
       Card Content
     </j-card>

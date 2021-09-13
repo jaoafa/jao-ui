@@ -1,9 +1,5 @@
 <template>
-  <div
-    :class="classes"
-    :style="styles"
-    class="j-progress-bar"
-  >
+  <div :class="classes" :style="styles" class="j-progress-bar">
     <div class="j-progress-bar__background" />
     <div
       :style="{ width: indeterminate ? null : `${percentage}%` }"
@@ -13,57 +9,54 @@
 </template>
 
 <script>
-import {
-  convertNameToHex,
-  validateColor,
-} from '@/utils/colors'
+import { convertNameToHex, validateColor } from '@/utils/colors'
 
 export default {
   name: 'JProgressBar',
 
   props: {
     absolute: {
-      default: false,
       type: Boolean,
+      default: false,
     },
     color: {
-      default: 'primary',
       type: String,
+      default: 'primary',
       validator: (val) => {
         return validateColor(val)
       },
     },
-    stroke: {
-      default: 4,
-      type: Number,
-      validator: (val) => {
-        return val > 0
-      },
+    indeterminate: {
+      type: Boolean,
+      default: false,
     },
     percentage: {
-      default: 0,
       type: Number,
+      default: 0,
       validator: (val) => {
         return val >= 0 && val <= 100
       },
     },
-    indeterminate: {
-      default: false,
-      type: Boolean,
+    stroke: {
+      type: Number,
+      default: 4,
+      validator: (val) => {
+        return val > 0
+      },
     },
   },
 
   computed: {
-    _color () {
+    _color() {
       return convertNameToHex(this.color)
     },
-    classes () {
+    classes() {
       return {
         'j-progress-bar--absolute': this.absolute,
         'j-progress-bar--indeterminate': this.indeterminate,
       }
     },
-    styles () {
+    styles() {
       return {
         color: this._color,
         height: `${this.stroke}px`,
@@ -74,7 +67,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@use 'src/sass' as *;
+@use 'src/sass/includes' as *;
 $root: '.j-progress-bar';
 
 .j-progress-bar {

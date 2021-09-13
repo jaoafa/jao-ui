@@ -28,8 +28,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { JProgressCircle },
-  template:
-    `
+  template: `
     <j-progress-circle v-bind="$props" />
     `,
 })

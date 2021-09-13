@@ -6,7 +6,8 @@ export default {
   argTypes: {
     // props
     headers: {
-      description: 'ヘッダーのカラムとなる配列を指定します。<br>`label` : カラムの表示名(必須)<br> `key` : カラムのキー(必須)<br> `sortable` : ソート可能項目であるか',
+      description:
+        'ヘッダーのカラムとなる配列を指定します。<br>`label` : カラムの表示名(必須)<br> `key` : カラムのキー(必須)<br> `sortable` : ソート可能項目であるか',
     },
     hideFooter: {
       description: '表のフッターを非表示にします。',
@@ -34,8 +35,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { JTable },
-  template:
-    `
+  template: `
     <j-table v-bind="$props" />
     `,
 })

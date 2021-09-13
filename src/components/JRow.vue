@@ -1,9 +1,5 @@
 <template>
-  <component
-    :is="tag"
-    :class="classes"
-    class="j-row"
-  >
+  <component :is="tag" :class="classes" class="j-row">
     <slot />
   </component>
 </template>
@@ -13,34 +9,38 @@ export default {
   name: 'JRow',
 
   props: {
-    tag: {
-      default: 'div',
-      type: String,
-    },
     align: {
-      default: 'start',
       type: String,
+      default: 'start',
       validator: (val) => {
-        return ['start', 'center', 'end', 'baseline', 'stretch']
-          .includes(val)
+        return ['start', 'center', 'end', 'baseline', 'stretch'].includes(val)
       },
     },
     justify: {
-      default: 'start',
       type: String,
+      default: 'start',
       validator: (val) => {
-        return ['start', 'center', 'end', 'space-between', 'space-around']
-          .includes(val)
+        return [
+          'start',
+          'center',
+          'end',
+          'space-between',
+          'space-around',
+        ].includes(val)
       },
     },
     noGap: {
-      default: false,
       type: Boolean,
+      default: false,
+    },
+    tag: {
+      type: String,
+      default: 'div',
     },
   },
 
   computed: {
-    classes () {
+    classes() {
       return {
         'j-row--align-start': this.align === 'start',
         'j-row--align-center': this.align === 'center',
@@ -60,7 +60,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@use 'src/sass' as *;
+@use 'src/sass/includes' as *;
 $root: '.j-row';
 
 .j-row {

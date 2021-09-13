@@ -8,7 +8,7 @@
             'j-table-header__item--sortable': item.sortable,
             'j-table-header__item--active': sortBy === item.key,
             'j-table-header__item--asc': sortOrder === 'asc',
-            'j-table-header__item--desc': sortOrder === 'desc'
+            'j-table-header__item--desc': sortOrder === 'desc',
           }"
           class="j-table-header__item"
           @click="item.sortable ? click(item.key) : null"
@@ -18,10 +18,7 @@
           </span>
 
           <span class="j-table-header__sort">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-            >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path
                 d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"
               />
@@ -39,19 +36,19 @@ export default {
 
   props: {
     headers: {
-      default: () => [],
       type: Array,
+      default: () => [],
       validator: (val) => {
         return val.every((item) => item.label && item.key)
       },
     },
     sortBy: {
-      default: () => '',
       type: String,
+      default: () => '',
     },
     sortOrder: {
-      default: () => 'asc',
       type: String,
+      default: () => 'asc',
       validator: (val) => {
         return ['asc', 'desc'].includes(val)
       },
@@ -59,7 +56,7 @@ export default {
   },
 
   methods: {
-    click (key) {
+    click(key) {
       this.$emit('click', key)
     },
   },
@@ -67,7 +64,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@use 'src/sass' as *;
+@use 'src/sass/includes' as *;
 $root: '.j-table-header';
 
 .j-table-header {

@@ -1,10 +1,5 @@
 <template>
-  <div
-    :id="id"
-    :class="classes"
-    :style="styles"
-    class="j-container"
-  >
+  <div :id="id" :class="classes" :style="styles" class="j-container">
     <div class="j-container__body">
       <slot />
     </div>
@@ -12,39 +7,36 @@
 </template>
 
 <script>
-import {
-  convertNameToHex,
-  validateColor,
-} from '@/utils/colors'
+import { convertNameToHex, validateColor } from '@/utils/colors'
 
 export default {
   name: 'JContainer',
 
   props: {
-    fluid: {
-      default: false,
-      type: Boolean,
-    },
     color: {
-      default: 'transparent',
       type: String,
+      default: 'transparent',
       validator: (val) => {
         return validateColor(val) || val === 'transparent'
       },
     },
+    fluid: {
+      type: Boolean,
+      default: false,
+    },
     id: {
-      default: null,
       type: String,
+      default: null,
     },
   },
 
   computed: {
-    classes () {
+    classes() {
       return {
         'j-container--fluid': this.fluid,
       }
     },
-    styles () {
+    styles() {
       return {
         'background-color': convertNameToHex(this.color),
       }
@@ -54,7 +46,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@use 'src/sass' as *;
+@use 'src/sass/includes' as *;
 $root: '.j-container';
 
 .j-container {

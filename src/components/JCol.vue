@@ -1,9 +1,5 @@
 <template>
-  <component
-    :is="tag"
-    :class="classes"
-    class="j-col"
-  >
+  <component :is="tag" :class="classes" class="j-col">
     <slot />
   </component>
 </template>
@@ -13,49 +9,49 @@ export default {
   name: 'JCol',
 
   props: {
-    tag: {
-      default: 'div',
-      type: String,
-    },
     cols: {
+      type: Number,
       default: 1,
-      type: Number,
-      validator: (val) => {
-        return val >= 1 && val <= 12
-      },
-    },
-    colsSm: {
-      default: null,
-      type: Number,
-      validator: (val) => {
-        return val >= 1 && val <= 12
-      },
-    },
-    colsMd: {
-      default: null,
-      type: Number,
       validator: (val) => {
         return val >= 1 && val <= 12
       },
     },
     colsLg: {
-      default: null,
       type: Number,
+      default: null,
+      validator: (val) => {
+        return val >= 1 && val <= 12
+      },
+    },
+    colsMd: {
+      type: Number,
+      default: null,
+      validator: (val) => {
+        return val >= 1 && val <= 12
+      },
+    },
+    colsSm: {
+      type: Number,
+      default: null,
       validator: (val) => {
         return val >= 1 && val <= 12
       },
     },
     colsXl: {
-      default: null,
       type: Number,
+      default: null,
       validator: (val) => {
         return val >= 1 && val <= 12
       },
     },
+    tag: {
+      type: String,
+      default: 'div',
+    },
   },
 
   computed: {
-    classes () {
+    classes() {
       const classes = {
         'j-col--no-gap': this.gap,
       }
@@ -71,7 +67,7 @@ export default {
       classes[`j-col--xl-${colsXl}`] = colsXl ? true : null
       return classes
     },
-    gap () {
+    gap() {
       return !!this.$parent.$props.noGap
     },
   },
@@ -79,7 +75,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@use 'src/sass' as *;
+@use 'src/sass/includes' as *;
 @use 'sass:math';
 $root: '.j-col';
 

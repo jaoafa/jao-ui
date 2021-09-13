@@ -1,3 +1,4 @@
+export { default as JApp } from '@/components/JApp.vue'
 export { default as JButton } from '@/components/JButton.vue'
 export { default as JCard } from '@/components/JCard.vue'
 export { default as JCol } from '@/components/JCol.vue'
