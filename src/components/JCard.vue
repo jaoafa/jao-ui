@@ -25,26 +25,6 @@ export default {
   name: 'JCard',
 
   props: {
-    tag: {
-      default: 'div',
-      type: String,
-    },
-    href: {
-      default: null,
-      type: String,
-    },
-    to: {
-      default: null,
-      type: String,
-    },
-    nuxt: {
-      default: false,
-      type: Boolean,
-    },
-    target: {
-      default: null,
-      type: String,
-    },
     color: {
       default: 'white',
       type: String,
@@ -52,14 +32,18 @@ export default {
         return validateColor(val)
       },
     },
-    width: {
+    height: {
       default: null,
       type: [Number, String],
       validator: (val) => {
         return validateSize(val)
       },
     },
-    height: {
+    href: {
+      default: null,
+      type: String,
+    },
+    maxHeight: {
       default: null,
       type: [Number, String],
       validator: (val) => {
@@ -73,7 +57,7 @@ export default {
         return validateSize(val)
       },
     },
-    maxHeight: {
+    minHeight: {
       default: null,
       type: [Number, String],
       validator: (val) => {
@@ -87,7 +71,23 @@ export default {
         return validateSize(val)
       },
     },
-    minHeight: {
+    nuxt: {
+      default: false,
+      type: Boolean,
+    },
+    tag: {
+      default: 'div',
+      type: String,
+    },
+    target: {
+      default: null,
+      type: String,
+    },
+    to: {
+      default: null,
+      type: String,
+    },
+    width: {
       default: null,
       type: [Number, String],
       validator: (val) => {

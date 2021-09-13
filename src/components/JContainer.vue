@@ -21,16 +21,16 @@ export default {
   name: 'JContainer',
 
   props: {
-    fluid: {
-      default: false,
-      type: Boolean,
-    },
     color: {
       default: 'transparent',
       type: String,
       validator: (val) => {
         return validateColor(val) || val === 'transparent'
       },
+    },
+    fluid: {
+      default: false,
+      type: Boolean,
     },
     id: {
       default: null,

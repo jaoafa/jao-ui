@@ -13,10 +13,6 @@ export default {
   name: 'JRow',
 
   props: {
-    tag: {
-      default: 'div',
-      type: String,
-    },
     align: {
       default: 'start',
       type: String,
@@ -36,6 +32,10 @@ export default {
     noGap: {
       default: false,
       type: Boolean,
+    },
+    tag: {
+      default: 'div',
+      type: String,
     },
   },
 

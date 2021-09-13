@@ -82,17 +82,24 @@ export default {
       default: () => [],
       type: Array,
     },
-    items: {
-      default: () => [],
-      type: Array,
+    hideFooter: {
+      default: false,
+      type: Boolean,
     },
     hideHeader: {
       default: false,
       type: Boolean,
     },
-    hideFooter: {
-      default: false,
-      type: Boolean,
+    items: {
+      default: () => [],
+      type: Array,
+    },
+    itemPerPage: {
+      default: 10,
+      type: Number,
+      validator: (val) => {
+        return (val % 1 === 0) && (val > 0)
+      },
     },
     loading: {
       default: false,
@@ -100,13 +107,6 @@ export default {
     },
     page: {
       default: 1,
-      type: Number,
-      validator: (val) => {
-        return (val % 1 === 0) && (val > 0)
-      },
-    },
-    itemPerPage: {
-      default: 10,
       type: Number,
       validator: (val) => {
         return (val % 1 === 0) && (val > 0)

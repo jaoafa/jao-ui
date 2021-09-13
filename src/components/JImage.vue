@@ -46,38 +46,15 @@ export default {
   },
 
   props: {
-    src: {
-      default: '',
-      type: String,
-      require: true,
-    },
-    srcset: {
-      default: null,
-      type: String,
-    },
-    sizes: {
-      default: null,
-      type: String,
-    },
     alt: {
       default: '',
       type: String,
     },
-    width: {
-      default: null,
-      type: [Number, String],
-      validator: (val) => {
-        return validateSize(val)
-      },
+    contain: {
+      default: false,
+      type: Boolean,
     },
     height: {
-      default: null,
-      type: [Number, String],
-      validator: (val) => {
-        return validateSize(val)
-      },
-    },
-    maxWidth: {
       default: null,
       type: [Number, String],
       validator: (val) => {
@@ -91,7 +68,7 @@ export default {
         return validateSize(val)
       },
     },
-    minWidth: {
+    maxWidth: {
       default: null,
       type: [Number, String],
       validator: (val) => {
@@ -105,9 +82,32 @@ export default {
         return validateSize(val)
       },
     },
-    contain: {
-      default: false,
-      type: Boolean,
+    minWidth: {
+      default: null,
+      type: [Number, String],
+      validator: (val) => {
+        return validateSize(val)
+      },
+    },
+    sizes: {
+      default: null,
+      type: String,
+    },
+    src: {
+      default: '',
+      type: String,
+      require: true,
+    },
+    srcset: {
+      default: null,
+      type: String,
+    },
+    width: {
+      default: null,
+      type: [Number, String],
+      validator: (val) => {
+        return validateSize(val)
+      },
     },
   },
 

@@ -13,10 +13,6 @@ export default {
   name: 'JCol',
 
   props: {
-    tag: {
-      default: 'div',
-      type: String,
-    },
     cols: {
       default: 1,
       type: Number,
@@ -24,7 +20,7 @@ export default {
         return val >= 1 && val <= 12
       },
     },
-    colsSm: {
+    colsLg: {
       default: null,
       type: Number,
       validator: (val) => {
@@ -38,7 +34,7 @@ export default {
         return val >= 1 && val <= 12
       },
     },
-    colsLg: {
+    colsSm: {
       default: null,
       type: Number,
       validator: (val) => {
@@ -51,6 +47,10 @@ export default {
       validator: (val) => {
         return val >= 1 && val <= 12
       },
+    },
+    tag: {
+      default: 'div',
+      type: String,
     },
   },
 

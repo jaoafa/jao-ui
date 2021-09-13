@@ -33,12 +33,9 @@ export default {
         return validateColor(val)
       },
     },
-    stroke: {
-      default: 4,
-      type: Number,
-      validator: (val) => {
-        return val > 0
-      },
+    indeterminate: {
+      default: false,
+      type: Boolean,
     },
     percentage: {
       default: 0,
@@ -47,9 +44,12 @@ export default {
         return val >= 0 && val <= 100
       },
     },
-    indeterminate: {
-      default: false,
-      type: Boolean,
+    stroke: {
+      default: 4,
+      type: Number,
+      validator: (val) => {
+        return val > 0
+      },
     },
   },
 

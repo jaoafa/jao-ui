@@ -66,14 +66,14 @@ export default {
   },
 
   props: {
-    page: {
+    length: {
       default: 0,
       type: Number,
       validator: (val) => {
         return (val % 1 === 0) && (val >= 0)
       },
     },
-    length: {
+    page: {
       default: 0,
       type: Number,
       validator: (val) => {

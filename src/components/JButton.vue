@@ -42,33 +42,6 @@ export default {
   },
 
   props: {
-    tag: {
-      default: 'button',
-      type: String,
-    },
-    href: {
-      default: null,
-      type: String,
-    },
-    to: {
-      default: null,
-      type: String,
-    },
-    nuxt: {
-      default: false,
-      type: Boolean,
-    },
-    target: {
-      default: null,
-      type: String,
-    },
-    size: {
-      default: 'medium',
-      type: String,
-      validator: (val) => {
-        return ['large', 'medium', 'small'].includes(val)
-      },
-    },
     color: {
       default: 'primary',
       type: String,
@@ -80,7 +53,11 @@ export default {
       default: false,
       type: Boolean,
     },
-    outlined: {
+    href: {
+      default: null,
+      type: String,
+    },
+    icon: {
       default: false,
       type: Boolean,
     },
@@ -88,9 +65,32 @@ export default {
       default: false,
       type: Boolean,
     },
-    icon: {
+    nuxt: {
       default: false,
       type: Boolean,
+    },
+    outlined: {
+      default: false,
+      type: Boolean,
+    },
+    size: {
+      default: 'medium',
+      type: String,
+      validator: (val) => {
+        return ['large', 'medium', 'small'].includes(val)
+      },
+    },
+    tag: {
+      default: 'button',
+      type: String,
+    },
+    target: {
+      default: null,
+      type: String,
+    },
+    to: {
+      default: null,
+      type: String,
     },
   },
 

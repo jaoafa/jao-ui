@@ -30,16 +30,16 @@ export default {
   },
 
   props: {
-    page: {
-      default: 1,
+    itemLength: {
+      default: 0,
       type: Number,
     },
     itemPerPage: {
       default: 10,
       type: Number,
     },
-    itemLength: {
-      default: 0,
+    page: {
+      default: 1,
       type: Number,
     },
   },

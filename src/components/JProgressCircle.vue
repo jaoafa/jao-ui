@@ -43,6 +43,17 @@ export default {
         return validateColor(val)
       },
     },
+    indeterminate: {
+      default: false,
+      type: Boolean,
+    },
+    percentage: {
+      default: 0,
+      type: Number,
+      validator: (val) => {
+        return val >= 0 && val <= 100
+      },
+    },
     size: {
       default: 32,
       type: Number,
@@ -56,17 +67,6 @@ export default {
       validator: (val) => {
         return val > 0
       },
-    },
-    percentage: {
-      default: 0,
-      type: Number,
-      validator: (val) => {
-        return val >= 0 && val <= 100
-      },
-    },
-    indeterminate: {
-      default: false,
-      type: Boolean,
     },
   },
 
