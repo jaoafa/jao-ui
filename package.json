@@ -63,6 +63,7 @@
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-vue": "^7.16.0",
     "husky": "^7.0.2",
+    "lint-staged": "^11.1.2",
     "minimist": "^1.2.5",
     "prettier": "^2.4.0",
     "rollup": "^2.56.3",
