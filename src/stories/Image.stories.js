@@ -10,7 +10,8 @@ export default {
       description: '画像の代替テキストを設定します。',
     },
     contain: {
-      description: '画像が指定された大きさに収まらない場合にトリミングされないようにします。',
+      description:
+        '画像が指定された大きさに収まらない場合にトリミングされないようにします。',
     },
     height: {
       description: '指定された高さを画像に適用します。',
@@ -43,13 +44,15 @@ export default {
       },
     },
     sizes: {
-      description: '`srcset` で複数の画像サイズが与えられている場合に、画像の表示サイズを指定するためのカンマ区切りの文字列を画像に適用します。',
+      description:
+        '`srcset` で複数の画像サイズが与えられている場合に、画像の表示サイズを指定するためのカンマ区切りの文字列を画像に適用します。',
     },
     src: {
       description: '画像のURLを適用します。この項目は必須です。',
     },
     srcset: {
-      description: '使用可能なソース画像のセットを示すカンマ区切りのリストです。',
+      description:
+        '使用可能なソース画像のセットを示すカンマ区切りのリストです。',
     },
     width: {
       description: '指定された幅を画像に適用します。',
@@ -65,8 +68,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { JImage },
-  template:
-    `
+  template: `
     <j-image v-bind="$props" />
     `,
 })

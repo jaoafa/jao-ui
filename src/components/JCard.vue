@@ -97,18 +97,20 @@ export default {
   },
 
   computed: {
-    _tag () {
-      return (this.to && (this.nuxt ? 'nuxt-link' : 'router-link')) ||
+    _tag() {
+      return (
+        (this.to && (this.nuxt ? 'nuxt-link' : 'router-link')) ||
         (this.href && 'a') ||
         this.tag ||
         'div'
+      )
     },
-    classes () {
+    classes() {
       return {
         'j-card--link': this.link,
       }
     },
-    styles () {
+    styles() {
       return {
         width: this.width,
         height: this.height,
@@ -120,26 +122,26 @@ export default {
         'background-color': this.backgroundColor,
       }
     },
-    attrs () {
+    attrs() {
       const res = {}
       if (this.href) {
         res.href = this.href
       }
       return res
     },
-    link () {
+    link() {
       return !!(this.to || this.href)
     },
-    textColor () {
+    textColor() {
       return getContrastColor(this.color)
     },
-    backgroundColor () {
+    backgroundColor() {
       return convertNameToHex(this.color)
     },
   },
 
   methods: {
-    click (e) {
+    click(e) {
       this.$emit('click', e)
     },
   },
@@ -159,9 +161,7 @@ $root: '.j-card';
   overflow-wrap: break-word;
   white-space: normal;
   border-radius: 2px;
-  box-shadow:
-    0 2px 8px 0 rgba(0, 0, 0, 0.08),
-    0 4px 10px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08), 0 4px 10px 0 rgba(0, 0, 0, 0.12);
   transition-duration: 0.1s;
   transition-property: box-shadow, opacity;
 
@@ -169,8 +169,7 @@ $root: '.j-card';
     cursor: pointer;
 
     &:hover {
-      box-shadow:
-        0 1px 4px 0 rgba(0, 0, 0, 0.08),
+      box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.08),
         0 2px 5px 0 rgba(0, 0, 0, 0.12);
       opacity: 0.85;
     }

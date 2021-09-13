@@ -5,11 +5,7 @@
     </div>
 
     <div class="j-table-footer__pagination">
-      <j-pagination
-        v-model="currentPage"
-        :length="length"
-        :total-visible="0"
-      />
+      <j-pagination v-model="currentPage" :length="length" :total-visible="0" />
     </div>
   </div>
 </template>
@@ -45,27 +41,29 @@ export default {
   },
 
   computed: {
-    length () {
+    length() {
       return Math.ceil(this.itemLength / this.itemPerPage)
     },
-    caption () {
+    caption() {
       const page = this.page
       const itemPerPage = this.itemPerPage
       const itemLength = this.itemLength
       if (itemLength) {
-        return itemPerPage * (page - 1) + 1 +
+        return (
+          itemPerPage * (page - 1) +
+          1 +
           '-' +
           (itemPerPage * page > itemLength ? itemLength : itemPerPage * page)
-      }
-      else {
+        )
+      } else {
         return ''
       }
     },
     currentPage: {
-      get () {
+      get() {
         return this.page
       },
-      set (val) {
+      set(val) {
         this.$emit('input', val)
       },
     },

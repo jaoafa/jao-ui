@@ -1,9 +1,5 @@
 <template>
-  <div
-    :class="classes"
-    :style="styles"
-    class="j-progress-bar"
-  >
+  <div :class="classes" :style="styles" class="j-progress-bar">
     <div class="j-progress-bar__background" />
     <div
       :style="{ width: indeterminate ? null : `${percentage}%` }"
@@ -13,10 +9,7 @@
 </template>
 
 <script>
-import {
-  convertNameToHex,
-  validateColor,
-} from '@/utils/colors'
+import { convertNameToHex, validateColor } from '@/utils/colors'
 
 export default {
   name: 'JProgressBar',
@@ -54,16 +47,16 @@ export default {
   },
 
   computed: {
-    _color () {
+    _color() {
       return convertNameToHex(this.color)
     },
-    classes () {
+    classes() {
       return {
         'j-progress-bar--absolute': this.absolute,
         'j-progress-bar--indeterminate': this.indeterminate,
       }
     },
-    styles () {
+    styles() {
       return {
         color: this._color,
         height: `${this.stroke}px`,

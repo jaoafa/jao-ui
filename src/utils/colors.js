@@ -54,8 +54,9 @@ export const validateColor = (val) => {
   }
   // rgba
   else if (
-    /^rgba\(((\d|[1-9]\d|1\d{1,2}|2[0-4]\d|25[0-5]),){3}([0-1]|0*\.\d+)\)$/i
-      .test(val.replace(/ /g, ''))
+    /^rgba\(((\d|[1-9]\d|1\d{1,2}|2[0-4]\d|25[0-5]),){3}([0-1]|0*\.\d+)\)$/i.test(
+      val.replace(/ /g, '')
+    )
   ) {
     return true
   }
@@ -77,10 +78,15 @@ export const convertHEXtoRGBA = (val) => {
   const r = val.length === 7 ? val.slice(1, 3) : val.slice(1, 2).repeat(2)
   const g = val.length === 7 ? val.slice(3, 5) : val.slice(2, 3).repeat(2)
   const b = val.length === 7 ? val.slice(5, 7) : val.slice(3, 4).repeat(2)
-  return 'rgba(' +
-    parseInt(r, 16) + ', ' +
-    parseInt(g, 16) + ', ' +
-    parseInt(b, 16) + ', 1)'
+  return (
+    'rgba(' +
+    parseInt(r, 16) +
+    ', ' +
+    parseInt(g, 16) +
+    ', ' +
+    parseInt(b, 16) +
+    ', 1)'
+  )
 }
 
 export const getContrastColor = (val) => {
@@ -93,7 +99,7 @@ export const getContrastColor = (val) => {
     val = convertHEXtoRGBA(convertNameToHex(val))
   }
   const arr = [...val.matchAll(/[0-9]+/g)]
-  return (((arr[0] * 299) + (arr[1] * 587) + (arr[2] * 114)) / 1000) < 128
+  return (arr[0] * 299 + arr[1] * 587 + arr[2] * 114) / 1000 < 128
     ? white
     : black
 }

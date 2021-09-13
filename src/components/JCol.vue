@@ -1,9 +1,5 @@
 <template>
-  <component
-    :is="tag"
-    :class="classes"
-    class="j-col"
-  >
+  <component :is="tag" :class="classes" class="j-col">
     <slot />
   </component>
 </template>
@@ -55,7 +51,7 @@ export default {
   },
 
   computed: {
-    classes () {
+    classes() {
       const classes = {
         'j-col--no-gap': this.gap,
       }
@@ -71,7 +67,7 @@ export default {
       classes[`j-col--xl-${colsXl}`] = colsXl ? true : null
       return classes
     },
-    gap () {
+    gap() {
       return !!this.$parent.$props.noGap
     },
   },

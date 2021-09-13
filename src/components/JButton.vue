@@ -95,13 +95,15 @@ export default {
   },
 
   computed: {
-    _tag () {
-      return (this.to && (this.nuxt ? 'nuxt-link' : 'router-link')) ||
+    _tag() {
+      return (
+        (this.to && (this.nuxt ? 'nuxt-link' : 'router-link')) ||
         (this.href && 'a') ||
         this.tag ||
         'button'
+      )
     },
-    classes () {
+    classes() {
       return {
         'j-button--large': this.size === 'large',
         'j-button--medium': this.size === 'medium',
@@ -112,39 +114,39 @@ export default {
         'j-button--icon': this.icon,
       }
     },
-    styles () {
+    styles() {
       return {
         color: this.textColor,
         'background-color': this.backgroundColor,
       }
     },
-    attrs () {
+    attrs() {
       const res = {}
       if (this.href) {
         res.href = this.href
       }
       return res
     },
-    textColor () {
+    textColor() {
       const color = this.color
       return this.disabled
         ? colors['gray-200']
         : this.outlined
-          ? convertNameToHex(color)
-          : getContrastColor(color)
+        ? convertNameToHex(color)
+        : getContrastColor(color)
     },
-    backgroundColor () {
+    backgroundColor() {
       const color = convertNameToHex(this.color)
       return this.outlined
         ? 'transparent'
         : this.disabled
-          ? colors['gray-100']
-          : color
+        ? colors['gray-100']
+        : color
     },
   },
 
   methods: {
-    click (e) {
+    click(e) {
       this.$emit('click', e)
     },
   },

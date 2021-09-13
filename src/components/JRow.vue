@@ -1,9 +1,5 @@
 <template>
-  <component
-    :is="tag"
-    :class="classes"
-    class="j-row"
-  >
+  <component :is="tag" :class="classes" class="j-row">
     <slot />
   </component>
 </template>
@@ -17,16 +13,20 @@ export default {
       type: String,
       default: 'start',
       validator: (val) => {
-        return ['start', 'center', 'end', 'baseline', 'stretch']
-          .includes(val)
+        return ['start', 'center', 'end', 'baseline', 'stretch'].includes(val)
       },
     },
     justify: {
       type: String,
       default: 'start',
       validator: (val) => {
-        return ['start', 'center', 'end', 'space-between', 'space-around']
-          .includes(val)
+        return [
+          'start',
+          'center',
+          'end',
+          'space-between',
+          'space-around',
+        ].includes(val)
       },
     },
     noGap: {
@@ -40,7 +40,7 @@ export default {
   },
 
   computed: {
-    classes () {
+    classes() {
       return {
         'j-row--align-start': this.align === 'start',
         'j-row--align-center': this.align === 'center',

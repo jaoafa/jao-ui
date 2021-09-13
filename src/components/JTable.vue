@@ -16,11 +16,7 @@
               <td :colspan="headers.length">
                 <div class="j-table__empty">
                   <span>読み込み中...</span>
-                  <j-progress-circle
-                    :size="20"
-                    :stroke="2"
-                    indeterminate
-                  />
+                  <j-progress-circle :size="20" :stroke="2" indeterminate />
                 </div>
               </td>
             </tr>
@@ -32,7 +28,9 @@
                 <tr :key="index">
                   <template v-for="column in headers">
                     <td :key="column.key">
-                      <span>{{ item[column.key] ? item[column.key] : '' }}</span>
+                      <span>{{
+                        item[column.key] ? item[column.key] : ''
+                      }}</span>
                     </td>
                   </template>
                 </tr>
@@ -98,7 +96,7 @@ export default {
       type: Number,
       default: 10,
       validator: (val) => {
-        return (val % 1 === 0) && (val > 0)
+        return val % 1 === 0 && val > 0
       },
     },
     loading: {
@@ -109,12 +107,12 @@ export default {
       type: Number,
       default: 1,
       validator: (val) => {
-        return (val % 1 === 0) && (val > 0)
+        return val % 1 === 0 && val > 0
       },
     },
   },
 
-  data () {
+  data() {
     return {
       sortBy: '',
       sortOrder: 'asc',
@@ -123,7 +121,7 @@ export default {
   },
 
   computed: {
-    _items () {
+    _items() {
       const items = [...this.items]
       const sortBy = this.sortBy
       const sortOrder = this.sortOrder === 'asc'
@@ -134,11 +132,9 @@ export default {
         b = b[sortBy] ? b[sortBy] : ''
         if (a < b) {
           return sortOrder ? -1 : 1
-        }
-        else if (a > b) {
+        } else if (a > b) {
           return sortOrder ? 1 : -1
-        }
-        else {
+        } else {
           return 0
         }
       }
@@ -149,7 +145,7 @@ export default {
     },
   },
 
-  created () {
+  created() {
     this.currentPage = this.page
     if (!this.items.length) {
       this.currentPage = 0
@@ -157,21 +153,19 @@ export default {
   },
 
   methods: {
-    toggleSort (key) {
+    toggleSort(key) {
       if (this.sortBy !== key) {
         this.sortBy = key
         this.sortOrder = 'asc'
-      }
-      else {
+      } else {
         if (this.sortOrder === 'asc') {
           this.sortOrder = 'desc'
-        }
-        else {
+        } else {
           this.sortBy = ''
         }
       }
     },
-    togglePage (key) {
+    togglePage(key) {
       this.currentPage = key
     },
   },

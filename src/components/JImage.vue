@@ -1,9 +1,5 @@
 <template>
-  <div
-    :class="classes"
-    :style="styles"
-    class="j-image"
-  >
+  <div :class="classes" :style="styles" class="j-image">
     <transition>
       <img
         v-show="isLoaded"
@@ -14,19 +10,12 @@
         class="j-image__body"
         loading="lazy"
         @load="onLoad"
-      >
+      />
     </transition>
 
     <transition>
-      <div
-        v-show="!isLoaded"
-        class="j-image__loader"
-      >
-        <j-progress-circle
-          :size="40"
-          :indeterminate="true"
-          color="gray-300"
-        />
+      <div v-show="!isLoaded" class="j-image__loader">
+        <j-progress-circle :size="40" :indeterminate="true" color="gray-300" />
       </div>
     </transition>
   </div>
@@ -34,9 +23,7 @@
 
 <script>
 import JProgressCircle from '@/components/JProgressCircle'
-import {
-  validateSize,
-} from '@/utils/sizes'
+import { validateSize } from '@/utils/sizes'
 
 export default {
   name: 'JImage',
@@ -111,19 +98,19 @@ export default {
     },
   },
 
-  data () {
+  data() {
     return {
       isLoaded: false,
     }
   },
 
   computed: {
-    classes () {
+    classes() {
       return {
         'j-image--contain': this.contain,
       }
     },
-    styles () {
+    styles() {
       return {
         width: this.width,
         height: this.height,
@@ -136,7 +123,7 @@ export default {
   },
 
   methods: {
-    onLoad () {
+    onLoad() {
       this.isLoaded = true
     },
   },

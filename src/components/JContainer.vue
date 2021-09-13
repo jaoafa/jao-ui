@@ -1,10 +1,5 @@
 <template>
-  <div
-    :id="id"
-    :class="classes"
-    :style="styles"
-    class="j-container"
-  >
+  <div :id="id" :class="classes" :style="styles" class="j-container">
     <div class="j-container__body">
       <slot />
     </div>
@@ -12,10 +7,7 @@
 </template>
 
 <script>
-import {
-  convertNameToHex,
-  validateColor,
-} from '@/utils/colors'
+import { convertNameToHex, validateColor } from '@/utils/colors'
 
 export default {
   name: 'JContainer',
@@ -39,12 +31,12 @@ export default {
   },
 
   computed: {
-    classes () {
+    classes() {
       return {
         'j-container--fluid': this.fluid,
       }
     },
-    styles () {
+    styles() {
       return {
         'background-color': convertNameToHex(this.color),
       }

@@ -21,14 +21,12 @@ export const sizeUnits = Object.freeze([
 export const validateSize = (val) => {
   if (typeof val === 'number' && val - val === 0) {
     return true
-  }
-  else if (
+  } else if (
     val &&
     new RegExp('^\\d+\\.?\\d+(' + sizeUnits.join('|') + ')$', 'g').test(val)
   ) {
     return true
-  }
-  else {
+  } else {
     return false
   }
 }

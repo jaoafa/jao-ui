@@ -40,12 +40,11 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { JPagination },
-  template:
-    `
+  template: `
     <j-pagination @input="input" v-bind="$props" />
     `,
   computed: {
-    propsWithoutPage () {
+    propsWithoutPage() {
       const { page, ...all } = this.$props
       return all
     },

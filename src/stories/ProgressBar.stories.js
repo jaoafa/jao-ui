@@ -28,8 +28,7 @@ export default {
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { JProgressBar },
-  template:
-    `
+  template: `
     <j-progress-bar v-bind="$props" />
     `,
 })
