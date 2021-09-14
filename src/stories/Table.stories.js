@@ -1,3 +1,4 @@
+import JApp from '@/components/JApp.vue'
 import JTable from '@/components/JTable.vue'
 
 export default {
@@ -34,9 +35,11 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { JTable },
+  components: { JApp, JTable },
   template: `
-    <j-table v-bind="$props" />
+    <j-app>
+      <j-table v-bind="$props" />
+    </j-app>
     `,
 })
 

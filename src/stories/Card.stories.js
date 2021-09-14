@@ -1,3 +1,4 @@
+import JApp from '@/components/JApp.vue'
 import JCard from '@/components/JCard.vue'
 
 export default {
@@ -79,11 +80,13 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { JCard },
+  components: { JApp, JCard },
   template: `
-    <j-card @click="click" v-bind="$props">
-      Card Content
-    </j-card>
+    <j-app>
+      <j-card @click="click" v-bind="$props">
+        Card Content
+      </j-card>
+    </j-app>
     `,
 })
 

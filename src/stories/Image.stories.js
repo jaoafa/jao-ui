@@ -1,3 +1,4 @@
+import JApp from '@/components/JApp.vue'
 import JImage from '@/components/JImage.vue'
 import SampleImage from '@/stories/assets/sample.png'
 
@@ -67,9 +68,11 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { JImage },
+  components: { JApp, JImage },
   template: `
-    <j-image v-bind="$props" />
+    <j-app>
+      <j-image v-bind="$props" />
+    </j-app>
     `,
 })
 
