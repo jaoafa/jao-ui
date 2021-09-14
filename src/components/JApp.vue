@@ -10,15 +10,13 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @use 'src/sass/includes' as *;
+@use 'src/sass/styles.scss';
 $root: '.j-app';
 
 .j-app {
   position: relative;
+  font-family: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic UI', sans-serif;
 }
-</style>
-
-<style lang="scss">
-@use 'src/sass/styles.scss';
 </style>

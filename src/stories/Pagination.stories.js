@@ -1,3 +1,4 @@
+import JApp from '@/components/JApp.vue'
 import JPagination from '@/components/JPagination.vue'
 
 export default {
@@ -39,16 +40,12 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { JPagination },
+  components: { JApp, JPagination },
   template: `
-    <j-pagination @input="input" v-bind="$props" />
+    <j-app>
+      <j-pagination @input="input" v-bind="$props" />
+    </j-app>
     `,
-  computed: {
-    propsWithoutPage() {
-      const { page, ...all } = this.$props
-      return all
-    },
-  },
 })
 
 export const Default = Template.bind({})
