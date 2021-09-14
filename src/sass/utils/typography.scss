@@ -1,0 +1,43 @@
+// utils/typography
+
+@use '../includes' as *;
+
+$scales: (
+  ( font-size: 48px, line-height: 1.35 ),
+  ( font-size: 32px, line-height: 1.5 ),
+  ( font-size: 24px, line-height: 1.75 ),
+  ( font-size: 18px, line-height: 1.8 ),
+  ( font-size: 14px, line-height: 1.8 ),
+  ( font-size: 12px, line-height: 1.8 ),
+  ( font-size: 10px, line-height: 1.8 ),
+);
+$weights: (
+  bold: 700,
+  regular: 400,
+);
+
+@each $scale in $scales {
+  $i: index($scales, $scale);
+
+  .text-lv#{$i} {
+    @each $property, $val in $scale {
+      #{$property}: $val;
+    }
+  }
+
+  @each $key, $val in $size-breakpoints {
+    .text-#{$key}-lv#{$i} {
+      @include breakpoint($key) {
+        @each $property, $val in $scale {
+          #{$property}: $val;
+        }
+      }
+    }
+  }
+}
+
+@each $weight-key, $weight in $weights {
+  .text-weight-#{$weight-key} {
+    font-weight: $weight;
+  }
+}
