@@ -12,3 +12,8 @@
 - [Table](components/table.md)
 - [TableHeader](components/table-header.md)
 - [TableFooter](components/table-footer.md)
+
+## Utilities
+
+- [Spacing](utilities/spacing.md)
+- [Typography](utilities/typography.md)
