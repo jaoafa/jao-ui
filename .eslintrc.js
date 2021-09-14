@@ -11,7 +11,6 @@ module.exports = {
   },
   plugins: ['vue'],
   rules: {
-    'brace-style': ['error', 'stroustrup'],
     'vue/component-tags-order': [
       'error',
       {
