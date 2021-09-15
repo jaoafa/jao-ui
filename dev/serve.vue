@@ -1,11 +1,11 @@
 <template>
   <j-app>
     <j-container>
-      <h1 class="text-lv1 mb-2">jao UI Library</h1>
-      <p class="text-lv5">jao UI Components with Vue.js.</p>
+      <h1 class="text-lv1">jao UI Library</h1>
+      <p class="text-lv5 mt-2">jao UI Components with Vue.js 💣✨</p>
 
       <!-- Button -->
-      <j-container>
+      <section class="mt-8">
         <h2 class="text-lv2 mb-4">Button</h2>
         <j-row align="center">
           <j-col>
@@ -153,20 +153,20 @@
             </j-button>
           </j-col>
         </j-row>
-      </j-container>
+      </section>
 
       <!-- Card -->
-      <j-container>
+      <section class="mt-8">
         <h2 class="text-lv2 mb-4">Card</h2>
         <j-row>
           <j-col :cols="12" :cols-sm="6" :cols-md="4">
             <j-card class="pa-4"> カードコンポーネント </j-card>
           </j-col>
         </j-row>
-      </j-container>
+      </section>
 
       <!-- Image -->
-      <j-container>
+      <section class="mt-8">
         <h2 class="text-lv2 mb-4">Image</h2>
         <j-row>
           <j-col>
@@ -189,16 +189,16 @@
             />
           </j-col>
         </j-row>
-      </j-container>
+      </section>
 
       <!-- Pagination -->
-      <j-container>
+      <section class="mt-8">
         <h2 class="text-lv2 mb-4">Pagination</h2>
         <j-pagination v-model="pagination" :length="20" :total-visible="8" />
-      </j-container>
+      </section>
 
       <!-- Progress -->
-      <j-container>
+      <section class="mt-8">
         <h2 class="text-lv2 mb-4">Progress</h2>
         <j-row>
           <j-col>
@@ -259,10 +259,10 @@
             <j-progress-bar :percentage="80" color="secondary-700" />
           </j-col>
         </j-row>
-      </j-container>
+      </section>
 
       <!-- Table -->
-      <j-container>
+      <section class="mt-8">
         <h2 class="text-lv2 mb-4">Table</h2>
         <j-row>
           <j-col :cols="12" :cols-sm="10" :cols-md="8" :cols-lg="6">
@@ -321,7 +321,7 @@
             />
           </j-col>
         </j-row>
-      </j-container>
+      </section>
     </j-container>
   </j-app>
 </template>
