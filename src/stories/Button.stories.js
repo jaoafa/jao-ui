@@ -21,6 +21,9 @@ export default {
     loading: {
       description: 'ローディングアニメーションを表示します。',
     },
+    noDecoration: {
+      description: '装飾を削除します。',
+    },
     nuxt: {
       description: 'タグを `<nuxt-link>` にします。',
     },
