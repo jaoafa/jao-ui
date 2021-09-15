@@ -1,7 +1,13 @@
 <template>
-  <div :id="id" :class="classes" :style="styles" class="j-container">
+  <component
+    :is="tag"
+    :id="id"
+    :class="classes"
+    :style="styles"
+    class="j-container"
+  >
     <slot />
-  </div>
+  </component>
 </template>
 
 <script>
@@ -25,6 +31,10 @@ export default {
     id: {
       type: String,
       default: null,
+    },
+    tag: {
+      type: String,
+      default: 'div',
     },
   },
 
