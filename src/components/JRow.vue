@@ -65,6 +65,7 @@ $root: '.j-row';
 
 .j-row {
   display: flex;
+  flex-wrap: wrap;
   margin: -12px;
 
   &--align-start {

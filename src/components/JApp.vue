@@ -17,6 +17,9 @@ $root: '.j-app';
 
 .j-app {
   position: relative;
+  min-height: 100vh;
   font-family: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic UI', sans-serif;
+  line-height: 1.8;
+  color: $color-gray-900;
 }
 </style>

@@ -65,6 +65,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    noDecoration: {
+      type: Boolean,
+      default: false,
+    },
     nuxt: {
       type: Boolean,
       default: false,
@@ -112,6 +116,7 @@ export default {
         'j-button--outlined': this.outlined,
         'j-button--loading': this.loading,
         'j-button--icon': this.icon,
+        'j-button--no-decoration': this.noDecoration,
       }
     },
     styles() {
@@ -271,8 +276,23 @@ $root: '.j-button';
       display: none;
     }
 
-    *::after {
+    & #{$root}__body {
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  &--no-decoration {
+    &::before,
+    &::after {
       display: none;
+    }
+
+    & #{$root}__body {
+      &::after {
+        display: none;
+      }
     }
   }
 }

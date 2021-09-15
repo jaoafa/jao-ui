@@ -6,7 +6,7 @@
       :viewbox="`0 0 ${size} ${size}`"
       xmlns="http://www.w3.org/2000/svg"
       class="j-progress-circle__svg"
-      style="transform: rotate(-90deg)"
+      style="transform: rotate(-90deg);"
     >
       <circle
         :cx="size / 2"

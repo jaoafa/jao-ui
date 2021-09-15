@@ -11,6 +11,7 @@
 |`href`|`string`|`null`|タグを `<a>` にし、 `href` 属性を追加します。|
 |`icon`|`boolean`|`false`|ボタンをアイコンとして指定し、形状を円形にします。|
 |`loading`|`boolean`|`false`|ローディングアニメーションを表示します。|
+|`no-decoration`|`boolean`|`false`|装飾を削除します。|
 |`nuxt`|`boolean`|`false`|タグを `<nuxt-link>` にします。|
 |`outlined`|`boolean`|`false`|背景を透明にし、枠線を追加します。|
 |`size`|`string`|`'medium'`|指定された大きさをボタンに適用します。 `large` 、 `medium` 、 `small` の3サイズがあります。|

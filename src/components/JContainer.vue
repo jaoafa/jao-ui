@@ -1,9 +1,13 @@
 <template>
-  <div :id="id" :class="classes" :style="styles" class="j-container">
-    <div class="j-container__body">
-      <slot />
-    </div>
-  </div>
+  <component
+    :is="tag"
+    :id="id"
+    :class="classes"
+    :style="styles"
+    class="j-container"
+  >
+    <slot />
+  </component>
 </template>
 
 <script>
@@ -28,6 +32,10 @@ export default {
       type: String,
       default: null,
     },
+    tag: {
+      type: String,
+      default: 'div',
+    },
   },
 
   computed: {
@@ -51,22 +59,16 @@ $root: '.j-container';
 
 .j-container {
   width: 100%;
-
-  &--fluid {
-    & #{$root}__body {
-      max-width: none;
-    }
-  }
-}
-
-.j-container__body {
-  width: 100%;
   max-width: $size-width-max;
   padding: 16px;
   margin: auto;
 
   @include breakpoint(md) {
     padding: 24px;
+  }
+
+  &--fluid {
+    max-width: none;
   }
 }
 </style>

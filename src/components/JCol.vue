@@ -11,7 +11,7 @@ export default {
   props: {
     cols: {
       type: Number,
-      default: 1,
+      default: null,
       validator: (val) => {
         return val >= 1 && val <= 12
       },
