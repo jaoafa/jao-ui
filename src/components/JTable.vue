@@ -8,7 +8,9 @@
           :sort-by="sortBy"
           :sort-order="sortOrder"
           @click="toggleSort"
-        />
+        >
+          <slot name="head" />
+        </j-table-header>
 
         <tbody class="j-table__body">
           <template v-if="loading">
@@ -23,29 +25,35 @@
           </template>
 
           <template v-else>
-            <template v-if="items.length">
-              <template v-for="(item, index) in _items">
-                <tr :key="index">
-                  <template v-for="column in headers">
-                    <td :key="column.key">
-                      <span>{{
-                        item[column.key] ? item[column.key] : ''
-                      }}</span>
-                    </td>
-                  </template>
+            <slot name="body">
+              <template v-if="items.length">
+                <template v-for="(item, index) in _items">
+                  <slot name="item" :item="item">
+                    <tr :key="index">
+                      <template v-for="column in headers">
+                        <td :key="column.key">
+                          <slot :name="`item.${column.key}`" :item="item">
+                            <span>{{
+                              item[column.key] ? item[column.key] : ''
+                            }}</span>
+                          </slot>
+                        </td>
+                      </template>
+                    </tr>
+                  </slot>
+                </template>
+              </template>
+
+              <template v-else>
+                <tr>
+                  <td :colspan="headers.length">
+                    <div class="j-table__empty">
+                      <span>表示する項目がありません</span>
+                    </div>
+                  </td>
                 </tr>
               </template>
-            </template>
-
-            <template v-else>
-              <tr>
-                <td :colspan="headers.length">
-                  <div class="j-table__empty">
-                    <span>表示する項目がありません</span>
-                  </div>
-                </td>
-              </tr>
-            </template>
+            </slot>
           </template>
         </tbody>
       </table>

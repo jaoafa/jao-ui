@@ -71,7 +71,7 @@ export default {
       description: 'カードの中に表示するコンテンツです。',
       table: {
         type: {
-          summary: 'string',
+          summary: 'any',
         },
       },
     },

@@ -30,6 +30,44 @@ export default {
     },
     // events
     // slots
+    body: {
+      description: 'テーブルの `tbody` を置き換えるスロットです。',
+      table: {
+        type: {
+          summary: 'any',
+        },
+      },
+    },
+    default: {
+      table: {
+        disable: true,
+      },
+    },
+    head: {
+      description: 'テーブルの `thead` を置き換えるスロットです。',
+      table: {
+        type: {
+          summary: 'any',
+        },
+      },
+    },
+    item: {
+      description: 'テーブルの行を置き換えるスロットです。',
+      table: {
+        type: {
+          summary: 'any',
+        },
+      },
+    },
+    'item.<name>': {
+      description: 'テーブルの特定の列を置き換えるスロットです。',
+      table: {
+        category: 'slots',
+        type: {
+          summary: 'any',
+        },
+      },
+    },
   },
 }
 

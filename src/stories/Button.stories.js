@@ -58,7 +58,7 @@ export default {
       description: 'ボタンのテキストです。',
       table: {
         type: {
-          summary: 'string',
+          summary: 'any',
         },
       },
     },
