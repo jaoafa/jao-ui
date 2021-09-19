@@ -30,7 +30,7 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { JApp, JProgressBar },
   template: `
-    <j-app>
+    <j-app no-stretch>
       <j-progress-bar v-bind="$props" />
     </j-app>
     `,

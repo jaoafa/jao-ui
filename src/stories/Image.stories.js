@@ -70,7 +70,7 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { JApp, JImage },
   template: `
-    <j-app>
+    <j-app no-stretch>
       <j-image v-bind="$props" />
     </j-app>
     `,
@@ -78,6 +78,7 @@ const Template = (args, { argTypes }) => ({
 
 export const Default = Template.bind({})
 Default.args = {
+  height: '240px',
   src: SampleImage,
   width: '400px',
 }

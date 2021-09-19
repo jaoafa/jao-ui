@@ -1,5 +1,5 @@
 <template>
-  <div class="j-app">
+  <div :class="classes" class="j-app">
     <slot />
   </div>
 </template>
@@ -7,6 +7,21 @@
 <script>
 export default {
   name: 'JApp',
+
+  props: {
+    noStretch: {
+      type: Boolean,
+      default: false,
+    },
+  },
+
+  computed: {
+    classes() {
+      return {
+        'j-app--no-stretch': this.noStretch,
+      }
+    },
+  },
 }
 </script>
 
@@ -21,5 +36,9 @@ $root: '.j-app';
   font-family: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic UI', sans-serif;
   line-height: 1.8;
   color: $color-gray-900;
+
+  &--no-stretch {
+    min-height: auto;
+  }
 }
 </style>
