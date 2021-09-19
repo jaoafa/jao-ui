@@ -2,7 +2,7 @@ import JApp from '@/components/JApp.vue'
 import JProgressCircle from '@/components/JProgressCircle.vue'
 
 export default {
-  title: 'Components/Progress',
+  title: 'Components/ProgressCircle',
   component: JProgressCircle,
   argTypes: {
     // props
@@ -30,7 +30,7 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { JApp, JProgressCircle },
   template: `
-    <j-app>
+    <j-app no-stretch>
       <j-progress-circle v-bind="$props" />
     </j-app>
     `,

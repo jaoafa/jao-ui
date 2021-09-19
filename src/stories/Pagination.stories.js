@@ -42,7 +42,7 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { JApp, JPagination },
   template: `
-    <j-app>
+    <j-app no-stretch>
       <j-pagination @input="input" v-bind="$props" />
     </j-app>
     `,

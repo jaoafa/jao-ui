@@ -69,7 +69,7 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { JApp, JButton },
   template: `
-    <j-app>
+    <j-app no-stretch>
       <j-button @click="click" v-bind="$props">
         Button
       </j-button>

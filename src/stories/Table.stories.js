@@ -75,7 +75,7 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { JApp, JTable },
   template: `
-    <j-app>
+    <j-app no-stretch>
       <j-table v-bind="$props" />
     </j-app>
     `,
