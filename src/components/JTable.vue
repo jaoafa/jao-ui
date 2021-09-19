@@ -8,7 +8,9 @@
           :sort-by="sortBy"
           :sort-order="sortOrder"
           @click="toggleSort"
-        />
+        >
+          <slot name="head" />
+        </j-table-header>
 
         <tbody class="j-table__body">
           <template v-if="loading">
