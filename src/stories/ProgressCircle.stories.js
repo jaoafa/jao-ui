@@ -2,7 +2,7 @@ import JApp from '@/components/JApp.vue'
 import JProgressCircle from '@/components/JProgressCircle.vue'
 
 export default {
-  title: 'Components/Progress',
+  title: 'Components/ProgressCircle',
   component: JProgressCircle,
   argTypes: {
     // props

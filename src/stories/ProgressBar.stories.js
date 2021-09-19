@@ -2,7 +2,7 @@ import JApp from '@/components/JApp.vue'
 import JProgressBar from '@/components/JProgressBar.vue'
 
 export default {
-  title: 'Components/Progress',
+  title: 'Components/ProgressBar',
   component: JProgressBar,
   argTypes: {
     // props
