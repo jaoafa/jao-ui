@@ -282,6 +282,16 @@
           </j-row>
         </section>
 
+        <!-- Sheet -->
+        <section class="mt-8">
+          <h3 class="text-lv3 mb-4">Sheet</h3>
+          <j-row>
+            <j-col :cols="12" :cols-sm="8" :cols-md="6" :cols-lg="4">
+              <j-sheet width="100%" height="120px" color="primary" />
+            </j-col>
+          </j-row>
+        </section>
+
         <!-- Table -->
         <section class="mt-8">
           <h3 class="text-lv3 mb-4">Table</h3>
