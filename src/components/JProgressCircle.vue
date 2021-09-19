@@ -1,14 +1,11 @@
 <template>
-  <div
-    :class="classes"
-    class="j-progress"
-  >
+  <div :class="classes" class="j-progress-circle">
     <svg
       :width="size"
       :height="size"
       :viewbox="`0 0 ${size} ${size}`"
       xmlns="http://www.w3.org/2000/svg"
-      class="j-progress__svg"
+      class="j-progress-circle__svg"
       style="transform: rotate(-90deg);"
     >
       <circle
@@ -20,87 +17,75 @@
         :stroke-dasharray="indeterminate ? null : circumference"
         :stroke-dashoffset="indeterminate ? null : offset"
         fill="transparent"
-        class="j-progress__circle"
+        class="j-progress-circle__circle"
       />
     </svg>
   </div>
 </template>
 
 <script>
-import {
-  validateColor,
-  convertNameToHex,
-} from '@/utils/colors'
+import { validateColor, convertNameToHex } from '@/utils/colors'
 
 export default {
-  name: 'JProgress',
+  name: 'JProgressCircle',
 
   props: {
-    type: {
-      default: 'circle',
-      type: String,
-      validator: (val) => {
-        return ['circle'].includes(val)
-      },
-    },
     color: {
-      default: 'primary',
       type: String,
+      default: 'primary',
       validator: (val) => {
         return validateColor(val)
       },
     },
-    size: {
-      default: 32,
+    indeterminate: {
+      type: Boolean,
+      default: false,
+    },
+    percentage: {
       type: Number,
+      default: 0,
+      validator: (val) => {
+        return val >= 0 && val <= 100
+      },
+    },
+    size: {
+      type: Number,
+      default: 32,
       validator: (val) => {
         return val > 0
       },
     },
     stroke: {
-      default: 4,
       type: Number,
+      default: 4,
       validator: (val) => {
         return val > 0
       },
     },
-    percentage: {
-      default: 0,
-      type: Number,
-      validator: (val) => {
-        return val >= 0 && val <= 100
-      },
-    },
-    indeterminate: {
-      default: false,
-      type: Boolean,
-    },
   },
 
-  data () {
+  data() {
     return {
       dashOffset: 0,
     }
   },
 
   computed: {
-    _color () {
+    _color() {
       return convertNameToHex(this.color)
     },
-    classes () {
+    classes() {
       return {
-        'j-progress--circle': this.type === 'circle',
-        'j-progress--line': this.type === 'line',
-        'j-progress--indeterminate': this.indeterminate,
+        'j-progress-circle--indeterminate': this.indeterminate,
       }
     },
-    radius () {
-      return (this.size / 2) - this.stroke
+    radius() {
+      return this.size / 2 - this.stroke
     },
-    circumference () {
+    circumference() {
       return this.radius * 2 * Math.PI
     },
-    offset () {
+    offset() {
       const length = this.circumference
       return length * (1 - this.percentage / 100)
     },
@@ -109,35 +94,33 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@use 'src/sass' as *;
-$root: '.j-progress';
+@use 'src/sass/includes' as *;
+$root: '.j-progress-circle';
 
-.j-progress {
+.j-progress-circle {
   display: inline-flex;
   transition-timing-function: ease-in-out;
   transition-duration: 0.3s;
 
-  &--circle {
-    &#{$root}--indeterminate {
-      & #{$root}__svg {
-        animation: progress-circle-turn 1.6s linear infinite;
-      }
+  &--indeterminate {
+    & #{$root}__svg {
+      animation: progress-circle-turn 1.6s linear infinite;
+    }
 
-      & #{$root}__circle {
-        stroke-dasharray: calc(80% * 3.14);
-        animation: progress-circle-dash 1.2s ease-in-out infinite;
-      }
+    & #{$root}__circle {
+      stroke-dasharray: calc(80% * 3.14);
+      animation: progress-circle-dash 1.2s ease-in-out infinite;
     }
   }
 }
 
-.j-progress__svg {
+.j-progress-circle__svg {
   stroke-linecap: round;
   transition-timing-function: inherit;
   transition-duration: inherit;
 }
 
-.j-progress__circle {
+.j-progress-circle__circle {
   transition-timing-function: inherit;
   transition-duration: inherit;
 }

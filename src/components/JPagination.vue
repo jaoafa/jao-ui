@@ -8,10 +8,7 @@
           @click="prev"
         >
           <span class="j-pagination__icon">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-            >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
             </svg>
           </span>
@@ -43,10 +40,7 @@
           @click="next"
         >
           <span class="j-pagination__icon">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-            >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
             </svg>
           </span>
@@ -66,49 +60,48 @@ export default {
   },
 
   props: {
-    page: {
-      default: 0,
+    length: {
       type: Number,
+      default: 0,
       validator: (val) => {
-        return (val % 1 === 0) && (val >= 0)
+        return val % 1 === 0 && val >= 0
       },
     },
-    length: {
-      default: 0,
+    page: {
       type: Number,
+      default: 0,
       validator: (val) => {
-        return (val % 1 === 0) && (val >= 0)
+        return val % 1 === 0 && val >= 0
       },
     },
     totalVisible: {
-      default: 0,
       type: Number,
+      default: 0,
       validator: (val) => {
-        return (val % 1 === 0) && (val >= 0)
+        return val % 1 === 0 && val >= 0
       },
     },
   },
 
-  data () {
+  data() {
     return {
       maxSize: 0,
     }
   },
 
   computed: {
-    items () {
+    items() {
       if (this.totalVisible === 0) {
         return []
       }
       const maxLength = Math.min(
         Math.max(0, this.totalVisible) || this.length,
         Math.max(0, this.maxSize) || this.length,
-        this.length,
+        this.length
       )
       if (maxLength >= this.length) {
         return this.range(1, this.length)
-      }
-      else if (maxLength <= 4) {
+      } else if (maxLength <= 4) {
         return [this.page]
       }
       const even = maxLength % 2 === 0 ? 1 : 0
@@ -118,16 +111,13 @@ export default {
         const start = this.page - left + 2
         const end = this.page + left - 2 - even
         return [1, '...', ...this.range(start, end), '...', this.length]
-      }
-      else if (this.page === left) {
+      } else if (this.page === left) {
         const end = this.page + left - 1 - even
         return [...this.range(1, end), '...', this.length]
-      }
-      else if (this.page === right) {
+      } else if (this.page === right) {
         const start = this.page - left + 1
         return [1, '...', ...this.range(start, this.length)]
-      }
-      else {
+      } else {
         return [
           ...this.range(1, left),
           '...',
@@ -135,7 +125,7 @@ export default {
         ]
       }
     },
-    generateItems () {
+    generateItems() {
       return this.items.map((item, index) => {
         const isButton = typeof item === 'number'
         return {
@@ -148,28 +138,28 @@ export default {
     },
   },
 
-  mounted () {
+  mounted() {
     this.$nextTick(this.resize)
   },
 
   methods: {
-    input (val) {
+    input(val) {
       this.$emit('input', val)
     },
-    next () {
+    next() {
       this.input(this.page + 1)
     },
-    prev () {
+    prev() {
       this.input(this.page - 1)
     },
-    range (min, max) {
+    range(min, max) {
       const range = []
       for (let i = min; i <= max; i++) {
         range.push(i)
       }
       return range
     },
-    resize () {
+    resize() {
       const getSize = () => {
         const width =
           this.$el && this.$el.parentElement
@@ -193,7 +183,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@use 'src/sass' as *;
+@use 'src/sass/includes' as *;
 $root: '.j-pagination';
 
 .j-pagination {

@@ -1,9 +1,5 @@
 <template>
-  <div
-    :class="classes"
-    :style="styles"
-    class="j-image"
-  >
+  <div :class="classes" :style="styles" class="j-image">
     <transition>
       <img
         v-show="isLoaded"
@@ -14,116 +10,107 @@
         class="j-image__body"
         loading="lazy"
         @load="onLoad"
-      >
+      />
     </transition>
 
     <transition>
-      <div
-        v-show="!isLoaded"
-        class="j-image__loader"
-      >
-        <j-progress
-          :size="40"
-          :indeterminate="true"
-          color="gray-300"
-        />
+      <div v-show="!isLoaded" class="j-image__loader">
+        <j-progress-circle :size="40" :indeterminate="true" color="gray-300" />
       </div>
     </transition>
   </div>
 </template>
 
 <script>
-import JProgress from '@/components/JProgress'
-import {
-  validateSize,
-} from '@/utils/sizes'
+import JProgressCircle from '@/components/JProgressCircle'
+import { validateSize } from '@/utils/sizes'
 
 export default {
   name: 'JImage',
 
   components: {
-    JProgress,
+    JProgressCircle,
   },
 
   props: {
-    src: {
-      default: '',
-      type: String,
-      require: true,
-    },
-    srcset: {
-      default: null,
-      type: String,
-    },
-    sizes: {
-      default: null,
-      type: String,
-    },
     alt: {
-      default: '',
       type: String,
+      default: '',
     },
-    width: {
-      default: null,
-      type: [Number, String],
-      validator: (val) => {
-        return validateSize(val)
-      },
+    contain: {
+      type: Boolean,
+      default: false,
     },
     height: {
-      default: null,
       type: [Number, String],
-      validator: (val) => {
-        return validateSize(val)
-      },
-    },
-    maxWidth: {
       default: null,
-      type: [Number, String],
       validator: (val) => {
         return validateSize(val)
       },
     },
     maxHeight: {
-      default: null,
       type: [Number, String],
+      default: null,
       validator: (val) => {
         return validateSize(val)
       },
     },
-    minWidth: {
-      default: null,
+    maxWidth: {
       type: [Number, String],
+      default: null,
       validator: (val) => {
         return validateSize(val)
       },
     },
     minHeight: {
-      default: null,
       type: [Number, String],
+      default: null,
       validator: (val) => {
         return validateSize(val)
       },
     },
-    contain: {
-      default: false,
-      type: Boolean,
+    minWidth: {
+      type: [Number, String],
+      default: null,
+      validator: (val) => {
+        return validateSize(val)
+      },
+    },
+    sizes: {
+      type: String,
+      default: null,
+    },
+    src: {
+      type: String,
+      default: '',
+      require: true,
+    },
+    srcset: {
+      type: String,
+      default: null,
+    },
+    width: {
+      type: [Number, String],
+      default: null,
+      validator: (val) => {
+        return validateSize(val)
+      },
     },
   },
 
-  data () {
+  data() {
     return {
       isLoaded: false,
     }
   },
 
   computed: {
-    classes () {
+    classes() {
       return {
         'j-image--contain': this.contain,
       }
     },
-    styles () {
+    styles() {
       return {
         width: this.width,
         height: this.height,
@@ -136,7 +123,7 @@ export default {
   },
 
   methods: {
-    onLoad () {
+    onLoad() {
       this.isLoaded = true
     },
   },
@@ -144,7 +131,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@use 'src/sass' as *;
+@use 'src/sass/includes' as *;
 $root: '.j-image';
 
 .j-image {

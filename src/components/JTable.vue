@@ -8,7 +8,9 @@
           :sort-by="sortBy"
           :sort-order="sortOrder"
           @click="toggleSort"
-        />
+        >
+          <slot name="head" />
+        </j-table-header>
 
         <tbody class="j-table__body">
           <template v-if="loading">
@@ -16,38 +18,42 @@
               <td :colspan="headers.length">
                 <div class="j-table__empty">
                   <span>読み込み中...</span>
-                  <j-progress
-                    :size="20"
-                    :stroke="2"
-                    indeterminate
-                  />
+                  <j-progress-circle :size="20" :stroke="2" indeterminate />
                 </div>
               </td>
             </tr>
           </template>
 
           <template v-else>
-            <template v-if="items.length">
-              <template v-for="(item, index) in _items">
-                <tr :key="index">
-                  <template v-for="column in headers">
-                    <td :key="column.key">
-                      <span>{{ item[column.key] ? item[column.key] : '' }}</span>
-                    </td>
-                  </template>
+            <slot name="body">
+              <template v-if="items.length">
+                <template v-for="(item, index) in _items">
+                  <slot name="item" :item="item">
+                    <tr :key="index">
+                      <template v-for="column in headers">
+                        <td :key="column.key">
+                          <slot :name="`item.${column.key}`" :item="item">
+                            <span>{{
+                              item[column.key] ? item[column.key] : ''
+                            }}</span>
+                          </slot>
+                        </td>
+                      </template>
+                    </tr>
+                  </slot>
+                </template>
+              </template>
+
+              <template v-else>
+                <tr>
+                  <td :colspan="headers.length">
+                    <div class="j-table__empty">
+                      <span>表示する項目がありません</span>
+                    </div>
+                  </td>
                 </tr>
               </template>
-            </template>
-
-            <template v-else>
-              <tr>
-                <td :colspan="headers.length">
-                  <div class="j-table__empty">
-                    <span>表示する項目がありません</span>
-                  </div>
-                </td>
-              </tr>
-            </template>
+            </slot>
           </template>
         </tbody>
       </table>
@@ -64,7 +70,7 @@
 </template>
 
 <script>
-import JProgress from '@/components/JProgress'
+import JProgressCircle from '@/components/JProgressCircle'
 import JTableFooter from '@/components/JTableFooter'
 import JTableHeader from '@/components/JTableHeader'
 
@@ -72,49 +78,49 @@ export default {
   name: 'JTable',
 
   components: {
-    JProgress,
+    JProgressCircle,
     JTableFooter,
     JTableHeader,
   },
 
   props: {
     headers: {
-      default: () => [],
       type: Array,
-    },
-    items: {
       default: () => [],
-      type: Array,
-    },
-    hideHeader: {
-      default: false,
-      type: Boolean,
     },
     hideFooter: {
-      default: false,
       type: Boolean,
-    },
-    loading: {
       default: false,
-      type: Boolean,
     },
-    page: {
-      default: 1,
-      type: Number,
-      validator: (val) => {
-        return (val % 1 === 0) && (val > 0)
-      },
+    hideHeader: {
+      type: Boolean,
+      default: false,
+    },
+    items: {
+      type: Array,
+      default: () => [],
     },
     itemPerPage: {
-      default: 10,
       type: Number,
+      default: 10,
       validator: (val) => {
-        return (val % 1 === 0) && (val > 0)
+        return val % 1 === 0 && val > 0
+      },
+    },
+    loading: {
+      type: Boolean,
+      default: false,
+    },
+    page: {
+      type: Number,
+      default: 1,
+      validator: (val) => {
+        return val % 1 === 0 && val > 0
       },
     },
   },
 
-  data () {
+  data() {
     return {
       sortBy: '',
       sortOrder: 'asc',
@@ -123,7 +129,7 @@ export default {
   },
 
   computed: {
-    _items () {
+    _items() {
       const items = [...this.items]
       const sortBy = this.sortBy
       const sortOrder = this.sortOrder === 'asc'
@@ -134,11 +140,9 @@ export default {
         b = b[sortBy] ? b[sortBy] : ''
         if (a < b) {
           return sortOrder ? -1 : 1
-        }
-        else if (a > b) {
+        } else if (a > b) {
           return sortOrder ? 1 : -1
-        }
-        else {
+        } else {
           return 0
         }
       }
@@ -149,7 +153,7 @@ export default {
     },
   },
 
-  created () {
+  created() {
     this.currentPage = this.page
     if (!this.items.length) {
       this.currentPage = 0
@@ -157,21 +161,19 @@ export default {
   },
 
   methods: {
-    toggleSort (key) {
+    toggleSort(key) {
       if (this.sortBy !== key) {
         this.sortBy = key
         this.sortOrder = 'asc'
-      }
-      else {
+      } else {
         if (this.sortOrder === 'asc') {
           this.sortOrder = 'desc'
-        }
-        else {
+        } else {
           this.sortBy = ''
         }
       }
     },
-    togglePage (key) {
+    togglePage(key) {
       this.currentPage = key
     },
   },
@@ -179,7 +181,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@use 'src/sass' as *;
+@use 'src/sass/includes' as *;
 $root: '.j-table';
 
 .j-table {

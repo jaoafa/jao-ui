@@ -1,3 +1,4 @@
+import JApp from '@/components/JApp.vue'
 import JButton from '@/components/JButton.vue'
 
 export default {
@@ -20,6 +21,9 @@ export default {
     loading: {
       description: 'ローディングアニメーションを表示します。',
     },
+    noDecoration: {
+      description: '装飾を削除します。',
+    },
     nuxt: {
       description: 'タグを `<nuxt-link>` にします。',
     },
@@ -27,21 +31,19 @@ export default {
       description: '背景を透明にし、枠線を追加します。',
     },
     size: {
-      description: '指定された大きさをボタンに適用します。 `large` 、 `medium` 、 `small` の3サイズがあります。',
+      description:
+        '指定された大きさをボタンに適用します。 `large` 、 `medium` 、 `small` の3サイズがあります。',
       control: {
         type: 'select',
-        options: [
-          'large',
-          'medium',
-          'small',
-        ],
+        options: ['large', 'medium', 'small'],
       },
     },
     tag: {
       description: '指定されたタグをボタンに適用します。',
     },
     target: {
-      description: '指定された値を `target` 属性としてコンポーネントに追加します。',
+      description:
+        '指定された値を `target` 属性としてコンポーネントに追加します。',
     },
     to: {
       description: 'ボタンを `<router-link>` にし、 `to` Prop を適用します。',
@@ -56,7 +58,7 @@ export default {
       description: 'ボタンのテキストです。',
       table: {
         type: {
-          summary: 'string',
+          summary: 'any',
         },
       },
     },
@@ -65,12 +67,13 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { JButton },
-  template:
-    `
-    <j-button @click="click" v-bind="$props">
-      Button
-    </j-button>
+  components: { JApp, JButton },
+  template: `
+    <j-app>
+      <j-button @click="click" v-bind="$props">
+        Button
+      </j-button>
+    </j-app>
     `,
 })
 

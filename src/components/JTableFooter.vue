@@ -5,11 +5,7 @@
     </div>
 
     <div class="j-table-footer__pagination">
-      <j-pagination
-        v-model="currentPage"
-        :length="length"
-        :total-visible="0"
-      />
+      <j-pagination v-model="currentPage" :length="length" :total-visible="0" />
     </div>
   </div>
 </template>
@@ -30,42 +26,44 @@ export default {
   },
 
   props: {
-    page: {
-      default: 1,
+    itemLength: {
       type: Number,
+      default: 0,
     },
     itemPerPage: {
+      type: Number,
       default: 10,
-      type: Number,
     },
-    itemLength: {
-      default: 0,
+    page: {
       type: Number,
+      default: 1,
     },
   },
 
   computed: {
-    length () {
+    length() {
       return Math.ceil(this.itemLength / this.itemPerPage)
     },
-    caption () {
+    caption() {
       const page = this.page
       const itemPerPage = this.itemPerPage
       const itemLength = this.itemLength
       if (itemLength) {
-        return itemPerPage * (page - 1) + 1 +
+        return (
+          itemPerPage * (page - 1) +
+          1 +
           '-' +
           (itemPerPage * page > itemLength ? itemLength : itemPerPage * page)
-      }
-      else {
+        )
+      } else {
         return ''
       }
     },
     currentPage: {
-      get () {
+      get() {
         return this.page
       },
-      set (val) {
+      set(val) {
         this.$emit('input', val)
       },
     },
@@ -74,7 +72,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@use 'src/sass' as *;
+@use 'src/sass/includes' as *;
 $root: '.j-table-footer';
 
 .j-table-footer {

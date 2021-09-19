@@ -6,9 +6,10 @@
 
 |Name|Type|Default|Description|
 |:--|:--|:--|:--|
-|`gap-column`|`number\|string`|`'24px'`|左右方向の隙間をコンポーネントに適用します。|
-|`gap-row`|`number\|string`|`24px`|上下方向の隙間をコンポーネントに適用します。|
+|`align`|`string`|`'start'`|上下方向の配置を指定します。|
+|`justify`|`string`|`'start'`|左右方向の配置を指定します。|
 |`no-gap`|`boolean`|`false`|アイテム間の隙間を削除します。|
+|`tag`|`string`|`'button'`|指定されたタグをコンポーネントに適用します。|
 
 ### Slots
 

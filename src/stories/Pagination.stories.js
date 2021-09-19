@@ -1,3 +1,4 @@
+import JApp from '@/components/JApp.vue'
 import JPagination from '@/components/JPagination.vue'
 
 export default {
@@ -5,6 +6,9 @@ export default {
   component: JPagination,
   argTypes: {
     // props
+    length: {
+      description: 'ページ番号の最大値を指定します。',
+    },
     page: {
       description: '現在選択しているページ番号を指定します。',
       table: {
@@ -16,9 +20,6 @@ export default {
           summary: '0',
         },
       },
-    },
-    length: {
-      description: 'ページ番号の最大値を指定します。',
     },
     totalVisible: {
       description: '表示するページ番号の数を指定します。',
@@ -39,17 +40,12 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { JPagination },
-  template:
-    `
-    <j-pagination @input="input" v-bind="$props" />
+  components: { JApp, JPagination },
+  template: `
+    <j-app>
+      <j-pagination @input="input" v-bind="$props" />
+    </j-app>
     `,
-  computed: {
-    propsWithoutPage () {
-      const { page, ...all } = this.$props
-      return all
-    },
-  },
 })
 
 export const Default = Template.bind({})

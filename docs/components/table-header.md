@@ -15,3 +15,9 @@
 |Name|Description|
 |:--|:--|
 |`click`|ソート可能な項目がクリックされたときに発生するイベントです。|
+
+### Slots
+
+|Name|Description|
+|:--|:--|
+|`default`|テーブルの `thead` を置き換えるスロットです。|

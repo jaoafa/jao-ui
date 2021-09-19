@@ -1,0 +1,35 @@
+// utils/spacing
+
+$properties: (
+  p: 'padding',
+  m: 'margin',
+);
+$directions: (
+  t: ('top'),
+  r: ('right'),
+  b: ('bottom'),
+  l: ('left'),
+  x: ('right', 'left'),
+  y: ('top', 'bottom'),
+  a: ('top', 'right', 'bottom', 'left'),
+);
+
+@each $property-key, $property in $properties {
+  @for $val from 16 through -16 {
+    @each $direction-key, $direction-items in $directions {
+      .#{$property-key}#{$direction-key}-#{if($val < 0, 'n', '')}#{abs($val)} {
+        @each $direction in $direction-items {
+          #{$property}-#{$direction}: 4px * $val;
+        }
+      }
+    }
+  }
+
+  @each $direction-key, $direction-items in $directions {
+    .#{$property-key}#{$direction-key}-auto {
+      @each $direction in $direction-items {
+        #{$property}-#{$direction}: auto;
+      }
+    }
+  }
+}

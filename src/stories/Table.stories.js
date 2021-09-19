@@ -1,3 +1,4 @@
+import JApp from '@/components/JApp.vue'
 import JTable from '@/components/JTable.vue'
 
 export default {
@@ -6,7 +7,8 @@ export default {
   argTypes: {
     // props
     headers: {
-      description: 'ヘッダーのカラムとなる配列を指定します。<br>`label` : カラムの表示名(必須)<br> `key` : カラムのキー(必須)<br> `sortable` : ソート可能項目であるか',
+      description:
+        'ヘッダーのカラムとなる配列を指定します。<br>`label` : カラムの表示名(必須)<br> `key` : カラムのキー(必須)<br> `sortable` : ソート可能項目であるか',
     },
     hideFooter: {
       description: '表のフッターを非表示にします。',
@@ -28,15 +30,54 @@ export default {
     },
     // events
     // slots
+    body: {
+      description: 'テーブルの `tbody` を置き換えるスロットです。',
+      table: {
+        type: {
+          summary: 'any',
+        },
+      },
+    },
+    default: {
+      table: {
+        disable: true,
+      },
+    },
+    head: {
+      description: 'テーブルの `thead` を置き換えるスロットです。',
+      table: {
+        type: {
+          summary: 'any',
+        },
+      },
+    },
+    item: {
+      description: 'テーブルの行を置き換えるスロットです。',
+      table: {
+        type: {
+          summary: 'any',
+        },
+      },
+    },
+    'item.<name>': {
+      description: 'テーブルの特定の列を置き換えるスロットです。',
+      table: {
+        category: 'slots',
+        type: {
+          summary: 'any',
+        },
+      },
+    },
   },
 }
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { JTable },
-  template:
-    `
-    <j-table v-bind="$props" />
+  components: { JApp, JTable },
+  template: `
+    <j-app>
+      <j-table v-bind="$props" />
+    </j-app>
     `,
 })
 

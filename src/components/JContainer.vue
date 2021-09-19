@@ -1,50 +1,50 @@
 <template>
-  <div
+  <component
+    :is="tag"
     :id="id"
     :class="classes"
     :style="styles"
     class="j-container"
   >
-    <div class="j-container__body">
-      <slot />
-    </div>
-  </div>
+    <slot />
+  </component>
 </template>
 
 <script>
-import {
-  convertNameToHex,
-  validateColor,
-} from '@/utils/colors'
+import { convertNameToHex, validateColor } from '@/utils/colors'
 
 export default {
   name: 'JContainer',
 
   props: {
-    fluid: {
-      default: false,
-      type: Boolean,
-    },
     color: {
-      default: 'transparent',
       type: String,
+      default: 'transparent',
       validator: (val) => {
         return validateColor(val) || val === 'transparent'
       },
     },
+    fluid: {
+      type: Boolean,
+      default: false,
+    },
     id: {
-      default: null,
       type: String,
+      default: null,
+    },
+    tag: {
+      type: String,
+      default: 'div',
     },
   },
 
   computed: {
-    classes () {
+    classes() {
       return {
         'j-container--fluid': this.fluid,
       }
     },
-    styles () {
+    styles() {
       return {
         'background-color': convertNameToHex(this.color),
       }
@@ -54,20 +54,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@use 'src/sass' as *;
+@use 'src/sass/includes' as *;
 $root: '.j-container';
 
 .j-container {
-  width: 100%;
-
-  &--fluid {
-    & #{$root}__body {
-      max-width: none;
-    }
-  }
-}
-
-.j-container__body {
   width: 100%;
   max-width: $size-width-max;
   padding: 16px;
@@ -75,6 +65,10 @@ $root: '.j-container';
 
   @include breakpoint(md) {
     padding: 24px;
+  }
+
+  &--fluid {
+    max-width: none;
   }
 }
 </style>

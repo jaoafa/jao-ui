@@ -19,19 +19,14 @@ export const sizeUnits = Object.freeze([
 ])
 
 export const validateSize = (val) => {
-  // number
   if (typeof val === 'number' && val - val === 0) {
     return true
-  }
-  // string
-  else if (
+  } else if (
     val &&
     new RegExp('^\\d+\\.?\\d+(' + sizeUnits.join('|') + ')$', 'g').test(val)
   ) {
     return true
-  }
-  // error
-  else {
+  } else {
     return false
   }
 }

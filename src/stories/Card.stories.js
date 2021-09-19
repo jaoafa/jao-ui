@@ -1,3 +1,4 @@
+import JApp from '@/components/JApp.vue'
 import JCard from '@/components/JCard.vue'
 
 export default {
@@ -48,7 +49,8 @@ export default {
       description: '指定されたタグをカードに適用します。',
     },
     target: {
-      description: '指定された値を `target` 属性としてコンポーネントに追加します。',
+      description:
+        '指定された値を `target` 属性としてコンポーネントに追加します。',
     },
     to: {
       description: 'カードを `<router-link>` にし、 `to` Prop を適用します。',
@@ -69,7 +71,7 @@ export default {
       description: 'カードの中に表示するコンテンツです。',
       table: {
         type: {
-          summary: 'string',
+          summary: 'any',
         },
       },
     },
@@ -78,12 +80,13 @@ export default {
 
 const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { JCard },
-  template:
-    `
-    <j-card @click="click" v-bind="$props">
-      Card Content
-    </j-card>
+  components: { JApp, JCard },
+  template: `
+    <j-app>
+      <j-card @click="click" v-bind="$props">
+        Card Content
+      </j-card>
+    </j-app>
     `,
 })
 
