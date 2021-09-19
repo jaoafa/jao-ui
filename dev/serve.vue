@@ -309,6 +309,15 @@
                     <th class="px-4 py-2">役割</th>
                   </tr>
                 </template>
+                <template #[`item.minecraft`]="{ item }">
+                  <a
+                    :href="`https://users.jaoafa.com/${item.minecraft}`"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    {{ item.minecraft }}
+                  </a>
+                </template>
               </j-table>
             </j-col>
           </j-row>

@@ -28,15 +28,19 @@
             <slot name="body">
               <template v-if="items.length">
                 <template v-for="(item, index) in _items">
-                  <tr :key="index">
-                    <template v-for="column in headers">
-                      <td :key="column.key">
-                        <span>{{
-                          item[column.key] ? item[column.key] : ''
-                        }}</span>
-                      </td>
-                    </template>
-                  </tr>
+                  <slot name="item" :item="item">
+                    <tr :key="index">
+                      <template v-for="column in headers">
+                        <td :key="column.key">
+                          <slot :name="`item.${column.key}`" :item="item">
+                            <span>{{
+                              item[column.key] ? item[column.key] : ''
+                            }}</span>
+                          </slot>
+                        </td>
+                      </template>
+                    </tr>
+                  </slot>
                 </template>
               </template>
 
