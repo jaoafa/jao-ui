@@ -1,28 +1,38 @@
 <template>
-  <component
-    :is="_tag"
+  <j-sheet
     :class="classes"
+    :color="color"
+    :flat="flat"
+    :height="height"
+    :max-width="maxWidth"
+    :max-height="maxHeight"
+    :min-width="minWidth"
+    :min-height="minHeight"
     :style="styles"
-    :to="to"
+    :tag="_tag"
     :target="target"
+    :tile="tile"
+    :to="to"
+    :width="width"
     v-bind="attrs"
     class="j-card"
     @click="click"
   >
     <slot />
-  </component>
+  </j-sheet>
 </template>
 
 <script>
-import {
-  convertNameToHex,
-  getContrastColor,
-  validateColor,
-} from '@/utils/colors'
+import JSheet from '@/components/JSheet'
+import { getContrastColor, validateColor } from '@/utils/colors'
 import { validateSize } from '@/utils/sizes'
 
 export default {
   name: 'JCard',
+
+  components: {
+    JSheet,
+  },
 
   props: {
     color: {
@@ -31,6 +41,10 @@ export default {
       validator: (val) => {
         return validateColor(val)
       },
+    },
+    flat: {
+      type: Boolean,
+      default: false,
     },
     height: {
       type: [Number, String],
@@ -83,6 +97,10 @@ export default {
       type: String,
       default: null,
     },
+    tile: {
+      type: Boolean,
+      default: false,
+    },
     to: {
       type: String,
       default: null,
@@ -108,18 +126,12 @@ export default {
     classes() {
       return {
         'j-card--link': this.link,
+        'j-card--tile': this.tile,
       }
     },
     styles() {
       return {
-        width: this.width,
-        height: this.height,
-        color: this.textColor,
-        'max-width': this.maxWidth,
-        'max-height': this.maxHeight,
-        'min-width': this.minWidth,
-        'min-height': this.minHeight,
-        'background-color': this.backgroundColor,
+        color: getContrastColor(this.color),
       }
     },
     attrs() {
@@ -131,12 +143,6 @@ export default {
     },
     link() {
       return !!(this.to || this.href)
-    },
-    textColor() {
-      return getContrastColor(this.color)
-    },
-    backgroundColor() {
-      return convertNameToHex(this.color)
     },
   },
 
@@ -155,24 +161,23 @@ $root: '.j-card';
 .j-card {
   position: relative;
   display: block;
-  max-width: 100%;
   overflow: hidden;
   text-decoration: none;
   overflow-wrap: break-word;
   white-space: normal;
-  border-radius: 2px;
-  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08), 0 4px 10px 0 rgba(0, 0, 0, 0.12);
   transition-duration: 0.1s;
   transition-property: box-shadow, opacity;
 
   &--link {
     cursor: pointer;
 
-    &:hover {
-      box-shadow:
-        0 1px 4px 0 rgba(0, 0, 0, 0.08),
-        0 2px 5px 0 rgba(0, 0, 0, 0.12);
-      opacity: 0.85;
+    &:not(#{$root}--tile) {
+      &:hover {
+        box-shadow:
+          0 1px 4px 0 rgba(0, 0, 0, 0.08),
+          0 2px 5px 0 rgba(0, 0, 0, 0.12);
+        opacity: 0.85;
+      }
     }
   }
 }
