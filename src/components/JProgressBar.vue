@@ -9,9 +9,10 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import { convertNameToHex, validateColor } from '@/utils/colors'
 
-export default {
+export default Vue.extend({
   name: 'JProgressBar',
 
   props: {
@@ -63,7 +64,7 @@ export default {
       }
     },
   },
-}
+})
 </script>
 
 <style lang="scss" scoped>

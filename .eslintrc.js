@@ -7,9 +7,10 @@ module.exports = {
   extends: ['plugin:vue/recommended', 'standard', 'prettier'],
   parserOptions: {
     ecmaVersion: 12,
+    parser: '@typescript-eslint/parser',
     sourceType: 'module',
   },
-  plugins: ['vue'],
+  plugins: ['vue', '@typescript-eslint'],
   rules: {
     'vue/component-tags-order': [
       'error',

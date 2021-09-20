@@ -11,9 +11,10 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import JPagination from '@/components/JPagination'
 
-export default {
+export default Vue.extend({
   name: 'JTableFooter',
 
   components: {
@@ -68,7 +69,7 @@ export default {
       },
     },
   },
-}
+})
 </script>
 
 <style lang="scss" scoped>

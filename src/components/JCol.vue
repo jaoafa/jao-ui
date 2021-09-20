@@ -5,7 +5,9 @@
 </template>
 
 <script>
-export default {
+import Vue from 'vue'
+
+export default Vue.extend({
   name: 'JCol',
 
   props: {
@@ -71,7 +73,7 @@ export default {
       return !!this.$parent.$props.noGap
     },
   },
-}
+})
 </script>
 
 <style lang="scss" scoped>

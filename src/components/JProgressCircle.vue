@@ -24,9 +24,10 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import { validateColor, convertNameToHex } from '@/utils/colors'
 
-export default {
+export default Vue.extend({
   name: 'JProgressCircle',
 
   props: {
@@ -90,7 +91,7 @@ export default {
       return length * (1 - this.percentage / 100)
     },
   },
-}
+})
 </script>
 
 <style lang="scss" scoped>
