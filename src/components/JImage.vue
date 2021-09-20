@@ -22,10 +22,11 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import JProgressCircle from '@/components/JProgressCircle'
 import { validateSize } from '@/utils/sizes'
 
-export default {
+export default Vue.extend({
   name: 'JImage',
 
   components: {
@@ -127,7 +128,7 @@ export default {
       this.isLoaded = true
     },
   },
-}
+})
 </script>
 
 <style lang="scss" scoped>

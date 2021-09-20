@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import JProgressCircle from '@/components/JProgressCircle'
 import {
   colors,
@@ -34,7 +35,7 @@ import {
   getContrastColor,
 } from '@/utils/colors'
 
-export default {
+export default Vue.extend({
   name: 'JButton',
 
   components: {
@@ -155,7 +156,7 @@ export default {
       this.$emit('click', e)
     },
   },
-}
+})
 </script>
 
 <style lang="scss" scoped>

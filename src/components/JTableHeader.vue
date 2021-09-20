@@ -33,7 +33,8 @@
 </template>
 
 <script>
-export default {
+import Vue from 'vue'
+export default Vue.extend({
   name: 'JTableHeader',
 
   props: {
@@ -62,7 +63,7 @@ export default {
       this.$emit('click', key)
     },
   },
-}
+})
 </script>
 
 <style lang="scss" scoped>

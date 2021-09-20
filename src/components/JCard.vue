@@ -23,11 +23,12 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import JSheet from '@/components/JSheet'
 import { getContrastColor, validateColor } from '@/utils/colors'
 import { validateSize } from '@/utils/sizes'
 
-export default {
+export default Vue.extend({
   name: 'JCard',
 
   components: {
@@ -151,7 +152,7 @@ export default {
       this.$emit('click', e)
     },
   },
-}
+})
 </script>
 
 <style lang="scss" scoped>

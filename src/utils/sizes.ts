@@ -18,7 +18,7 @@ export const sizeUnits = Object.freeze([
   '%',
 ])
 
-export const validateSize = (val) => {
+export const validateSize = (val: string) => {
   if (typeof val === 'number' && val - val === 0) {
     return true
   } else if (

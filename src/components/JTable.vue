@@ -70,11 +70,12 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import JProgressCircle from '@/components/JProgressCircle'
 import JTableFooter from '@/components/JTableFooter'
 import JTableHeader from '@/components/JTableHeader'
 
-export default {
+export default Vue.extend({
   name: 'JTable',
 
   components: {
@@ -177,7 +178,7 @@ export default {
       this.currentPage = key
     },
   },
-}
+})
 </script>
 
 <style lang="scss" scoped>

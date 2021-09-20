@@ -5,10 +5,11 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import { convertNameToHex, validateColor } from '@/utils/colors'
 import { validateSize } from '@/utils/sizes'
 
-export default {
+export default Vue.extend({
   name: 'JSheet',
 
   props: {
@@ -94,7 +95,7 @@ export default {
       }
     },
   },
-}
+})
 </script>
 
 <style lang="scss" scoped>

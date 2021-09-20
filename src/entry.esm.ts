@@ -1,8 +1,10 @@
+import _Vue, { PluginFunction } from 'vue'
+
 // Import vue components
 import * as components from '@/index'
 
 // install function executed by Vue.use()
-const install = function installJaoUi(Vue) {
+const install: PluginFunction<any> = function installJaoUi(Vue: typeof _Vue) {
   Object.entries(components).forEach(([componentName, component]) => {
     Vue.component(componentName, component)
   })

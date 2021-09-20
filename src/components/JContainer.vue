@@ -10,10 +10,11 @@
   </component>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue'
 import { convertNameToHex, validateColor } from '@/utils/colors'
 
-export default {
+export default Vue.extend({
   name: 'JContainer',
 
   props: {
@@ -50,7 +51,7 @@ export default {
       }
     },
   },
-}
+})
 </script>
 
 <style lang="scss" scoped>

@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 export { default as JApp } from '@/components/JApp.vue'
 export { default as JButton } from '@/components/JButton.vue'
 export { default as JCard } from '@/components/JCard.vue'
