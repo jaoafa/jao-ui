@@ -5,13 +5,32 @@ $properties: (
   m: 'margin',
 );
 $directions: (
-  t: ('top'),
-  r: ('right'),
-  b: ('bottom'),
-  l: ('left'),
-  x: ('right', 'left'),
-  y: ('top', 'bottom'),
-  a: ('top', 'right', 'bottom', 'left'),
+  t: (
+    'top',
+  ),
+  r: (
+    'right',
+  ),
+  b: (
+    'bottom',
+  ),
+  l: (
+    'left',
+  ),
+  x: (
+    'right',
+    'left',
+  ),
+  y: (
+    'top',
+    'bottom',
+  ),
+  a: (
+    'top',
+    'right',
+    'bottom',
+    'left',
+  ),
 );
 
 @each $property-key, $property in $properties {

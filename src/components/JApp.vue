@@ -1,18 +1,34 @@
 <template>
-  <div class="j-app">
+  <div :class="classes" class="j-app">
     <slot />
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { computed, defineComponent } from 'vue'
+
+export default defineComponent({
   name: 'JApp',
-}
+
+  props: {
+    noStretch: {
+      type: Boolean,
+      default: false,
+    },
+  },
+
+  setup(props) {
+    const classes = computed((): { [key: string]: boolean } => ({
+      'j-app--no-stretch': props.noStretch,
+    }))
+    return { classes }
+  },
+})
 </script>
 
 <style lang="scss">
-@use 'src/sass/includes' as *;
-@use 'src/sass/styles.scss';
+@use 'src/styles/includes' as *;
+@use 'src/styles/main';
 $root: '.j-app';
 
 .j-app {
@@ -21,5 +37,9 @@ $root: '.j-app';
   font-family: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic UI', sans-serif;
   line-height: 1.8;
   color: $color-gray-900;
+
+  &--no-stretch {
+    min-height: auto;
+  }
 }
 </style>

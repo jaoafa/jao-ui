@@ -33,10 +33,8 @@ export default {
     size: {
       description:
         '指定された大きさをボタンに適用します。 `large` 、 `medium` 、 `small` の3サイズがあります。',
-      control: {
-        type: 'select',
-        options: ['large', 'medium', 'small'],
-      },
+      options: ['large', 'medium', 'small'],
+      control: 'select',
     },
     tag: {
       description: '指定されたタグをボタンに適用します。',
@@ -69,7 +67,7 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { JApp, JButton },
   template: `
-    <j-app>
+    <j-app no-stretch>
       <j-button @click="click" v-bind="$props">
         Button
       </j-button>

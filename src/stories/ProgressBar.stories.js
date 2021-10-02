@@ -2,7 +2,7 @@ import JApp from '@/components/JApp.vue'
 import JProgressBar from '@/components/JProgressBar.vue'
 
 export default {
-  title: 'Components/Progress',
+  title: 'Components/ProgressBar',
   component: JProgressBar,
   argTypes: {
     // props
@@ -30,7 +30,7 @@ const Template = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { JApp, JProgressBar },
   template: `
-    <j-app>
+    <j-app no-stretch>
       <j-progress-bar v-bind="$props" />
     </j-app>
     `,

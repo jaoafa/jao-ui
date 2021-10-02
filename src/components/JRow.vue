@@ -4,22 +4,24 @@
   </component>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { computed, defineComponent } from 'vue'
+
+export default defineComponent({
   name: 'JRow',
 
   props: {
     align: {
       type: String,
       default: 'start',
-      validator: (val) => {
+      validator: (val: string): boolean => {
         return ['start', 'center', 'end', 'baseline', 'stretch'].includes(val)
       },
     },
     justify: {
       type: String,
       default: 'start',
-      validator: (val) => {
+      validator: (val: string): boolean => {
         return [
           'start',
           'center',
@@ -39,28 +41,27 @@ export default {
     },
   },
 
-  computed: {
-    classes() {
-      return {
-        'j-row--align-start': this.align === 'start',
-        'j-row--align-center': this.align === 'center',
-        'j-row--align-end': this.align === 'end',
-        'j-row--align-baseline': this.align === 'baseline',
-        'j-row--align-stretch': this.align === 'stretch',
-        'j-row--justify-start': this.justify === 'start',
-        'j-row--justify-center': this.justify === 'center',
-        'j-row--justify-end': this.justify === 'end',
-        'j-row--justify-between': this.justify === 'space-between',
-        'j-row--justify-around': this.justify === 'space-around',
-        'j-row--no-gap': this.noGap,
-      }
-    },
+  setup(props) {
+    const classes = computed((): { [key: string]: boolean } => ({
+      'j-row--align-start': props.align === 'start',
+      'j-row--align-center': props.align === 'center',
+      'j-row--align-end': props.align === 'end',
+      'j-row--align-baseline': props.align === 'baseline',
+      'j-row--align-stretch': props.align === 'stretch',
+      'j-row--justify-start': props.justify === 'start',
+      'j-row--justify-center': props.justify === 'center',
+      'j-row--justify-end': props.justify === 'end',
+      'j-row--justify-between': props.justify === 'space-between',
+      'j-row--justify-around': props.justify === 'space-around',
+      'j-row--no-gap': props.noGap,
+    }))
+    return { classes }
   },
-}
+})
 </script>
 
-<style lang="scss" scoped>
-@use 'src/sass/includes' as *;
+<style lang="scss">
+@use 'src/styles/includes' as *;
 $root: '.j-row';
 
 .j-row {

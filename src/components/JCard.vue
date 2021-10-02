@@ -1,41 +1,56 @@
 <template>
-  <component
-    :is="_tag"
+  <j-sheet
     :class="classes"
+    :color="color"
+    :flat="flat"
+    :height="height"
+    :max-width="maxWidth"
+    :max-height="maxHeight"
+    :min-width="minWidth"
+    :min-height="minHeight"
     :style="styles"
-    :to="to"
+    :tag="computedTag"
     :target="target"
+    :tile="tile"
+    :to="to"
+    :width="width"
     v-bind="attrs"
     class="j-card"
     @click="click"
   >
     <slot />
-  </component>
+  </j-sheet>
 </template>
 
-<script>
-import {
-  convertNameToHex,
-  getContrastColor,
-  validateColor,
-} from '@/utils/colors'
+<script lang="ts">
+import { computed, defineComponent } from 'vue'
+import { JSheet } from '@/index'
+import { getContrastColor, validateColor } from '@/utils/colors'
 import { validateSize } from '@/utils/sizes'
 
-export default {
+export default defineComponent({
   name: 'JCard',
+
+  components: {
+    JSheet,
+  },
 
   props: {
     color: {
       type: String,
       default: 'white',
-      validator: (val) => {
+      validator: (val: string): boolean => {
         return validateColor(val)
       },
     },
+    flat: {
+      type: Boolean,
+      default: false,
+    },
     height: {
-      type: [Number, String],
+      type: String,
       default: null,
-      validator: (val) => {
+      validator: (val: string): boolean => {
         return validateSize(val)
       },
     },
@@ -44,30 +59,30 @@ export default {
       default: null,
     },
     maxHeight: {
-      type: [Number, String],
+      type: String,
       default: null,
-      validator: (val) => {
+      validator: (val: string): boolean => {
         return validateSize(val)
       },
     },
     maxWidth: {
-      type: [Number, String],
+      type: String,
       default: null,
-      validator: (val) => {
+      validator: (val: string): boolean => {
         return validateSize(val)
       },
     },
     minHeight: {
-      type: [Number, String],
+      type: String,
       default: null,
-      validator: (val) => {
+      validator: (val: string): boolean => {
         return validateSize(val)
       },
     },
     minWidth: {
-      type: [Number, String],
+      type: String,
       default: null,
-      validator: (val) => {
+      validator: (val: string): boolean => {
         return validateSize(val)
       },
     },
@@ -83,96 +98,84 @@ export default {
       type: String,
       default: null,
     },
+    tile: {
+      type: Boolean,
+      default: false,
+    },
     to: {
       type: String,
       default: null,
     },
     width: {
-      type: [Number, String],
+      type: String,
       default: null,
-      validator: (val) => {
+      validator: (val: string): boolean => {
         return validateSize(val)
       },
     },
   },
 
-  computed: {
-    _tag() {
-      return (
-        (this.to && (this.nuxt ? 'nuxt-link' : 'router-link')) ||
-        (this.href && 'a') ||
-        this.tag ||
+  emits: ['click'],
+
+  setup(props, context) {
+    const computedTag = computed(
+      (): string =>
+        (props.to && (props.nuxt ? 'nuxt-link' : 'router-link')) ||
+        (props.href && 'a') ||
+        props.tag ||
         'div'
-      )
-    },
-    classes() {
-      return {
-        'j-card--link': this.link,
-      }
-    },
-    styles() {
-      return {
-        width: this.width,
-        height: this.height,
-        color: this.textColor,
-        'max-width': this.maxWidth,
-        'max-height': this.maxHeight,
-        'min-width': this.minWidth,
-        'min-height': this.minHeight,
-        'background-color': this.backgroundColor,
-      }
-    },
-    attrs() {
-      const res = {}
-      if (this.href) {
-        res.href = this.href
+    )
+
+    const link = computed((): boolean => !!(props.to || props.href))
+    const classes = computed((): { [key: string]: boolean } => ({
+      'j-card--link': link.value,
+      'j-card--tile': props.tile,
+    }))
+
+    const styles = computed((): { [key: string]: string } => ({
+      color: getContrastColor(props.color),
+    }))
+
+    const attrs = computed((): { [key: string]: string } => {
+      const res: { [key: string]: string } = {}
+      if (props.href) {
+        res.href = props.href
       }
       return res
-    },
-    link() {
-      return !!(this.to || this.href)
-    },
-    textColor() {
-      return getContrastColor(this.color)
-    },
-    backgroundColor() {
-      return convertNameToHex(this.color)
-    },
-  },
+    })
 
-  methods: {
-    click(e) {
-      this.$emit('click', e)
-    },
+    const click = (e: Event): void => {
+      context.emit('click', e)
+    }
+
+    return { attrs, classes, computedTag, styles, click }
   },
-}
+})
 </script>
 
-<style lang="scss" scoped>
-@use 'src/sass/includes' as *;
+<style lang="scss">
+@use 'src/styles/includes' as *;
 $root: '.j-card';
 
 .j-card {
   position: relative;
   display: block;
-  max-width: 100%;
   overflow: hidden;
   text-decoration: none;
   overflow-wrap: break-word;
   white-space: normal;
-  border-radius: 2px;
-  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.08), 0 4px 10px 0 rgba(0, 0, 0, 0.12);
   transition-duration: 0.1s;
   transition-property: box-shadow, opacity;
 
   &--link {
     cursor: pointer;
 
-    &:hover {
-      box-shadow:
-        0 1px 4px 0 rgba(0, 0, 0, 0.08),
-        0 2px 5px 0 rgba(0, 0, 0, 0.12);
-      opacity: 0.85;
+    &:not(#{$root}--tile) {
+      &:hover {
+        box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.08),
+          0 2px 5px 0 rgba(0, 0, 0, 0.12);
+        opacity: 0.85;
+      }
     }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <nav class="j-pagination">
+  <nav ref="root" class="j-pagination">
     <ul class="j-pagination__body">
       <li class="j-pagination__item">
         <button
@@ -15,9 +15,8 @@
         </button>
       </li>
 
-      <template v-for="item in generateItems">
+      <template v-for="item in generatedItems" :key="item.id">
         <li
-          :key="item.id"
           :class="{
             'j-pagination__item': true,
             'j-pagination__item--current': item.label === page,
@@ -50,83 +49,80 @@
   </nav>
 </template>
 
-<script>
-export default {
-  name: 'JPagination',
+<script lang="ts">
+import { computed, defineComponent, nextTick, onMounted, ref } from 'vue'
 
-  model: {
-    prop: 'page',
-    event: 'input',
-  },
+export default defineComponent({
+  name: 'JPagination',
 
   props: {
     length: {
       type: Number,
       default: 0,
-      validator: (val) => {
+      validator: (val: number): boolean => {
         return val % 1 === 0 && val >= 0
       },
     },
     page: {
       type: Number,
       default: 0,
-      validator: (val) => {
+      validator: (val: number): boolean => {
         return val % 1 === 0 && val >= 0
       },
     },
     totalVisible: {
       type: Number,
       default: 0,
-      validator: (val) => {
+      validator: (val: number): boolean => {
         return val % 1 === 0 && val >= 0
       },
     },
   },
 
-  data() {
-    return {
-      maxSize: 0,
-    }
-  },
+  emits: ['input', 'update:page'],
 
-  computed: {
-    items() {
-      if (this.totalVisible === 0) {
+  setup(props, context) {
+    const maxSize = ref(0)
+    const range = (min: number, max: number): number[] => {
+      const range: number[] = []
+      for (let i: number = min; i <= max; i++) {
+        range.push(i)
+      }
+      return range
+    }
+    const items = computed((): (string | number)[] => {
+      if (props.totalVisible === 0) {
         return []
       }
       const maxLength = Math.min(
-        Math.max(0, this.totalVisible) || this.length,
-        Math.max(0, this.maxSize) || this.length,
-        this.length
+        Math.max(0, props.totalVisible) || props.length,
+        Math.max(0, maxSize.value) || props.length,
+        props.length
       )
-      if (maxLength >= this.length) {
-        return this.range(1, this.length)
+      if (maxLength >= props.length) {
+        return range(1, props.length)
       } else if (maxLength <= 4) {
-        return [this.page]
+        return [props.page]
       }
       const even = maxLength % 2 === 0 ? 1 : 0
       const left = Math.floor(maxLength / 2)
-      const right = this.length - left + 1 + even
-      if (this.page > left && this.page < right) {
-        const start = this.page - left + 2
-        const end = this.page + left - 2 - even
-        return [1, '...', ...this.range(start, end), '...', this.length]
-      } else if (this.page === left) {
-        const end = this.page + left - 1 - even
-        return [...this.range(1, end), '...', this.length]
-      } else if (this.page === right) {
-        const start = this.page - left + 1
-        return [1, '...', ...this.range(start, this.length)]
+      const right = props.length - left + 1 + even
+      if (props.page > left && props.page < right) {
+        const start = props.page - left + 2
+        const end = props.page + left - 2 - even
+        return [1, '...', ...range(start, end), '...', props.length]
+      } else if (props.page === left) {
+        const end = props.page + left - 1 - even
+        return [...range(1, end), '...', props.length]
+      } else if (props.page === right) {
+        const start = props.page - left + 1
+        return [1, '...', ...range(start, props.length)]
       } else {
-        return [
-          ...this.range(1, left),
-          '...',
-          ...this.range(right, this.length),
-        ]
+        return [...range(1, left), '...', ...range(right, props.length)]
       }
-    },
-    generateItems() {
-      return this.items.map((item, index) => {
+    })
+    const generatedItems = computed(() => {
+      return items.value.map((item, index) => {
         const isButton = typeof item === 'number'
         return {
           id: index,
@@ -135,55 +131,50 @@ export default {
           label: item,
         }
       })
-    },
-  },
+    })
 
-  mounted() {
-    this.$nextTick(this.resize)
-  },
+    const input = (val: number): void => {
+      context.emit('input', val)
+      context.emit('update:page', val)
+    }
+    const next = (): void => {
+      input(props.page + 1)
+    }
+    const prev = (): void => {
+      input(props.page - 1)
+    }
 
-  methods: {
-    input(val) {
-      this.$emit('input', val)
-    },
-    next() {
-      this.input(this.page + 1)
-    },
-    prev() {
-      this.input(this.page - 1)
-    },
-    range(min, max) {
-      const range = []
-      for (let i = min; i <= max; i++) {
-        range.push(i)
-      }
-      return range
-    },
-    resize() {
-      const getSize = () => {
+    const root: any = ref(null)
+    const resize = (): void => {
+      const getSize = (): void => {
         const width =
-          this.$el && this.$el.parentElement
-            ? this.$el.parentElement.clientWidth
+          root.value && root.value.parentElement
+            ? root.value.parentElement.clientWidth
             : window.innerWidth
-        this.maxSize = Math.floor((width - 80) / 48)
+        maxSize.value = Math.floor((width - 80) / 48)
       }
       let time = 0
       getSize()
       window.addEventListener('resize', () => {
         if (!time) {
-          time = setTimeout(() => {
+          time = window.setTimeout(() => {
             time = 0
             getSize()
-          }, 500)
+          }, 100)
         }
       })
-    },
+    }
+
+    onMounted(() => {
+      nextTick(resize)
+    })
+    return { generatedItems, root, input, next, prev }
   },
-}
+})
 </script>
 
-<style lang="scss" scoped>
-@use 'src/sass/includes' as *;
+<style lang="scss">
+@use 'src/styles/includes' as *;
 $root: '.j-pagination';
 
 .j-pagination {

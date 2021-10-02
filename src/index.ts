@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 export { default as JApp } from '@/components/JApp.vue'
 export { default as JButton } from '@/components/JButton.vue'
 export { default as JCard } from '@/components/JCard.vue'
@@ -8,5 +9,7 @@ export { default as JPagination } from '@/components/JPagination.vue'
 export { default as JProgressBar } from '@/components/JProgressBar.vue'
 export { default as JProgressCircle } from '@/components/JProgressCircle.vue'
 export { default as JRow } from '@/components/JRow.vue'
+export { default as JSheet } from '@/components/JSheet.vue'
 export { default as JTable } from '@/components/JTable.vue'
+export { default as JTableFooter } from '@/components/JTableFooter.vue'
 export { default as JTableHeader } from '@/components/JTableHeader.vue'

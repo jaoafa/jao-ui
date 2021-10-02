@@ -4,43 +4,45 @@
   </component>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { computed, defineComponent, getCurrentInstance } from 'vue'
+
+export default defineComponent({
   name: 'JCol',
 
   props: {
     cols: {
       type: Number,
       default: null,
-      validator: (val) => {
+      validator: (val: number): boolean => {
         return val >= 1 && val <= 12
       },
     },
     colsLg: {
       type: Number,
       default: null,
-      validator: (val) => {
+      validator: (val: number): boolean => {
         return val >= 1 && val <= 12
       },
     },
     colsMd: {
       type: Number,
       default: null,
-      validator: (val) => {
+      validator: (val: number): boolean => {
         return val >= 1 && val <= 12
       },
     },
     colsSm: {
       type: Number,
       default: null,
-      validator: (val) => {
+      validator: (val: number): boolean => {
         return val >= 1 && val <= 12
       },
     },
     colsXl: {
       type: Number,
       default: null,
-      validator: (val) => {
+      validator: (val: number): boolean => {
         return val >= 1 && val <= 12
       },
     },
@@ -50,32 +52,34 @@ export default {
     },
   },
 
-  computed: {
-    classes() {
-      const classes = {
-        'j-col--no-gap': this.gap,
+  setup(props) {
+    const instance = getCurrentInstance()
+    const gap = computed((): boolean =>
+      instance && instance.parent ? !!instance.parent.props.noGap : false
+    )
+    const classes = computed((): { [key: string]: boolean } => {
+      const res: { [key: string]: boolean } = {
+        'j-col--no-gap': gap.value,
       }
-      const colsXs = this.cols
-      const colsSm = this.colsSm
-      const colsMd = this.colsMd
-      const colsLg = this.colsLg
-      const colsXl = this.colsXl
-      classes[`j-col--xs-${colsXs}`] = colsXs ? true : null
-      classes[`j-col--sm-${colsSm}`] = colsSm ? true : null
-      classes[`j-col--md-${colsMd}`] = colsMd ? true : null
-      classes[`j-col--lg-${colsLg}`] = colsLg ? true : null
-      classes[`j-col--xl-${colsXl}`] = colsXl ? true : null
-      return classes
-    },
-    gap() {
-      return !!this.$parent.$props.noGap
-    },
+      const colsXs = props.cols
+      const colsSm = props.colsSm
+      const colsMd = props.colsMd
+      const colsLg = props.colsLg
+      const colsXl = props.colsXl
+      res[`j-col--xs-${colsXs}`] = !!colsXs
+      res[`j-col--sm-${colsSm}`] = !!colsSm
+      res[`j-col--md-${colsMd}`] = !!colsMd
+      res[`j-col--lg-${colsLg}`] = !!colsLg
+      res[`j-col--xl-${colsXl}`] = !!colsXl
+      return res
+    })
+    return { classes }
   },
-}
+})
 </script>
 
-<style lang="scss" scoped>
-@use 'src/sass/includes' as *;
+<style lang="scss">
+@use 'src/styles/includes' as *;
 @use 'sass:math';
 $root: '.j-col';
 

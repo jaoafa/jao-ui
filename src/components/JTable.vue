@@ -27,11 +27,11 @@
           <template v-else>
             <slot name="body">
               <template v-if="items.length">
-                <template v-for="(item, index) in _items">
+                <template v-for="(item, index) in computedItems">
                   <slot name="item" :item="item">
                     <tr :key="index">
-                      <template v-for="column in headers">
-                        <td :key="column.key">
+                      <template v-for="column in headers" :key="column.key">
+                        <td>
                           <slot :name="`item.${column.key}`" :item="item">
                             <span>{{
                               item[column.key] ? item[column.key] : ''
@@ -69,12 +69,11 @@
   </div>
 </template>
 
-<script>
-import JProgressCircle from '@/components/JProgressCircle'
-import JTableFooter from '@/components/JTableFooter'
-import JTableHeader from '@/components/JTableHeader'
+<script lang="ts">
+import { computed, defineComponent, ref } from 'vue'
+import { JProgressCircle, JTableFooter, JTableHeader } from '@/index'
 
-export default {
+export default defineComponent({
   name: 'JTable',
 
   components: {
@@ -103,7 +102,7 @@ export default {
     itemPerPage: {
       type: Number,
       default: 10,
-      validator: (val) => {
+      validator: (val: number): boolean => {
         return val % 1 === 0 && val > 0
       },
     },
@@ -114,74 +113,71 @@ export default {
     page: {
       type: Number,
       default: 1,
-      validator: (val) => {
+      validator: (val: number): boolean => {
         return val % 1 === 0 && val > 0
       },
     },
   },
 
-  data() {
-    return {
-      sortBy: '',
-      sortOrder: 'asc',
-      currentPage: 1,
-    }
-  },
+  setup(props) {
+    const sortBy = ref('')
+    const sortOrder = ref('asc')
+    const currentPage = ref(props.items.length ? props.page : 0)
 
-  computed: {
-    _items() {
-      const items = [...this.items]
-      const sortBy = this.sortBy
-      const sortOrder = this.sortOrder === 'asc'
-      const page = this.currentPage
-      const itemPerPage = this.itemPerPage
-      const sortFunction = (a, b) => {
-        a = a[sortBy] ? a[sortBy] : ''
-        b = b[sortBy] ? b[sortBy] : ''
+    const computedItems = computed(() => {
+      const items = [...props.items]
+      const itemPerPage = props.itemPerPage
+      const sortFunction = (a: any, b: any) => {
+        a = a[sortBy.value] ? a[sortBy.value] : ''
+        b = b[sortBy.value] ? b[sortBy.value] : ''
         if (a < b) {
-          return sortOrder ? -1 : 1
+          return sortOrder.value === 'asc' ? -1 : 1
         } else if (a > b) {
-          return sortOrder ? 1 : -1
+          return sortOrder.value === 'asc' ? 1 : -1
         } else {
           return 0
         }
       }
-      if (sortBy) {
+      if (sortBy.value) {
         items.sort(sortFunction)
       }
-      return items.slice(itemPerPage * (page - 1), itemPerPage * page)
-    },
-  },
+      return items.slice(
+        itemPerPage * (currentPage.value - 1),
+        itemPerPage * currentPage.value
+      )
+    })
 
-  created() {
-    this.currentPage = this.page
-    if (!this.items.length) {
-      this.currentPage = 0
-    }
-  },
-
-  methods: {
-    toggleSort(key) {
-      if (this.sortBy !== key) {
-        this.sortBy = key
-        this.sortOrder = 'asc'
+    const toggleSort = (key: string): void => {
+      if (sortBy.value !== key) {
+        sortBy.value = key
+        sortOrder.value = 'asc'
       } else {
-        if (this.sortOrder === 'asc') {
-          this.sortOrder = 'desc'
+        if (sortOrder.value === 'asc') {
+          sortOrder.value = 'desc'
         } else {
-          this.sortBy = ''
+          sortBy.value = ''
         }
       }
-    },
-    togglePage(key) {
-      this.currentPage = key
-    },
+    }
+    const togglePage = (key: number): void => {
+      console.log('test')
+      currentPage.value = key
+    }
+
+    return {
+      computedItems,
+      currentPage,
+      sortBy,
+      sortOrder,
+      toggleSort,
+      togglePage,
+    }
   },
-}
+})
 </script>
 
-<style lang="scss" scoped>
-@use 'src/sass/includes' as *;
+<style lang="scss">
+@use 'src/styles/includes' as *;
 $root: '.j-table';
 
 .j-table {

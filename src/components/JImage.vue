@@ -21,11 +21,12 @@
   </div>
 </template>
 
-<script>
-import JProgressCircle from '@/components/JProgressCircle'
+<script lang="ts">
+import { computed, defineComponent, ref } from 'vue'
+import { JProgressCircle } from '@/index'
 import { validateSize } from '@/utils/sizes'
 
-export default {
+export default defineComponent({
   name: 'JImage',
 
   components: {
@@ -42,37 +43,37 @@ export default {
       default: false,
     },
     height: {
-      type: [Number, String],
+      type: String,
       default: null,
-      validator: (val) => {
+      validator: (val: string): boolean => {
         return validateSize(val)
       },
     },
     maxHeight: {
-      type: [Number, String],
+      type: String,
       default: null,
-      validator: (val) => {
+      validator: (val: string): boolean => {
         return validateSize(val)
       },
     },
     maxWidth: {
-      type: [Number, String],
+      type: String,
       default: null,
-      validator: (val) => {
+      validator: (val: string): boolean => {
         return validateSize(val)
       },
     },
     minHeight: {
-      type: [Number, String],
+      type: String,
       default: null,
-      validator: (val) => {
+      validator: (val: string): boolean => {
         return validateSize(val)
       },
     },
     minWidth: {
-      type: [Number, String],
+      type: String,
       default: null,
-      validator: (val) => {
+      validator: (val: string): boolean => {
         return validateSize(val)
       },
     },
@@ -90,48 +91,37 @@ export default {
       default: null,
     },
     width: {
-      type: [Number, String],
+      type: String,
       default: null,
-      validator: (val) => {
+      validator: (val: string): boolean => {
         return validateSize(val)
       },
     },
   },
 
-  data() {
-    return {
-      isLoaded: false,
+  setup(props) {
+    const classes = computed((): { [key: string]: boolean } => ({
+      'j-image--contain': props.contain,
+    }))
+    const styles = computed((): { [key: string]: string } => ({
+      width: props.width,
+      height: props.height,
+      'max-width': props.maxWidth,
+      'max-height': props.maxHeight,
+      'min-width': props.minWidth,
+      'min-height': props.minHeight,
+    }))
+    const isLoaded = ref(false)
+    const onLoad = (): void => {
+      isLoaded.value = true
     }
+    return { classes, styles, isLoaded, onLoad }
   },
-
-  computed: {
-    classes() {
-      return {
-        'j-image--contain': this.contain,
-      }
-    },
-    styles() {
-      return {
-        width: this.width,
-        height: this.height,
-        'max-width': this.maxWidth,
-        'max-height': this.maxHeight,
-        'min-width': this.minWidth,
-        'min-height': this.minHeight,
-      }
-    },
-  },
-
-  methods: {
-    onLoad() {
-      this.isLoaded = true
-    },
-  },
-}
+})
 </script>
 
-<style lang="scss" scoped>
-@use 'src/sass/includes' as *;
+<style lang="scss">
+@use 'src/styles/includes' as *;
 $root: '.j-image';
 
 .j-image {

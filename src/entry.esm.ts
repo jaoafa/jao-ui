@@ -1,10 +1,14 @@
+import { App, Plugin } from 'vue'
+
 // Import vue components
 import * as components from '@/index'
 
 // install function executed by Vue.use()
-const install = function installJaoUi(Vue) {
+const install: Exclude<Plugin['install'], undefined> = function installJaoUi(
+  app: App
+) {
   Object.entries(components).forEach(([componentName, component]) => {
-    Vue.component(componentName, component)
+    app.component(componentName, component)
   })
 }
 

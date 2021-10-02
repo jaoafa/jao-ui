@@ -4,6 +4,7 @@
       <h1 class="text-lv1">jao UI Library</h1>
       <p class="text-lv5 mt-2">jao UI Components with Vue.js 💣✨</p>
 
+      <!-- Components -->
       <section class="mt-8">
         <h2 class="text-lv2">Components</h2>
 
@@ -84,94 +85,58 @@
               <j-button size="small" outlined loading> Button </j-button>
             </j-col>
             <j-col>
-              <j-button size="large" icon>
-                <font-awesome-icon icon="bomb" />
-              </j-button>
+              <j-button size="large" icon> a </j-button>
             </j-col>
             <j-col>
-              <j-button size="medium" icon>
-                <font-awesome-icon icon="bomb" />
-              </j-button>
+              <j-button size="medium" icon> a </j-button>
             </j-col>
             <j-col>
-              <j-button size="small" icon>
-                <font-awesome-icon icon="bomb" />
-              </j-button>
+              <j-button size="small" icon> a </j-button>
             </j-col>
             <j-col>
-              <j-button size="large" disabled icon>
-                <font-awesome-icon icon="bomb" />
-              </j-button>
+              <j-button size="large" disabled icon> a </j-button>
             </j-col>
             <j-col>
-              <j-button size="medium" disabled icon>
-                <font-awesome-icon icon="bomb" />
-              </j-button>
+              <j-button size="medium" disabled icon> a </j-button>
             </j-col>
             <j-col>
-              <j-button size="small" disabled icon>
-                <font-awesome-icon icon="bomb" />
-              </j-button>
+              <j-button size="small" disabled icon> a </j-button>
             </j-col>
             <j-col>
-              <j-button size="large" loading icon>
-                <font-awesome-icon icon="bomb" />
-              </j-button>
+              <j-button size="large" loading icon> a </j-button>
             </j-col>
             <j-col>
-              <j-button size="medium" loading icon>
-                <font-awesome-icon icon="bomb" />
-              </j-button>
+              <j-button size="medium" loading icon> a </j-button>
             </j-col>
             <j-col>
-              <j-button size="small" loading icon>
-                <font-awesome-icon icon="bomb" />
-              </j-button>
+              <j-button size="small" loading icon> a </j-button>
             </j-col>
             <j-col>
-              <j-button size="large" icon outlined>
-                <font-awesome-icon icon="bomb" />
-              </j-button>
+              <j-button size="large" icon outlined> a </j-button>
             </j-col>
             <j-col>
-              <j-button size="medium" icon outlined>
-                <font-awesome-icon icon="bomb" />
-              </j-button>
+              <j-button size="medium" icon outlined> a </j-button>
             </j-col>
             <j-col>
-              <j-button size="small" icon outlined>
-                <font-awesome-icon icon="bomb" />
-              </j-button>
+              <j-button size="small" icon outlined> a </j-button>
             </j-col>
             <j-col>
-              <j-button size="large" icon disabled outlined>
-                <font-awesome-icon icon="bomb" />
-              </j-button>
+              <j-button size="large" icon disabled outlined> a </j-button>
             </j-col>
             <j-col>
-              <j-button size="medium" icon disabled outlined>
-                <font-awesome-icon icon="bomb" />
-              </j-button>
+              <j-button size="medium" icon disabled outlined> a </j-button>
             </j-col>
             <j-col>
-              <j-button size="small" icon disabled outlined>
-                <font-awesome-icon icon="bomb" />
-              </j-button>
+              <j-button size="small" icon disabled outlined> a </j-button>
             </j-col>
             <j-col>
-              <j-button size="large" loading icon outlined>
-                <font-awesome-icon icon="bomb" />
-              </j-button>
+              <j-button size="large" loading icon outlined> a </j-button>
             </j-col>
             <j-col>
-              <j-button size="medium" loading icon outlined>
-                <font-awesome-icon icon="bomb" />
-              </j-button>
+              <j-button size="medium" loading icon outlined> a </j-button>
             </j-col>
             <j-col>
-              <j-button size="small" loading icon outlined>
-                <font-awesome-icon icon="bomb" />
-              </j-button>
+              <j-button size="small" loading icon outlined> a </j-button>
             </j-col>
           </j-row>
         </section>
@@ -215,7 +180,11 @@
         <!-- Pagination -->
         <section class="mt-8">
           <h3 class="text-lv3 mb-4">Pagination</h3>
-          <j-pagination v-model="pagination" :length="20" :total-visible="8" />
+          <j-pagination
+            v-model:page="pagination"
+            :length="20"
+            :total-visible="8"
+          />
         </section>
 
         <!-- Progress -->
@@ -282,6 +251,16 @@
           </j-row>
         </section>
 
+        <!-- Sheet -->
+        <section class="mt-8">
+          <h3 class="text-lv3 mb-4">Sheet</h3>
+          <j-row>
+            <j-col :cols="12" :cols-sm="8" :cols-md="6" :cols-lg="4">
+              <j-sheet width="100%" height="120px" color="primary" />
+            </j-col>
+          </j-row>
+        </section>
+
         <!-- Table -->
         <section class="mt-8">
           <h3 class="text-lv3 mb-4">Table</h3>
@@ -327,20 +306,11 @@
   </j-app>
 </template>
 
-<script>
-import Vue from 'vue'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faBomb } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+<script lang="ts">
+import { defineComponent } from 'vue'
 
-library.add(faBomb)
-
-export default Vue.extend({
+export default defineComponent({
   name: 'ServeDev',
-
-  components: {
-    FontAwesomeIcon,
-  },
 
   data() {
     return {
