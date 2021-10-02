@@ -9,7 +9,7 @@
     :min-width="minWidth"
     :min-height="minHeight"
     :style="styles"
-    :tag="_tag"
+    :tag="computedTag"
     :target="target"
     :tile="tile"
     :to="to"
@@ -22,13 +22,13 @@
   </j-sheet>
 </template>
 
-<script>
-import Vue from 'vue'
-import JSheet from '@/components/JSheet'
+<script lang="ts">
+import { computed, defineComponent } from 'vue'
+import { JSheet } from '@/index'
 import { getContrastColor, validateColor } from '@/utils/colors'
 import { validateSize } from '@/utils/sizes'
 
-export default Vue.extend({
+export default defineComponent({
   name: 'JCard',
 
   components: {
@@ -39,7 +39,7 @@ export default Vue.extend({
     color: {
       type: String,
       default: 'white',
-      validator: (val) => {
+      validator: (val: string): boolean => {
         return validateColor(val)
       },
     },
@@ -48,9 +48,9 @@ export default Vue.extend({
       default: false,
     },
     height: {
-      type: [Number, String],
+      type: String,
       default: null,
-      validator: (val) => {
+      validator: (val: string): boolean => {
         return validateSize(val)
       },
     },
@@ -59,30 +59,30 @@ export default Vue.extend({
       default: null,
     },
     maxHeight: {
-      type: [Number, String],
+      type: String,
       default: null,
-      validator: (val) => {
+      validator: (val: string): boolean => {
         return validateSize(val)
       },
     },
     maxWidth: {
-      type: [Number, String],
+      type: String,
       default: null,
-      validator: (val) => {
+      validator: (val: string): boolean => {
         return validateSize(val)
       },
     },
     minHeight: {
-      type: [Number, String],
+      type: String,
       default: null,
-      validator: (val) => {
+      validator: (val: string): boolean => {
         return validateSize(val)
       },
     },
     minWidth: {
-      type: [Number, String],
+      type: String,
       default: null,
-      validator: (val) => {
+      validator: (val: string): boolean => {
         return validateSize(val)
       },
     },
@@ -107,56 +107,54 @@ export default Vue.extend({
       default: null,
     },
     width: {
-      type: [Number, String],
+      type: String,
       default: null,
-      validator: (val) => {
+      validator: (val: string): boolean => {
         return validateSize(val)
       },
     },
   },
 
-  computed: {
-    _tag() {
-      return (
-        (this.to && (this.nuxt ? 'nuxt-link' : 'router-link')) ||
-        (this.href && 'a') ||
-        this.tag ||
+  emits: ['click'],
+
+  setup(props, context) {
+    const computedTag = computed(
+      (): string =>
+        (props.to && (props.nuxt ? 'nuxt-link' : 'router-link')) ||
+        (props.href && 'a') ||
+        props.tag ||
         'div'
-      )
-    },
-    classes() {
-      return {
-        'j-card--link': this.link,
-        'j-card--tile': this.tile,
-      }
-    },
-    styles() {
-      return {
-        color: getContrastColor(this.color),
-      }
-    },
-    attrs() {
-      const res = {}
-      if (this.href) {
-        res.href = this.href
+    )
+
+    const link = computed((): boolean => !!(props.to || props.href))
+    const classes = computed((): { [key: string]: boolean } => ({
+      'j-card--link': link.value,
+      'j-card--tile': props.tile,
+    }))
+
+    const styles = computed((): { [key: string]: string } => ({
+      color: getContrastColor(props.color),
+    }))
+
+    const attrs = computed((): { [key: string]: string } => {
+      const res: { [key: string]: string } = {}
+      if (props.href) {
+        res.href = props.href
       }
       return res
-    },
-    link() {
-      return !!(this.to || this.href)
-    },
-  },
+    })
 
-  methods: {
-    click(e) {
-      this.$emit('click', e)
-    },
+    const click = (e: Event): void => {
+      context.emit('click', e)
+    }
+
+    return { attrs, classes, computedTag, styles, click }
   },
 })
 </script>
 
-<style lang="scss" scoped>
-@use 'src/sass/includes' as *;
+<style lang="scss">
+@use 'src/styles/includes' as *;
 $root: '.j-card';
 
 .j-card {
@@ -174,8 +172,7 @@ $root: '.j-card';
 
     &:not(#{$root}--tile) {
       &:hover {
-        box-shadow:
-          0 1px 4px 0 rgba(0, 0, 0, 0.08),
+        box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.08),
           0 2px 5px 0 rgba(0, 0, 0, 0.12);
         opacity: 0.85;
       }

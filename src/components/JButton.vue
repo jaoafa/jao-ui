@@ -1,6 +1,6 @@
 <template>
   <component
-    :is="_tag"
+    :is="computedTag"
     :class="classes"
     :style="styles"
     :to="to"
@@ -25,17 +25,17 @@
   </component>
 </template>
 
-<script>
-import Vue from 'vue'
-import JProgressCircle from '@/components/JProgressCircle'
+<script lang="ts">
+import { computed, defineComponent } from 'vue'
+import { JProgressCircle } from '@/index'
 import {
   colors,
-  validateColor,
   convertNameToHex,
   getContrastColor,
+  validateColor,
 } from '@/utils/colors'
 
-export default Vue.extend({
+export default defineComponent({
   name: 'JButton',
 
   components: {
@@ -46,7 +46,7 @@ export default Vue.extend({
     color: {
       type: String,
       default: 'primary',
-      validator: (val) => {
+      validator: (val: string): boolean => {
         return validateColor(val)
       },
     },
@@ -81,7 +81,7 @@ export default Vue.extend({
     size: {
       type: String,
       default: 'medium',
-      validator: (val) => {
+      validator: (val: string): boolean => {
         return ['large', 'medium', 'small'].includes(val)
       },
     },
@@ -99,68 +99,65 @@ export default Vue.extend({
     },
   },
 
-  computed: {
-    _tag() {
-      return (
-        (this.to && (this.nuxt ? 'nuxt-link' : 'router-link')) ||
-        (this.href && 'a') ||
-        this.tag ||
+  emits: ['click'],
+
+  setup(props, context) {
+    const computedTag = computed(
+      (): string =>
+        (props.to && (props.nuxt ? 'nuxt-link' : 'router-link')) ||
+        (props.href && 'a') ||
+        props.tag ||
         'button'
-      )
-    },
-    classes() {
-      return {
-        'j-button--large': this.size === 'large',
-        'j-button--medium': this.size === 'medium',
-        'j-button--small': this.size === 'small',
-        'j-button--disabled': this.disabled,
-        'j-button--outlined': this.outlined,
-        'j-button--loading': this.loading,
-        'j-button--icon': this.icon,
-        'j-button--no-decoration': this.noDecoration,
-      }
-    },
-    styles() {
-      return {
-        color: this.textColor,
-        'background-color': this.backgroundColor,
-      }
-    },
-    attrs() {
-      const res = {}
-      if (this.href) {
-        res.href = this.href
+    )
+    const classes = computed((): { [key: string]: boolean } => ({
+      'j-button--large': props.size === 'large',
+      'j-button--medium': props.size === 'medium',
+      'j-button--small': props.size === 'small',
+      'j-button--disabled': props.disabled,
+      'j-button--outlined': props.outlined,
+      'j-button--loading': props.loading,
+      'j-button--icon': props.icon,
+      'j-button--no-decoration': props.noDecoration,
+    }))
+
+    const textColor = computed((): string =>
+      props.disabled
+        ? colors['gray-200']
+        : props.outlined
+        ? convertNameToHex(props.color)
+        : getContrastColor(props.color)
+    )
+    const backgroundColor = computed((): string =>
+      props.outlined
+        ? 'transparent'
+        : props.disabled
+        ? colors['gray-100']
+        : convertNameToHex(props.color)
+    )
+    const styles = computed((): { [key: string]: string } => ({
+      color: textColor.value,
+      'background-color': backgroundColor.value,
+    }))
+
+    const attrs = computed((): { [key: string]: string } => {
+      const res: { [key: string]: string } = {}
+      if (props.href) {
+        res.href = props.href
       }
       return res
-    },
-    textColor() {
-      const color = this.color
-      return this.disabled
-        ? colors['gray-200']
-        : this.outlined
-        ? convertNameToHex(color)
-        : getContrastColor(color)
-    },
-    backgroundColor() {
-      const color = convertNameToHex(this.color)
-      return this.outlined
-        ? 'transparent'
-        : this.disabled
-        ? colors['gray-100']
-        : color
-    },
-  },
+    })
 
-  methods: {
-    click(e) {
-      this.$emit('click', e)
-    },
+    const click = (e: Event): void => {
+      context.emit('click', e)
+    }
+
+    return { attrs, classes, computedTag, styles, textColor, click }
   },
 })
 </script>
 
-<style lang="scss" scoped>
-@use 'src/sass/includes' as *;
+<style lang="scss">
+@use 'src/styles/includes' as *;
 $root: '.j-button';
 
 .j-button {

@@ -11,17 +11,17 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { computed, defineComponent } from 'vue'
 import { convertNameToHex, validateColor } from '@/utils/colors'
 
-export default Vue.extend({
+export default defineComponent({
   name: 'JContainer',
 
   props: {
     color: {
       type: String,
       default: 'transparent',
-      validator: (val) => {
+      validator: (val: string): boolean => {
         return validateColor(val) || val === 'transparent'
       },
     },
@@ -39,23 +39,20 @@ export default Vue.extend({
     },
   },
 
-  computed: {
-    classes() {
-      return {
-        'j-container--fluid': this.fluid,
-      }
-    },
-    styles() {
-      return {
-        'background-color': convertNameToHex(this.color),
-      }
-    },
+  setup(props) {
+    const classes = computed((): { [key: string]: boolean } => ({
+      'j-container--fluid': props.fluid,
+    }))
+    const styles = computed((): { [key: string]: string } => ({
+      'background-color': convertNameToHex(props.color),
+    }))
+    return { classes, styles }
   },
 })
 </script>
 
-<style lang="scss" scoped>
-@use 'src/sass/includes' as *;
+<style lang="scss">
+@use 'src/styles/includes' as *;
 $root: '.j-container';
 
 .j-container {

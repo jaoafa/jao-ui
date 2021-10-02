@@ -5,25 +5,24 @@
     </div>
 
     <div class="j-table-footer__pagination">
-      <j-pagination v-model="currentPage" :length="length" :total-visible="0" />
+      <j-pagination
+        v-model:page="currentPage"
+        :length="length"
+        :total-visible="0"
+      />
     </div>
   </div>
 </template>
 
-<script>
-import Vue from 'vue'
-import JPagination from '@/components/JPagination'
+<script lang="ts">
+import { computed, defineComponent } from 'vue'
+import { JPagination } from '@/index'
 
-export default Vue.extend({
+export default defineComponent({
   name: 'JTableFooter',
 
   components: {
     JPagination,
-  },
-
-  model: {
-    prop: 'page',
-    event: 'input',
   },
 
   props: {
@@ -41,39 +40,40 @@ export default Vue.extend({
     },
   },
 
-  computed: {
-    length() {
-      return Math.ceil(this.itemLength / this.itemPerPage)
-    },
-    caption() {
-      const page = this.page
-      const itemPerPage = this.itemPerPage
-      const itemLength = this.itemLength
-      if (itemLength) {
+  emits: ['input', 'update:page'],
+
+  setup(props, context) {
+    const length = computed((): number =>
+      Math.ceil(props.itemLength / props.itemPerPage)
+    )
+    const caption = computed((): string => {
+      if (props.itemLength) {
         return (
-          itemPerPage * (page - 1) +
+          props.itemPerPage * (props.page - 1) +
           1 +
           '-' +
-          (itemPerPage * page > itemLength ? itemLength : itemPerPage * page)
+          (props.itemPerPage * props.page > props.itemLength
+            ? props.itemLength
+            : props.itemPerPage * props.page)
         )
       } else {
         return ''
       }
-    },
-    currentPage: {
-      get() {
-        return this.page
+    })
+    const currentPage = computed({
+      get: (): number => props.page,
+      set: (val: number): void => {
+        context.emit('input', val)
+        context.emit('update:page', val)
       },
-      set(val) {
-        this.$emit('input', val)
-      },
-    },
+    })
+    return { caption, currentPage, length }
   },
 })
 </script>
 
-<style lang="scss" scoped>
-@use 'src/sass/includes' as *;
+<style lang="scss">
+@use 'src/styles/includes' as *;
 $root: '.j-table-footer';
 
 .j-table-footer {

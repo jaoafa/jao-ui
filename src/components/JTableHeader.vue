@@ -2,9 +2,8 @@
   <thead class="j-table-header">
     <slot>
       <tr>
-        <template v-for="item in headers">
+        <template v-for="item in headers" :key="item.key">
           <th
-            :key="item.key"
             :class="{
               'j-table-header__item--sortable': item.sortable,
               'j-table-header__item--active': sortBy === item.key,
@@ -32,16 +31,23 @@
   </thead>
 </template>
 
-<script>
-import Vue from 'vue'
-export default Vue.extend({
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
   name: 'JTableHeader',
 
   props: {
     headers: {
       type: Array,
       default: () => [],
-      validator: (val) => {
+      validator: (
+        val: {
+          label: string
+          key: string
+          sortable?: boolean
+        }[]
+      ): boolean => {
         return val.every((item) => item.label && item.key)
       },
     },
@@ -52,22 +58,25 @@ export default Vue.extend({
     sortOrder: {
       type: String,
       default: () => 'asc',
-      validator: (val) => {
+      validator: (val: string): boolean => {
         return ['asc', 'desc'].includes(val)
       },
     },
   },
 
-  methods: {
-    click(key) {
-      this.$emit('click', key)
-    },
+  emits: ['click'],
+
+  setup(_, context) {
+    const click = (key: string) => {
+      context.emit('click', key)
+    }
+    return { click }
   },
 })
 </script>
 
-<style lang="scss" scoped>
-@use 'src/sass/includes' as *;
+<style lang="scss">
+@use 'src/styles/includes' as *;
 $root: '.j-table-header';
 
 .j-table-header {

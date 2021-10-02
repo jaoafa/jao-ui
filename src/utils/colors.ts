@@ -1,4 +1,4 @@
-export const colors: { [name: string]: string } = Object.freeze({
+export const colors: { [key: string]: string } = Object.freeze({
   primary: '#ffb41d',
   'primary-lighten': '#fff8e2',
   'primary-900': '#fd7217',
@@ -47,7 +47,7 @@ export const colors: { [name: string]: string } = Object.freeze({
   youtube: '#ff0000',
 })
 
-export const validateColor = (val: string) => {
+export const validateColor = (val: string): boolean => {
   // hex
   if (/^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(val)) {
     return true
@@ -70,11 +70,11 @@ export const validateColor = (val: string) => {
   }
 }
 
-export const convertNameToHex = (val: string) => {
+export const convertNameToHex = (val: string): string => {
   return val in colors ? colors[val] : val
 }
 
-export const convertHEXtoRGBA = (val: string) => {
+export const convertHEXtoRGBA = (val: string): string => {
   const r = val.length === 7 ? val.slice(1, 3) : val.slice(1, 2).repeat(2)
   const g = val.length === 7 ? val.slice(3, 5) : val.slice(2, 3).repeat(2)
   const b = val.length === 7 ? val.slice(5, 7) : val.slice(3, 4).repeat(2)
@@ -89,17 +89,15 @@ export const convertHEXtoRGBA = (val: string) => {
   )
 }
 
-export const getContrastColor = (val: string) => {
-  const white = colors.white
-  const black = colors['gray-800']
+export const getContrastColor = (val: string): string => {
   if (!val.startsWith('rgb')) {
     if (['twitter', 'line', 'instagram', 'youtube'].includes(val)) {
-      return white
+      return colors.white
     }
     val = convertHEXtoRGBA(convertNameToHex(val))
   }
-  const arr = [...val.matchAll(/[0-9]+/g)].map((item) => +item[0])
+  const arr: number[] = [...val.matchAll(/[0-9]+/g)].map((item) => +item[0])
   return (arr[0] * 299 + arr[1] * 587 + arr[2] * 114) / 1000 < 128
-    ? white
-    : black
+    ? colors.white
+    : colors['gray-800']
 }
