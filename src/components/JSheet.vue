@@ -4,19 +4,19 @@
   </component>
 </template>
 
-<script>
-import Vue from 'vue'
+<script lang="ts">
+import { computed, defineComponent } from 'vue'
 import { convertNameToHex, validateColor } from '@/utils/colors'
 import { validateSize } from '@/utils/sizes'
 
-export default Vue.extend({
+export default defineComponent({
   name: 'JSheet',
 
   props: {
     color: {
       type: String,
       default: 'white',
-      validator: (val) => {
+      validator: (val: string): boolean => {
         return validateColor(val)
       },
     },
@@ -25,37 +25,37 @@ export default Vue.extend({
       default: false,
     },
     height: {
-      type: [Number, String],
+      type: String,
       default: null,
-      validator: (val) => {
+      validator: (val: string): boolean => {
         return validateSize(val)
       },
     },
     maxHeight: {
-      type: [Number, String],
+      type: String,
       default: null,
-      validator: (val) => {
+      validator: (val: string): boolean => {
         return validateSize(val)
       },
     },
     maxWidth: {
-      type: [Number, String],
+      type: String,
       default: null,
-      validator: (val) => {
+      validator: (val: string): boolean => {
         return validateSize(val)
       },
     },
     minHeight: {
-      type: [Number, String],
+      type: String,
       default: null,
-      validator: (val) => {
+      validator: (val: string): boolean => {
         return validateSize(val)
       },
     },
     minWidth: {
-      type: [Number, String],
+      type: String,
       default: null,
-      validator: (val) => {
+      validator: (val: string): boolean => {
         return validateSize(val)
       },
     },
@@ -68,38 +68,35 @@ export default Vue.extend({
       default: false,
     },
     width: {
-      type: [Number, String],
+      type: String,
       default: null,
-      validator: (val) => {
+      validator: (val: string): boolean => {
         return validateSize(val)
       },
     },
   },
 
-  computed: {
-    classes() {
-      return {
-        'j-sheet--flat': this.flat,
-        'j-sheet--tile': this.tile,
-      }
-    },
-    styles() {
-      return {
-        width: this.width,
-        height: this.height,
-        'max-width': this.maxWidth,
-        'max-height': this.maxHeight,
-        'min-width': this.minWidth,
-        'min-height': this.minHeight,
-        'background-color': convertNameToHex(this.color),
-      }
-    },
+  setup(props) {
+    const classes = computed((): { [key: string]: boolean } => ({
+      'j-sheet--flat': props.flat,
+      'j-sheet--tile': props.tile,
+    }))
+    const styles = computed((): { [key: string]: string } => ({
+      width: props.width,
+      height: props.height,
+      'max-width': props.maxWidth,
+      'max-height': props.maxHeight,
+      'min-width': props.minWidth,
+      'min-height': props.minHeight,
+      'background-color': convertNameToHex(props.color),
+    }))
+    return { classes, styles }
   },
 })
 </script>
 
-<style lang="scss" scoped>
-@use 'src/sass/includes' as *;
+<style lang="scss">
+@use 'src/styles/includes' as *;
 $root: '.j-sheet';
 
 .j-sheet {

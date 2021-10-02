@@ -1,4 +1,4 @@
-export const sizeUnits = Object.freeze([
+export const sizeUnits = [
   'cm',
   'mm',
   'q',
@@ -16,7 +16,7 @@ export const sizeUnits = Object.freeze([
   'vmin',
   'vmax',
   '%',
-])
+] as const
 
 export const validateSize = (val: string) => {
   if (typeof val === 'number' && val - val === 0) {

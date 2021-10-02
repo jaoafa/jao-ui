@@ -5,9 +5,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { computed, defineComponent } from 'vue'
 
-export default Vue.extend({
+export default defineComponent({
   name: 'JApp',
 
   props: {
@@ -17,19 +17,18 @@ export default Vue.extend({
     },
   },
 
-  computed: {
-    classes() {
-      return {
-        'j-app--no-stretch': this.noStretch,
-      }
-    },
+  setup(props) {
+    const classes = computed((): { [key: string]: boolean } => ({
+      'j-app--no-stretch': props.noStretch,
+    }))
+    return { classes }
   },
 })
 </script>
 
 <style lang="scss">
-@use 'src/sass/includes' as *;
-@use 'src/sass/styles.scss';
+@use 'src/styles/includes' as *;
+@use 'src/styles/main';
 $root: '.j-app';
 
 .j-app {

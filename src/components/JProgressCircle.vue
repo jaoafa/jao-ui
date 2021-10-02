@@ -6,13 +6,13 @@
       :viewbox="`0 0 ${size} ${size}`"
       xmlns="http://www.w3.org/2000/svg"
       class="j-progress-circle__svg"
-      style="transform: rotate(-90deg);"
+      style="transform: rotate(-90deg)"
     >
       <circle
         :cx="size / 2"
         :cy="size / 2"
         :r="radius"
-        :stroke="_color"
+        :stroke="convertedColor"
         :stroke-width="stroke"
         :stroke-dasharray="indeterminate ? null : circumference"
         :stroke-dashoffset="indeterminate ? null : offset"
@@ -23,18 +23,18 @@
   </div>
 </template>
 
-<script>
-import Vue from 'vue'
-import { validateColor, convertNameToHex } from '@/utils/colors'
+<script lang="ts">
+import { computed, defineComponent } from 'vue'
+import { convertNameToHex, validateColor } from '@/utils/colors'
 
-export default Vue.extend({
+export default defineComponent({
   name: 'JProgressCircle',
 
   props: {
     color: {
       type: String,
       default: 'primary',
-      validator: (val) => {
+      validator: (val: string): boolean => {
         return validateColor(val)
       },
     },
@@ -45,57 +45,44 @@ export default Vue.extend({
     percentage: {
       type: Number,
       default: 0,
-      validator: (val) => {
+      validator: (val: number): boolean => {
         return val >= 0 && val <= 100
       },
     },
     size: {
       type: Number,
       default: 32,
-      validator: (val) => {
+      validator: (val: number): boolean => {
         return val > 0
       },
     },
     stroke: {
       type: Number,
       default: 4,
-      validator: (val) => {
+      validator: (val: number): boolean => {
         return val > 0
       },
     },
   },
 
-  data() {
-    return {
-      dashOffset: 0,
-    }
-  },
+  setup(props) {
+    const classes = computed((): { [key: string]: boolean } => ({
+      'j-progress-circle--indeterminate': props.indeterminate,
+    }))
+    const convertedColor = computed((): string => convertNameToHex(props.color))
+    const radius = computed((): number => props.size / 2 - props.stroke)
+    const circumference = computed((): number => radius.value * 2 * Math.PI)
+    const offset = computed(
+      (): number => circumference.value * (1 - props.percentage / 100)
+    )
 
-  computed: {
-    _color() {
-      return convertNameToHex(this.color)
-    },
-    classes() {
-      return {
-        'j-progress-circle--indeterminate': this.indeterminate,
-      }
-    },
-    radius() {
-      return this.size / 2 - this.stroke
-    },
-    circumference() {
-      return this.radius * 2 * Math.PI
-    },
-    offset() {
-      const length = this.circumference
-      return length * (1 - this.percentage / 100)
-    },
+    return { circumference, classes, convertedColor, offset, radius }
   },
 })
 </script>
 
-<style lang="scss" scoped>
-@use 'src/sass/includes' as *;
+<style lang="scss">
+@use 'src/styles/includes' as *;
 $root: '.j-progress-circle';
 
 .j-progress-circle {

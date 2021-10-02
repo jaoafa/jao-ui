@@ -17,7 +17,7 @@
     "newLine": "lf",
     "types": ["node", "vue"],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["src/*"]
     },
     "plugins": [
       {
@@ -27,5 +27,5 @@
     ],
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
-  "exclude": ["node_modules", "dist", "storybook-static"]
+  "exclude": ["node_modules", "dist"]
 }

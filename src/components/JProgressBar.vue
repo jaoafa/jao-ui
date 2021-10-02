@@ -8,11 +8,11 @@
   </div>
 </template>
 
-<script>
-import Vue from 'vue'
+<script lang="ts">
+import { computed, defineComponent } from 'vue'
 import { convertNameToHex, validateColor } from '@/utils/colors'
 
-export default Vue.extend({
+export default defineComponent({
   name: 'JProgressBar',
 
   props: {
@@ -23,7 +23,7 @@ export default Vue.extend({
     color: {
       type: String,
       default: 'primary',
-      validator: (val) => {
+      validator: (val: string): boolean => {
         return validateColor(val)
       },
     },
@@ -34,41 +34,37 @@ export default Vue.extend({
     percentage: {
       type: Number,
       default: 0,
-      validator: (val) => {
+      validator: (val: number): boolean => {
         return val >= 0 && val <= 100
       },
     },
     stroke: {
       type: Number,
       default: 4,
-      validator: (val) => {
+      validator: (val: number): boolean => {
         return val > 0
       },
     },
   },
 
-  computed: {
-    _color() {
-      return convertNameToHex(this.color)
-    },
-    classes() {
-      return {
-        'j-progress-bar--absolute': this.absolute,
-        'j-progress-bar--indeterminate': this.indeterminate,
-      }
-    },
-    styles() {
-      return {
-        color: this._color,
-        height: `${this.stroke}px`,
-      }
-    },
+  setup(props) {
+    const classes = computed((): { [key: string]: boolean } => ({
+      'j-progress-bar--absolute': props.absolute,
+      'j-progress-bar--indeterminate': props.indeterminate,
+    }))
+
+    const convertedColor = computed((): string => convertNameToHex(props.color))
+    const styles = computed((): { [key: string]: string } => ({
+      color: convertedColor.value,
+      height: `${props.stroke}px`,
+    }))
+    return { classes, styles }
   },
 })
 </script>
 
-<style lang="scss" scoped>
-@use 'src/sass/includes' as *;
+<style lang="scss">
+@use 'src/styles/includes' as *;
 $root: '.j-progress-bar';
 
 .j-progress-bar {
