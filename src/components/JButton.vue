@@ -27,13 +27,13 @@
 
 <script lang="ts">
 import { computed, defineComponent } from 'vue'
-import { JProgressCircle } from '@/index'
 import {
   colors,
   convertNameToHex,
   getContrastColor,
   validateColor,
 } from '@/utils/colors'
+import JProgressCircle from '@/components/JProgressCircle.vue'
 
 export default defineComponent({
   name: 'JButton',
