@@ -16,12 +16,7 @@
       </li>
 
       <template v-for="item in generatedItems" :key="item.id">
-        <li
-          :class="{
-            'j-pagination__item': true,
-            'j-pagination__item--current': item.label === page,
-          }"
-        >
+        <li class="j-pagination__item">
           <component
             :is="item.tag"
             :class="item.class"
@@ -29,6 +24,11 @@
           >
             {{ item.label }}
           </component>
+          <span
+            v-show="item.label === page"
+            :style="{ 'background-color': convertedColor }"
+            class="j-pagination__current"
+          ></span>
         </li>
       </template>
 
@@ -51,11 +51,19 @@
 
 <script lang="ts">
 import { computed, defineComponent, nextTick, onMounted, ref } from 'vue'
+import { convertNameToHex, validateColor } from '@/utils/colors'
 
 export default defineComponent({
   name: 'JPagination',
 
   props: {
+    color: {
+      type: String,
+      default: 'primary',
+      validator: (val: string): boolean => {
+        return validateColor(val)
+      },
+    },
     length: {
       type: Number,
       default: 0,
@@ -133,6 +141,8 @@ export default defineComponent({
       })
     })
 
+    const convertedColor = computed((): string => convertNameToHex(props.color))
+
     const input = (val: number): void => {
       context.emit('input', val)
       context.emit('update:page', val)
@@ -168,7 +178,8 @@ export default defineComponent({
     onMounted(() => {
       nextTick(resize)
     })
-    return { generatedItems, root, input, next, prev }
+
+    return { generatedItems, root, convertedColor, input, next, prev }
   },
 })
 </script>
@@ -205,19 +216,6 @@ $root: '.j-pagination';
   & ~ & {
     margin-left: 16px;
   }
-
-  &--current {
-    &::after {
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      display: block;
-      width: 100%;
-      height: 4px;
-      content: '';
-      background-color: $color-primary;
-    }
-  }
 }
 
 .j-pagination__button {
@@ -245,6 +243,16 @@ $root: '.j-pagination';
   &:hover {
     background-color: rgba(0, 0, 0, 0.1);
   }
+}
+
+.j-pagination__current {
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 4px;
+  content: '';
 }
 
 .j-pagination__icon {
