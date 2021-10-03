@@ -71,7 +71,9 @@
 
 <script lang="ts">
 import { computed, defineComponent, ref } from 'vue'
-import { JProgressCircle, JTableFooter, JTableHeader } from '@/index'
+import JProgressCircle from '@/components/JProgressCircle.vue'
+import JTableFooter from '@/components/JTableFooter.vue'
+import JTableHeader from '@/components/JTableHeader.vue'
 
 export default defineComponent({
   name: 'JTable',
