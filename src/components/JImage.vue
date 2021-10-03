@@ -23,8 +23,8 @@
 
 <script lang="ts">
 import { computed, defineComponent, ref } from 'vue'
-import { JProgressCircle } from '@/index'
 import { validateSize } from '@/utils/sizes'
+import JProgressCircle from '@/components/JProgressCircle.vue'
 
 export default defineComponent({
   name: 'JImage',
