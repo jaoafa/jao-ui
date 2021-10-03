@@ -1,14 +1,17 @@
 <h1 align="center">
   <img src="https://user-images.githubusercontent.com/23224932/114276380-51370e80-9a61-11eb-9c72-615340a4d4b8.png" alt="jao UI Library">
 </h1>
-<h3 align="center">jao UI Components with Vue.js 💣✨</h3>
+<h3 align="center">jao UI Components with Vue.js 3 💣✨</h3>
 <p align="center">
 jao UI is Vue based component library for jao community that provides Minecraft multi-server services.
 </p>
 
 <p align="center">
-  <a href="https://github.com/jaoafa/jao-ui/releases">
-    <img src="https://img.shields.io/github/v/release/jaoafa/jao-ui" alt="release">
+  <a href="https://github.com/jaoafa/jao-ui/actions?query=workflow%3ACI">
+    <img alt="GitHub Workflow Status (branch)" src="https://img.shields.io/github/workflow/status/jaoafa/jao-ui/CI/dev">
+  </a>
+  <a href="https://www.npmjs.com/package/@jaoafa/jao-ui">
+    <img alt="npm (scoped)" src="https://img.shields.io/npm/v/@jaoafa/jao-ui">
   </a>
   <a href="https://github.com/jaoafa/jao-ui/blob/main/LICENSE">
     <img src="https://img.shields.io/github/license/jaoafa/jao-ui" alt="license">
@@ -20,24 +23,29 @@ jao UI is Vue based component library for jao community that provides Minecraft 
   <a href="https://jaoui.vercel.app/">
     <img src="https://cdn.jsdelivr.net/gh/storybookjs/brand@main/badge/badge-storybook.svg" alt="storybook">
   </a>
-  <a href="https://discord.com/invite/YjwYEBk">
+  <a href="http://discord.gg/zEGrApgGfB">
     <img src="https://discord.com/api/guilds/597378876556967936/widget.png" alt="Discord">
   </a>
 </p>
 
 ## 🚀 Install
 
-In the same directory as your `package.json` file, create or edit an `.npmrc` file to include a line this:
-
-```
-@jaoafa:registry=https://npm.pkg.github.com
-```
-
-and install the package.
+You can install `jao-ui` using npm:
 
 ```bash
 $ npm install @jaoafa/jao-ui
 ```
+
+or using yarn:
+
+```bash
+$ yarn add @jaoafa/jao-ui
+```
+
+## 📖 Documentation
+
+You can find for more docs on [https://jaoafa.github.io/jao-ui](https://jaoafa.github.io/jao-ui/).  
+To see actual display, go to [Storybook](https://jaoui.vercel.app/).
 
 ## 🛠 Contributing
 
