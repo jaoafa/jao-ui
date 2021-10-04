@@ -6,6 +6,9 @@ export default {
   component: JPagination,
   argTypes: {
     // props
+    color: {
+      description: '指定された色を現在選択しているページ番号に適用します。',
+    },
     length: {
       description: 'ページ番号の最大値を指定します。',
     },
@@ -33,6 +36,11 @@ export default {
     input: {
       description: 'ページが選択されたときに発生するイベントです。',
       action: 'input',
+    },
+    'update:page': {
+      table: {
+        disable: true,
+      },
     },
     // slots
   },
