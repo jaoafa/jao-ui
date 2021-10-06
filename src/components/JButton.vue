@@ -248,7 +248,7 @@ $root: '.j-button';
   }
 
   &--icon {
-    padding: 0 0 2px 0;
+    padding: 0;
     line-height: 1;
     border-radius: 50%;
 
