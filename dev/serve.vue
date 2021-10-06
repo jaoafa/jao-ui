@@ -85,58 +85,94 @@
               <j-button size="small" outlined loading> Button </j-button>
             </j-col>
             <j-col>
-              <j-button size="large" icon> a </j-button>
+              <j-button size="large" icon>
+                <j-icon>home</j-icon>
+              </j-button>
             </j-col>
             <j-col>
-              <j-button size="medium" icon> a </j-button>
+              <j-button size="medium" icon>
+                <j-icon>home</j-icon>
+              </j-button>
             </j-col>
             <j-col>
-              <j-button size="small" icon> a </j-button>
+              <j-button size="small" icon>
+                <j-icon>home</j-icon>
+              </j-button>
             </j-col>
             <j-col>
-              <j-button size="large" disabled icon> a </j-button>
+              <j-button size="large" disabled icon>
+                <j-icon>home</j-icon>
+              </j-button>
             </j-col>
             <j-col>
-              <j-button size="medium" disabled icon> a </j-button>
+              <j-button size="medium" disabled icon>
+                <j-icon>home</j-icon>
+              </j-button>
             </j-col>
             <j-col>
-              <j-button size="small" disabled icon> a </j-button>
+              <j-button size="small" disabled icon>
+                <j-icon>home</j-icon>
+              </j-button>
             </j-col>
             <j-col>
-              <j-button size="large" loading icon> a </j-button>
+              <j-button size="large" loading icon>
+                <j-icon>home</j-icon>
+              </j-button>
             </j-col>
             <j-col>
-              <j-button size="medium" loading icon> a </j-button>
+              <j-button size="medium" loading icon>
+                <j-icon>home</j-icon>
+              </j-button>
             </j-col>
             <j-col>
-              <j-button size="small" loading icon> a </j-button>
+              <j-button size="small" loading icon>
+                <j-icon>home</j-icon>
+              </j-button>
             </j-col>
             <j-col>
-              <j-button size="large" icon outlined> a </j-button>
+              <j-button size="large" icon outlined>
+                <j-icon>home</j-icon>
+              </j-button>
             </j-col>
             <j-col>
-              <j-button size="medium" icon outlined> a </j-button>
+              <j-button size="medium" icon outlined>
+                <j-icon>home</j-icon>
+              </j-button>
             </j-col>
             <j-col>
-              <j-button size="small" icon outlined> a </j-button>
+              <j-button size="small" icon outlined>
+                <j-icon>home</j-icon>
+              </j-button>
             </j-col>
             <j-col>
-              <j-button size="large" icon disabled outlined> a </j-button>
+              <j-button size="large" icon disabled outlined>
+                <j-icon>home</j-icon>
+              </j-button>
             </j-col>
             <j-col>
-              <j-button size="medium" icon disabled outlined> a </j-button>
+              <j-button size="medium" icon disabled outlined>
+                <j-icon>home</j-icon>
+              </j-button>
             </j-col>
             <j-col>
-              <j-button size="small" icon disabled outlined> a </j-button>
+              <j-button size="small" icon disabled outlined>
+                <j-icon>home</j-icon>
+              </j-button>
             </j-col>
             <j-col>
-              <j-button size="large" loading icon outlined> a </j-button>
+              <j-button size="large" loading icon outlined>
+                <j-icon>home</j-icon>
+              </j-button>
             </j-col>
             <j-col>
-              <j-button size="medium" loading icon outlined> a </j-button>
+              <j-button size="medium" loading icon outlined>
+                <j-icon>home</j-icon>
+              </j-button>
             </j-col>
             <j-col>
-              <j-button size="small" loading icon outlined> a </j-button>
+              <j-button size="small" loading icon outlined>
+                <j-icon>home</j-icon>
+              </j-button>
             </j-col>
           </j-row>
         </section>
