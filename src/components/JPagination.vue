@@ -8,9 +8,7 @@
           @click="prev"
         >
           <span class="j-pagination__icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
-            </svg>
+            <j-icon>chevron_left</j-icon>
           </span>
         </button>
       </li>
@@ -39,9 +37,7 @@
           @click="next"
         >
           <span class="j-pagination__icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
-            </svg>
+            <j-icon>chevron_right</j-icon>
           </span>
         </button>
       </li>
@@ -52,9 +48,14 @@
 <script lang="ts">
 import { computed, defineComponent, nextTick, onMounted, ref } from 'vue'
 import { convertNameToHex, validateColor } from '@/utils/colors'
+import JIcon from '@/components/JIcon.vue'
 
 export default defineComponent({
   name: 'JPagination',
+
+  components: {
+    JIcon,
+  },
 
   props: {
     color: {
@@ -256,11 +257,12 @@ $root: '.j-pagination';
 }
 
 .j-pagination__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 60%;
   height: 60%;
-
-  svg {
-    fill: currentColor;
-  }
+  padding-top: 2px;
+  font-size: 22px;
 }
 </style>
