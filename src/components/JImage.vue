@@ -1,5 +1,5 @@
 <template>
-  <div :class="classes" :style="styles" class="j-image">
+  <div :class="classes" :style="styles">
     <transition>
       <img
         v-show="isLoaded"
@@ -101,8 +101,10 @@ export default defineComponent({
 
   setup(props) {
     const classes = computed((): { [key: string]: boolean } => ({
+      'j-image': true,
       'j-image--contain': props.contain,
     }))
+
     const styles = computed((): { [key: string]: string } => ({
       width: props.width,
       height: props.height,
@@ -111,10 +113,13 @@ export default defineComponent({
       'min-width': props.minWidth,
       'min-height': props.minHeight,
     }))
+
     const isLoaded = ref(false)
+
     const onLoad = (): void => {
       isLoaded.value = true
     }
+
     return { classes, styles, isLoaded, onLoad }
   },
 })
@@ -122,6 +127,7 @@ export default defineComponent({
 
 <style lang="scss">
 @use 'src/styles/includes' as *;
+
 $root: '.j-image';
 
 .j-image {

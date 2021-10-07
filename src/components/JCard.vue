@@ -15,7 +15,6 @@
     :to="to"
     :width="width"
     v-bind="attrs"
-    class="j-card"
     @click="click"
   >
     <slot />
@@ -118,16 +117,8 @@ export default defineComponent({
   emits: ['click'],
 
   setup(props, context) {
-    const computedTag = computed(
-      (): string =>
-        (props.to && (props.nuxt ? 'nuxt-link' : 'router-link')) ||
-        (props.href && 'a') ||
-        props.tag ||
-        'div'
-    )
-
-    const link = computed((): boolean => !!(props.to || props.href))
     const classes = computed((): { [key: string]: boolean } => ({
+      'j-card': true,
       'j-card--link': link.value,
       'j-card--tile': props.tile,
     }))
@@ -144,6 +135,16 @@ export default defineComponent({
       return res
     })
 
+    const computedTag = computed(
+      (): string =>
+        (props.to && (props.nuxt ? 'nuxt-link' : 'router-link')) ||
+        (props.href && 'a') ||
+        props.tag ||
+        'div'
+    )
+
+    const link = computed((): boolean => !!(props.to || props.href))
+
     const click = (e: Event): void => {
       context.emit('click', e)
     }
@@ -155,6 +156,7 @@ export default defineComponent({
 
 <style lang="scss">
 @use 'src/styles/includes' as *;
+
 $root: '.j-card';
 
 .j-card {

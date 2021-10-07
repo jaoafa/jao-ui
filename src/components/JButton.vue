@@ -7,7 +7,6 @@
     :target="target"
     :disabled="disabled ? 'disabled' : null"
     v-bind="attrs"
-    class="j-button"
     @click="click"
   >
     <span class="j-button__body">
@@ -102,14 +101,8 @@ export default defineComponent({
   emits: ['click'],
 
   setup(props, context) {
-    const computedTag = computed(
-      (): string =>
-        (props.to && (props.nuxt ? 'nuxt-link' : 'router-link')) ||
-        (props.href && 'a') ||
-        props.tag ||
-        'button'
-    )
     const classes = computed((): { [key: string]: boolean } => ({
+      'j-button': true,
       'j-button--large': props.size === 'large',
       'j-button--medium': props.size === 'medium',
       'j-button--small': props.size === 'small',
@@ -120,20 +113,6 @@ export default defineComponent({
       'j-button--no-decoration': props.noDecoration,
     }))
 
-    const textColor = computed((): string =>
-      props.disabled
-        ? colors['gray-200']
-        : props.outlined
-        ? convertNameToHex(props.color)
-        : getContrastColor(props.color)
-    )
-    const backgroundColor = computed((): string =>
-      props.outlined
-        ? 'transparent'
-        : props.disabled
-        ? colors['gray-100']
-        : convertNameToHex(props.color)
-    )
     const styles = computed((): { [key: string]: string } => ({
       color: textColor.value,
       'background-color': backgroundColor.value,
@@ -147,6 +126,30 @@ export default defineComponent({
       return res
     })
 
+    const computedTag = computed(
+      (): string =>
+        (props.to && (props.nuxt ? 'nuxt-link' : 'router-link')) ||
+        (props.href && 'a') ||
+        props.tag ||
+        'button'
+    )
+
+    const textColor = computed((): string =>
+      props.disabled
+        ? colors['gray-200']
+        : props.outlined
+        ? convertNameToHex(props.color)
+        : getContrastColor(props.color)
+    )
+
+    const backgroundColor = computed((): string =>
+      props.outlined
+        ? 'transparent'
+        : props.disabled
+        ? colors['gray-100']
+        : convertNameToHex(props.color)
+    )
+
     const click = (e: Event): void => {
       context.emit('click', e)
     }
@@ -158,6 +161,7 @@ export default defineComponent({
 
 <style lang="scss">
 @use 'src/styles/includes' as *;
+
 $root: '.j-button';
 
 .j-button {

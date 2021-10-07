@@ -1,11 +1,5 @@
 <template>
-  <component
-    :is="tag"
-    :id="id"
-    :class="classes"
-    :style="styles"
-    class="j-container"
-  >
+  <component :is="tag" :id="id" :class="classes" :style="styles">
     <slot />
   </component>
 </template>
@@ -41,11 +35,14 @@ export default defineComponent({
 
   setup(props) {
     const classes = computed((): { [key: string]: boolean } => ({
+      'j-container': true,
       'j-container--fluid': props.fluid,
     }))
+
     const styles = computed((): { [key: string]: string } => ({
       'background-color': convertNameToHex(props.color),
     }))
+
     return { classes, styles }
   },
 })
@@ -53,6 +50,7 @@ export default defineComponent({
 
 <style lang="scss">
 @use 'src/styles/includes' as *;
+
 $root: '.j-container';
 
 .j-container {

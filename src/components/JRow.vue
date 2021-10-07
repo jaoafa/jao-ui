@@ -1,5 +1,5 @@
 <template>
-  <component :is="tag" :class="classes" class="j-row">
+  <component :is="tag" :class="classes">
     <slot />
   </component>
 </template>
@@ -43,6 +43,7 @@ export default defineComponent({
 
   setup(props) {
     const classes = computed((): { [key: string]: boolean } => ({
+      'j-row': true,
       'j-row--align-start': props.align === 'start',
       'j-row--align-center': props.align === 'center',
       'j-row--align-end': props.align === 'end',
@@ -55,6 +56,7 @@ export default defineComponent({
       'j-row--justify-around': props.justify === 'space-around',
       'j-row--no-gap': props.noGap,
     }))
+
     return { classes }
   },
 })
@@ -62,6 +64,7 @@ export default defineComponent({
 
 <style lang="scss">
 @use 'src/styles/includes' as *;
+
 $root: '.j-row';
 
 .j-row {

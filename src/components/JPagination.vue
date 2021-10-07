@@ -1,5 +1,5 @@
 <template>
-  <nav ref="root" class="j-pagination">
+  <nav ref="root" :class="classes">
     <ul class="j-pagination__body">
       <li class="j-pagination__item">
         <button
@@ -91,14 +91,12 @@ export default defineComponent({
   emits: ['input', 'update:page'],
 
   setup(props, context) {
+    const classes = computed((): { [key: string]: boolean } => ({
+      'j-pagination': true,
+    }))
+
     const maxSize = ref(0)
-    const range = (min: number, max: number): number[] => {
-      const range: number[] = []
-      for (let i: number = min; i <= max; i++) {
-        range.push(i)
-      }
-      return range
-    }
+
     const items = computed((): (string | number)[] => {
       if (props.totalVisible === 0) {
         return []
@@ -130,6 +128,7 @@ export default defineComponent({
         return [...range(1, left), '...', ...range(right, props.length)]
       }
     })
+
     const generatedItems = computed(() => {
       return items.value.map((item, index) => {
         const isButton = typeof item === 'number'
@@ -143,6 +142,14 @@ export default defineComponent({
     })
 
     const convertedColor = computed((): string => convertNameToHex(props.color))
+
+    const range = (min: number, max: number): number[] => {
+      const range: number[] = []
+      for (let i: number = min; i <= max; i++) {
+        range.push(i)
+      }
+      return range
+    }
 
     const input = (val: number): void => {
       context.emit('input', val)
@@ -180,13 +187,14 @@ export default defineComponent({
       nextTick(resize)
     })
 
-    return { generatedItems, root, convertedColor, input, next, prev }
+    return { classes, generatedItems, root, convertedColor, input, next, prev }
   },
 })
 </script>
 
 <style lang="scss">
 @use 'src/styles/includes' as *;
+
 $root: '.j-pagination';
 
 .j-pagination {

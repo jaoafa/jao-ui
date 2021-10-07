@@ -1,5 +1,5 @@
 <template>
-  <div :class="classes" class="j-app">
+  <div :class="classes">
     <slot />
   </div>
 </template>
@@ -19,8 +19,10 @@ export default defineComponent({
 
   setup(props) {
     const classes = computed((): { [key: string]: boolean } => ({
+      'j-app': true,
       'j-app--no-stretch': props.noStretch,
     }))
+
     return { classes }
   },
 })
@@ -29,6 +31,7 @@ export default defineComponent({
 <style lang="scss">
 @use 'src/styles/includes' as *;
 @use 'src/styles/main';
+
 $root: '.j-app';
 
 .j-app {

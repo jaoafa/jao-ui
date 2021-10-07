@@ -1,5 +1,5 @@
 <template>
-  <component :is="tag" :class="classes" :style="styles" class="j-sheet">
+  <component :is="tag" :class="classes" :style="styles">
     <slot />
   </component>
 </template>
@@ -78,9 +78,11 @@ export default defineComponent({
 
   setup(props) {
     const classes = computed((): { [key: string]: boolean } => ({
+      'j-sheet': true,
       'j-sheet--flat': props.flat,
       'j-sheet--tile': props.tile,
     }))
+
     const styles = computed((): { [key: string]: string } => ({
       width: props.width,
       height: props.height,
@@ -90,6 +92,7 @@ export default defineComponent({
       'min-height': props.minHeight,
       'background-color': convertNameToHex(props.color),
     }))
+
     return { classes, styles }
   },
 })
@@ -97,6 +100,7 @@ export default defineComponent({
 
 <style lang="scss">
 @use 'src/styles/includes' as *;
+
 $root: '.j-sheet';
 
 .j-sheet {

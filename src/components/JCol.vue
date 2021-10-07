@@ -1,5 +1,5 @@
 <template>
-  <component :is="tag" :class="classes" class="j-col">
+  <component :is="tag" :class="classes">
     <slot />
   </component>
 </template>
@@ -54,11 +54,10 @@ export default defineComponent({
 
   setup(props) {
     const instance = getCurrentInstance()
-    const gap = computed((): boolean =>
-      instance && instance.parent ? !!instance.parent.props.noGap : false
-    )
+
     const classes = computed((): { [key: string]: boolean } => {
       const res: { [key: string]: boolean } = {
+        'j-col': true,
         'j-col--no-gap': gap.value,
       }
       const colsXs = props.cols
@@ -73,6 +72,11 @@ export default defineComponent({
       res[`j-col--xl-${colsXl}`] = !!colsXl
       return res
     })
+
+    const gap = computed((): boolean =>
+      instance && instance.parent ? !!instance.parent.props.noGap : false
+    )
+
     return { classes }
   },
 })
@@ -81,6 +85,7 @@ export default defineComponent({
 <style lang="scss">
 @use 'src/styles/includes' as *;
 @use 'sass:math';
+
 $root: '.j-col';
 
 .j-col {

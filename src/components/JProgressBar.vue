@@ -1,5 +1,5 @@
 <template>
-  <div :class="classes" :style="styles" class="j-progress-bar">
+  <div :class="classes" :style="styles">
     <div class="j-progress-bar__background" />
     <div
       :style="{ width: indeterminate ? null : `${percentage}%` }"
@@ -49,15 +49,18 @@ export default defineComponent({
 
   setup(props) {
     const classes = computed((): { [key: string]: boolean } => ({
+      'j-progress-bar': true,
       'j-progress-bar--absolute': props.absolute,
       'j-progress-bar--indeterminate': props.indeterminate,
     }))
 
-    const convertedColor = computed((): string => convertNameToHex(props.color))
     const styles = computed((): { [key: string]: string } => ({
       color: convertedColor.value,
       height: `${props.stroke}px`,
     }))
+
+    const convertedColor = computed((): string => convertNameToHex(props.color))
+
     return { classes, styles }
   },
 })
@@ -65,6 +68,7 @@ export default defineComponent({
 
 <style lang="scss">
 @use 'src/styles/includes' as *;
+
 $root: '.j-progress-bar';
 
 .j-progress-bar {
