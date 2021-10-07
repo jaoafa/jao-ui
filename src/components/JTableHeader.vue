@@ -18,11 +18,7 @@
             </span>
 
             <span class="j-table-header__sort">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path
-                  d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"
-                />
-              </svg>
+              <j-icon>arrow_upward</j-icon>
             </span>
           </th>
         </template>
@@ -33,9 +29,14 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import JIcon from '@/components/JIcon.vue'
 
 export default defineComponent({
   name: 'JTableHeader',
+
+  components: {
+    JIcon,
+  },
 
   props: {
     headers: {
@@ -122,6 +123,7 @@ $root: '.j-table-header';
 }
 
 .j-table-header__label {
+  margin-right: 2px;
   vertical-align: middle;
 }
 
@@ -131,14 +133,12 @@ $root: '.j-table-header';
   justify-content: center;
   width: 16px;
   height: 16px;
+  padding-top: 3px;
+  font-size: 16px;
   vertical-align: middle;
   pointer-events: none;
   opacity: 0;
   transition-duration: 0.2s;
   transition-property: opacity transform;
-
-  & > svg {
-    fill: currentColor;
-  }
 }
 </style>
