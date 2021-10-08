@@ -95,7 +95,7 @@
   },
   "scripts": {
     "prepare": "husky install",
-    "serve": "cross-env PORT=3000 vue-cli-service serve dev/serve.ts",
+    "dev": "cross-env PORT=3000 vue-cli-service serve dev/serve.ts",
     "lint": "npm run lint:script & npm run lint:style",
     "lint:script": "eslint . --ext .js,.jsx,.ts,.tsx,.vue",
     "lint:style": "stylelint \"**/*.{css,scss,vue}\"",
