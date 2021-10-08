@@ -5,14 +5,13 @@
     :style="styles"
     :to="to"
     :target="target"
-    :disabled="disabled ? 'disabled' : null"
+    :disabled="disabled"
     v-bind="attrs"
     @click="click"
   >
     <span class="j-button__body">
       <slot />
     </span>
-
     <span class="j-button__loader">
       <j-progress-circle
         :color="textColor"
@@ -25,7 +24,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
+import { computed, defineComponent, PropType } from 'vue'
 import {
   colors,
   convertNameToHex,
@@ -55,7 +54,7 @@ export default defineComponent({
     },
     href: {
       type: String,
-      default: null,
+      default: undefined,
     },
     icon: {
       type: Boolean,
@@ -78,7 +77,7 @@ export default defineComponent({
       default: false,
     },
     size: {
-      type: String,
+      type: String as PropType<'large' | 'medium' | 'small'>,
       default: 'medium',
       validator: (val: string): boolean => {
         return ['large', 'medium', 'small'].includes(val)
@@ -90,11 +89,11 @@ export default defineComponent({
     },
     target: {
       type: String,
-      default: null,
+      default: undefined,
     },
     to: {
       type: String,
-      default: null,
+      default: undefined,
     },
   },
 
@@ -300,6 +299,9 @@ $root: '.j-button';
 }
 
 .j-button__body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: inherit;
 
   &::before {
