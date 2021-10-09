@@ -7,8 +7,8 @@
 
 |Name|Type|Default|Description|
 |:--|:--|:--|:--|
-|`color`|`string`|`null`|指定された色をアイコンに適用します。|
-|`size`|`number`|`null`|指定された大きさをアイコンに適用します。|
+|`color`|`string`指定された色をアイコンに適用します。|
+|`size`|`number`指定された大きさをアイコンに適用します。|
 
 ### Slots
 

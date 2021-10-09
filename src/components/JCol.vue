@@ -13,35 +13,35 @@ export default defineComponent({
   props: {
     cols: {
       type: Number,
-      default: null,
+      default: undefined,
       validator: (val: number): boolean => {
         return val >= 1 && val <= 12
       },
     },
     colsLg: {
       type: Number,
-      default: null,
+      default: undefined,
       validator: (val: number): boolean => {
         return val >= 1 && val <= 12
       },
     },
     colsMd: {
       type: Number,
-      default: null,
+      default: undefined,
       validator: (val: number): boolean => {
         return val >= 1 && val <= 12
       },
     },
     colsSm: {
       type: Number,
-      default: null,
+      default: undefined,
       validator: (val: number): boolean => {
         return val >= 1 && val <= 12
       },
     },
     colsXl: {
       type: Number,
-      default: null,
+      default: undefined,
       validator: (val: number): boolean => {
         return val >= 1 && val <= 12
       },
@@ -53,25 +53,35 @@ export default defineComponent({
   },
 
   setup(props) {
-    const instance = getCurrentInstance()
-
     const classes = computed((): { [key: string]: boolean } => {
       const res: { [key: string]: boolean } = {
         'j-col': true,
         'j-col--no-gap': gap.value,
       }
-      const colsXs = props.cols
-      const colsSm = props.colsSm
-      const colsMd = props.colsMd
-      const colsLg = props.colsLg
-      const colsXl = props.colsXl
-      res[`j-col--xs-${colsXs}`] = !!colsXs
-      res[`j-col--sm-${colsSm}`] = !!colsSm
-      res[`j-col--md-${colsMd}`] = !!colsMd
-      res[`j-col--lg-${colsLg}`] = !!colsLg
-      res[`j-col--xl-${colsXl}`] = !!colsXl
+      if (props.cols) {
+        const colsXs = props.cols
+        res[`j-col--xs-${colsXs}`] = !!colsXs
+      }
+      if (props.colsSm) {
+        const colsSm = props.colsSm
+        res[`j-col--sm-${colsSm}`] = !!colsSm
+      }
+      if (props.colsMd) {
+        const colsMd = props.colsMd
+        res[`j-col--md-${colsMd}`] = !!colsMd
+      }
+      if (props.colsLg) {
+        const colsLg = props.colsLg
+        res[`j-col--lg-${colsLg}`] = !!colsLg
+      }
+      if (props.colsXl) {
+        const colsXl = props.colsXl
+        res[`j-col--xl-${colsXl}`] = !!colsXl
+      }
       return res
     })
+
+    const instance = getCurrentInstance()
 
     const gap = computed((): boolean =>
       instance && instance.parent ? !!instance.parent.props.noGap : false

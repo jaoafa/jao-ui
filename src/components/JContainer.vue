@@ -25,7 +25,7 @@ export default defineComponent({
     },
     id: {
       type: String,
-      default: null,
+      default: undefined,
     },
     tag: {
       type: String,

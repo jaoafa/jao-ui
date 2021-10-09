@@ -48,39 +48,39 @@ export default defineComponent({
     },
     height: {
       type: String,
-      default: null,
+      default: undefined,
       validator: (val: string): boolean => {
         return validateSize(val)
       },
     },
     href: {
       type: String,
-      default: null,
+      default: undefined,
     },
     maxHeight: {
       type: String,
-      default: null,
+      default: undefined,
       validator: (val: string): boolean => {
         return validateSize(val)
       },
     },
     maxWidth: {
       type: String,
-      default: null,
+      default: undefined,
       validator: (val: string): boolean => {
         return validateSize(val)
       },
     },
     minHeight: {
       type: String,
-      default: null,
+      default: undefined,
       validator: (val: string): boolean => {
         return validateSize(val)
       },
     },
     minWidth: {
       type: String,
-      default: null,
+      default: undefined,
       validator: (val: string): boolean => {
         return validateSize(val)
       },
@@ -95,7 +95,7 @@ export default defineComponent({
     },
     target: {
       type: String,
-      default: null,
+      default: undefined,
     },
     tile: {
       type: Boolean,
@@ -103,11 +103,11 @@ export default defineComponent({
     },
     to: {
       type: String,
-      default: null,
+      default: undefined,
     },
     width: {
       type: String,
-      default: null,
+      default: undefined,
       validator: (val: string): boolean => {
         return validateSize(val)
       },

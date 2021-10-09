@@ -16,14 +16,14 @@ export default defineComponent({
   props: {
     color: {
       type: String,
-      default: null,
+      default: undefined,
       validator: (val: string): boolean => {
         return validateColor(val)
       },
     },
     size: {
       type: Number,
-      default: null,
+      default: undefined,
       validator: (val: number): boolean => {
         return val >= 0
       },
@@ -37,7 +37,7 @@ export default defineComponent({
 
     const styles = computed((): { [key: string]: string } => ({
       color: props.color ? convertNameToHex(props.color) : 'inherit',
-      'font-size': `${props.size}px`,
+      'font-size': props.size ? `${props.size}px` : 'inherit',
     }))
 
     return { classes, styles }

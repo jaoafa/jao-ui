@@ -26,35 +26,35 @@ export default defineComponent({
     },
     height: {
       type: String,
-      default: null,
+      default: undefined,
       validator: (val: string): boolean => {
         return validateSize(val)
       },
     },
     maxHeight: {
       type: String,
-      default: null,
+      default: undefined,
       validator: (val: string): boolean => {
         return validateSize(val)
       },
     },
     maxWidth: {
       type: String,
-      default: null,
+      default: undefined,
       validator: (val: string): boolean => {
         return validateSize(val)
       },
     },
     minHeight: {
       type: String,
-      default: null,
+      default: undefined,
       validator: (val: string): boolean => {
         return validateSize(val)
       },
     },
     minWidth: {
       type: String,
-      default: null,
+      default: undefined,
       validator: (val: string): boolean => {
         return validateSize(val)
       },
@@ -69,7 +69,7 @@ export default defineComponent({
     },
     width: {
       type: String,
-      default: null,
+      default: undefined,
       validator: (val: string): boolean => {
         return validateSize(val)
       },
@@ -83,15 +83,30 @@ export default defineComponent({
       'j-sheet--tile': props.tile,
     }))
 
-    const styles = computed((): { [key: string]: string } => ({
-      width: props.width,
-      height: props.height,
-      'max-width': props.maxWidth,
-      'max-height': props.maxHeight,
-      'min-width': props.minWidth,
-      'min-height': props.minHeight,
-      'background-color': convertNameToHex(props.color),
-    }))
+    const styles = computed((): { [key: string]: string } => {
+      const res: { [key: string]: string } = {
+        'background-color': convertNameToHex(props.color),
+      }
+      if (props.width) {
+        res.width = props.width
+      }
+      if (props.height) {
+        res.height = props.height
+      }
+      if (props.maxWidth) {
+        res['max-width'] = props.maxWidth
+      }
+      if (props.maxHeight) {
+        res['max-height'] = props.maxHeight
+      }
+      if (props.minWidth) {
+        res['min-width'] = props.minWidth
+      }
+      if (props.minHeight) {
+        res['min-height'] = props.minHeight
+      }
+      return res
+    })
 
     return { classes, styles }
   },
