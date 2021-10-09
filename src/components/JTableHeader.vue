@@ -1,5 +1,5 @@
 <template>
-  <thead class="j-table-header">
+  <thead :class="classes">
     <slot>
       <tr>
         <template v-for="item in headers" :key="item.key">
@@ -28,7 +28,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
 import JIcon from '@/components/JIcon.vue'
 
 export default defineComponent({
@@ -68,16 +68,22 @@ export default defineComponent({
   emits: ['click'],
 
   setup(_, context) {
+    const classes = computed((): { [key: string]: boolean } => ({
+      'j-table-header': true,
+    }))
+
     const click = (key: string) => {
       context.emit('click', key)
     }
-    return { click }
+
+    return { classes, click }
   },
 })
 </script>
 
 <style lang="scss">
 @use 'src/styles/includes' as *;
+
 $root: '.j-table-header';
 
 .j-table-header {

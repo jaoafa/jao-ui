@@ -1,5 +1,5 @@
 <template>
-  <div :class="classes" class="j-progress-circle">
+  <div :class="classes">
     <svg
       :width="size"
       :height="size"
@@ -67,11 +67,16 @@ export default defineComponent({
 
   setup(props) {
     const classes = computed((): { [key: string]: boolean } => ({
+      'j-progress-circle': true,
       'j-progress-circle--indeterminate': props.indeterminate,
     }))
+
     const convertedColor = computed((): string => convertNameToHex(props.color))
+
     const radius = computed((): number => props.size / 2 - props.stroke)
+
     const circumference = computed((): number => radius.value * 2 * Math.PI)
+
     const offset = computed(
       (): number => circumference.value * (1 - props.percentage / 100)
     )
@@ -83,6 +88,7 @@ export default defineComponent({
 
 <style lang="scss">
 @use 'src/styles/includes' as *;
+
 $root: '.j-progress-circle';
 
 .j-progress-circle {

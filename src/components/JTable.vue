@@ -1,5 +1,5 @@
 <template>
-  <div class="j-table">
+  <div :class="classes">
     <div class="j-table__wrapper">
       <table>
         <j-table-header
@@ -122,6 +122,10 @@ export default defineComponent({
   },
 
   setup(props) {
+    const classes = computed((): { [key: string]: boolean } => ({
+      'j-table': true,
+    }))
+
     const sortBy = ref('')
     const sortOrder = ref('asc')
     const currentPage = ref(props.items.length ? props.page : 0)
@@ -161,12 +165,14 @@ export default defineComponent({
         }
       }
     }
+
     const togglePage = (key: number): void => {
       console.log('test')
       currentPage.value = key
     }
 
     return {
+      classes,
       computedItems,
       currentPage,
       sortBy,
@@ -180,6 +186,7 @@ export default defineComponent({
 
 <style lang="scss">
 @use 'src/styles/includes' as *;
+
 $root: '.j-table';
 
 .j-table {

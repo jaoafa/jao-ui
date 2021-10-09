@@ -1,5 +1,5 @@
 <template>
-  <div class="j-table-footer">
+  <div :class="classes">
     <div class="j-table-footer__caption">
       {{ caption }} 全{{ itemLength }}件
     </div>
@@ -43,9 +43,14 @@ export default defineComponent({
   emits: ['input', 'update:page'],
 
   setup(props, context) {
+    const classes = computed((): { [key: string]: boolean } => ({
+      'j-table-footer': true,
+    }))
+
     const length = computed((): number =>
       Math.ceil(props.itemLength / props.itemPerPage)
     )
+
     const caption = computed((): string => {
       if (props.itemLength) {
         return (
@@ -60,6 +65,7 @@ export default defineComponent({
         return ''
       }
     })
+
     const currentPage = computed({
       get: (): number => props.page,
       set: (val: number): void => {
@@ -67,13 +73,15 @@ export default defineComponent({
         context.emit('update:page', val)
       },
     })
-    return { caption, currentPage, length }
+
+    return { classes, caption, currentPage, length }
   },
 })
 </script>
 
 <style lang="scss">
 @use 'src/styles/includes' as *;
+
 $root: '.j-table-footer';
 
 .j-table-footer {

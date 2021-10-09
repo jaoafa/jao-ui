@@ -1,5 +1,5 @@
 <template>
-  <span :style="styles" class="j-icon">
+  <span :class="classes" :style="styles">
     <i class="material-icons j-icon__icon">
       <slot />
     </i>
@@ -16,14 +16,14 @@ export default defineComponent({
   props: {
     color: {
       type: String,
-      default: null,
+      default: undefined,
       validator: (val: string): boolean => {
         return validateColor(val)
       },
     },
     size: {
       type: Number,
-      default: null,
+      default: undefined,
       validator: (val: number): boolean => {
         return val >= 0
       },
@@ -31,17 +31,23 @@ export default defineComponent({
   },
 
   setup(props) {
+    const classes = computed((): { [key: string]: boolean } => ({
+      'j-icon': true,
+    }))
+
     const styles = computed((): { [key: string]: string } => ({
       color: props.color ? convertNameToHex(props.color) : 'inherit',
-      'font-size': `${props.size}px`,
+      'font-size': props.size ? `${props.size}px` : 'inherit',
     }))
-    return { styles }
+
+    return { classes, styles }
   },
 })
 </script>
 
 <style lang="scss">
 @use 'src/styles/includes' as *;
+
 $root: '.j-icon';
 
 .j-icon {
