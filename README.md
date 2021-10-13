@@ -8,23 +8,26 @@ jao UI is Vue based component library for jao community that provides Minecraft 
 
 <p align="center">
   <a href="https://github.com/jaoafa/jao-ui/actions?query=workflow%3ACI">
-    <img alt="GitHub Workflow Status (branch)" src="https://img.shields.io/github/workflow/status/jaoafa/jao-ui/CI/dev">
+    <img alt="GitHub CI Workflow Status" src="https://github.com/jaoafa/jao-ui/actions/workflows/ci.yml/badge.svg?branch=dev">
   </a>
   <a href="https://www.npmjs.com/package/@jaoafa/jao-ui">
-    <img alt="npm (scoped)" src="https://img.shields.io/npm/v/@jaoafa/jao-ui">
+    <img alt="npm version" src="https://badgen.net/npm/v/@jaoafa/jao-ui">
+  </a>
+  <a href="https://www.npmjs.com/package/@jaoafa/jao-ui">
+    <img alt="monthly downloads" src="https://badgen.net/npm/dt/@jaoafa/jao-ui">
+  </a>
+  <a href="https://www.npmjs.com/package/@jaoafa/jao-ui">
+    <img alt="monthly downloads" src="https://badgen.net/npm/dm/@jaoafa/jao-ui">
   </a>
   <a href="https://github.com/jaoafa/jao-ui/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/jaoafa/jao-ui" alt="license">
-  </a>
-  <a href="https://github.com/jaoafa/jao-ui/graphs/contributors">
-    <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/jaoafa/jao-ui">
+    <img alt="license" src="https://badgen.net/npm/license/@jaoafa/jao-ui">
   </a>
   <br>
-  <a href="https://jaoui.vercel.app/">
-    <img src="https://cdn.jsdelivr.net/gh/storybookjs/brand@main/badge/badge-storybook.svg" alt="storybook">
-  </a>
   <a href="http://discord.gg/zEGrApgGfB">
-    <img src="https://discord.com/api/guilds/597378876556967936/widget.png" alt="Discord">
+    <img alt="Discord" src="https://badgen.net/discord/members/zEGrApgGfB">
+  </a>
+  <a href="https://twitter.com/jaoafa">
+    <img alt="Twitter" src="https://badgen.net/twitter/follow/jaoafa">
   </a>
 </p>
 
