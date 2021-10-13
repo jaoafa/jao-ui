@@ -24,7 +24,7 @@ Any contribution to jao UI is more than welcome🚀
 0. [Node.js](https://nodejs.org/) をインストールします。
 1. [jao UI のリポジトリ](https://github.com/jaoafa/jao-ui) を [Fork](https://docs.github.com/ja/github/getting-started-with-github/fork-a-repo) し、ローカルへ [clone](https://docs.github.com/ja/github/creating-cloning-and-archiving-repositories/cloning-a-repository) します。
 2. `npm install` を実行し、必要なパッケージをインストールします。
-3. `npm run serve` を実行して開発を開始します！
+3. `npm run dev` を実行して開発を開始します！
 
 ### Directry Structure
 

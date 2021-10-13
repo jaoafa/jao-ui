@@ -1,5 +1,5 @@
 <template>
-  <div :class="classes" :style="styles" class="j-image">
+  <div :class="classes" :style="styles">
     <transition>
       <img
         v-show="isLoaded"
@@ -44,42 +44,42 @@ export default defineComponent({
     },
     height: {
       type: String,
-      default: null,
+      default: undefined,
       validator: (val: string): boolean => {
         return validateSize(val)
       },
     },
     maxHeight: {
       type: String,
-      default: null,
+      default: undefined,
       validator: (val: string): boolean => {
         return validateSize(val)
       },
     },
     maxWidth: {
       type: String,
-      default: null,
+      default: undefined,
       validator: (val: string): boolean => {
         return validateSize(val)
       },
     },
     minHeight: {
       type: String,
-      default: null,
+      default: undefined,
       validator: (val: string): boolean => {
         return validateSize(val)
       },
     },
     minWidth: {
       type: String,
-      default: null,
+      default: undefined,
       validator: (val: string): boolean => {
         return validateSize(val)
       },
     },
     sizes: {
       type: String,
-      default: null,
+      default: undefined,
     },
     src: {
       type: String,
@@ -88,11 +88,11 @@ export default defineComponent({
     },
     srcset: {
       type: String,
-      default: null,
+      default: undefined,
     },
     width: {
       type: String,
-      default: null,
+      default: undefined,
       validator: (val: string): boolean => {
         return validateSize(val)
       },
@@ -101,20 +101,39 @@ export default defineComponent({
 
   setup(props) {
     const classes = computed((): { [key: string]: boolean } => ({
+      'j-image': true,
       'j-image--contain': props.contain,
     }))
-    const styles = computed((): { [key: string]: string } => ({
-      width: props.width,
-      height: props.height,
-      'max-width': props.maxWidth,
-      'max-height': props.maxHeight,
-      'min-width': props.minWidth,
-      'min-height': props.minHeight,
-    }))
+
+    const styles = computed((): { [key: string]: string } => {
+      const res: { [key: string]: string } = {}
+      if (props.width) {
+        res.width = props.width
+      }
+      if (props.height) {
+        res.height = props.height
+      }
+      if (props.maxWidth) {
+        res['max-width'] = props.maxWidth
+      }
+      if (props.maxHeight) {
+        res['max-height'] = props.maxHeight
+      }
+      if (props.minWidth) {
+        res['min-width'] = props.minWidth
+      }
+      if (props.minHeight) {
+        res['min-height'] = props.minHeight
+      }
+      return res
+    })
+
     const isLoaded = ref(false)
+
     const onLoad = (): void => {
       isLoaded.value = true
     }
+
     return { classes, styles, isLoaded, onLoad }
   },
 })
@@ -122,6 +141,7 @@ export default defineComponent({
 
 <style lang="scss">
 @use 'src/styles/includes' as *;
+
 $root: '.j-image';
 
 .j-image {
