@@ -170,7 +170,7 @@ $root: '.j-image';
 
   &.v-enter,
   &.v-leave-to {
-    opacity: 0;
+    opacity: 0%;
   }
 }
 
@@ -194,7 +194,7 @@ $root: '.j-image';
 
   &.v-enter,
   &.v-leave-to {
-    opacity: 0;
+    opacity: 0%;
   }
 }
 </style>
