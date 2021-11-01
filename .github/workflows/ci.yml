@@ -5,6 +5,7 @@ on:
       - main
       - dev
   pull_request:
+
 jobs:
   lint:
     name: Lint
@@ -22,5 +23,26 @@ jobs:
             ${{ runner.os }}-npm-
       - name: Install packages
         run: npm ci
+      - name: Run build
+        run: npm run build
       - name: Run lint
         run: npm run lint
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+      - name: Install packages
+        run: npm ci
+      - name: Run test
+        run: npm run test
