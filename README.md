@@ -10,6 +10,9 @@ jao UI is Vue based component library for jao community that provides Minecraft 
   <a href="https://github.com/jaoafa/jao-ui/actions?query=workflow%3ACI">
     <img alt="GitHub CI Workflow Status" src="https://github.com/jaoafa/jao-ui/actions/workflows/ci.yml/badge.svg?branch=dev">
   </a>
+  <a href="https://codecov.io/gh/jaoafa/jao-ui">
+    <img src="https://codecov.io/gh/jaoafa/jao-ui/branch/dev/graph/badge.svg?token=4LPZ2OVF8N"/>
+  </a>
   <a href="https://www.npmjs.com/package/@jaoafa/jao-ui">
     <img alt="npm version" src="https://badgen.net/npm/v/@jaoafa/jao-ui">
   </a>
