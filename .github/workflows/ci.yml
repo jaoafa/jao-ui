@@ -9,11 +9,19 @@ on:
 jobs:
   lint:
     name: Lint
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: [14, 16]
     timeout-minutes: 10
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node }}
       - name: Cache
         uses: actions/cache@v2
         with:
@@ -30,7 +38,11 @@ jobs:
 
   test:
     name: Test
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: [16]
     timeout-minutes: 10
     steps:
       - name: Checkout
@@ -45,4 +57,8 @@ jobs:
       - name: Install packages
         run: npm ci
       - name: Run test
-        run: npm run test
+        run: npm run test -- --coverage
+      - name: Upload Coverage
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
