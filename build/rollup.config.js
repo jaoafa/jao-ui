@@ -21,7 +21,7 @@ const esbrowserslist = fs
   .filter((entry) => entry && entry.substring(0, 2) !== 'ie')
 
 // Extract babel preset-env config, to combine with esbrowserslist
-const babelPresetEnvConfig = require('../babel.config').presets.filter(
+const babelPresetEnvConfig = require('../.babelrc').presets.filter(
   (entry) => entry[0] === '@babel/preset-env'
 )[0][1]
 
