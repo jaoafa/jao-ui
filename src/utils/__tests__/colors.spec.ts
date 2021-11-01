@@ -83,6 +83,10 @@ describe('getContrastColor', () => {
   test('Color Name (primary)', () => {
     expect(getContrastColor('primary')).toBe('#373948')
   })
+  // Color Name (twitter)
+  test('Color Name (twitter)', () => {
+    expect(getContrastColor('twitter')).toBe('#fff')
+  })
   // Hex (#e91e62)
   test('Hex (#e91e62)', () => {
     expect(getContrastColor('#e91e62')).toBe('#fff')
