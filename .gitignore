@@ -109,4 +109,4 @@ dist
 .tern-port
 
 # Storybook
-/storybook-static/
+storybook-static/
