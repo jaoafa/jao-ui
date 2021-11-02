@@ -99,12 +99,12 @@ $root: '.j-table-header';
     cursor: pointer;
 
     #{$root}__sort {
-      opacity: 0.2;
+      opacity: 20%;
     }
 
     &:hover {
       #{$root}__sort {
-        opacity: 0.5;
+        opacity: 50%;
       }
     }
   }
@@ -118,12 +118,12 @@ $root: '.j-table-header';
 
     &:hover {
       #{$root}__sort {
-        opacity: 1;
+        opacity: 100%;
       }
     }
 
     #{$root}__sort {
-      opacity: 1;
+      opacity: 100%;
     }
   }
 }
@@ -143,7 +143,7 @@ $root: '.j-table-header';
   font-size: 16px;
   vertical-align: middle;
   pointer-events: none;
-  opacity: 0;
+  opacity: 0%;
   transition-duration: 0.2s;
   transition-property: opacity transform;
 }

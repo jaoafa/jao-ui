@@ -9,7 +9,11 @@ jobs:
   release:
     name: Release
     if: github.event.pull_request.merged == true
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: [16]
     timeout-minutes: 10
     steps:
       - name: Checkout
@@ -33,7 +37,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: ${{ matrix.node }}
           registry-url: 'https://registry.npmjs.org'
       - name: Install dependencies
         run: npm install
@@ -44,7 +48,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: ${{ matrix.node }}
           registry-url: 'https://npm.pkg.github.com'
           scope: '@jaoafa'
       - name: Publish

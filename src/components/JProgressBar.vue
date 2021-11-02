@@ -92,7 +92,7 @@ $root: '.j-progress-bar';
   width: 100%;
   height: 100%;
   background-color: currentColor;
-  opacity: 0.25;
+  opacity: 25%;
   transition: inherit;
 }
 
