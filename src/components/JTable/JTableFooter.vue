@@ -16,7 +16,7 @@
 
 <script lang="ts">
 import { computed, defineComponent } from 'vue'
-import JPagination from '@/components/JPagination.vue'
+import { JPagination } from '@/components/JPagination'
 
 export default defineComponent({
   name: 'JTableFooter',

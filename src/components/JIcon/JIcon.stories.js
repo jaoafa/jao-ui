@@ -1,5 +1,5 @@
-import JApp from '@/components/JApp.vue'
-import JIcon from '@/components/JIcon.vue'
+import { JApp } from '@/components/JApp'
+import JIcon from './JIcon.vue'
 
 export default {
   title: 'Components/Icon',

@@ -31,7 +31,7 @@ import {
   getContrastColor,
   validateColor,
 } from '@/utils/colors'
-import JProgressCircle from '@/components/JProgressCircle.vue'
+import { JProgressCircle } from '@/components/JProgress'
 
 export default defineComponent({
   name: 'JButton',

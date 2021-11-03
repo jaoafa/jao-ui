@@ -1,5 +1,5 @@
-import JApp from '@/components/JApp.vue'
-import JProgressBar from '@/components/JProgressBar.vue'
+import { JApp } from '@/components/JApp'
+import JProgressBar from './JProgressBar.vue'
 
 export default {
   title: 'Components/ProgressBar',

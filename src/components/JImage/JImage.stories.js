@@ -1,6 +1,6 @@
-import JApp from '@/components/JApp.vue'
-import JImage from '@/components/JImage.vue'
-import SampleImage from '@/stories/assets/sample.png'
+import { JApp } from '@/components/JApp'
+import JImage from './JImage.vue'
+import SampleImage from '@/assets/sample.png'
 
 export default {
   title: 'Components/Image',

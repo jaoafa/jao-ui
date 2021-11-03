@@ -25,7 +25,7 @@
 import { computed, defineComponent } from 'vue'
 import { getContrastColor, validateColor } from '@/utils/colors'
 import { validateSize } from '@/utils/sizes'
-import JSheet from '@/components/JSheet.vue'
+import { JSheet } from '@/components/JSheet'
 
 export default defineComponent({
   name: 'JCard',

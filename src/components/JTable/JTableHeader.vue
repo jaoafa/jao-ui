@@ -29,7 +29,7 @@
 
 <script lang="ts">
 import { computed, defineComponent } from 'vue'
-import JIcon from '@/components/JIcon.vue'
+import { JIcon } from '@/components/JIcon'
 
 export default defineComponent({
   name: 'JTableHeader',

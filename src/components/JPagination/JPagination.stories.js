@@ -1,5 +1,5 @@
-import JApp from '@/components/JApp.vue'
-import JPagination from '@/components/JPagination.vue'
+import { JApp } from '@/components/JApp'
+import JPagination from './JPagination.vue'
 
 export default {
   title: 'Components/Pagination',

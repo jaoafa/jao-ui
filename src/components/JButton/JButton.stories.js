@@ -1,5 +1,5 @@
-import JApp from '@/components/JApp.vue'
-import JButton from '@/components/JButton.vue'
+import { JApp } from '@/components/JApp'
+import JButton from './JButton.vue'
 
 export default {
   title: 'Components/Button',

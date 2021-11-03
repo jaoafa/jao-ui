@@ -1,5 +1,5 @@
-import JApp from '@/components/JApp.vue'
-import JTable from '@/components/JTable.vue'
+import { JApp } from '@/components/JApp'
+import JTable from './JTable.vue'
 
 export default {
   title: 'Components/Table',

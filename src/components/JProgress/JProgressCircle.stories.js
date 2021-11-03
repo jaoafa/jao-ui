@@ -1,5 +1,5 @@
-import JApp from '@/components/JApp.vue'
-import JProgressCircle from '@/components/JProgressCircle.vue'
+import { JApp } from '@/components/JApp'
+import JProgressCircle from './JProgressCircle.vue'
 
 export default {
   title: 'Components/ProgressCircle',
