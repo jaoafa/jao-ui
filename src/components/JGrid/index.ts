@@ -1,5 +1,6 @@
+import JContainer from './JContainer.vue'
 import JRow from './JRow.vue'
 import JCol from './JCol.vue'
 
-export { JRow, JCol }
-export default { JRow, JCol }
+export { JContainer, JRow, JCol }
+export default { JContainer, JRow, JCol }
