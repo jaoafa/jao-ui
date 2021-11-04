@@ -6,10 +6,10 @@
 
 |Name|Type|Default|Description|
 |:--|:--|:--|:--|
-|`color`|`string`|`'transparent'`|指定された色を背景色に適用します。|
+|`color`|`string`|`'transparent'`|指定された色をコンポーネントに適用します。|
 |`fluid`|`boolean`|`false`|最大幅の制限を削除します。|
-|`id`|`string`|`undefined`|タグに `id` 属性を追加します。|
-|`tag`|`string`|`'div'`|指定されたタグをコンテナに適用します。|
+|`id`|`string`|`undefined`|コンポーネントに `id` 属性を追加します。|
+|`tag`|`string`|`'div'`|指定されたタグをコンポーネントに適用します。|
 
 ### Slots
 
