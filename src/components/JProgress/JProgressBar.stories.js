@@ -6,37 +6,27 @@ export default {
   component: JProgressBar,
   argTypes: {
     // props
-    absolute: {
-      description: 'コンポーネントに `position:absolute;` を適用します。',
-    },
-    color: {
-      description: '指定された色をコンポーネントに適用します。',
-    },
-    indeterminate: {
-      description: 'アニメーションを適用します。',
-    },
-    percentage: {
-      description: 'パーセントの値を指定します。',
-    },
-    stroke: {
-      description: '図形の線の太さを指定します。',
-    },
+    absolute: {},
+    color: {},
+    indeterminate: {},
+    percentage: {},
+    stroke: {},
     // events
     // slots
   },
+  args: {
+    indeterminate: true,
+  },
 }
 
-const Template = (args, { argTypes }) => ({
-  props: Object.keys(argTypes),
+export const Basic = (args) => ({
   components: { JApp, JProgressBar },
+  setup() {
+    return { args }
+  },
   template: `
     <j-app no-stretch>
-      <j-progress-bar v-bind="$props" />
+      <j-progress-bar v-bind="args" />
     </j-app>
-    `,
+  `,
 })
-
-export const Bar = Template.bind({})
-Bar.args = {
-  indeterminate: true,
-}

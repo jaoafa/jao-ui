@@ -6,33 +6,34 @@ export default {
   component: JIcon,
   argTypes: {
     // props
-    color: {
-      description: '指定された色をアイコンに適用します。',
-    },
-    size: {
-      description: '指定された大きさをアイコンに適用します。',
-    },
+    color: {},
+    size: {},
     // events
     // slots
     default: {
-      description: '表示するアイコンの名前です。',
+      control: {
+        type: 'text',
+      },
       table: {
         type: {
-          summary: 'string',
+          summary: 'any',
         },
       },
     },
   },
+  args: {
+    default: 'home',
+  },
 }
 
-const Template = (args, { argTypes }) => ({
-  props: Object.keys(argTypes),
+export const Basic = (args) => ({
   components: { JApp, JIcon },
+  setup() {
+    return { args }
+  },
   template: `
     <j-app no-stretch>
-      <j-icon v-bind="$props">home</j-icon>
+      <j-icon v-bind="args">${args.default}</j-icon>
     </j-app>
-    `,
+  `,
 })
-export const Default = Template.bind({})
-Default.args = {}

@@ -1,3 +1,4 @@
+import { ref } from 'vue'
 import { JApp } from '@/components/JApp'
 import JPagination from './JPagination.vue'
 
@@ -6,14 +7,9 @@ export default {
   component: JPagination,
   argTypes: {
     // props
-    color: {
-      description: '指定された色を現在選択しているページ番号に適用します。',
-    },
-    length: {
-      description: 'ページ番号の最大値を指定します。',
-    },
+    color: {},
+    length: {},
     page: {
-      description: '現在選択しているページ番号を指定します。',
       table: {
         category: 'props',
         type: {
@@ -24,9 +20,7 @@ export default {
         },
       },
     },
-    totalVisible: {
-      description: '表示するページ番号の数を指定します。',
-    },
+    totalVisible: {},
     'v-model': {
       table: {
         disable: true,
@@ -34,7 +28,6 @@ export default {
     },
     // events
     input: {
-      description: 'ページが選択されたときに発生するイベントです。',
       action: 'input',
     },
     'update:page': {
@@ -44,21 +37,21 @@ export default {
     },
     // slots
   },
+  args: {
+    length: 20,
+    totalVisible: 10,
+  },
 }
 
-const Template = (args, { argTypes }) => ({
-  props: Object.keys(argTypes),
+export const Basic = (args) => ({
   components: { JApp, JPagination },
+  setup() {
+    const page = ref(5)
+    return { args, page }
+  },
   template: `
     <j-app no-stretch>
-      <j-pagination @input="input" v-bind="$props" />
+      <j-pagination v-model:page="page" @input="args.input" v-bind="args" />
     </j-app>
-    `,
+  `,
 })
-
-export const Default = Template.bind({})
-Default.args = {
-  page: 5,
-  length: 20,
-  totalVisible: 10,
-}

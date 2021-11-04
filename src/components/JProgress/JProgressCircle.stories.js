@@ -6,37 +6,27 @@ export default {
   component: JProgressCircle,
   argTypes: {
     // props
-    color: {
-      description: '指定された色をコンポーネントに適用します。',
-    },
-    indeterminate: {
-      description: 'アニメーションを適用します。',
-    },
-    percentage: {
-      description: 'パーセントの値を指定します。',
-    },
-    size: {
-      description: 'コンポーネントの大きさを指定します。',
-    },
-    stroke: {
-      description: '図形の線の太さを指定します。',
-    },
+    color: {},
+    indeterminate: {},
+    percentage: {},
+    size: {},
+    stroke: {},
     // events
     // slots
   },
+  args: {
+    indeterminate: true,
+  },
 }
 
-const Template = (args, { argTypes }) => ({
-  props: Object.keys(argTypes),
+export const Basic = (args) => ({
   components: { JApp, JProgressCircle },
+  setup() {
+    return { args }
+  },
   template: `
     <j-app no-stretch>
-      <j-progress-circle v-bind="$props" />
+      <j-progress-circle v-bind="args" />
     </j-app>
-    `,
+  `,
 })
-
-export const Circle = Template.bind({})
-Circle.args = {
-  indeterminate: true,
-}
