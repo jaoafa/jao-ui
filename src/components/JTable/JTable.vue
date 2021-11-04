@@ -70,10 +70,16 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from 'vue'
+import { computed, defineComponent, PropType, ref } from 'vue'
 import { JProgressCircle } from '@/components/JProgress'
 import JTableHeader from './JTableHeader.vue'
 import JTableFooter from './JTableFooter.vue'
+
+type HeaderItem = {
+  label: string
+  key: string
+  sortable?: boolean
+}
 
 export default defineComponent({
   name: 'JTable',
@@ -85,22 +91,37 @@ export default defineComponent({
   },
 
   props: {
+    /**
+     * ヘッダーのカラムとなる配列を指定します。
+     */
     headers: {
-      type: Array,
+      type: Array as PropType<HeaderItem[]>,
       default: () => [],
     },
+    /**
+     * 表のフッターを非表示にします。
+     */
     hideFooter: {
       type: Boolean,
       default: false,
     },
+    /**
+     * 表のヘッダーを非表示にします。
+     */
     hideHeader: {
       type: Boolean,
       default: false,
     },
+    /**
+     * 表に表示する項目を配列で指定します。
+     */
     items: {
       type: Array,
       default: () => [],
     },
+    /**
+     * 1ページあたりに表示する項目の数を指定します。
+     */
     itemPerPage: {
       type: Number,
       default: 10,
@@ -108,10 +129,16 @@ export default defineComponent({
         return val % 1 === 0 && val > 0
       },
     },
+    /**
+     * ローディングアニメーションを表示します。
+     */
     loading: {
       type: Boolean,
       default: false,
     },
+    /**
+     * 現在選択しているページ番号を指定します。
+     */
     page: {
       type: Number,
       default: 1,

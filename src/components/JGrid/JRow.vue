@@ -11,6 +11,10 @@ export default defineComponent({
   name: 'JRow',
 
   props: {
+    /**
+     * 上下方向の配置を指定します。
+     * @values start, center, end, baseline, stretch
+     */
     align: {
       type: String,
       default: 'start',
@@ -18,6 +22,10 @@ export default defineComponent({
         return ['start', 'center', 'end', 'baseline', 'stretch'].includes(val)
       },
     },
+    /**
+     * 左右方向の配置を指定します。
+     * @values start, center, end, space-between, space-around
+     */
     justify: {
       type: String,
       default: 'start',
@@ -31,10 +39,16 @@ export default defineComponent({
         ].includes(val)
       },
     },
+    /**
+     * アイテム間の隙間を削除します。
+     */
     noGap: {
       type: Boolean,
       default: false,
     },
+    /**
+     * 指定されたタグをコンポーネントに適用します。
+     */
     tag: {
       type: String,
       default: 'div',

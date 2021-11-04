@@ -6,7 +6,16 @@ export default {
   component: JTable,
   argTypes: {
     // props
-    headers: {},
+    headers: {
+      table: {
+        type: {
+          detail: '{\n  label: string\n  key: string\n  sortable: boolean\n}',
+        },
+        defaultValue: {
+          summary: '[]',
+        },
+      },
+    },
     hideFooter: {},
     hideHeader: {},
     items: {},

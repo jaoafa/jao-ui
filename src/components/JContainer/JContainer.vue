@@ -12,6 +12,9 @@ export default defineComponent({
   name: 'JContainer',
 
   props: {
+    /**
+     * 指定された色をコンポーネントに適用します。
+     */
     color: {
       type: String,
       default: 'transparent',
@@ -19,14 +22,23 @@ export default defineComponent({
         return validateColor(val) || val === 'transparent'
       },
     },
+    /**
+     * 最大幅の制限を削除します。
+     */
     fluid: {
       type: Boolean,
       default: false,
     },
+    /**
+     * コンポーネントに id 属性を追加します。
+     */
     id: {
       type: String,
       default: undefined,
     },
+    /**
+     * 指定されたタグをコンポーネントに適用します。
+     */
     tag: {
       type: String,
       default: 'div',

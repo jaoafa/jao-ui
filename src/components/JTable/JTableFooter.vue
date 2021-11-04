@@ -26,14 +26,23 @@ export default defineComponent({
   },
 
   props: {
+    /**
+     * 表に表示する項目の配列の長さを指定します。
+     */
     itemLength: {
       type: Number,
       default: 0,
     },
+    /**
+     * 1ページあたりに表示する項目の数を指定します。
+     */
     itemPerPage: {
       type: Number,
       default: 10,
     },
+    /**
+     * 現在選択しているページ番号を指定します。
+     */
     page: {
       type: Number,
       default: 1,

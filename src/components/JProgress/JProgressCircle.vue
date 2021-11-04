@@ -31,6 +31,9 @@ export default defineComponent({
   name: 'JProgressCircle',
 
   props: {
+    /**
+     * 指定された色をコンポーネントに適用します。
+     */
     color: {
       type: String,
       default: 'primary',
@@ -38,10 +41,16 @@ export default defineComponent({
         return validateColor(val)
       },
     },
+    /**
+     * アニメーションを適用します。
+     */
     indeterminate: {
       type: Boolean,
       default: false,
     },
+    /**
+     * パーセントの値を指定します。
+     */
     percentage: {
       type: Number,
       default: 0,
@@ -49,6 +58,9 @@ export default defineComponent({
         return val >= 0 && val <= 100
       },
     },
+    /**
+     * コンポーネントの大きさを指定します。
+     */
     size: {
       type: Number,
       default: 32,
@@ -56,6 +68,9 @@ export default defineComponent({
         return val > 0
       },
     },
+    /**
+     * 図形の線の太さを指定します。
+     */
     stroke: {
       type: Number,
       default: 4,

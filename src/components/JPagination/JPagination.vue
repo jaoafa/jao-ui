@@ -58,6 +58,9 @@ export default defineComponent({
   },
 
   props: {
+    /**
+     * 指定された色を現在選択しているページ番号に適用します。
+     */
     color: {
       type: String,
       default: 'primary',
@@ -65,6 +68,9 @@ export default defineComponent({
         return validateColor(val)
       },
     },
+    /**
+     * ページ番号の最大値を指定します。
+     */
     length: {
       type: Number,
       default: 0,
@@ -72,6 +78,9 @@ export default defineComponent({
         return val % 1 === 0 && val >= 0
       },
     },
+    /**
+     * 現在選択しているページ番号を指定します。
+     */
     page: {
       type: Number,
       default: 0,
@@ -79,6 +88,9 @@ export default defineComponent({
         return val % 1 === 0 && val >= 0
       },
     },
+    /**
+     * 表示するページ番号の数を指定します。
+     */
     totalVisible: {
       type: Number,
       default: 0,

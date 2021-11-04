@@ -14,6 +14,9 @@ export default defineComponent({
   name: 'JIcon',
 
   props: {
+    /**
+     * 指定された色をコンポーネントに適用します。
+     */
     color: {
       type: String,
       default: undefined,
@@ -21,6 +24,9 @@ export default defineComponent({
         return validateColor(val)
       },
     },
+    /**
+     * 指定された大きさをコンポーネントに適用します。
+     */
     size: {
       type: Number,
       default: undefined,
