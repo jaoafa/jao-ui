@@ -1,5 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 export { JApp } from '@/components/JApp'
+export { JBreadcrumbs } from '@/components/JBreadcrumbs'
 export { JButton } from '@/components/JButton'
 export { JCard } from '@/components/JCard'
 export { JContainer, JRow, JCol } from '@/components/JGrid'

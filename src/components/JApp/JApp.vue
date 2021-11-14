@@ -35,7 +35,7 @@ export default defineComponent({
 @use 'src/styles/includes' as *;
 @use 'src/styles/main';
 
-$root: '.j-app';
+$root: 'j-app';
 
 .j-app {
   position: relative;

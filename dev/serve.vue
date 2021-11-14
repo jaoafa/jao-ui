@@ -8,6 +8,18 @@
       <section class="mt-8">
         <h2 class="text-lv2">Components</h2>
 
+        <!-- Breadcrumbs -->
+        <section class="mt-8">
+          <h3 class="text-lv3 mb-4">Breadcrumbs</h3>
+          <j-breadcrumbs
+            :items="[
+              { label: 'Dashboard', href: '/' },
+              { label: 'Page1', href: '/category' },
+              { label: 'Page2', href: '/category/page', disabled: true },
+            ]"
+          />
+        </section>
+
         <!-- Button -->
         <section class="mt-8">
           <h3 class="text-lv3 mb-4">Button</h3>

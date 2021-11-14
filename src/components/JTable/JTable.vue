@@ -214,7 +214,7 @@ export default defineComponent({
 <style lang="scss">
 @use 'src/styles/includes' as *;
 
-$root: '.j-table';
+$root: 'j-table';
 
 .j-table {
   max-width: 100%;

@@ -198,7 +198,7 @@ export default defineComponent({
 <style lang="scss">
 @use 'src/styles/includes' as *;
 
-$root: '.j-button';
+$root: 'j-button';
 
 .j-button {
   position: relative;
@@ -278,11 +278,11 @@ $root: '.j-button';
   }
 
   &--loading {
-    & #{$root}__body {
+    & .#{$root}__body {
       opacity: 0%;
     }
 
-    & #{$root}__loader {
+    & .#{$root}__loader {
       opacity: 100%;
     }
   }
@@ -292,7 +292,7 @@ $root: '.j-button';
     line-height: 1;
     border-radius: 50%;
 
-    &#{$root} {
+    &.#{$root} {
       &--large {
         width: 48px;
         font-size: 20px;
@@ -314,7 +314,7 @@ $root: '.j-button';
       display: none;
     }
 
-    & #{$root}__body {
+    & .#{$root}__body {
       &::after {
         display: none;
       }
@@ -327,7 +327,7 @@ $root: '.j-button';
       display: none;
     }
 
-    & #{$root}__body {
+    & .#{$root}__body {
       &::after {
         display: none;
       }

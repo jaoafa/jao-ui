@@ -79,7 +79,7 @@ export default defineComponent({
 <style lang="scss">
 @use 'src/styles/includes' as *;
 
-$root: '.j-row';
+$root: 'j-row';
 
 .j-row {
   display: flex;

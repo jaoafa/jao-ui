@@ -104,7 +104,7 @@ export default defineComponent({
 <style lang="scss">
 @use 'src/styles/includes' as *;
 
-$root: '.j-progress-circle';
+$root: 'j-progress-circle';
 
 .j-progress-circle {
   display: inline-flex;
@@ -112,11 +112,11 @@ $root: '.j-progress-circle';
   transition-duration: 0.3s;
 
   &--indeterminate {
-    & #{$root}__svg {
+    & .#{$root}__svg {
       animation: progress-circle-turn 1.6s linear infinite;
     }
 
-    & #{$root}__circle {
+    & .#{$root}__circle {
       stroke-dasharray: calc(80% * 3.14);
       animation: progress-circle-dash 1.2s ease-in-out infinite;
     }
