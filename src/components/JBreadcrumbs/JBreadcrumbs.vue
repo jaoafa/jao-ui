@@ -81,7 +81,7 @@ export default defineComponent({
 <style lang="scss">
 @use 'src/styles/includes' as *;
 
-$root: '.j-breadcrumbs';
+$root: 'j-breadcrumbs';
 
 .j-breadcrumbs {
   width: 100%;
@@ -100,7 +100,7 @@ $root: '.j-breadcrumbs';
   align-items: baseline;
 
   &:last-child {
-    & #{$root}__label {
+    & .#{$root}__label {
       font-weight: 700;
     }
   }

@@ -176,7 +176,7 @@ export default defineComponent({
 <style lang="scss">
 @use 'src/styles/includes' as *;
 
-$root: '.j-image';
+$root: 'j-image';
 
 .j-image {
   position: relative;

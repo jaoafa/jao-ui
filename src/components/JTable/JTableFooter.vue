@@ -91,7 +91,7 @@ export default defineComponent({
 <style lang="scss">
 @use 'src/styles/includes' as *;
 
-$root: '.j-table-footer';
+$root: 'j-table-footer';
 
 .j-table-footer {
   display: flex;

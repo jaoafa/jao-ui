@@ -84,7 +84,7 @@ export default defineComponent({
 <style lang="scss">
 @use 'src/styles/includes' as *;
 
-$root: '.j-progress-bar';
+$root: 'j-progress-bar';
 
 .j-progress-bar {
   position: relative;
@@ -97,7 +97,7 @@ $root: '.j-progress-bar';
   }
 
   &--indeterminate {
-    & #{$root}__determinate {
+    & .#{$root}__determinate {
       animation: progress-bar 1s linear infinite;
     }
   }
