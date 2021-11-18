@@ -1,6 +1,7 @@
 ## Components
 
 - [App](components/app.md)
+- [Breadcrumbs](components/breadcrumbs.md)
 - [Button](components/button.md)
 - [Card](components/card.md)
 - [Col](components/col.md)

@@ -94,7 +94,7 @@ export default defineComponent({
 <style lang="scss">
 @use 'src/styles/includes' as *;
 
-$root: '.j-table-header';
+$root: 'j-table-header';
 
 .j-table-header {
   background-color: $color-gray-100;
@@ -108,31 +108,31 @@ $root: '.j-table-header';
   &--sortable {
     cursor: pointer;
 
-    #{$root}__sort {
+    .#{$root}__sort {
       opacity: 20%;
     }
 
     &:hover {
-      #{$root}__sort {
+      .#{$root}__sort {
         opacity: 50%;
       }
     }
   }
 
   &--active {
-    &#{$root}__item--desc {
-      #{$root}__sort {
+    &.#{$root}__item--desc {
+      .#{$root}__sort {
         transform: rotate(180deg);
       }
     }
 
     &:hover {
-      #{$root}__sort {
+      .#{$root}__sort {
         opacity: 100%;
       }
     }
 
-    #{$root}__sort {
+    .#{$root}__sort {
       opacity: 100%;
     }
   }

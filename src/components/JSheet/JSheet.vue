@@ -146,7 +146,7 @@ export default defineComponent({
 <style lang="scss">
 @use 'src/styles/includes' as *;
 
-$root: '.j-sheet';
+$root: 'j-sheet';
 
 .j-sheet {
   border-radius: 2px;

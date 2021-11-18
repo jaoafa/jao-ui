@@ -63,7 +63,7 @@ export default defineComponent({
 <style lang="scss">
 @use 'src/styles/includes' as *;
 
-$root: '.j-container';
+$root: 'j-container';
 
 .j-container {
   width: 100%;

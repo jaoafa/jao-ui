@@ -207,7 +207,7 @@ export default defineComponent({
 <style lang="scss">
 @use 'src/styles/includes' as *;
 
-$root: '.j-pagination';
+$root: 'j-pagination';
 
 .j-pagination {
   display: inline-flex;

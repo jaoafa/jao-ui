@@ -51,7 +51,7 @@ $ yarn add @jaoafa/jao-ui
 ## 📖 Documentation
 
 You can find for more docs on [https://jaoafa.github.io/jao-ui](https://jaoafa.github.io/jao-ui/).  
-To see actual display, go to [Storybook](https://jaoui.vercel.app/).
+To see actual display, go to [Storybook](https://jaoafa.github.io/jao-ui/storybook/).
 
 ## 🛠 Contributing
 

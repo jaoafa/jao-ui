@@ -114,7 +114,7 @@ export default defineComponent({
 @use 'src/styles/includes' as *;
 @use 'sass:math';
 
-$root: '.j-col';
+$root: 'j-col';
 
 .j-col {
   flex: 1 auto 0;
