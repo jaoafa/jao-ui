@@ -1,5 +1,6 @@
 <h1 align="center">
-  <img src="https://user-images.githubusercontent.com/23224932/114276380-51370e80-9a61-11eb-9c72-615340a4d4b8.png" alt="jao UI Library">
+  <img src="https://user-images.githubusercontent.com/23224932/114276380-51370e80-9a61-11eb-9c72-615340a4d4b8.png#gh-light-mode-only" alt="jao UI Library">
+  <img src="https://user-images.githubusercontent.com/23224932/143324279-ca1bd30a-bd19-496c-9aab-7dba21aeaeb6.png#gh-dark-mode-only" alt="jao UI Library">
 </h1>
 <h3 align="center">jao UI Components with Vue.js 3 💣✨</h3>
 <p align="center">
