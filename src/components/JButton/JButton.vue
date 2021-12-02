@@ -215,7 +215,7 @@ $root: 'j-button';
 
   &:hover {
     *::before {
-      opacity: 10%;
+      opacity: 0.1;
     }
   }
 
@@ -279,11 +279,11 @@ $root: 'j-button';
 
   &--loading {
     & .#{$root}__body {
-      opacity: 0%;
+      opacity: 0;
     }
 
     & .#{$root}__loader {
-      opacity: 100%;
+      opacity: 1;
     }
   }
 
@@ -351,7 +351,7 @@ $root: 'j-button';
     content: '';
     background-color: currentColor;
     border-radius: inherit;
-    opacity: 0%;
+    opacity: 0;
     transition-duration: 0.1s;
     transition-property: opacity;
   }
@@ -379,6 +379,6 @@ $root: 'j-button';
   align-items: center;
   justify-content: center;
   pointer-events: none;
-  opacity: 0%;
+  opacity: 0;
 }
 </style>
