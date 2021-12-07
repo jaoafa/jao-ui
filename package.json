@@ -81,7 +81,7 @@
     "rollup-plugin-typescript2": "^0.31.1",
     "rollup-plugin-vue": "^6.0.0",
     "sass": "^1.44.0",
-    "sass-loader": "^10.2.0",
+    "sass-loader": "^12.4.0",
     "style-loader": "^2.0.0",
     "stylelint": "^14.1.0",
     "stylelint-config-prettier": "^9.0.3",
