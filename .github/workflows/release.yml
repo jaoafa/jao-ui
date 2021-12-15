@@ -26,10 +26,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-npm-
       - name: Extract version
-        uses: martinbeentjes/npm-get-version-action@master
+        uses: martinbeentjes/npm-get-version-action@v1.1.0
         id: extract_version
       - name: Create tag
-        uses: mathieudutour/github-tag-action@v6
+        uses: mathieudutour/github-tag-action@v6.0
         with:
           custom_tag: ${{ steps.extract_version.outputs.current-version }}
           tag_prefix: v
@@ -58,7 +58,7 @@ jobs:
       - name: Archive
         run: npm pack
       - name: Create release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v0.1.14
         with:
           files: jaoafa-jao-ui-${{ steps.extract_version.outputs.current-version }}.tgz
           tag_name: v${{ steps.extract_version.outputs.current-version }}
