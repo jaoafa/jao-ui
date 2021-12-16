@@ -12,7 +12,7 @@ export default defineComponent({
 
   props: {
     /**
-     * 上下方向の配置を指定します。
+     * 上下方向の配置を指定します
      * @values start, center, end, baseline, stretch
      */
     align: {
@@ -23,7 +23,7 @@ export default defineComponent({
       },
     },
     /**
-     * 左右方向の配置を指定します。
+     * 左右方向の配置を指定します
      * @values start, center, end, space-between, space-around
      */
     justify: {
@@ -39,16 +39,12 @@ export default defineComponent({
         ].includes(val)
       },
     },
-    /**
-     * アイテム間の隙間を削除します。
-     */
+    /** アイテム間の隙間を削除します */
     noGap: {
       type: Boolean,
       default: false,
     },
-    /**
-     * 指定されたタグをコンポーネントに適用します。
-     */
+    /** 指定されたタグをコンポーネントに適用します */
     tag: {
       type: String,
       default: 'div',

@@ -39,9 +39,7 @@ export default defineComponent({
   },
 
   props: {
-    /**
-     * ヘッダーのカラムとなる配列を指定します。
-     */
+    /** ヘッダーのカラムとなる配列を指定します */
     headers: {
       type: Array,
       default: () => [],
@@ -55,15 +53,13 @@ export default defineComponent({
         return val.every((item) => item.label && item.key)
       },
     },
-    /**
-     * ソートする項目を指定します。
-     */
+    /** ソートする項目を指定します */
     sortBy: {
       type: String,
       default: () => '',
     },
     /**
-     * ソートする順番を指定します。
+     * ソートする順番を指定します
      * @values asc, desc
      */
     sortOrder: {

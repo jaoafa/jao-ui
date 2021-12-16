@@ -34,23 +34,17 @@ export default defineComponent({
   },
 
   props: {
-    /**
-     * 画像の代替テキストを設定します。
-     */
+    /** 画像の代替テキストを設定します */
     alt: {
       type: String,
       default: '',
     },
-    /**
-     * 画像が指定された大きさに収まらない場合にトリミングされないようにします。
-     */
+    /** 画像が指定された大きさに収まらない場合にトリミングされないようにします */
     contain: {
       type: Boolean,
       default: false,
     },
-    /**
-     * 指定された高さをコンポーネントに適用します。
-     */
+    /** 指定された高さをコンポーネントに適用します */
     height: {
       type: String,
       default: undefined,
@@ -58,9 +52,7 @@ export default defineComponent({
         return validateSize(val)
       },
     },
-    /**
-     * 指定された高さの最大値をコンポーネントに適用します。
-     */
+    /** 指定された高さの最大値をコンポーネントに適用します */
     maxHeight: {
       type: String,
       default: undefined,
@@ -68,9 +60,7 @@ export default defineComponent({
         return validateSize(val)
       },
     },
-    /**
-     * 指定された幅の最大値をコンポーネントに適用します。
-     */
+    /** 指定された幅の最大値をコンポーネントに適用します */
     maxWidth: {
       type: String,
       default: undefined,
@@ -78,9 +68,7 @@ export default defineComponent({
         return validateSize(val)
       },
     },
-    /**
-     * 指定された高さの最小値をコンポーネントに適用します。
-     */
+    /** 指定された高さの最小値をコンポーネントに適用します */
     minHeight: {
       type: String,
       default: undefined,
@@ -88,9 +76,7 @@ export default defineComponent({
         return validateSize(val)
       },
     },
-    /**
-     * 指定された幅の最小値をコンポーネントに適用します。
-     */
+    /** 指定された幅の最小値をコンポーネントに適用します */
     minWidth: {
       type: String,
       default: undefined,
@@ -100,30 +86,24 @@ export default defineComponent({
     },
     /**
      * srcset で複数の画像サイズが与えられている場合に
-     * 画像の表示サイズを指定するためのカンマ区切りの文字列をコンポーネントに適用します。
+     * 画像の表示サイズを指定するためのカンマ区切りの文字列をコンポーネントに適用します
      */
     sizes: {
       type: String,
       default: undefined,
     },
-    /**
-     * 画像のURLを適用します。この項目は必須です。
-     */
+    /** 画像のURLを適用します。この項目は必須です */
     src: {
       type: String,
       default: '',
       require: true,
     },
-    /**
-     * 使用可能なソース画像のセットを示すカンマ区切りのリストです。
-     */
+    /** 使用可能なソース画像のセットを示すカンマ区切りのリストです */
     srcset: {
       type: String,
       default: undefined,
     },
-    /**
-     * 指定された幅をコンポーネントに適用します。
-     */
+    /** 指定された幅をコンポーネントに適用します */
     width: {
       type: String,
       default: undefined,

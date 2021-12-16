@@ -11,9 +11,7 @@ export default defineComponent({
   name: 'JApp',
 
   props: {
-    /**
-     * コンポーネントの高さを auto にします。
-     */
+    /** コンポーネントの高さを auto にします */
     noStretch: {
       type: Boolean,
       default: false,

@@ -11,9 +11,7 @@ export default defineComponent({
   name: 'JCol',
 
   props: {
-    /**
-     * デフォルトの行数を 1～12 の数字で設定します。
-     */
+    /** デフォルトの行数を 1～12 の数字で設定します */
     cols: {
       type: Number,
       default: undefined,
@@ -21,9 +19,7 @@ export default defineComponent({
         return val >= 1 && val <= 12
       },
     },
-    /**
-     * 画面幅が 992px～1200px であるときの行数を 1～12 の数字で設定します。
-     */
+    /** 画面幅が 992px～1200px であるときの行数を 1～12 の数字で設定します */
     colsLg: {
       type: Number,
       default: undefined,
@@ -31,9 +27,7 @@ export default defineComponent({
         return val >= 1 && val <= 12
       },
     },
-    /**
-     * 画面幅が 768px～991px であるときの行数を 1～12 の数字で設定します。
-     */
+    /** 画面幅が 768px～991px であるときの行数を 1～12 の数字で設定します */
     colsMd: {
       type: Number,
       default: undefined,
@@ -41,9 +35,7 @@ export default defineComponent({
         return val >= 1 && val <= 12
       },
     },
-    /**
-     * 画面幅が 576px～767px であるときの行数を 1～12 の数字で設定します。
-     */
+    /** 画面幅が 576px～767px であるときの行数を 1～12 の数字で設定します */
     colsSm: {
       type: Number,
       default: undefined,
@@ -51,9 +43,7 @@ export default defineComponent({
         return val >= 1 && val <= 12
       },
     },
-    /**
-     * 画面幅が 1200px 以上であるときの行数を 1～12 の数字で設定します。
-     */
+    /** 画面幅が 1200px 以上であるときの行数を 1～12 の数字で設定します */
     colsXl: {
       type: Number,
       default: undefined,
@@ -61,9 +51,7 @@ export default defineComponent({
         return val >= 1 && val <= 12
       },
     },
-    /**
-     * 指定されたタグをコンポーネントに適用します。
-     */
+    /** 指定されたタグをコンポーネントに適用します */
     tag: {
       type: String,
       default: 'div',

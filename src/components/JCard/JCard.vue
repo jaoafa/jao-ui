@@ -35,9 +35,7 @@ export default defineComponent({
   },
 
   props: {
-    /**
-     * 指定された色をコンポーネントに適用します。
-     */
+    /** 指定された色をコンポーネントに適用します */
     color: {
       type: String,
       default: 'white',
@@ -45,16 +43,12 @@ export default defineComponent({
         return validateColor(val)
       },
     },
-    /**
-     * コンポーネントの外側の影を削除します。
-     */
+    /** コンポーネントの外側の影を削除します */
     flat: {
       type: Boolean,
       default: false,
     },
-    /**
-     * 指定された高さをコンポーネントに適用します。
-     */
+    /** 指定された高さをコンポーネントに適用します */
     height: {
       type: String,
       default: undefined,
@@ -62,16 +56,12 @@ export default defineComponent({
         return validateSize(val)
       },
     },
-    /**
-     * コンポーネントをアンカーにして href 属性を追加します。
-     */
+    /** コンポーネントをアンカーにして href 属性を追加します */
     href: {
       type: String,
       default: undefined,
     },
-    /**
-     * 指定された高さの最大値をコンポーネントに適用します。
-     */
+    /** 指定された高さの最大値をコンポーネントに適用します */
     maxHeight: {
       type: String,
       default: undefined,
@@ -79,9 +69,7 @@ export default defineComponent({
         return validateSize(val)
       },
     },
-    /**
-     * 指定された幅の最大値をコンポーネントに適用します。
-     */
+    /** 指定された幅の最大値をコンポーネントに適用します */
     maxWidth: {
       type: String,
       default: undefined,
@@ -89,9 +77,7 @@ export default defineComponent({
         return validateSize(val)
       },
     },
-    /**
-     * 指定された高さの最小値をコンポーネントに適用します。
-     */
+    /** 指定された高さの最小値をコンポーネントに適用します */
     minHeight: {
       type: String,
       default: undefined,
@@ -99,9 +85,7 @@ export default defineComponent({
         return validateSize(val)
       },
     },
-    /**
-     * 指定された幅の最小値をコンポーネントに適用します。
-     */
+    /** 指定された幅の最小値をコンポーネントに適用します */
     minWidth: {
       type: String,
       default: undefined,
@@ -109,44 +93,32 @@ export default defineComponent({
         return validateSize(val)
       },
     },
-    /**
-     * コンポーネントを <nuxt-link> にします。
-     */
+    /** コンポーネントを <nuxt-link> にします */
     nuxt: {
       type: Boolean,
       default: false,
     },
-    /**
-     * 指定されたタグをコンポーネントに適用します。
-     */
+    /** 指定されたタグをコンポーネントに適用します */
     tag: {
       type: String,
       default: 'div',
     },
-    /**
-     * 指定された値を target 属性としてコンポーネントに追加します。
-     */
+    /** 指定された値を target 属性としてコンポーネントに追加します */
     target: {
       type: String,
       default: undefined,
     },
-    /**
-     * コンポーネントの角を角丸にしないようにします。
-     */
+    /** コンポーネントの角を角丸にしないようにします */
     tile: {
       type: Boolean,
       default: false,
     },
-    /**
-     * コンポーネントを <router-link> にし、指定された値を to として適用します。
-     */
+    /** コンポーネントを <router-link> にし、指定された値を to として適用します */
     to: {
       type: String,
       default: undefined,
     },
-    /**
-     * 指定された幅をコンポーネントに適用します。
-     */
+    /** 指定された幅をコンポーネントに適用します */
     width: {
       type: String,
       default: undefined,

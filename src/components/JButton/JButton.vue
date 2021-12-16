@@ -41,9 +41,7 @@ export default defineComponent({
   },
 
   props: {
-    /**
-     * 指定された色をコンポーネントに適用します。
-     */
+    /** 指定された色をコンポーネントに適用します */
     color: {
       type: String,
       default: 'primary',
@@ -51,57 +49,43 @@ export default defineComponent({
         return validateColor(val)
       },
     },
-    /**
-     * コンポーネントをクリックできないようにします。
-     */
+    /** コンポーネントをクリックできないようにします */
     disabled: {
       type: Boolean,
       default: false,
     },
-    /**
-     * コンポーネントをアンカーにして href 属性を追加します。
-     */
+    /** コンポーネントをアンカーにして href 属性を追加します */
     href: {
       type: String,
       default: undefined,
     },
-    /**
-     * コンポーネントをアイコンとして指定し、形状を円形にします。
-     */
+    /** コンポーネントをアイコンとして指定し、形状を円形にします */
     icon: {
       type: Boolean,
       default: false,
     },
-    /**
-     * ローディングアニメーションを表示します。
-     */
+    /** ローディングアニメーションを表示します */
     loading: {
       type: Boolean,
       default: false,
     },
-    /**
-     * 装飾を削除します。
-     */
+    /** 装飾を削除します */
     noDecoration: {
       type: Boolean,
       default: false,
     },
-    /**
-     * コンポーネントを <nuxt-link> にします。
-     */
+    /** コンポーネントを <nuxt-link> にします */
     nuxt: {
       type: Boolean,
       default: false,
     },
-    /**
-     * 背景を透明にし、枠線を追加します。
-     */
+    /** 背景を透明にし、枠線を追加します */
     outlined: {
       type: Boolean,
       default: false,
     },
     /**
-     * 指定された大きさをコンポーネントに適用します。
+     * 指定された大きさをコンポーネントに適用します
      * @values large, medium, small
      */
     size: {
@@ -111,23 +95,17 @@ export default defineComponent({
         return ['large', 'medium', 'small'].includes(val)
       },
     },
-    /**
-     * 指定されたタグをコンポーネントに適用します。
-     */
+    /** 指定されたタグをコンポーネントに適用します */
     tag: {
       type: String,
       default: 'button',
     },
-    /**
-     * 指定された値を target 属性としてコンポーネントに追加します。
-     */
+    /** 指定された値を target 属性としてコンポーネントに追加します */
     target: {
       type: String,
       default: undefined,
     },
-    /**
-     * コンポーネントを <router-link> にし、指定された値を to として適用します。
-     */
+    /** コンポーネントを <router-link> にし、指定された値を to として適用します */
     to: {
       type: String,
       default: undefined,
