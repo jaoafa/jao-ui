@@ -8,12 +8,14 @@
     :required="required"
   >
     <div class="j-text-field__body">
+      <slot name="prepend" />
       <input
         :id="id"
         v-model="inputValue"
         :type="type"
         class="j-text-field__input"
       />
+      <slot name="append" />
     </div>
   </j-input>
 </template>

@@ -233,8 +233,14 @@
             label="TextField"
             loading
             required
-          />
-          <j-text-field label="TextField" loading required />
+          >
+            <template #prepend>
+              <j-icon :size="16" color="gray-600">check_circle</j-icon>
+            </template>
+            <template #append>
+              <span>km/h</span>
+            </template>
+          </j-text-field>
         </section>
 
         <!-- Pagination -->
