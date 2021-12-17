@@ -89,6 +89,8 @@ export default defineComponent({
 <style lang="scss">
 @use 'src/styles/includes' as *;
 
+$root: 'j-input';
+
 .j-input {
   display: grid;
   grid-template-columns: 1fr;

@@ -5,11 +5,15 @@
     :label="label"
     :loading="loading"
     :required="required"
-  ></j-input>
+  >
+    <div class="j-text-field__body">
+      <input v-model="inputValue" :type="type" class="j-text-field__input" />
+    </div>
+  </j-input>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
+import { computed, defineComponent, PropType } from 'vue'
 import { validateColor } from '@/utils/colors'
 import JInput from './JInput.vue'
 
@@ -44,13 +48,69 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    /** 指定された値を type 属性としてコンポーネントに適用します */
+    type: {
+      type: String as PropType<'text' | 'number'>,
+      default: 'text',
+      validator: (val: string): boolean => {
+        return ['text', 'number'].includes(val)
+      },
+    },
+    /** 現在入力している値を指定します */
+    value: {
+      type: [String, Number],
+      default: '',
+    },
   },
 
-  setup() {
+  emits: ['input', 'update:value'],
+
+  setup(props, context) {
     const classes = computed((): { [key: string]: boolean } => ({
       'j-text-field': true,
     }))
-    return { classes }
+    const inputValue = computed({
+      get: (): string | number => {
+        return props.value
+      },
+      set: (val: string | number): void => {
+        if (props.type === 'number') {
+          val = +val
+        }
+        context.emit('input', val)
+        context.emit('update:value', val)
+      },
+    })
+    return { classes, inputValue }
   },
 })
 </script>
+
+<style lang="scss">
+@use 'src/styles/includes' as *;
+
+$root: 'j-text-field';
+
+.j-text-field {
+  position: inherit;
+}
+
+.j-text-field__body {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  font-size: 13px;
+}
+
+.j-text-field__input {
+  flex: 1 1;
+  padding: 4px 8px;
+  font: inherit;
+  line-height: 1;
+  color: inherit;
+  border: solid 1px $color-gray-200;
+  border-radius: 2px;
+  outline: none;
+}
+</style>
