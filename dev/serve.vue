@@ -238,6 +238,7 @@
             </template>
           </j-text-field>
           <j-text-field value="disabled" label="TextField" disabled />
+          <j-text-field value="readonly" label="TextField" readonly />
         </section>
 
         <!-- Pagination -->

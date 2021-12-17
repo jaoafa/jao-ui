@@ -13,6 +13,7 @@
         :id="id"
         v-model="inputValue"
         :disabled="disabled"
+        :readonly="readonly"
         :type="type"
         class="j-text-field__input"
       />
@@ -58,6 +59,11 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    /** 読み取り専用状態にします */
+    readonly: {
+      type: Boolean,
+      default: false,
+    },
     /** 必須マークを表示します */
     required: {
       type: Boolean,
@@ -84,6 +90,7 @@ export default defineComponent({
     const classes = computed((): { [key: string]: boolean } => ({
       'j-text-field': true,
       'j-text-field--disabled': props.disabled,
+      'j-text-field--readonly': props.readonly,
     }))
 
     const inputValue = computed({
@@ -94,8 +101,10 @@ export default defineComponent({
         if (props.type === 'number') {
           val = +val
         }
-        context.emit('input', val)
-        context.emit('update:value', val)
+        if (!props.readonly) {
+          context.emit('input', val)
+          context.emit('update:value', val)
+        }
       },
     })
 
