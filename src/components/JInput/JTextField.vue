@@ -12,6 +12,7 @@
       <input
         :id="id"
         v-model="inputValue"
+        :disabled="disabled"
         :type="type"
         class="j-text-field__input"
       />
@@ -41,6 +42,11 @@ export default defineComponent({
       validator: (val: string): boolean => {
         return validateColor(val)
       },
+    },
+    /** 入力を無効にします */
+    disabled: {
+      type: Boolean,
+      default: false,
     },
     /** 指定されたラベルをコンポーネントに適用します */
     label: {
@@ -77,6 +83,7 @@ export default defineComponent({
   setup(props, context) {
     const classes = computed((): { [key: string]: boolean } => ({
       'j-text-field': true,
+      'j-text-field--disabled': props.disabled,
     }))
 
     const inputValue = computed({
@@ -109,6 +116,15 @@ $root: 'j-text-field';
 
 .j-text-field {
   position: inherit;
+
+  &--disabled {
+    pointer-events: none;
+
+    .#{$root}__input {
+      color: $color-gray-400;
+      background-color: $color-gray-50;
+    }
+  }
 }
 
 .j-text-field__body {
