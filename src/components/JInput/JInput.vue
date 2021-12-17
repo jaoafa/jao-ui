@@ -114,6 +114,7 @@ export default defineComponent({
 
 .j-input__label {
   font-size: 14px;
+  user-select: none;
 }
 
 .j-input__required {
