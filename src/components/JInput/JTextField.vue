@@ -1,5 +1,6 @@
 <template>
   <j-input
+    :id="id"
     :class="classes"
     :color="color"
     :label="label"
@@ -7,13 +8,19 @@
     :required="required"
   >
     <div class="j-text-field__body">
-      <input v-model="inputValue" :type="type" class="j-text-field__input" />
+      <input
+        :id="id"
+        v-model="inputValue"
+        :type="type"
+        class="j-text-field__input"
+      />
     </div>
   </j-input>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, PropType } from 'vue'
+import { nanoid } from 'nanoid'
 import { validateColor } from '@/utils/colors'
 import JInput from './JInput.vue'
 
@@ -69,6 +76,7 @@ export default defineComponent({
     const classes = computed((): { [key: string]: boolean } => ({
       'j-text-field': true,
     }))
+
     const inputValue = computed({
       get: (): string | number => {
         return props.value
@@ -81,7 +89,10 @@ export default defineComponent({
         context.emit('update:value', val)
       },
     })
-    return { classes, inputValue }
+
+    const id = nanoid()
+
+    return { classes, inputValue, id }
   },
 })
 </script>
