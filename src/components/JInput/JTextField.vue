@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType } from 'vue'
+import { computed, defineComponent, onMounted, PropType, ref } from 'vue'
 import { nanoid } from 'nanoid'
 import { validateColor } from '@/utils/colors'
 import JInput from './JInput.vue'
@@ -90,7 +90,10 @@ export default defineComponent({
       },
     })
 
-    const id = nanoid()
+    const id = ref<string>('')
+    onMounted(() => {
+      id.value = nanoid()
+    })
 
     return { classes, inputValue, id }
   },
