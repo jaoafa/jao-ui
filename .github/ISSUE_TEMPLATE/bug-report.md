@@ -2,7 +2,7 @@
 name: Bug Report
 about: バグを発見された方は、こちらからご報告ください。
 title: ''
-labels: "\U0001F41Bproblem:bug"
+labels: "🐛problem:bug"
 assignees: Hiratake
 
 ---
