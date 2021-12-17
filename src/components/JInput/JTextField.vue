@@ -1,8 +1,8 @@
 <template>
   <j-input
     :class="classes"
+    :color="color"
     :label="label"
-    :loader-color="loaderColor"
     :loading="loading"
     :required="required"
   ></j-input>
@@ -21,18 +21,18 @@ export default defineComponent({
   },
 
   props: {
-    /** 指定されたラベルをコンポーネントに適用します */
-    label: {
-      type: String,
-      default: '',
-    },
-    /** 指定された色をローディングアニメーションに適用します */
-    loaderColor: {
+    /** 指定された色を装飾に適用します */
+    color: {
       type: String,
       default: 'primary',
       validator: (val: string): boolean => {
         return validateColor(val)
       },
+    },
+    /** 指定されたラベルをコンポーネントに適用します */
+    label: {
+      type: String,
+      default: '',
     },
     /** ローディングアニメーションを表示します */
     loading: {
@@ -43,14 +43,6 @@ export default defineComponent({
     required: {
       type: Boolean,
       default: false,
-    },
-    /** 指定された色を必須マークに適用します */
-    requiredColor: {
-      type: String,
-      default: 'primary',
-      validator: (val: string): boolean => {
-        return validateColor(val)
-      },
     },
   },
 

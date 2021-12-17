@@ -9,7 +9,7 @@
       </span>
       <j-progress-circle
         v-show="loading"
-        :color="loaderColor"
+        :color="color"
         :size="18"
         :stroke="2"
         indeterminate
@@ -41,6 +41,14 @@ export default defineComponent({
   },
 
   props: {
+    /** 指定された色を装飾に適用します */
+    color: {
+      type: String,
+      default: 'primary',
+      validator: (val: string): boolean => {
+        return validateColor(val)
+      },
+    },
     /** 指定された id をラベルに適用します */
     id: {
       type: String,
@@ -50,14 +58,6 @@ export default defineComponent({
     label: {
       type: String,
       default: undefined,
-    },
-    /** 指定された色をローディングアニメーションに適用します */
-    loaderColor: {
-      type: String,
-      default: 'primary',
-      validator: (val: string): boolean => {
-        return validateColor(val)
-      },
     },
     /** ローディングアニメーションを表示します */
     loading: {
@@ -69,14 +69,6 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
-    /** 指定された色を必須マークに適用します */
-    requiredColor: {
-      type: String,
-      default: 'primary',
-      validator: (val: string): boolean => {
-        return validateColor(val)
-      },
-    },
   },
 
   setup(props) {
@@ -85,8 +77,8 @@ export default defineComponent({
     }))
 
     const requiredStyles = computed((): { [key: string]: string } => ({
-      color: getContrastColor(convertNameToHex(props.requiredColor)),
-      'background-color': convertNameToHex(props.requiredColor),
+      color: getContrastColor(convertNameToHex(props.color)),
+      'background-color': convertNameToHex(props.color),
     }))
 
     return { classes, requiredStyles }

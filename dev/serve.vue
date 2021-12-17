@@ -228,7 +228,7 @@
         <!-- Input -->
         <section class="mt-8">
           <h3 class="text-lv3 mb-4">Input</h3>
-          <j-text-field label="TextField" />
+          <j-text-field label="TextField" color="secondary" loading required />
         </section>
 
         <!-- Pagination -->
