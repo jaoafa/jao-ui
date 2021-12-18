@@ -228,9 +228,5 @@ $root: 'j-text-field';
 
 .j-text-field__counter {
   font-size: 10px;
-
-  &--error {
-    color: $color-error;
-  }
 }
 </style>
