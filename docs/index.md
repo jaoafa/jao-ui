@@ -8,6 +8,7 @@
 - [Containier](components/container.md)
 - [Icon](components/icon.md)
 - [Image](components/image.md)
+- [Input](components/input.md)
 - [Pagination](components/pagination.md)
 - [ProgressBar](components/progress-bar.md)
 - [ProgressCircle](components/progress-circle.md)
@@ -16,6 +17,8 @@
 - [Table](components/table.md)
 - [TableHeader](components/table-header.md)
 - [TableFooter](components/table-footer.md)
+- [TextField](components/text-field.md)
+- [Textarea](components/textarea.md)
 
 ## Utilities
 
