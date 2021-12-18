@@ -11,6 +11,12 @@
       <textarea :id="id" v-model="inputValue" class="j-textarea__input" />
       <slot name="append" />
     </div>
+
+    <template v-if="counter" #footer-append>
+      <span class="j-textarea__counter">
+        {{ inputValue.length }} {{ counterLength ? `/ ${counterLength}` : '' }}
+      </span>
+    </template>
   </j-input>
 </template>
 
@@ -35,6 +41,16 @@ export default defineComponent({
       validator: (val: string): boolean => {
         return validateColor(val)
       },
+    },
+    /** 文字数カウンタを表示します */
+    counter: {
+      type: Boolean,
+      default: false,
+    },
+    /** 指定された長さを文字数カウンタに適用します */
+    counterLength: {
+      type: Number,
+      default: undefined,
     },
     /** 指定されたラベルをコンポーネントに適用します */
     label: {
@@ -111,5 +127,9 @@ $root: 'j-textarea';
   border: solid 1px $color-gray-200;
   border-radius: 2px;
   outline: none;
+}
+
+.j-textarea__counter {
+  font-size: 10px;
 }
 </style>

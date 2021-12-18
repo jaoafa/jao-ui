@@ -321,7 +321,12 @@
           </j-row>
           <j-row>
             <j-col :cols="6">
-              <j-textarea v-model:value="textarea" label="Textarea" />
+              <j-textarea
+                v-model:value="textarea"
+                :counter-length="100"
+                label="Textarea"
+                counter
+              />
             </j-col>
             <j-col :cols="6">
               <j-textarea value="textarea" label="Textarea" loading required>
