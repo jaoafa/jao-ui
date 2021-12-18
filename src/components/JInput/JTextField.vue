@@ -26,12 +26,7 @@
     </div>
 
     <template v-if="counter" #footer-append>
-      <span
-        :class="{
-          'j-text-field__counter--error': inputValue.length > counterMax,
-        }"
-        class="j-text-field__counter"
-      >
+      <span class="j-text-field__counter">
         {{ inputValue.length }} {{ counterMax ? `/ ${counterMax}` : '' }}
       </span>
     </template>
@@ -195,11 +190,19 @@ $root: 'j-text-field';
     .#{$root}__input {
       border-color: $color-error;
     }
+
+    .#{$root}__counter {
+      color: $color-error;
+    }
   }
 
   &--success {
     .#{$root}__input {
       border-color: $color-success;
+    }
+
+    .#{$root}__counter {
+      color: $color-success;
     }
   }
 }

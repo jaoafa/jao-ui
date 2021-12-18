@@ -267,6 +267,7 @@
                 value="countercounter"
                 label="TextField"
                 counter
+                error
               />
             </j-col>
           </j-row>
