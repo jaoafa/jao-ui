@@ -60,7 +60,7 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
-    /** 指定された長さを文字数カウンタの最大値に適用します */
+    /** 指定された長さを文字数カウンタに適用します */
     counterLength: {
       type: Number,
       default: undefined,
