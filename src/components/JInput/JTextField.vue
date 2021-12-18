@@ -23,6 +23,17 @@
       />
       <slot name="append" />
     </div>
+
+    <template v-if="counter" #footer-append>
+      <span
+        :class="{
+          'j-text-field__counter--error': inputValue.length > counterMax,
+        }"
+        class="j-text-field__counter"
+      >
+        {{ inputValue.length }} {{ counterMax ? `/ ${counterMax}` : '' }}
+      </span>
+    </template>
   </j-input>
 </template>
 
@@ -47,6 +58,16 @@ export default defineComponent({
       validator: (val: string): boolean => {
         return validateColor(val)
       },
+    },
+    /** 文字数カウンタを表示します */
+    counter: {
+      type: Boolean,
+      default: false,
+    },
+    /** 指定された長さを文字数カウンタの最大値に適用します */
+    counterMax: {
+      type: Number,
+      default: undefined,
     },
     /** 入力を無効にします */
     disabled: {
@@ -194,5 +215,13 @@ $root: 'j-text-field';
   border: solid 1px $color-gray-200;
   border-radius: 2px;
   outline: none;
+}
+
+.j-text-field__counter {
+  font-size: 10px;
+
+  &--error {
+    color: $color-error;
+  }
 }
 </style>

@@ -21,6 +21,7 @@
     </div>
 
     <div v-show="showFooter" class="j-input__footer">
+      <slot name="footer-prepend" />
       <div class="j-input__message">
         <template
           v-for="(successMessage, index) in successMessages"
@@ -32,6 +33,7 @@
           <p class="j-input__error">{{ errorMessage }}</p>
         </template>
       </div>
+      <slot name="footer-append" />
     </div>
   </div>
 </template>
@@ -103,7 +105,7 @@ export default defineComponent({
     },
   },
 
-  setup(props) {
+  setup(props, context) {
     const classes = computed((): { [key: string]: boolean } => ({
       'j-input': true,
       'j-input--error': props.error,
@@ -116,7 +118,12 @@ export default defineComponent({
     }))
 
     const showFooter = computed((): boolean => {
-      return !!props.errorMessages.length || !!props.successMessages.length
+      return (
+        !!props.errorMessages.length ||
+        !!props.successMessages.length ||
+        !!context.slots['footer-prepend'] ||
+        !!context.slots['footer-append']
+      )
     })
 
     return { classes, requiredStyles, showFooter }
@@ -133,7 +140,7 @@ $root: 'j-input';
   display: grid;
   grid-template-columns: 1fr;
   grid-auto-rows: auto;
-  gap: 8px;
+  gap: 4px;
   max-width: 100%;
 
   &--error {

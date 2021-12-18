@@ -281,6 +281,19 @@
               />
             </j-col>
           </j-row>
+          <j-row>
+            <j-col :cols="6">
+              <j-text-field value="counter" label="TextField" counter />
+            </j-col>
+            <j-col :cols="6">
+              <j-text-field
+                :counter-max="10"
+                value="countercounter"
+                label="TextField"
+                counter
+              />
+            </j-col>
+          </j-row>
         </section>
 
         <!-- Pagination -->
