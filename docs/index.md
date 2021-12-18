@@ -18,6 +18,7 @@
 - [TableHeader](components/table-header.md)
 - [TableFooter](components/table-footer.md)
 - [TextField](components/text-field.md)
+- [Textarea](components/textarea.md)
 
 ## Utilities
 

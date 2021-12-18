@@ -1,6 +1,6 @@
 ## TextField
 
-`j-text-field` コンポーネントは、テキスト入力のコンポーネントです。
+`j-textarea` コンポーネントは、テキスト入力（複数行）のコンポーネントです。
 
 ### Props
 
@@ -17,9 +17,10 @@
 |`loading`|`boolean`|`false`|ローディングアニメーションを表示します。|
 |`readonly`|`boolean`|`false`|読み取り専用状態にします。|
 |`required`|`boolean`|`false`|必須マークを表示します。|
+|`resize`|`boolean`|`false`|表示サイズ変更を有効にします。|
+|`rows`|`number`|`3`|コンポーネントを指定された行数分表示できる高さに設定します。|
 |`success`|`boolean`|`false`|成功表示にします。|
 |`success-messages`|`array`|`[]`|指定されたテキストを成功メッセージとして表示します。|
-|`type`|`string`|`text`|指定された値を type 属性としてコンポーネントに適用します。|
 |`value`|`string\|number`|`''`|現在入力している値を指定します。|
 
 ### Events
