@@ -3,6 +3,8 @@
     :id="id"
     :class="classes"
     :color="color"
+    :error="error"
+    :error-messages="errorMessages"
     :label="label"
     :loading="loading"
     :required="required"
@@ -49,6 +51,16 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    /** エラー表示にします */
+    error: {
+      type: Boolean,
+      default: false,
+    },
+    /** 指定されたテキストをエラーメッセージとして表示します */
+    errorMessages: {
+      type: Array as PropType<string[]>,
+      default: () => [],
+    },
     /** 指定されたラベルをコンポーネントに適用します */
     label: {
       type: String,
@@ -90,6 +102,7 @@ export default defineComponent({
     const classes = computed((): { [key: string]: boolean } => ({
       'j-text-field': true,
       'j-text-field--disabled': props.disabled,
+      'j-text-field--error': props.error,
       'j-text-field--readonly': props.readonly,
     }))
 
@@ -132,6 +145,12 @@ $root: 'j-text-field';
     .#{$root}__input {
       color: $color-gray-400;
       background-color: $color-gray-50;
+    }
+  }
+
+  &--error {
+    .#{$root}__input {
+      border-color: $color-error;
     }
   }
 }

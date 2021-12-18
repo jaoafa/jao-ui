@@ -228,17 +228,49 @@
         <!-- Input -->
         <section class="mt-8">
           <h3 class="text-lv3 mb-4">Input</h3>
-          <j-text-field v-model:value="textField" label="TextField" />
-          <j-text-field label="TextField" loading required>
-            <template #prepend>
-              <j-icon :size="16" color="gray-600">check_circle</j-icon>
-            </template>
-            <template #append>
-              <span>km/h</span>
-            </template>
-          </j-text-field>
-          <j-text-field value="disabled" label="TextField" disabled />
-          <j-text-field value="readonly" label="TextField" readonly />
+          <j-row>
+            <j-col :cols="6">
+              <j-text-field v-model:value="textField" label="TextField" />
+            </j-col>
+            <j-col :cols="6">
+              <j-text-field
+                :value="0"
+                label="TextField"
+                type="number"
+                loading
+                required
+              >
+                <template #prepend>
+                  <j-icon :size="16" color="gray-600">check_circle</j-icon>
+                </template>
+                <template #append>
+                  <span>km/h</span>
+                </template>
+              </j-text-field>
+            </j-col>
+          </j-row>
+          <j-row>
+            <j-col :cols="6">
+              <j-text-field value="disabled" label="TextField" disabled />
+            </j-col>
+            <j-col :cols="6">
+              <j-text-field value="readonly" label="TextField" readonly />
+            </j-col>
+          </j-row>
+          <j-row>
+            <j-col :cols="6">
+              <j-text-field
+                :error-messages="[
+                  '入力内容が不正です。',
+                  '入力に誤りがあります。入力に誤りがあります。入力に誤りがあります。入力に誤りがあります。入力に誤りがあります。入力に誤りがあります。',
+                ]"
+                value="error"
+                label="TextField"
+                error
+              />
+            </j-col>
+            <j-col :cols="6"></j-col>
+          </j-row>
         </section>
 
         <!-- Pagination -->

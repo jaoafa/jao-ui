@@ -20,12 +20,18 @@
       <slot />
     </div>
 
-    <div class="j-input__footer"></div>
+    <div v-show="showFooter" class="j-input__footer">
+      <div class="j-input__message">
+        <template v-for="(errorMessage, index) in errorMessages" :key="index">
+          <p class="j-input__error">{{ errorMessage }}</p>
+        </template>
+      </div>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
+import { computed, defineComponent, PropType } from 'vue'
 import {
   convertNameToHex,
   getContrastColor,
@@ -48,6 +54,16 @@ export default defineComponent({
       validator: (val: string): boolean => {
         return validateColor(val)
       },
+    },
+    /** エラー表示にします */
+    error: {
+      type: Boolean,
+      default: false,
+    },
+    /** 指定されたテキストをエラーメッセージとして表示します */
+    errorMessages: {
+      type: Array as PropType<string[]>,
+      default: () => [],
     },
     /** 指定された id をラベルに適用します */
     id: {
@@ -74,6 +90,7 @@ export default defineComponent({
   setup(props) {
     const classes = computed((): { [key: string]: boolean } => ({
       'j-input': true,
+      'j-input--error': props.error,
     }))
 
     const requiredStyles = computed((): { [key: string]: string } => ({
@@ -81,7 +98,11 @@ export default defineComponent({
       'background-color': convertNameToHex(props.color),
     }))
 
-    return { classes, requiredStyles }
+    const showFooter = computed((): boolean => {
+      return !!props.errorMessages.length
+    })
+
+    return { classes, requiredStyles, showFooter }
   },
 })
 </script>
@@ -97,6 +118,12 @@ $root: 'j-input';
   grid-auto-rows: auto;
   gap: 8px;
   max-width: 100%;
+
+  &--error {
+    .#{$root}__label {
+      color: $color-error;
+    }
+  }
 }
 
 .j-input__header {
@@ -115,5 +142,20 @@ $root: 'j-input';
   padding: 0 8px 2px 6px;
   font-size: 10px;
   border-radius: 2px;
+}
+
+.j-input__footer {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.j-input__message {
+  flex: 1 1;
+  font-size: 10px;
+}
+
+.j-input__error {
+  color: $color-error;
 }
 </style>
