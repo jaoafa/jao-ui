@@ -263,7 +263,7 @@
             </j-col>
             <j-col :cols="6">
               <j-text-field
-                :counter-max="10"
+                :counter-length="10"
                 value="countercounter"
                 label="TextField"
                 counter
@@ -298,7 +298,7 @@
           <j-row>
             <j-col :cols="6">
               <j-text-field
-                :counter-max="8"
+                :counter-length="8"
                 :hint="[
                   'パスワードは8文字以上で入力してください。',
                   '半角英数字・記号で入力してください。',

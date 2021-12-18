@@ -27,7 +27,7 @@
 
     <template v-if="counter" #footer-append>
       <span class="j-text-field__counter">
-        {{ inputValue.length }} {{ counterMax ? `/ ${counterMax}` : '' }}
+        {{ inputValue.length }} {{ counterLength ? `/ ${counterLength}` : '' }}
       </span>
     </template>
   </j-input>
@@ -61,7 +61,7 @@ export default defineComponent({
       default: false,
     },
     /** 指定された長さを文字数カウンタの最大値に適用します */
-    counterMax: {
+    counterLength: {
       type: Number,
       default: undefined,
     },
