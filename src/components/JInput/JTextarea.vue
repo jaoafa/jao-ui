@@ -19,6 +19,7 @@
         v-model="inputValue"
         :disabled="disabled"
         :readonly="readonly"
+        :rows="rows"
         class="j-textarea__input"
       />
       <slot name="append" />
@@ -108,6 +109,11 @@ export default defineComponent({
     resize: {
       type: Boolean,
       default: false,
+    },
+    /** コンポーネントを指定された行数分表示できる高さに設定します */
+    rows: {
+      type: Number,
+      default: 3,
     },
     /** 成功表示にします */
     success: {
@@ -212,9 +218,8 @@ $root: 'j-textarea';
 
 .j-textarea__input {
   flex: 1 1;
-  padding: 8px;
+  padding: 4px 8px;
   font: inherit;
-  line-height: 1;
   color: inherit;
   resize: none;
   border: solid 1px $color-gray-200;

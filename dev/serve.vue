@@ -324,6 +324,7 @@
               <j-textarea
                 v-model:value="textarea"
                 :counter-length="100"
+                :rows="5"
                 label="Textarea"
                 counter
                 resize
