@@ -260,6 +260,17 @@
           <j-row>
             <j-col :cols="6">
               <j-text-field
+                :success-messages="[
+                  '入力内容が正しいものだと確認できました。',
+                  '入力が正しいものです。入力が正しいものです。入力が正しいものです。入力が正しいものです。入力が正しいものです。入力が正しいものです。',
+                ]"
+                value="success"
+                label="TextField"
+                success
+              />
+            </j-col>
+            <j-col :cols="6">
+              <j-text-field
                 :error-messages="[
                   '入力内容が不正です。',
                   '入力に誤りがあります。入力に誤りがあります。入力に誤りがあります。入力に誤りがあります。入力に誤りがあります。入力に誤りがあります。',
@@ -269,7 +280,6 @@
                 error
               />
             </j-col>
-            <j-col :cols="6"></j-col>
           </j-row>
         </section>
 

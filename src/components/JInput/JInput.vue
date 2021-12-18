@@ -22,6 +22,12 @@
 
     <div v-show="showFooter" class="j-input__footer">
       <div class="j-input__message">
+        <template
+          v-for="(successMessage, index) in successMessages"
+          :key="index"
+        >
+          <p class="j-input__success">{{ successMessage }}</p>
+        </template>
         <template v-for="(errorMessage, index) in errorMessages" :key="index">
           <p class="j-input__error">{{ errorMessage }}</p>
         </template>
@@ -85,12 +91,23 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    /** 成功表示にします */
+    success: {
+      type: Boolean,
+      default: false,
+    },
+    /** 指定されたテキストを成功メッセージとして表示します */
+    successMessages: {
+      type: Array as PropType<string[]>,
+      default: () => [],
+    },
   },
 
   setup(props) {
     const classes = computed((): { [key: string]: boolean } => ({
       'j-input': true,
       'j-input--error': props.error,
+      'j-input--success': props.success,
     }))
 
     const requiredStyles = computed((): { [key: string]: string } => ({
@@ -99,7 +116,7 @@ export default defineComponent({
     }))
 
     const showFooter = computed((): boolean => {
-      return !!props.errorMessages.length
+      return !!props.errorMessages.length || !!props.successMessages.length
     })
 
     return { classes, requiredStyles, showFooter }
@@ -122,6 +139,12 @@ $root: 'j-input';
   &--error {
     .#{$root}__label {
       color: $color-error;
+    }
+  }
+
+  &--success {
+    .#{$root}__label {
+      color: $color-success;
     }
   }
 }
@@ -153,6 +176,10 @@ $root: 'j-input';
 .j-input__message {
   flex: 1 1;
   font-size: 10px;
+}
+
+.j-input__success {
+  color: $color-success;
 }
 
 .j-input__error {

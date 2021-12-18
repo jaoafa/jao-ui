@@ -8,6 +8,8 @@
     :label="label"
     :loading="loading"
     :required="required"
+    :success="success"
+    :success-messages="successMessages"
   >
     <div class="j-text-field__body">
       <slot name="prepend" />
@@ -81,7 +83,20 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
-    /** 指定された値を type 属性としてコンポーネントに適用します */
+    /** 成功表示にします */
+    success: {
+      type: Boolean,
+      default: false,
+    },
+    /** 指定されたテキストを成功メッセージとして表示します */
+    successMessages: {
+      type: Array as PropType<string[]>,
+      default: () => [],
+    },
+    /**
+     * 指定された値を type 属性としてコンポーネントに適用します
+     * @values text, number
+     */
     type: {
       type: String as PropType<'text' | 'number'>,
       default: 'text',
@@ -104,6 +119,7 @@ export default defineComponent({
       'j-text-field--disabled': props.disabled,
       'j-text-field--error': props.error,
       'j-text-field--readonly': props.readonly,
+      'j-text-field--success': props.success,
     }))
 
     const inputValue = computed({
@@ -151,6 +167,12 @@ $root: 'j-text-field';
   &--error {
     .#{$root}__input {
       border-color: $color-error;
+    }
+  }
+
+  &--success {
+    .#{$root}__input {
+      border-color: $color-success;
     }
   }
 }
