@@ -324,7 +324,14 @@
               <j-textarea v-model:value="textarea" label="Textarea" />
             </j-col>
             <j-col :cols="6">
-              <j-textarea value="textarea" label="Textarea" loading required />
+              <j-textarea value="textarea" label="Textarea" loading required>
+                <template #prepend>
+                  <span>メモ</span>
+                </template>
+                <template #append>
+                  <j-icon :size="16" color="gray-600">speaker_notes</j-icon>
+                </template>
+              </j-textarea>
             </j-col>
           </j-row>
         </section>

@@ -7,7 +7,9 @@
     :required="required"
   >
     <div class="j-textarea__body">
+      <slot name="prepend" />
       <textarea :id="id" v-model="inputValue" class="j-textarea__input" />
+      <slot name="append" />
     </div>
   </j-input>
 </template>
@@ -90,5 +92,24 @@ $root: 'j-textarea';
 
 .j-textarea {
   position: relative;
+}
+
+.j-textarea__body {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  font-size: 13px;
+}
+
+.j-textarea__input {
+  flex: 1 1;
+  padding: 8px;
+  font: inherit;
+  line-height: 1;
+  color: inherit;
+  border: solid 1px $color-gray-200;
+  border-radius: 2px;
+  outline: none;
 }
 </style>
