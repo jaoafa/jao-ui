@@ -259,6 +259,19 @@
           </j-row>
           <j-row>
             <j-col :cols="6">
+              <j-text-field value="counter" label="TextField" counter />
+            </j-col>
+            <j-col :cols="6">
+              <j-text-field
+                :counter-max="10"
+                value="countercounter"
+                label="TextField"
+                counter
+              />
+            </j-col>
+          </j-row>
+          <j-row>
+            <j-col :cols="6">
               <j-text-field
                 :success-messages="[
                   '入力内容が正しいものだと確認できました。',
@@ -283,14 +296,25 @@
           </j-row>
           <j-row>
             <j-col :cols="6">
-              <j-text-field value="counter" label="TextField" counter />
+              <j-text-field
+                :counter-max="8"
+                :hint="[
+                  'パスワードは8文字以上で入力してください。',
+                  '半角英数字・記号で入力してください。',
+                ]"
+                value="hint"
+                label="TextField"
+                type="password"
+                counter
+              />
             </j-col>
             <j-col :cols="6">
               <j-text-field
-                :counter-max="10"
-                value="countercounter"
+                :hint="['テキストを入力してください。']"
+                :success-messages="['入力内容が正しいものだと確認できました。']"
+                :error-messages="['入力内容が不正です。']"
+                value="value"
                 label="TextField"
-                counter
               />
             </j-col>
           </j-row>

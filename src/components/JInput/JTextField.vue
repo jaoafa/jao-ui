@@ -5,6 +5,7 @@
     :color="color"
     :error="error"
     :error-messages="errorMessages"
+    :hint="hint"
     :label="label"
     :loading="loading"
     :required="required"
@@ -81,6 +82,11 @@ export default defineComponent({
     },
     /** 指定されたテキストをエラーメッセージとして表示します */
     errorMessages: {
+      type: Array as PropType<string[]>,
+      default: () => [],
+    },
+    /** 指定されたテキストをヒントメッセージとして表示します */
+    hint: {
       type: Array as PropType<string[]>,
       default: () => [],
     },

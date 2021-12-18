@@ -23,6 +23,9 @@
     <div v-show="showFooter" class="j-input__footer">
       <slot name="footer-prepend" />
       <div class="j-input__message">
+        <template v-for="(hintMessage, index) in hint" :key="index">
+          <p class="j-input__hint">{{ hintMessage }}</p>
+        </template>
         <template
           v-for="(successMessage, index) in successMessages"
           :key="index"
@@ -73,6 +76,11 @@ export default defineComponent({
       type: Array as PropType<string[]>,
       default: () => [],
     },
+    /** 指定されたテキストをヒントメッセージとして表示します */
+    hint: {
+      type: Array as PropType<string[]>,
+      default: () => [],
+    },
     /** 指定された id をラベルに適用します */
     id: {
       type: String,
@@ -119,6 +127,7 @@ export default defineComponent({
 
     const showFooter = computed((): boolean => {
       return (
+        !!props.hint.length ||
         !!props.errorMessages.length ||
         !!props.successMessages.length ||
         !!context.slots['footer-prepend'] ||
