@@ -2,9 +2,15 @@
   <j-input
     :id="id"
     :class="classes"
+    :color="color"
+    :error="error"
+    :error-messages="errorMessages"
+    :hint="hint"
     :label="label"
     :loading="loading"
     :required="required"
+    :success="success"
+    :success-messages="successMessages"
   >
     <div class="j-textarea__body">
       <slot name="prepend" />
@@ -21,7 +27,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, ref } from 'vue'
+import { computed, defineComponent, onMounted, PropType, ref } from 'vue'
 import { nanoid } from 'nanoid'
 import { validateColor } from '@/utils/colors'
 import JInput from './JInput.vue'
@@ -52,6 +58,21 @@ export default defineComponent({
       type: Number,
       default: undefined,
     },
+    /** エラー表示にします */
+    error: {
+      type: Boolean,
+      default: false,
+    },
+    /** 指定されたテキストをエラーメッセージとして表示します */
+    errorMessages: {
+      type: Array as PropType<string[]>,
+      default: () => [],
+    },
+    /** 指定されたテキストをヒントメッセージとして表示します */
+    hint: {
+      type: Array as PropType<string[]>,
+      default: () => [],
+    },
     /** 指定されたラベルをコンポーネントに適用します */
     label: {
       type: String,
@@ -67,6 +88,16 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    /** 成功表示にします */
+    success: {
+      type: Boolean,
+      default: false,
+    },
+    /** 指定されたテキストを成功メッセージとして表示します */
+    successMessages: {
+      type: Array as PropType<string[]>,
+      default: () => [],
+    },
     /** 現在入力している値を指定します */
     value: {
       type: String,
@@ -79,6 +110,8 @@ export default defineComponent({
   setup(props, context) {
     const classes = computed((): { [key: string]: boolean } => ({
       'j-textarea': true,
+      'j-textarea--error': props.error,
+      'j-textarea--success': props.success,
     }))
 
     const inputValue = computed({
@@ -108,6 +141,26 @@ $root: 'j-textarea';
 
 .j-textarea {
   position: relative;
+
+  &--error {
+    .#{$root}__input {
+      border-color: $color-error;
+    }
+
+    .#{$root}__counter {
+      color: $color-error;
+    }
+  }
+
+  &--success {
+    .#{$root}__input {
+      border-color: $color-success;
+    }
+
+    .#{$root}__counter {
+      color: $color-success;
+    }
+  }
 }
 
 .j-textarea__body {

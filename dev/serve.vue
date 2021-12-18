@@ -339,6 +339,49 @@
               </j-textarea>
             </j-col>
           </j-row>
+          <j-row>
+            <j-col :cols="6">
+              <j-textarea
+                :success-messages="[
+                  '入力内容が正しいものだと確認できました。',
+                  '入力が正しいものです。入力が正しいものです。入力が正しいものです。入力が正しいものです。入力が正しいものです。入力が正しいものです。',
+                ]"
+                value="success"
+                label="Textarea"
+                success
+              />
+            </j-col>
+            <j-col :cols="6">
+              <j-textarea
+                :error-messages="[
+                  '入力内容が不正です。',
+                  '入力に誤りがあります。入力に誤りがあります。入力に誤りがあります。入力に誤りがあります。入力に誤りがあります。入力に誤りがあります。',
+                ]"
+                value="error"
+                label="Textarea"
+                error
+              />
+            </j-col>
+          </j-row>
+          <j-row>
+            <j-col :cols="6">
+              <j-textarea
+                :hint="['感想を自由にご記入ください。']"
+                value="hint"
+                label="Textarea"
+              />
+            </j-col>
+            <j-col :cols="6">
+              <j-textarea
+                :hint="['テキストを入力してください。']"
+                :success-messages="['入力内容が正しいものだと確認できました。']"
+                :error-messages="['入力内容が不正です。']"
+                value="error"
+                label="Textarea"
+                error
+              />
+            </j-col>
+          </j-row>
         </section>
 
         <!-- Pagination -->
