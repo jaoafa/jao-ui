@@ -326,6 +326,7 @@
                 :counter-length="100"
                 label="Textarea"
                 counter
+                resize
               />
             </j-col>
             <j-col :cols="6">

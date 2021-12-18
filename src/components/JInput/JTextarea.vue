@@ -104,6 +104,11 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    /** 表示サイズ変更を有効にします */
+    resize: {
+      type: Boolean,
+      default: false,
+    },
     /** 成功表示にします */
     success: {
       type: Boolean,
@@ -129,6 +134,7 @@ export default defineComponent({
       'j-textarea--disabled': props.disabled,
       'j-textarea--error': props.error,
       'j-textarea--readonly': props.readonly,
+      'j-textarea--resize': props.resize,
       'j-textarea--success': props.success,
     }))
 
@@ -179,6 +185,12 @@ $root: 'j-textarea';
     }
   }
 
+  &--resize {
+    .#{$root}__input {
+      resize: vertical;
+    }
+  }
+
   &--success {
     .#{$root}__input {
       border-color: $color-success;
@@ -204,6 +216,7 @@ $root: 'j-textarea';
   font: inherit;
   line-height: 1;
   color: inherit;
+  resize: none;
   border: solid 1px $color-gray-200;
   border-radius: 2px;
   outline: none;
