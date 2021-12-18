@@ -14,7 +14,13 @@
   >
     <div class="j-textarea__body">
       <slot name="prepend" />
-      <textarea :id="id" v-model="inputValue" class="j-textarea__input" />
+      <textarea
+        :id="id"
+        v-model="inputValue"
+        :disabled="disabled"
+        :readonly="readonly"
+        class="j-textarea__input"
+      />
       <slot name="append" />
     </div>
 
@@ -58,6 +64,11 @@ export default defineComponent({
       type: Number,
       default: undefined,
     },
+    /** 入力を無効にします */
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
     /** エラー表示にします */
     error: {
       type: Boolean,
@@ -80,6 +91,11 @@ export default defineComponent({
     },
     /** ローディングアニメーションを表示します */
     loading: {
+      type: Boolean,
+      default: false,
+    },
+    /** 読み取り専用状態にします */
+    readonly: {
       type: Boolean,
       default: false,
     },
@@ -110,7 +126,9 @@ export default defineComponent({
   setup(props, context) {
     const classes = computed((): { [key: string]: boolean } => ({
       'j-textarea': true,
+      'j-textarea--disabled': props.disabled,
       'j-textarea--error': props.error,
+      'j-textarea--readonly': props.readonly,
       'j-textarea--success': props.success,
     }))
 
@@ -141,6 +159,15 @@ $root: 'j-textarea';
 
 .j-textarea {
   position: relative;
+
+  &--disabled {
+    pointer-events: none;
+
+    .#{$root}__input {
+      color: $color-gray-400;
+      background-color: $color-gray-50;
+    }
+  }
 
   &--error {
     .#{$root}__input {

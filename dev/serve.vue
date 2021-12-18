@@ -341,6 +341,14 @@
           </j-row>
           <j-row>
             <j-col :cols="6">
+              <j-textarea value="disabled" label="Textarea" disabled />
+            </j-col>
+            <j-col :cols="6">
+              <j-textarea value="readonly" label="Textarea" readonly />
+            </j-col>
+          </j-row>
+          <j-row>
+            <j-col :cols="6">
               <j-textarea
                 :success-messages="[
                   '入力内容が正しいものだと確認できました。',
