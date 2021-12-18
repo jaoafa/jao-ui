@@ -125,10 +125,10 @@ export default defineComponent({
      * @values text, number
      */
     type: {
-      type: String as PropType<'text' | 'number'>,
+      type: String as PropType<'text' | 'number' | 'password'>,
       default: 'text',
       validator: (val: string): boolean => {
-        return ['text', 'number'].includes(val)
+        return ['text', 'number', 'password'].includes(val)
       },
     },
     /** 現在入力している値を指定します */
