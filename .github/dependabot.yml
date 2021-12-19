@@ -4,6 +4,9 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    labels:
+      - "🤖dependencies"
+      - "🐙actions"
   - package-ecosystem: "npm"
     directory: "/"
     schedule:

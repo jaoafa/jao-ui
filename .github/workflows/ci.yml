@@ -63,7 +63,7 @@ jobs:
       - name: Run test
         run: npm run test -- --coverage
       - name: Upload Coverage
-        uses: codecov/codecov-action@v2
+        uses: codecov/codecov-action@v2.1.0
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
 
@@ -96,7 +96,7 @@ jobs:
       - name: Build storybook
         run: npx build-storybook --output-dir ./docs/storybook
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v3.8.0
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

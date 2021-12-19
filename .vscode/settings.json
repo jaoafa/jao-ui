@@ -3,5 +3,8 @@
   "editor.formatOnSave": true,
   "[markdown]": {
     "editor.formatOnSave": false
+  },
+  "[yaml]": {
+    "editor.formatOnSave": false
   }
 }

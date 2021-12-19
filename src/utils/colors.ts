@@ -39,6 +39,9 @@ export const colors: { [key: string]: string } = Object.freeze({
   'gray-100': '#e6e7e9',
   'gray-50': '#f2f2f3',
 
+  success: '#50a337',
+  error: '#e91e62',
+
   discord: '#5865f2',
   twitter: '#1da1f2',
   facebook: '#1877f2',

@@ -39,9 +39,7 @@ export default defineComponent({
   },
 
   props: {
-    /**
-     * ヘッダーのカラムとなる配列を指定します。
-     */
+    /** ヘッダーのカラムとなる配列を指定します */
     headers: {
       type: Array,
       default: () => [],
@@ -55,15 +53,13 @@ export default defineComponent({
         return val.every((item) => item.label && item.key)
       },
     },
-    /**
-     * ソートする項目を指定します。
-     */
+    /** ソートする項目を指定します */
     sortBy: {
       type: String,
       default: () => '',
     },
     /**
-     * ソートする順番を指定します。
+     * ソートする順番を指定します
      * @values asc, desc
      */
     sortOrder: {
@@ -109,12 +105,12 @@ $root: 'j-table-header';
     cursor: pointer;
 
     .#{$root}__sort {
-      opacity: 20%;
+      opacity: 0.2;
     }
 
     &:hover {
       .#{$root}__sort {
-        opacity: 50%;
+        opacity: 0.5;
       }
     }
   }
@@ -128,12 +124,12 @@ $root: 'j-table-header';
 
     &:hover {
       .#{$root}__sort {
-        opacity: 100%;
+        opacity: 1;
       }
     }
 
     .#{$root}__sort {
-      opacity: 100%;
+      opacity: 1;
     }
   }
 }
@@ -153,7 +149,7 @@ $root: 'j-table-header';
   font-size: 16px;
   vertical-align: middle;
   pointer-events: none;
-  opacity: 0%;
+  opacity: 0;
   transition-duration: 0.2s;
   transition-property: opacity transform;
 }

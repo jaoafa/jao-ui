@@ -38,9 +38,7 @@ export default defineComponent({
   },
 
   props: {
-    /**
-     * パンくずリストに表示する項目を配列で指定します。
-     */
+    /** パンくずリストに表示する項目を配列で指定します */
     items: {
       type: Array as PropType<BreadcrumbsItem[]>,
       default: () => [],

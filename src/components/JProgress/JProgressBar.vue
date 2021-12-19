@@ -16,16 +16,12 @@ export default defineComponent({
   name: 'JProgressBar',
 
   props: {
-    /**
-     * コンポーネントに position:absolute; を適用します。
-     */
+    /** コンポーネントに position:absolute; を適用します */
     absolute: {
       type: Boolean,
       default: false,
     },
-    /**
-     * 指定された色をコンポーネントに適用します。
-     */
+    /** 指定された色をコンポーネントに適用します */
     color: {
       type: String,
       default: 'primary',
@@ -33,16 +29,12 @@ export default defineComponent({
         return validateColor(val)
       },
     },
-    /**
-     * アニメーションを適用します。
-     */
+    /** アニメーションを適用します */
     indeterminate: {
       type: Boolean,
       default: false,
     },
-    /**
-     * パーセントの値を指定します。
-     */
+    /** パーセントの値を指定します */
     percentage: {
       type: Number,
       default: 0,
@@ -50,9 +42,7 @@ export default defineComponent({
         return val >= 0 && val <= 100
       },
     },
-    /**
-     * 図形の線の太さを指定します。
-     */
+    /** 図形の線の太さを指定します */
     stroke: {
       type: Number,
       default: 4,
@@ -107,7 +97,7 @@ $root: 'j-progress-bar';
   width: 100%;
   height: 100%;
   background-color: currentColor;
-  opacity: 25%;
+  opacity: 0.25;
   transition: inherit;
 }
 
