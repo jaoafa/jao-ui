@@ -41,6 +41,18 @@ export default {
     type: {},
     value: {},
     // events
+    'click:append': {
+      action: 'click:append',
+    },
+    'click:append-outer': {
+      action: 'click:append-outer',
+    },
+    'click:prepend': {
+      action: 'click:prepend',
+    },
+    'click:prepend-inner': {
+      action: 'click:prepend-inner',
+    },
     input: {
       action: 'input',
     },
@@ -92,7 +104,15 @@ export const Basic = (args) => ({
   },
   template: `
     <j-app no-stretch>
-      <j-text-field v-model:value="value" @input="args.input" v-bind="args" />
+      <j-text-field
+        v-model:value="value"
+        v-bind="args"
+        @input="args.input"
+        @click:prepend="args['click:prepend']"
+        @click:prepend-inner="args['click:prepend-inner']"
+        @click:append="args['click:append']"
+        @click:append-outer="args['click:append-outer']"
+      />
     </j-app>
   `,
 })

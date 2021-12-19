@@ -26,6 +26,10 @@
 
 |Name|Description|
 |:--|:--|
+|`click:append`|`append` の内容がクリックされたときに発生するイベントです。|
+|`click:append-outer`|`append-outer` の内容がクリックされたときに発生するイベントです。|
+|`click:prepend`|`prepend` の内容がクリックされたときに発生するイベントです。|
+|`click:prepend-inner`|`prepend-inner` の内容がクリックされたときに発生するイベントです。|
 |`input`|テキストが入力されたときに発生するイベントです。|
 
 ### Slots

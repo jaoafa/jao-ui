@@ -13,9 +13,23 @@
     :success-messages="successMessages"
   >
     <div class="j-text-field__body">
-      <slot name="prepend" />
+      <span
+        v-if="slots.prepend"
+        class="j-text-field__prepend"
+        @click="clickPrepend"
+      >
+        <slot name="prepend" />
+      </span>
+
       <div class="j-text-field__slot">
-        <slot name="prepend-inner" />
+        <span
+          v-if="slots.prependInner"
+          class="j-text-field__prepend-inner"
+          @click="clickPrependInner"
+        >
+          <slot name="prepend-inner" />
+        </span>
+
         <input
           :id="id"
           v-model="inputValue"
@@ -25,9 +39,23 @@
           :type="type"
           class="j-text-field__input"
         />
-        <slot name="append" />
+
+        <span
+          v-if="slots.append"
+          class="j-text-field__append"
+          @click="clickAppend"
+        >
+          <slot name="append" />
+        </span>
       </div>
-      <slot name="append-outer" />
+
+      <span
+        v-if="slots.appendOuter"
+        class="j-text-field__append-outer"
+        @click="clickAppendOuter"
+      >
+        <slot name="append-outer" />
+      </span>
     </div>
 
     <template v-if="counter" #footer-append>
@@ -138,7 +166,14 @@ export default defineComponent({
     },
   },
 
-  emits: ['input', 'update:value'],
+  emits: [
+    'input',
+    'click:prepend',
+    'click:prepend-inner',
+    'click:append',
+    'click:append-outer',
+    'update:value',
+  ],
 
   setup(props, context) {
     const classes = computed((): { [key: string]: boolean } => ({
@@ -169,7 +204,36 @@ export default defineComponent({
       id.value = nanoid()
     })
 
-    return { classes, inputValue, id }
+    const slots = computed((): { [key: string]: boolean } => ({
+      prepend: !!context.slots.prepend,
+      prependInner: !!context.slots['prepend-inner'],
+      append: !!context.slots.append,
+      appendOuter: !!context.slots['append-outer'],
+    }))
+
+    const clickPrepend = (e: Event): void => {
+      context.emit('click:prepend', e)
+    }
+    const clickPrependInner = (e: Event): void => {
+      context.emit('click:prepend-inner', e)
+    }
+    const clickAppend = (e: Event): void => {
+      context.emit('click:append', e)
+    }
+    const clickAppendOuter = (e: Event): void => {
+      context.emit('click:append-outer', e)
+    }
+
+    return {
+      classes,
+      inputValue,
+      id,
+      slots,
+      clickPrepend,
+      clickPrependInner,
+      clickAppend,
+      clickAppendOuter,
+    }
   },
 })
 </script>
