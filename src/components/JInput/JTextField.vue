@@ -14,15 +14,19 @@
   >
     <div class="j-text-field__body">
       <slot name="prepend" />
-      <input
-        :id="id"
-        v-model="inputValue"
-        :disabled="disabled"
-        :readonly="readonly"
-        :type="type"
-        class="j-text-field__input"
-      />
-      <slot name="append" />
+      <div class="j-text-field__slot">
+        <slot name="prepend-inner" />
+        <input
+          :id="id"
+          v-model="inputValue"
+          :disabled="disabled"
+          :readonly="readonly"
+          :type="type"
+          class="j-text-field__input"
+        />
+        <slot name="append" />
+      </div>
+      <slot name="append-outer" />
     </div>
 
     <template v-if="counter" #footer-append>
@@ -180,14 +184,17 @@ $root: 'j-text-field';
   &--disabled {
     pointer-events: none;
 
+    .#{$root}__slot {
+      background-color: $color-gray-50;
+    }
+
     .#{$root}__input {
       color: $color-gray-400;
-      background-color: $color-gray-50;
     }
   }
 
   &--error {
-    .#{$root}__input {
+    .#{$root}__slot {
       border-color: $color-error;
     }
 
@@ -197,7 +204,7 @@ $root: 'j-text-field';
   }
 
   &--success {
-    .#{$root}__input {
+    .#{$root}__slot {
       border-color: $color-success;
     }
 
@@ -215,14 +222,21 @@ $root: 'j-text-field';
   font-size: 13px;
 }
 
+.j-text-field__slot {
+  display: flex;
+  flex: 1 1;
+  align-items: center;
+  overflow: hidden;
+  border: solid 1px $color-gray-200;
+  border-radius: 2px;
+}
+
 .j-text-field__input {
   flex: 1 1;
   padding: 4px 8px;
   font: inherit;
   line-height: 1;
   color: inherit;
-  border: solid 1px $color-gray-200;
-  border-radius: 2px;
   outline: none;
 }
 
