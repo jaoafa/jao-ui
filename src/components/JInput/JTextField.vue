@@ -21,6 +21,7 @@
           v-model="inputValue"
           :disabled="disabled"
           :readonly="readonly"
+          :required="required"
           :type="type"
           class="j-text-field__input"
         />
