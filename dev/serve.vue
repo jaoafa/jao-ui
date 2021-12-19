@@ -241,10 +241,16 @@
                 required
               >
                 <template #prepend>
-                  <j-icon :size="16" color="gray-600">check_circle</j-icon>
+                  <span>text</span>
+                </template>
+                <template #prepend-inner>
+                  <span>text</span>
+                </template>
+                <template #append>
+                  <span>text</span>
                 </template>
                 <template #append-outer>
-                  <span>km/h</span>
+                  <span>text</span>
                 </template>
               </j-text-field>
             </j-col>
@@ -333,10 +339,16 @@
             <j-col :cols="6">
               <j-textarea value="textarea" label="Textarea" loading required>
                 <template #prepend>
-                  <span>メモ</span>
+                  <span>text</span>
+                </template>
+                <template #prepend-inner>
+                  <span>text</span>
+                </template>
+                <template #append>
+                  <span>text</span>
                 </template>
                 <template #append-outer>
-                  <j-icon :size="16" color="gray-600">speaker_notes</j-icon>
+                  <span>text</span>
                 </template>
               </j-textarea>
             </j-col>

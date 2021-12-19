@@ -57,7 +57,21 @@ export default {
         },
       },
     },
+    'append-outer': {
+      table: {
+        type: {
+          summary: 'any',
+        },
+      },
+    },
     prepend: {
+      table: {
+        type: {
+          summary: 'any',
+        },
+      },
+    },
+    'prepend-inner': {
       table: {
         type: {
           summary: 'any',

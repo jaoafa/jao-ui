@@ -15,6 +15,7 @@
     <div class="j-textarea__body">
       <slot name="prepend" />
       <div class="j-textarea__slot">
+        <slot name="prepend-inner" />
         <textarea
           :id="id"
           v-model="inputValue"
@@ -23,6 +24,7 @@
           :rows="rows"
           class="j-textarea__input"
         />
+        <slot name="append" />
       </div>
       <slot name="append-outer" />
     </div>
@@ -224,6 +226,7 @@ $root: 'j-textarea';
 .j-textarea__slot {
   display: flex;
   flex: 1 1;
+  align-items: center;
   overflow: hidden;
   border: solid 1px $color-gray-200;
   border-radius: 2px;

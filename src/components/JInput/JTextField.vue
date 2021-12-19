@@ -15,6 +15,7 @@
     <div class="j-text-field__body">
       <slot name="prepend" />
       <div class="j-text-field__slot">
+        <slot name="prepend-inner" />
         <input
           :id="id"
           v-model="inputValue"
@@ -23,6 +24,7 @@
           :type="type"
           class="j-text-field__input"
         />
+        <slot name="append" />
       </div>
       <slot name="append-outer" />
     </div>
@@ -223,6 +225,7 @@ $root: 'j-text-field';
 .j-text-field__slot {
   display: flex;
   flex: 1 1;
+  align-items: center;
   overflow: hidden;
   border: solid 1px $color-gray-200;
   border-radius: 2px;
