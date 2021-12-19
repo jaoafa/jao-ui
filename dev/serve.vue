@@ -243,7 +243,7 @@
                 <template #prepend>
                   <j-icon :size="16" color="gray-600">check_circle</j-icon>
                 </template>
-                <template #append>
+                <template #append-outer>
                   <span>km/h</span>
                 </template>
               </j-text-field>
@@ -335,7 +335,7 @@
                 <template #prepend>
                   <span>メモ</span>
                 </template>
-                <template #append>
+                <template #append-outer>
                   <j-icon :size="16" color="gray-600">speaker_notes</j-icon>
                 </template>
               </j-textarea>

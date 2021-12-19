@@ -14,15 +14,17 @@
   >
     <div class="j-textarea__body">
       <slot name="prepend" />
-      <textarea
-        :id="id"
-        v-model="inputValue"
-        :disabled="disabled"
-        :readonly="readonly"
-        :rows="rows"
-        class="j-textarea__input"
-      />
-      <slot name="append" />
+      <div class="j-textarea__slot">
+        <textarea
+          :id="id"
+          v-model="inputValue"
+          :disabled="disabled"
+          :readonly="readonly"
+          :rows="rows"
+          class="j-textarea__input"
+        />
+      </div>
+      <slot name="append-outer" />
     </div>
 
     <template v-if="counter" #footer-append>
@@ -175,14 +177,17 @@ $root: 'j-textarea';
   &--disabled {
     pointer-events: none;
 
+    .#{$root}__slot {
+      background-color: $color-gray-50;
+    }
+
     .#{$root}__input {
       color: $color-gray-400;
-      background-color: $color-gray-50;
     }
   }
 
   &--error {
-    .#{$root}__input {
+    .#{$root}__slot {
       border-color: $color-error;
     }
 
@@ -198,7 +203,7 @@ $root: 'j-textarea';
   }
 
   &--success {
-    .#{$root}__input {
+    .#{$root}__slot {
       border-color: $color-success;
     }
 
@@ -216,14 +221,20 @@ $root: 'j-textarea';
   font-size: 13px;
 }
 
+.j-textarea__slot {
+  display: flex;
+  flex: 1 1;
+  overflow: hidden;
+  border: solid 1px $color-gray-200;
+  border-radius: 2px;
+}
+
 .j-textarea__input {
   flex: 1 1;
   padding: 4px 8px;
   font: inherit;
   color: inherit;
   resize: none;
-  border: solid 1px $color-gray-200;
-  border-radius: 2px;
   outline: none;
 }
 
