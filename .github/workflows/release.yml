@@ -58,7 +58,7 @@ jobs:
       - name: Archive
         run: npm pack
       - name: Create release
-        uses: softprops/action-gh-release@v0.1.14
+        uses: softprops/action-gh-release@v1
         with:
           files: jaoafa-jao-ui-${{ steps.extract_version.outputs.current-version }}.tgz
           tag_name: v${{ steps.extract_version.outputs.current-version }}
