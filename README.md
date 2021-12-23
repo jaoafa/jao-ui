@@ -15,23 +15,20 @@ jao UI is Vue based component library for jao community that provides Minecraft 
     <img src="https://codecov.io/gh/jaoafa/jao-ui/branch/dev/graph/badge.svg?token=4LPZ2OVF8N"/>
   </a>
   <a href="https://www.npmjs.com/package/@jaoafa/jao-ui">
-    <img alt="npm version" src="https://badgen.net/npm/v/@jaoafa/jao-ui">
+    <img alt="npm version" src="https://img.shields.io/npm/v/@jaoafa/jao-ui">
   </a>
   <a href="https://www.npmjs.com/package/@jaoafa/jao-ui">
-    <img alt="monthly downloads" src="https://badgen.net/npm/dt/@jaoafa/jao-ui">
-  </a>
-  <a href="https://www.npmjs.com/package/@jaoafa/jao-ui">
-    <img alt="monthly downloads" src="https://badgen.net/npm/dm/@jaoafa/jao-ui">
+    <img alt="monthly downloads" src="https://img.shields.io/npm/dm/@jaoafa/jao-ui">
   </a>
   <a href="https://github.com/jaoafa/jao-ui/blob/main/LICENSE">
-    <img alt="license" src="https://badgen.net/npm/license/@jaoafa/jao-ui">
+    <img alt="LICENSE" src="https://img.shields.io/github/license/jaoafa/jao-ui">
   </a>
   <br>
   <a href="http://discord.gg/zEGrApgGfB">
-    <img alt="Discord" src="https://badgen.net/discord/members/zEGrApgGfB">
+    <img alt="Discord" src="https://img.shields.io/discord/597378876556967936?logo=discord">
   </a>
   <a href="https://twitter.com/jaoafa">
-    <img alt="Twitter" src="https://badgen.net/twitter/follow/jaoafa">
+    <img alt="Twitter" src="https://img.shields.io/badge/twitter-@jaoafa-blue?logo=twitter">
   </a>
 </p>
 
@@ -53,6 +50,8 @@ $ yarn add @jaoafa/jao-ui
 
 You can find for more docs on [https://jaoafa.github.io/jao-ui](https://jaoafa.github.io/jao-ui/).  
 To see actual display, go to [Storybook](https://jaoafa.github.io/jao-ui/storybook/).
+
+[![Storybook](https://raw.githubusercontent.com/storybooks/brand/master/badge/badge-storybook.svg)](https://jaoafa.github.io/jao-ui/storybook/)
 
 ## 🛠 Contributing
 
