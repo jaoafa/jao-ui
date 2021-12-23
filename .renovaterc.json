@@ -1,3 +1,13 @@
 {
-  "extends": ["config:base"]
+  "branchConcurrentLimit": 5,
+  "dependencyDashboard": false,
+  "enabledManagers": ["npm"],
+  "extends": ["config:base"],
+  "labels": ["🤖dependencies"],
+  "packageRules": [],
+  "separateMultipleMajor": true,
+  "timezone": "Asia/Tokyo",
+  "vulnerabilityAlerts": {
+    "labels": ["🤖dependencies", "🔒problem:security"]
+  }
 }
