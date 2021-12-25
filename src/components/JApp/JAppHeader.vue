@@ -18,6 +18,11 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    /** 最大幅の制限を削除します */
+    fluid: {
+      type: Boolean,
+      default: false,
+    },
     /** 指定されたタグをコンポーネントに適用します */
     tag: {
       type: String,
@@ -29,6 +34,7 @@ export default defineComponent({
     const classes = computed((): { [key: string]: boolean } => ({
       'j-app-header': true,
       'j-app-header--fixed': props.fixed,
+      'j-app-header--fluid': props.fluid,
     }))
     return { classes }
   },
@@ -47,6 +53,23 @@ $root: 'j-app-header';
     right: 0;
     left: 0;
     z-index: 50;
+  }
+
+  &--fluid {
+    .#{$root}__body {
+      max-width: none;
+    }
+  }
+}
+
+.j-app-header__body {
+  width: 100%;
+  max-width: $size-width-max;
+  padding: 0 16px;
+  margin: auto;
+
+  @include breakpoint(md) {
+    padding: 0 24px;
   }
 }
 </style>
