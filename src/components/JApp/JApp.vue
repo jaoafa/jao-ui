@@ -37,6 +37,8 @@ $root: 'j-app';
 
 .j-app {
   position: relative;
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
   font-family: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic UI', sans-serif;
   line-height: 1.8;
