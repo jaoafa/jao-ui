@@ -1,11 +1,11 @@
 <template>
-  <component :is="tag" :class="classes">
+  <component :is="tag" :class="classes" :style="styles">
     <slot />
   </component>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
+import { computed, defineComponent, onMounted, ref } from 'vue'
 
 export default defineComponent({
   name: 'JAppMain',
@@ -22,7 +22,22 @@ export default defineComponent({
     const classes = computed((): { [key: string]: boolean } => ({
       'j-app-main': true,
     }))
-    return { classes }
+
+    const styles = computed((): { [key: string]: string } => ({
+      padding: `${paddingTop.value}px 0 0 0`,
+    }))
+
+    const paddingTop = ref(0)
+
+    onMounted(() => {
+      const element = document.querySelector(
+        '.j-app > .j-app-header'
+      ) as HTMLElement
+      if (element) {
+        paddingTop.value = element.offsetHeight
+      }
+    })
+    return { classes, styles }
   },
 })
 </script>

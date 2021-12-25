@@ -1,6 +1,6 @@
 <template>
   <j-app>
-    <j-app-header></j-app-header>
+    <j-app-header fixed><span>ヘッダー</span></j-app-header>
     <j-app-main>
       <j-container>
         <h1 class="text-lv1">jao UI Library</h1>
