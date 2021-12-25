@@ -1,4 +1,4 @@
-import { JApp } from '@/components/JApp'
+import { JApp, JAppMain } from '@/components/JApp'
 import JProgressBar from './JProgressBar.vue'
 
 export default {
@@ -20,13 +20,15 @@ export default {
 }
 
 export const Basic = (args) => ({
-  components: { JApp, JProgressBar },
+  components: { JApp, JAppMain, JProgressBar },
   setup() {
     return { args }
   },
   template: `
     <j-app no-stretch>
-      <j-progress-bar v-bind="args" />
+      <j-app-main>
+        <j-progress-bar v-bind="args" />
+      </j-app-main>
     </j-app>
   `,
 })

@@ -1,4 +1,4 @@
-import { JApp } from '@/components/JApp'
+import { JApp, JAppMain } from '@/components/JApp'
 import JImage from './JImage.vue'
 import SampleImage from '@/assets/sample.png'
 
@@ -53,13 +53,15 @@ export default {
 }
 
 export const Basic = (args) => ({
-  components: { JApp, JImage },
+  components: { JApp, JAppMain, JImage },
   setup() {
     return { args }
   },
   template: `
     <j-app no-stretch>
-      <j-image v-bind="args" />
+      <j-app-main>
+        <j-image v-bind="args" />
+      </j-app-main>
     </j-app>
   `,
 })

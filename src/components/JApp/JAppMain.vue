@@ -52,6 +52,7 @@ $root: 'j-app-main';
   grid-row: 2 / 3;
   grid-column: 2 / 3;
   max-width: 100%;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 </style>

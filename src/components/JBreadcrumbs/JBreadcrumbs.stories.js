@@ -1,4 +1,4 @@
-import { JApp } from '@/components/JApp'
+import { JApp, JAppMain } from '@/components/JApp'
 import JBreadcrumbs from './JBreadcrumbs.vue'
 
 export default {
@@ -30,13 +30,15 @@ export default {
 }
 
 export const Basic = (args) => ({
-  components: { JApp, JBreadcrumbs },
+  components: { JApp, JAppMain, JBreadcrumbs },
   setup() {
     return { args }
   },
   template: `
     <j-app no-stretch>
-      <j-breadcrumbs v-bind="args" />
+      <j-app-main>
+        <j-breadcrumbs v-bind="args" />
+      </j-app-main>
     </j-app>
   `,
 })
