@@ -49,7 +49,9 @@ $root: 'j-app-main';
 
 .j-app-main {
   position: relative;
-  flex: 1 0 auto;
+  grid-row: 2 / 3;
+  grid-column: 2 / 3;
   max-width: 100%;
+  overflow: auto;
 }
 </style>

@@ -13,11 +13,6 @@ export default defineComponent({
   name: 'JAppHeader',
 
   props: {
-    /** コンポーネントを上部に固定します */
-    fixed: {
-      type: Boolean,
-      default: false,
-    },
     /** 最大幅の制限を削除します */
     fluid: {
       type: Boolean,
@@ -33,7 +28,6 @@ export default defineComponent({
   setup(props) {
     const classes = computed((): { [key: string]: boolean } => ({
       'j-app-header': true,
-      'j-app-header--fixed': props.fixed,
       'j-app-header--fluid': props.fluid,
     }))
     return { classes }
@@ -47,13 +41,8 @@ export default defineComponent({
 $root: 'j-app-header';
 
 .j-app-header {
-  &--fixed {
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    z-index: 50;
-  }
+  grid-row: 1 / 2;
+  grid-column: 1 / 3;
 
   &--fluid {
     .#{$root}__body {
