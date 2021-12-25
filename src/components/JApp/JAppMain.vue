@@ -31,7 +31,7 @@ export default defineComponent({
 
     onMounted(() => {
       const element = document.querySelector(
-        '.j-app > .j-app-header'
+        '.j-app > .j-app-header--fixed'
       ) as HTMLElement
       if (element) {
         paddingTop.value = element.offsetHeight
