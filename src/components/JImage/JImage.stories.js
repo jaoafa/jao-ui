@@ -43,6 +43,9 @@ export default {
       },
     },
     // events
+    load: {
+      action: 'load',
+    },
     // slots
   },
   args: {
@@ -60,7 +63,7 @@ export const Basic = (args) => ({
   template: `
     <j-app no-stretch>
       <j-app-main>
-        <j-image v-bind="args" />
+        <j-image v-bind="args" @load="args.load" />
       </j-app-main>
     </j-app>
   `,
