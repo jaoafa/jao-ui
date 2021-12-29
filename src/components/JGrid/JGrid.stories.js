@@ -3,11 +3,12 @@ import { JSheet } from '@/components/JSheet'
 import JContainer from './JContainer.vue'
 import JRow from './JRow.vue'
 import JCol from './JCol.vue'
+import JSpacer from './JSpacer.vue'
 
 export default {
   title: 'Components/Grid',
   component: JContainer,
-  subcomponents: { JRow, JCol },
+  subcomponents: { JRow, JCol, JSpacer },
   argTypes: {
     // props
     color: {
@@ -43,7 +44,7 @@ export default {
 }
 
 export const Basic = (args) => ({
-  components: { JApp, JAppMain, JSheet, JContainer, JRow, JCol },
+  components: { JApp, JAppMain, JSheet, JContainer, JRow, JCol, JSpacer },
   setup() {
     return { args }
   },

@@ -6,6 +6,7 @@
         height="100%"
         src="https://user-images.githubusercontent.com/23224932/114276380-51370e80-9a61-11eb-9c72-615340a4d4b8.png"
       />
+      <j-spacer />
     </j-app-header>
 
     <j-app-sidebar></j-app-sidebar>

@@ -30,6 +30,7 @@ To see actual display, go to [Storybook](https://jaoafa.github.io/jao-ui/storybo
 - [ProgressCircle](components/progress-circle.md)
 - [Row](components/row.md)
 - [Sheet](components/sheet.md)
+- [Spacer](components/spacer.md)
 - [Table](components/table.md)
 - [TableHeader](components/table-header.md)
 - [TableFooter](components/table-footer.md)
