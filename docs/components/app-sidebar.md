@@ -6,7 +6,7 @@
 
 |Name|Type|Default|Description|
 |:--|:--|:--|:--|
-|`tag`|`string`|`main`|指定されたタグをコンポーネントに適用します。|
+|`tag`|`string`|`aside`|指定されたタグをコンポーネントに適用します。|
 
 ### Slots
 
