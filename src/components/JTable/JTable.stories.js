@@ -1,4 +1,4 @@
-import { JApp } from '@/components/JApp'
+import { JApp, JAppMain } from '@/components/JApp'
 import JTable from './JTable.vue'
 
 export default {
@@ -116,13 +116,15 @@ export default {
 }
 
 export const Basic = (args) => ({
-  components: { JApp, JTable },
+  components: { JApp, JAppMain, JTable },
   setup() {
     return { args }
   },
   template: `
     <j-app no-stretch>
-      <j-table v-bind="args" />
+      <j-app-main>
+        <j-table v-bind="args" />
+      </j-app-main>
     </j-app>
   `,
 })

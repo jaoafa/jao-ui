@@ -1,4 +1,4 @@
-import { JApp } from '@/components/JApp'
+import { JApp, JAppMain } from '@/components/JApp'
 import JButton from './JButton.vue'
 
 export default {
@@ -46,15 +46,17 @@ export default {
 }
 
 export const Basic = (args) => ({
-  components: { JApp, JButton },
+  components: { JApp, JAppMain, JButton },
   setup() {
     return { args }
   },
   template: `
     <j-app no-stretch>
-      <j-button @click="args.click" v-bind="args">
-        ${args.default}
-      </j-button>
+      <j-app-main>
+        <j-button @click="args.click" v-bind="args">
+          ${args.default}
+        </j-button>
+      </j-app-main>
     </j-app>
   `,
 })

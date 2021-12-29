@@ -17,3 +17,10 @@
 |`src`|`string`|`''`|画像のURLを適用します。この項目は必須です。|
 |`srcset`|`string`|`undefined`|使用可能なソース画像のセットを示すカンマ区切りのリストです。|
 |`width`|`string`|`undefined`|指定された幅をコンポーネントに適用します。|
+
+
+### Events
+
+|Name|Description|
+|:--|:--|
+|`load`|画像が読み込まれたときに発生するイベントです。|

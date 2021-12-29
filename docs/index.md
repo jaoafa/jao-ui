@@ -14,6 +14,9 @@ To see actual display, go to [Storybook](https://jaoafa.github.io/jao-ui/storybo
 ## Components
 
 - [App](components/app.md)
+- [AppHeader](components/app-header.md)
+- [AppMain](components/app-main.md)
+- [AppSidebar](components/app-sidebar.md)
 - [Breadcrumbs](components/breadcrumbs.md)
 - [Button](components/button.md)
 - [Card](components/card.md)

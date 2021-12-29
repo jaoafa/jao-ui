@@ -1,4 +1,4 @@
-import { JApp } from '@/components/JApp'
+import { JApp, JAppMain } from '@/components/JApp'
 import JIcon from './JIcon.vue'
 
 export default {
@@ -27,13 +27,15 @@ export default {
 }
 
 export const Basic = (args) => ({
-  components: { JApp, JIcon },
+  components: { JApp, JAppMain, JIcon },
   setup() {
     return { args }
   },
   template: `
     <j-app no-stretch>
-      <j-icon v-bind="args">${args.default}</j-icon>
+      <j-app-main>
+        <j-icon v-bind="args">${args.default}</j-icon>
+      </j-app-main>
     </j-app>
   `,
 })

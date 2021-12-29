@@ -1,4 +1,4 @@
-import { JApp } from '@/components/JApp'
+import { JApp, JAppMain } from '@/components/JApp'
 import JSheet from './JSheet.vue'
 
 export default {
@@ -35,15 +35,17 @@ export default {
 }
 
 export const Basic = (args) => ({
-  components: { JApp, JSheet },
+  components: { JApp, JAppMain, JSheet },
   setup() {
     return { args }
   },
   template: `
     <j-app no-stretch>
-      <j-sheet v-bind="args">
-        ${args.default}
-      </j-sheet>
+      <j-app-main>
+        <j-sheet v-bind="args">
+          ${args.default}
+        </j-sheet>
+      </j-app-main>
     </j-app>
   `,
 })

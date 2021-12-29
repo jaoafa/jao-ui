@@ -9,7 +9,6 @@
         :alt="alt"
         class="j-image__body"
         loading="lazy"
-        @load="onLoad"
       />
     </transition>
 
@@ -22,7 +21,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from 'vue'
+import { computed, defineComponent, onMounted, ref } from 'vue'
 import { validateSize } from '@/utils/sizes'
 import { JProgressCircle } from '@/components/JProgress'
 
@@ -113,7 +112,9 @@ export default defineComponent({
     },
   },
 
-  setup(props) {
+  emits: ['load'],
+
+  setup(props, context) {
     const classes = computed((): { [key: string]: boolean } => ({
       'j-image': true,
       'j-image--contain': props.contain,
@@ -144,11 +145,20 @@ export default defineComponent({
 
     const isLoaded = ref(false)
 
-    const onLoad = (): void => {
-      isLoaded.value = true
+    const loadImage = (): void => {
+      const image = new Image()
+      image.onload = (e: Event): void => {
+        isLoaded.value = true
+        context.emit('load', e)
+      }
+      image.src = props.src
     }
 
-    return { classes, styles, isLoaded, onLoad }
+    onMounted(() => {
+      loadImage()
+    })
+
+    return { classes, styles, isLoaded }
   },
 })
 </script>

@@ -1,5 +1,5 @@
 import { ref } from 'vue'
-import { JApp } from '@/components/JApp'
+import { JApp, JAppMain } from '@/components/JApp'
 import JPagination from './JPagination.vue'
 
 export default {
@@ -44,14 +44,16 @@ export default {
 }
 
 export const Basic = (args) => ({
-  components: { JApp, JPagination },
+  components: { JApp, JAppMain, JPagination },
   setup() {
     const page = ref(5)
     return { args, page }
   },
   template: `
     <j-app no-stretch>
-      <j-pagination v-model:page="page" @input="args.input" v-bind="args" />
+      <j-app-main>
+        <j-pagination v-model:page="page" @input="args.input" v-bind="args" />
+      </j-app-main>
     </j-app>
   `,
 })
