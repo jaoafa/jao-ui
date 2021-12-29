@@ -1,14 +1,19 @@
 <template>
   <j-app>
-    <j-app-header><span>ヘッダー</span></j-app-header>
+    <j-app-header>
+      <j-image
+        class="py-3"
+        height="100%"
+        src="https://user-images.githubusercontent.com/23224932/114276380-51370e80-9a61-11eb-9c72-615340a4d4b8.png"
+      />
+    </j-app-header>
+
     <j-app-sidebar></j-app-sidebar>
+
     <j-app-main>
       <j-container>
-        <h1 class="text-lv1">jao UI Library</h1>
-        <p class="text-lv5 mt-2">jao UI Components with Vue.js 💣✨</p>
-
         <!-- Components -->
-        <section class="mt-8">
+        <section>
           <h2 class="text-lv2">Components</h2>
 
           <!-- Breadcrumbs -->
