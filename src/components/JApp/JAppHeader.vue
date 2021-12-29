@@ -22,6 +22,11 @@ export default defineComponent({
         return validateColor(val)
       },
     },
+    /** コンポーネントの高さを減らします */
+    dense: {
+      type: Boolean,
+      default: false,
+    },
     /** 最大幅の制限を削除します */
     fluid: {
       type: Boolean,
@@ -37,6 +42,7 @@ export default defineComponent({
   setup(props) {
     const classes = computed((): { [key: string]: boolean } => ({
       'j-app-header': true,
+      'j-app-header--dense': props.dense,
       'j-app-header--fluid': props.fluid,
     }))
     const styles = computed((): { [key: string]: string } => ({
@@ -60,6 +66,22 @@ $root: 'j-app-header';
 
   @include breakpoint(md) {
     border-bottom-width: 6px;
+  }
+
+  &--dense {
+    border-bottom-width: 2px;
+
+    @include breakpoint(md) {
+      border-bottom-width: 4px;
+    }
+
+    .#{$root}__body {
+      height: 48px;
+
+      @include breakpoint(md) {
+        height: 56px;
+      }
+    }
   }
 
   &--fluid {
