@@ -108,7 +108,7 @@ export default defineComponent({
     },
     /** 表に表示する項目を配列で指定します */
     items: {
-      type: Array,
+      type: Array as PropType<{ [key: string]: any }[]>,
       default: () => [],
     },
     /** 1ページあたりに表示する項目の数を指定します */
