@@ -60,7 +60,8 @@
 
     <template v-if="counter" #footer-append>
       <span class="j-text-field__counter">
-        {{ inputValue.length }} {{ counterLength ? `/ ${counterLength}` : '' }}
+        {{ (inputValue + '').length }}
+        {{ counterLength ? `/ ${counterLength}` : '' }}
       </span>
     </template>
   </j-input>

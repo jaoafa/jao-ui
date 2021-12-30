@@ -23,17 +23,17 @@
     <div v-show="showFooter" class="j-input__footer">
       <slot name="footer-prepend" />
       <div class="j-input__message">
-        <template v-for="(hintMessage, index) in hint" :key="index">
-          <p class="j-input__hint">{{ hintMessage }}</p>
+        <template v-for="hintMessage in messages.hint" :key="hintMessage.id">
+          <p class="j-input__hint">{{ hintMessage.text }}</p>
         </template>
         <template
-          v-for="(successMessage, index) in successMessages"
-          :key="index"
+          v-for="successMessage in messages.success"
+          :key="successMessage.id"
         >
-          <p class="j-input__success">{{ successMessage }}</p>
+          <p class="j-input__success">{{ successMessage.text }}</p>
         </template>
-        <template v-for="(errorMessage, index) in errorMessages" :key="index">
-          <p class="j-input__error">{{ errorMessage }}</p>
+        <template v-for="errorMessage in messages.error" :key="errorMessage.id">
+          <p class="j-input__error">{{ errorMessage.text }}</p>
         </template>
       </div>
       <slot name="footer-append" />
@@ -125,6 +125,24 @@ export default defineComponent({
       'background-color': convertNameToHex(props.color),
     }))
 
+    const messages = computed(
+      (): {
+        hint: { id: number; text: string }[]
+        success: { id: number; text: string }[]
+        error: { id: number; text: string }[]
+      } => ({
+        hint: props.hint.map((item, index) => ({ id: index, text: item })),
+        success: props.successMessages.map((item, index) => ({
+          id: index,
+          text: item,
+        })),
+        error: props.errorMessages.map((item, index) => ({
+          id: index,
+          text: item,
+        })),
+      })
+    )
+
     const showFooter = computed((): boolean => {
       return (
         !!props.hint.length ||
@@ -135,7 +153,7 @@ export default defineComponent({
       )
     })
 
-    return { classes, requiredStyles, showFooter }
+    return { classes, requiredStyles, messages, showFooter }
   },
 })
 </script>

@@ -14,8 +14,8 @@
         :r="radius"
         :stroke="convertedColor"
         :stroke-width="stroke"
-        :stroke-dasharray="indeterminate ? null : circumference"
-        :stroke-dashoffset="indeterminate ? null : offset"
+        :stroke-dasharray="indeterminate ? undefined : circumference"
+        :stroke-dashoffset="indeterminate ? undefined : offset"
         fill="transparent"
         class="j-progress-circle__circle"
       />
