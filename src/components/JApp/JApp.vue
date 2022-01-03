@@ -37,13 +37,17 @@ $root: 'j-app';
 
 .j-app {
   position: relative;
-  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: auto 1fr auto;
+  height: 100vh;
+  overflow: hidden;
   font-family: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic UI', sans-serif;
   line-height: 1.8;
   color: $color-gray-900;
 
   &--no-stretch {
-    min-height: auto;
+    height: auto;
   }
 }
 </style>

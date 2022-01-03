@@ -1,4 +1,4 @@
-import { JApp } from '@/components/JApp'
+import { JApp, JAppMain } from '@/components/JApp'
 import JCard from './JCard.vue'
 
 export default {
@@ -66,15 +66,17 @@ export default {
 }
 
 export const Basic = (args) => ({
-  components: { JApp, JCard },
+  components: { JApp, JAppMain, JCard },
   setup() {
     return { args }
   },
   template: `
     <j-app no-stretch>
-      <j-card @click="args.click" v-bind="args">
-        ${args.default}
-      </j-card>
+      <j-app-main>
+        <j-card @click="args.click" v-bind="args">
+          ${args.default}
+        </j-card>
+      </j-app-main>
     </j-app>
   `,
 })

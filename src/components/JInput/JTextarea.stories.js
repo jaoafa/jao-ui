@@ -1,5 +1,5 @@
 import { ref } from 'vue'
-import { JApp } from '@/components/JApp'
+import { JApp, JAppMain } from '@/components/JApp'
 import JTextarea from './JTextarea.vue'
 
 export default {
@@ -98,22 +98,24 @@ export default {
 }
 
 export const Basic = (args) => ({
-  components: { JApp, JTextarea },
+  components: { JApp, JAppMain, JTextarea },
   setup() {
     const value = ref('')
     return { args, value }
   },
   template: `
     <j-app no-stretch>
-      <j-textarea
-        v-model:value="value"
-        v-bind="args"
-        @input="args.input"
-        @click:prepend="args['click:prepend']"
-        @click:prepend-inner="args['click:prepend-inner']"
-        @click:append="args['click:append']"
-        @click:append-outer="args['click:append-outer']"
-      />
+      <j-app-main>
+        <j-textarea
+          v-model:value="value"
+          v-bind="args"
+          @input="args.input"
+          @click:prepend="args['click:prepend']"
+          @click:prepend-inner="args['click:prepend-inner']"
+          @click:append="args['click:append']"
+          @click:append-outer="args['click:append-outer']"
+        />
+      </j-app-main>
     </j-app>
   `,
 })

@@ -1,4 +1,4 @@
-import { JApp } from '@/components/JApp'
+import { JApp, JAppMain } from '@/components/JApp'
 import JProgressCircle from './JProgressCircle.vue'
 
 export default {
@@ -20,13 +20,15 @@ export default {
 }
 
 export const Basic = (args) => ({
-  components: { JApp, JProgressCircle },
+  components: { JApp, JAppMain, JProgressCircle },
   setup() {
     return { args }
   },
   template: `
     <j-app no-stretch>
-      <j-progress-circle v-bind="args" />
+      <j-app-main>
+        <j-progress-circle v-bind="args" />
+      </j-app-main>
     </j-app>
   `,
 })

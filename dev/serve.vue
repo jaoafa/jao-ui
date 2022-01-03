@@ -1,546 +1,566 @@
 <template>
   <j-app>
-    <j-container>
-      <h1 class="text-lv1">jao UI Library</h1>
-      <p class="text-lv5 mt-2">jao UI Components with Vue.js 💣✨</p>
+    <j-app-header>
+      <j-image
+        class="py-3"
+        height="100%"
+        src="https://user-images.githubusercontent.com/23224932/114276380-51370e80-9a61-11eb-9c72-615340a4d4b8.png"
+      />
+      <j-spacer />
+    </j-app-header>
 
-      <!-- Components -->
-      <section class="mt-8">
-        <h2 class="text-lv2">Components</h2>
+    <j-app-sidebar></j-app-sidebar>
 
-        <!-- Breadcrumbs -->
-        <section class="mt-8">
-          <h3 class="text-lv3 mb-4">Breadcrumbs</h3>
-          <j-breadcrumbs
-            :items="[
-              { label: 'Dashboard', href: '/' },
-              { label: 'Page1', href: '/category' },
-              { label: 'Page2', href: '/category/page', disabled: true },
-            ]"
-          />
+    <j-app-main>
+      <j-container>
+        <!-- Components -->
+        <section>
+          <h2 class="text-lv2">Components</h2>
+
+          <!-- Breadcrumbs -->
+          <section class="mt-8">
+            <h3 class="text-lv3 mb-4">Breadcrumbs</h3>
+            <j-breadcrumbs
+              :items="[
+                { label: 'Dashboard', href: '/' },
+                { label: 'Page1', href: '/category' },
+                { label: 'Page2', href: '/category/page', disabled: true },
+              ]"
+            />
+          </section>
+
+          <!-- Button -->
+          <section class="mt-8">
+            <h3 class="text-lv3 mb-4">Button</h3>
+            <j-row align="center">
+              <j-col>
+                <j-button size="large"> Button </j-button>
+              </j-col>
+              <j-col>
+                <j-button size="medium"> Button </j-button>
+              </j-col>
+              <j-col>
+                <j-button size="small"> Button </j-button>
+              </j-col>
+              <j-col>
+                <j-button size="large" no-decoration> Button </j-button>
+              </j-col>
+              <j-col>
+                <j-button size="medium" no-decoration> Button </j-button>
+              </j-col>
+              <j-col>
+                <j-button size="small" no-decoration> Button </j-button>
+              </j-col>
+              <j-col>
+                <j-button size="large" disabled> Button </j-button>
+              </j-col>
+              <j-col>
+                <j-button size="medium" disabled> Button </j-button>
+              </j-col>
+              <j-col>
+                <j-button size="small" disabled> Button </j-button>
+              </j-col>
+              <j-col>
+                <j-button size="large" loading> Button </j-button>
+              </j-col>
+              <j-col>
+                <j-button size="medium" loading> Button </j-button>
+              </j-col>
+              <j-col>
+                <j-button size="small" loading> Button </j-button>
+              </j-col>
+              <j-col>
+                <j-button size="large" outlined> Button </j-button>
+              </j-col>
+              <j-col>
+                <j-button size="medium" outlined> Button </j-button>
+              </j-col>
+              <j-col>
+                <j-button size="small" outlined> Button </j-button>
+              </j-col>
+              <j-col>
+                <j-button size="large" outlined no-decoration>
+                  Button
+                </j-button>
+              </j-col>
+              <j-col>
+                <j-button size="medium" outlined no-decoration>
+                  Button
+                </j-button>
+              </j-col>
+              <j-col>
+                <j-button size="small" outlined no-decoration>
+                  Button
+                </j-button>
+              </j-col>
+              <j-col>
+                <j-button size="large" outlined disabled> Button </j-button>
+              </j-col>
+              <j-col>
+                <j-button size="medium" outlined disabled> Button </j-button>
+              </j-col>
+              <j-col>
+                <j-button size="small" outlined disabled> Button </j-button>
+              </j-col>
+              <j-col>
+                <j-button size="large" outlined loading> Button </j-button>
+              </j-col>
+              <j-col>
+                <j-button size="medium" outlined loading> Button </j-button>
+              </j-col>
+              <j-col>
+                <j-button size="small" outlined loading> Button </j-button>
+              </j-col>
+              <j-col>
+                <j-button size="large" icon>
+                  <j-icon>home</j-icon>
+                </j-button>
+              </j-col>
+              <j-col>
+                <j-button size="medium" icon>
+                  <j-icon>home</j-icon>
+                </j-button>
+              </j-col>
+              <j-col>
+                <j-button size="small" icon>
+                  <j-icon>home</j-icon>
+                </j-button>
+              </j-col>
+              <j-col>
+                <j-button size="large" disabled icon>
+                  <j-icon>home</j-icon>
+                </j-button>
+              </j-col>
+              <j-col>
+                <j-button size="medium" disabled icon>
+                  <j-icon>home</j-icon>
+                </j-button>
+              </j-col>
+              <j-col>
+                <j-button size="small" disabled icon>
+                  <j-icon>home</j-icon>
+                </j-button>
+              </j-col>
+              <j-col>
+                <j-button size="large" loading icon>
+                  <j-icon>home</j-icon>
+                </j-button>
+              </j-col>
+              <j-col>
+                <j-button size="medium" loading icon>
+                  <j-icon>home</j-icon>
+                </j-button>
+              </j-col>
+              <j-col>
+                <j-button size="small" loading icon>
+                  <j-icon>home</j-icon>
+                </j-button>
+              </j-col>
+              <j-col>
+                <j-button size="large" icon outlined>
+                  <j-icon>home</j-icon>
+                </j-button>
+              </j-col>
+              <j-col>
+                <j-button size="medium" icon outlined>
+                  <j-icon>home</j-icon>
+                </j-button>
+              </j-col>
+              <j-col>
+                <j-button size="small" icon outlined>
+                  <j-icon>home</j-icon>
+                </j-button>
+              </j-col>
+              <j-col>
+                <j-button size="large" icon disabled outlined>
+                  <j-icon>home</j-icon>
+                </j-button>
+              </j-col>
+              <j-col>
+                <j-button size="medium" icon disabled outlined>
+                  <j-icon>home</j-icon>
+                </j-button>
+              </j-col>
+              <j-col>
+                <j-button size="small" icon disabled outlined>
+                  <j-icon>home</j-icon>
+                </j-button>
+              </j-col>
+              <j-col>
+                <j-button size="large" loading icon outlined>
+                  <j-icon>home</j-icon>
+                </j-button>
+              </j-col>
+              <j-col>
+                <j-button size="medium" loading icon outlined>
+                  <j-icon>home</j-icon>
+                </j-button>
+              </j-col>
+              <j-col>
+                <j-button size="small" loading icon outlined>
+                  <j-icon>home</j-icon>
+                </j-button>
+              </j-col>
+            </j-row>
+          </section>
+
+          <!-- Card -->
+          <section class="mt-8">
+            <h3 class="text-lv3 mb-4">Card</h3>
+            <j-row>
+              <j-col :cols="12" :cols-sm="6" :cols-md="4">
+                <j-card class="pa-4"> カードコンポーネント </j-card>
+              </j-col>
+            </j-row>
+          </section>
+
+          <!-- Image -->
+          <section class="mt-8">
+            <h3 class="text-lv3 mb-4">Image</h3>
+            <j-row>
+              <j-col>
+                <p class="text-lv5">Cover</p>
+                <j-image
+                  :src="sampleImage"
+                  alt="Sample Image"
+                  width="200px"
+                  height="150px"
+                />
+              </j-col>
+              <j-col>
+                <p class="text-lv5">Contain</p>
+                <j-image
+                  :src="sampleImage"
+                  alt="Sample Image"
+                  width="200px"
+                  height="150px"
+                  contain
+                />
+              </j-col>
+            </j-row>
+          </section>
+
+          <!-- Input -->
+          <section class="mt-8">
+            <h3 class="text-lv3 mb-4">Input</h3>
+            <j-row>
+              <j-col :cols="6">
+                <j-text-field v-model:value="textField" label="TextField" />
+              </j-col>
+              <j-col :cols="6">
+                <j-text-field
+                  :value="0"
+                  label="TextField"
+                  type="number"
+                  loading
+                  required
+                >
+                  <template #prepend>
+                    <span>text</span>
+                  </template>
+                  <template #prepend-inner>
+                    <span>text</span>
+                  </template>
+                  <template #append>
+                    <span>text</span>
+                  </template>
+                  <template #append-outer>
+                    <span>text</span>
+                  </template>
+                </j-text-field>
+              </j-col>
+            </j-row>
+            <j-row>
+              <j-col :cols="6">
+                <j-text-field value="disabled" label="TextField" disabled />
+              </j-col>
+              <j-col :cols="6">
+                <j-text-field value="readonly" label="TextField" readonly />
+              </j-col>
+            </j-row>
+            <j-row>
+              <j-col :cols="6">
+                <j-text-field value="counter" label="TextField" counter />
+              </j-col>
+              <j-col :cols="6">
+                <j-text-field
+                  :counter-length="10"
+                  value="countercounter"
+                  label="TextField"
+                  counter
+                  error
+                />
+              </j-col>
+            </j-row>
+            <j-row>
+              <j-col :cols="6">
+                <j-text-field
+                  :success-messages="[
+                    '入力内容が正しいものだと確認できました。',
+                    '入力が正しいものです。入力が正しいものです。入力が正しいものです。入力が正しいものです。入力が正しいものです。入力が正しいものです。',
+                  ]"
+                  value="success"
+                  label="TextField"
+                  success
+                />
+              </j-col>
+              <j-col :cols="6">
+                <j-text-field
+                  :error-messages="[
+                    '入力内容が不正です。',
+                    '入力に誤りがあります。入力に誤りがあります。入力に誤りがあります。入力に誤りがあります。入力に誤りがあります。入力に誤りがあります。',
+                  ]"
+                  value="error"
+                  label="TextField"
+                  error
+                />
+              </j-col>
+            </j-row>
+            <j-row>
+              <j-col :cols="6">
+                <j-text-field
+                  :counter-length="8"
+                  :hint="[
+                    'パスワードは8文字以上で入力してください。',
+                    '半角英数字・記号で入力してください。',
+                  ]"
+                  :type="textFieldShowPassword ? 'text' : 'password'"
+                  value="password"
+                  label="TextField"
+                  counter
+                  @click:append="textFieldShowPassword = !textFieldShowPassword"
+                >
+                  <template #append>
+                    <j-icon :size="14" class="px-2">
+                      {{
+                        textFieldShowPassword ? 'visibility_off' : 'visibility'
+                      }}
+                    </j-icon>
+                  </template>
+                </j-text-field>
+              </j-col>
+              <j-col :cols="6">
+                <j-text-field
+                  :hint="['テキストを入力してください。']"
+                  :success-messages="[
+                    '入力内容が正しいものだと確認できました。',
+                  ]"
+                  :error-messages="['入力内容が不正です。']"
+                  value="value"
+                  label="TextField"
+                />
+              </j-col>
+            </j-row>
+            <j-row>
+              <j-col :cols="6">
+                <j-textarea
+                  v-model:value="textarea"
+                  :counter-length="100"
+                  :rows="5"
+                  label="Textarea"
+                  counter
+                  resize
+                />
+              </j-col>
+              <j-col :cols="6">
+                <j-textarea value="textarea" label="Textarea" loading required>
+                  <template #prepend>
+                    <span>text</span>
+                  </template>
+                  <template #prepend-inner>
+                    <span>text</span>
+                  </template>
+                  <template #append>
+                    <span>text</span>
+                  </template>
+                  <template #append-outer>
+                    <span>text</span>
+                  </template>
+                </j-textarea>
+              </j-col>
+            </j-row>
+            <j-row>
+              <j-col :cols="6">
+                <j-textarea value="disabled" label="Textarea" disabled />
+              </j-col>
+              <j-col :cols="6">
+                <j-textarea value="readonly" label="Textarea" readonly />
+              </j-col>
+            </j-row>
+            <j-row>
+              <j-col :cols="6">
+                <j-textarea
+                  :success-messages="[
+                    '入力内容が正しいものだと確認できました。',
+                    '入力が正しいものです。入力が正しいものです。入力が正しいものです。入力が正しいものです。入力が正しいものです。入力が正しいものです。',
+                  ]"
+                  value="success"
+                  label="Textarea"
+                  success
+                />
+              </j-col>
+              <j-col :cols="6">
+                <j-textarea
+                  :error-messages="[
+                    '入力内容が不正です。',
+                    '入力に誤りがあります。入力に誤りがあります。入力に誤りがあります。入力に誤りがあります。入力に誤りがあります。入力に誤りがあります。',
+                  ]"
+                  value="error"
+                  label="Textarea"
+                  error
+                />
+              </j-col>
+            </j-row>
+            <j-row>
+              <j-col :cols="6">
+                <j-textarea
+                  :hint="['感想を自由にご記入ください。']"
+                  value="hint"
+                  label="Textarea"
+                />
+              </j-col>
+              <j-col :cols="6">
+                <j-textarea
+                  :hint="['テキストを入力してください。']"
+                  :success-messages="[
+                    '入力内容が正しいものだと確認できました。',
+                  ]"
+                  :error-messages="['入力内容が不正です。']"
+                  value="error"
+                  label="Textarea"
+                  error
+                />
+              </j-col>
+            </j-row>
+          </section>
+
+          <!-- Pagination -->
+          <section class="mt-8">
+            <h3 class="text-lv3 mb-4">Pagination</h3>
+            <j-pagination
+              v-model:page="pagination"
+              :length="20"
+              :total-visible="8"
+            />
+          </section>
+
+          <!-- Progress -->
+          <section class="mt-8">
+            <h3 class="text-lv3 mb-4">Progress</h3>
+            <j-row>
+              <j-col>
+                <j-progress-circle
+                  :size="48"
+                  :stroke="4"
+                  :indeterminate="true"
+                  color="primary"
+                />
+              </j-col>
+              <j-col>
+                <j-progress-circle
+                  :size="48"
+                  :stroke="4"
+                  :percentage="20"
+                  color="secondary-100"
+                />
+              </j-col>
+              <j-col>
+                <j-progress-circle
+                  :size="48"
+                  :stroke="4"
+                  :percentage="40"
+                  color="secondary-300"
+                />
+              </j-col>
+              <j-col>
+                <j-progress-circle
+                  :size="48"
+                  :stroke="4"
+                  :percentage="60"
+                  color="secondary-500"
+                />
+              </j-col>
+              <j-col>
+                <j-progress-circle
+                  :size="48"
+                  :stroke="4"
+                  :percentage="80"
+                  color="secondary-700"
+                />
+              </j-col>
+            </j-row>
+            <j-row>
+              <j-col :cols="12">
+                <j-progress-bar color="primary" indeterminate />
+              </j-col>
+              <j-col :cols="12">
+                <j-progress-bar :percentage="20" color="secondary-100" />
+              </j-col>
+              <j-col :cols="12">
+                <j-progress-bar :percentage="40" color="secondary-300" />
+              </j-col>
+              <j-col :cols="12">
+                <j-progress-bar :percentage="60" color="secondary-500" />
+              </j-col>
+              <j-col :cols="12">
+                <j-progress-bar :percentage="80" color="secondary-700" />
+              </j-col>
+            </j-row>
+          </section>
+
+          <!-- Sheet -->
+          <section class="mt-8">
+            <h3 class="text-lv3 mb-4">Sheet</h3>
+            <j-row>
+              <j-col :cols="12" :cols-sm="8" :cols-md="6" :cols-lg="4">
+                <j-sheet width="100%" height="120px" color="primary" />
+              </j-col>
+            </j-row>
+          </section>
+
+          <!-- Table -->
+          <section class="mt-8">
+            <h3 class="text-lv3 mb-4">Table</h3>
+            <j-row>
+              <j-col :cols="12" :cols-sm="10" :cols-md="8" :cols-lg="6">
+                <j-table
+                  :headers="tableHeaders"
+                  :items="tableItems"
+                  :item-per-page="2"
+                />
+              </j-col>
+            </j-row>
+            <j-row>
+              <j-col :cols="12" :cols-sm="10" :cols-md="8" :cols-lg="6">
+                <j-table
+                  :headers="tableHeaders"
+                  :items="tableItems"
+                  :item-per-page="4"
+                >
+                  <template #head>
+                    <tr>
+                      <th class="px-4 py-2">名前</th>
+                      <th class="px-4 py-2">マインクラフト</th>
+                      <th class="px-4 py-2">Discord</th>
+                      <th class="px-4 py-2">役割</th>
+                    </tr>
+                  </template>
+                  <template #[`item.minecraft`]="{ item }">
+                    <a
+                      :href="`https://users.jaoafa.com/${item.minecraft}`"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      {{ item.minecraft }}
+                    </a>
+                  </template>
+                </j-table>
+              </j-col>
+            </j-row>
+          </section>
         </section>
-
-        <!-- Button -->
-        <section class="mt-8">
-          <h3 class="text-lv3 mb-4">Button</h3>
-          <j-row align="center">
-            <j-col>
-              <j-button size="large"> Button </j-button>
-            </j-col>
-            <j-col>
-              <j-button size="medium"> Button </j-button>
-            </j-col>
-            <j-col>
-              <j-button size="small"> Button </j-button>
-            </j-col>
-            <j-col>
-              <j-button size="large" no-decoration> Button </j-button>
-            </j-col>
-            <j-col>
-              <j-button size="medium" no-decoration> Button </j-button>
-            </j-col>
-            <j-col>
-              <j-button size="small" no-decoration> Button </j-button>
-            </j-col>
-            <j-col>
-              <j-button size="large" disabled> Button </j-button>
-            </j-col>
-            <j-col>
-              <j-button size="medium" disabled> Button </j-button>
-            </j-col>
-            <j-col>
-              <j-button size="small" disabled> Button </j-button>
-            </j-col>
-            <j-col>
-              <j-button size="large" loading> Button </j-button>
-            </j-col>
-            <j-col>
-              <j-button size="medium" loading> Button </j-button>
-            </j-col>
-            <j-col>
-              <j-button size="small" loading> Button </j-button>
-            </j-col>
-            <j-col>
-              <j-button size="large" outlined> Button </j-button>
-            </j-col>
-            <j-col>
-              <j-button size="medium" outlined> Button </j-button>
-            </j-col>
-            <j-col>
-              <j-button size="small" outlined> Button </j-button>
-            </j-col>
-            <j-col>
-              <j-button size="large" outlined no-decoration> Button </j-button>
-            </j-col>
-            <j-col>
-              <j-button size="medium" outlined no-decoration> Button </j-button>
-            </j-col>
-            <j-col>
-              <j-button size="small" outlined no-decoration> Button </j-button>
-            </j-col>
-            <j-col>
-              <j-button size="large" outlined disabled> Button </j-button>
-            </j-col>
-            <j-col>
-              <j-button size="medium" outlined disabled> Button </j-button>
-            </j-col>
-            <j-col>
-              <j-button size="small" outlined disabled> Button </j-button>
-            </j-col>
-            <j-col>
-              <j-button size="large" outlined loading> Button </j-button>
-            </j-col>
-            <j-col>
-              <j-button size="medium" outlined loading> Button </j-button>
-            </j-col>
-            <j-col>
-              <j-button size="small" outlined loading> Button </j-button>
-            </j-col>
-            <j-col>
-              <j-button size="large" icon>
-                <j-icon>home</j-icon>
-              </j-button>
-            </j-col>
-            <j-col>
-              <j-button size="medium" icon>
-                <j-icon>home</j-icon>
-              </j-button>
-            </j-col>
-            <j-col>
-              <j-button size="small" icon>
-                <j-icon>home</j-icon>
-              </j-button>
-            </j-col>
-            <j-col>
-              <j-button size="large" disabled icon>
-                <j-icon>home</j-icon>
-              </j-button>
-            </j-col>
-            <j-col>
-              <j-button size="medium" disabled icon>
-                <j-icon>home</j-icon>
-              </j-button>
-            </j-col>
-            <j-col>
-              <j-button size="small" disabled icon>
-                <j-icon>home</j-icon>
-              </j-button>
-            </j-col>
-            <j-col>
-              <j-button size="large" loading icon>
-                <j-icon>home</j-icon>
-              </j-button>
-            </j-col>
-            <j-col>
-              <j-button size="medium" loading icon>
-                <j-icon>home</j-icon>
-              </j-button>
-            </j-col>
-            <j-col>
-              <j-button size="small" loading icon>
-                <j-icon>home</j-icon>
-              </j-button>
-            </j-col>
-            <j-col>
-              <j-button size="large" icon outlined>
-                <j-icon>home</j-icon>
-              </j-button>
-            </j-col>
-            <j-col>
-              <j-button size="medium" icon outlined>
-                <j-icon>home</j-icon>
-              </j-button>
-            </j-col>
-            <j-col>
-              <j-button size="small" icon outlined>
-                <j-icon>home</j-icon>
-              </j-button>
-            </j-col>
-            <j-col>
-              <j-button size="large" icon disabled outlined>
-                <j-icon>home</j-icon>
-              </j-button>
-            </j-col>
-            <j-col>
-              <j-button size="medium" icon disabled outlined>
-                <j-icon>home</j-icon>
-              </j-button>
-            </j-col>
-            <j-col>
-              <j-button size="small" icon disabled outlined>
-                <j-icon>home</j-icon>
-              </j-button>
-            </j-col>
-            <j-col>
-              <j-button size="large" loading icon outlined>
-                <j-icon>home</j-icon>
-              </j-button>
-            </j-col>
-            <j-col>
-              <j-button size="medium" loading icon outlined>
-                <j-icon>home</j-icon>
-              </j-button>
-            </j-col>
-            <j-col>
-              <j-button size="small" loading icon outlined>
-                <j-icon>home</j-icon>
-              </j-button>
-            </j-col>
-          </j-row>
-        </section>
-
-        <!-- Card -->
-        <section class="mt-8">
-          <h3 class="text-lv3 mb-4">Card</h3>
-          <j-row>
-            <j-col :cols="12" :cols-sm="6" :cols-md="4">
-              <j-card class="pa-4"> カードコンポーネント </j-card>
-            </j-col>
-          </j-row>
-        </section>
-
-        <!-- Image -->
-        <section class="mt-8">
-          <h3 class="text-lv3 mb-4">Image</h3>
-          <j-row>
-            <j-col>
-              <p class="text-lv5">Cover</p>
-              <j-image
-                :src="sampleImage"
-                alt="Sample Image"
-                width="200px"
-                height="150px"
-              />
-            </j-col>
-            <j-col>
-              <p class="text-lv5">Contain</p>
-              <j-image
-                :src="sampleImage"
-                alt="Sample Image"
-                width="200px"
-                height="150px"
-                contain
-              />
-            </j-col>
-          </j-row>
-        </section>
-
-        <!-- Input -->
-        <section class="mt-8">
-          <h3 class="text-lv3 mb-4">Input</h3>
-          <j-row>
-            <j-col :cols="6">
-              <j-text-field v-model:value="textField" label="TextField" />
-            </j-col>
-            <j-col :cols="6">
-              <j-text-field
-                :value="0"
-                label="TextField"
-                type="number"
-                loading
-                required
-              >
-                <template #prepend>
-                  <span>text</span>
-                </template>
-                <template #prepend-inner>
-                  <span>text</span>
-                </template>
-                <template #append>
-                  <span>text</span>
-                </template>
-                <template #append-outer>
-                  <span>text</span>
-                </template>
-              </j-text-field>
-            </j-col>
-          </j-row>
-          <j-row>
-            <j-col :cols="6">
-              <j-text-field value="disabled" label="TextField" disabled />
-            </j-col>
-            <j-col :cols="6">
-              <j-text-field value="readonly" label="TextField" readonly />
-            </j-col>
-          </j-row>
-          <j-row>
-            <j-col :cols="6">
-              <j-text-field value="counter" label="TextField" counter />
-            </j-col>
-            <j-col :cols="6">
-              <j-text-field
-                :counter-length="10"
-                value="countercounter"
-                label="TextField"
-                counter
-                error
-              />
-            </j-col>
-          </j-row>
-          <j-row>
-            <j-col :cols="6">
-              <j-text-field
-                :success-messages="[
-                  '入力内容が正しいものだと確認できました。',
-                  '入力が正しいものです。入力が正しいものです。入力が正しいものです。入力が正しいものです。入力が正しいものです。入力が正しいものです。',
-                ]"
-                value="success"
-                label="TextField"
-                success
-              />
-            </j-col>
-            <j-col :cols="6">
-              <j-text-field
-                :error-messages="[
-                  '入力内容が不正です。',
-                  '入力に誤りがあります。入力に誤りがあります。入力に誤りがあります。入力に誤りがあります。入力に誤りがあります。入力に誤りがあります。',
-                ]"
-                value="error"
-                label="TextField"
-                error
-              />
-            </j-col>
-          </j-row>
-          <j-row>
-            <j-col :cols="6">
-              <j-text-field
-                :counter-length="8"
-                :hint="[
-                  'パスワードは8文字以上で入力してください。',
-                  '半角英数字・記号で入力してください。',
-                ]"
-                :type="textFieldShowPassword ? 'text' : 'password'"
-                value="password"
-                label="TextField"
-                counter
-                @click:append="textFieldShowPassword = !textFieldShowPassword"
-              >
-                <template #append>
-                  <j-icon :size="14" class="px-2">
-                    {{
-                      textFieldShowPassword ? 'visibility_off' : 'visibility'
-                    }}
-                  </j-icon>
-                </template>
-              </j-text-field>
-            </j-col>
-            <j-col :cols="6">
-              <j-text-field
-                :hint="['テキストを入力してください。']"
-                :success-messages="['入力内容が正しいものだと確認できました。']"
-                :error-messages="['入力内容が不正です。']"
-                value="value"
-                label="TextField"
-              />
-            </j-col>
-          </j-row>
-          <j-row>
-            <j-col :cols="6">
-              <j-textarea
-                v-model:value="textarea"
-                :counter-length="100"
-                :rows="5"
-                label="Textarea"
-                counter
-                resize
-              />
-            </j-col>
-            <j-col :cols="6">
-              <j-textarea value="textarea" label="Textarea" loading required>
-                <template #prepend>
-                  <span>text</span>
-                </template>
-                <template #prepend-inner>
-                  <span>text</span>
-                </template>
-                <template #append>
-                  <span>text</span>
-                </template>
-                <template #append-outer>
-                  <span>text</span>
-                </template>
-              </j-textarea>
-            </j-col>
-          </j-row>
-          <j-row>
-            <j-col :cols="6">
-              <j-textarea value="disabled" label="Textarea" disabled />
-            </j-col>
-            <j-col :cols="6">
-              <j-textarea value="readonly" label="Textarea" readonly />
-            </j-col>
-          </j-row>
-          <j-row>
-            <j-col :cols="6">
-              <j-textarea
-                :success-messages="[
-                  '入力内容が正しいものだと確認できました。',
-                  '入力が正しいものです。入力が正しいものです。入力が正しいものです。入力が正しいものです。入力が正しいものです。入力が正しいものです。',
-                ]"
-                value="success"
-                label="Textarea"
-                success
-              />
-            </j-col>
-            <j-col :cols="6">
-              <j-textarea
-                :error-messages="[
-                  '入力内容が不正です。',
-                  '入力に誤りがあります。入力に誤りがあります。入力に誤りがあります。入力に誤りがあります。入力に誤りがあります。入力に誤りがあります。',
-                ]"
-                value="error"
-                label="Textarea"
-                error
-              />
-            </j-col>
-          </j-row>
-          <j-row>
-            <j-col :cols="6">
-              <j-textarea
-                :hint="['感想を自由にご記入ください。']"
-                value="hint"
-                label="Textarea"
-              />
-            </j-col>
-            <j-col :cols="6">
-              <j-textarea
-                :hint="['テキストを入力してください。']"
-                :success-messages="['入力内容が正しいものだと確認できました。']"
-                :error-messages="['入力内容が不正です。']"
-                value="error"
-                label="Textarea"
-                error
-              />
-            </j-col>
-          </j-row>
-        </section>
-
-        <!-- Pagination -->
-        <section class="mt-8">
-          <h3 class="text-lv3 mb-4">Pagination</h3>
-          <j-pagination
-            v-model:page="pagination"
-            :length="20"
-            :total-visible="8"
-          />
-        </section>
-
-        <!-- Progress -->
-        <section class="mt-8">
-          <h3 class="text-lv3 mb-4">Progress</h3>
-          <j-row>
-            <j-col>
-              <j-progress-circle
-                :size="48"
-                :stroke="4"
-                :indeterminate="true"
-                color="primary"
-              />
-            </j-col>
-            <j-col>
-              <j-progress-circle
-                :size="48"
-                :stroke="4"
-                :percentage="20"
-                color="secondary-100"
-              />
-            </j-col>
-            <j-col>
-              <j-progress-circle
-                :size="48"
-                :stroke="4"
-                :percentage="40"
-                color="secondary-300"
-              />
-            </j-col>
-            <j-col>
-              <j-progress-circle
-                :size="48"
-                :stroke="4"
-                :percentage="60"
-                color="secondary-500"
-              />
-            </j-col>
-            <j-col>
-              <j-progress-circle
-                :size="48"
-                :stroke="4"
-                :percentage="80"
-                color="secondary-700"
-              />
-            </j-col>
-          </j-row>
-          <j-row>
-            <j-col :cols="12">
-              <j-progress-bar color="primary" indeterminate />
-            </j-col>
-            <j-col :cols="12">
-              <j-progress-bar :percentage="20" color="secondary-100" />
-            </j-col>
-            <j-col :cols="12">
-              <j-progress-bar :percentage="40" color="secondary-300" />
-            </j-col>
-            <j-col :cols="12">
-              <j-progress-bar :percentage="60" color="secondary-500" />
-            </j-col>
-            <j-col :cols="12">
-              <j-progress-bar :percentage="80" color="secondary-700" />
-            </j-col>
-          </j-row>
-        </section>
-
-        <!-- Sheet -->
-        <section class="mt-8">
-          <h3 class="text-lv3 mb-4">Sheet</h3>
-          <j-row>
-            <j-col :cols="12" :cols-sm="8" :cols-md="6" :cols-lg="4">
-              <j-sheet width="100%" height="120px" color="primary" />
-            </j-col>
-          </j-row>
-        </section>
-
-        <!-- Table -->
-        <section class="mt-8">
-          <h3 class="text-lv3 mb-4">Table</h3>
-          <j-row>
-            <j-col :cols="12" :cols-sm="10" :cols-md="8" :cols-lg="6">
-              <j-table
-                :headers="tableHeaders"
-                :items="tableItems"
-                :item-per-page="2"
-              />
-            </j-col>
-          </j-row>
-          <j-row>
-            <j-col :cols="12" :cols-sm="10" :cols-md="8" :cols-lg="6">
-              <j-table
-                :headers="tableHeaders"
-                :items="tableItems"
-                :item-per-page="4"
-              >
-                <template #head>
-                  <tr>
-                    <th class="px-4 py-2">名前</th>
-                    <th class="px-4 py-2">マインクラフト</th>
-                    <th class="px-4 py-2">Discord</th>
-                    <th class="px-4 py-2">役割</th>
-                  </tr>
-                </template>
-                <template #[`item.minecraft`]="{ item }">
-                  <a
-                    :href="`https://users.jaoafa.com/${item.minecraft}`"
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    {{ item.minecraft }}
-                  </a>
-                </template>
-              </j-table>
-            </j-col>
-          </j-row>
-        </section>
-      </section>
-    </j-container>
+      </j-container>
+    </j-app-main>
   </j-app>
 </template>
 

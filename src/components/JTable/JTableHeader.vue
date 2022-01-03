@@ -28,8 +28,14 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
+import { computed, defineComponent, PropType } from 'vue'
 import { JIcon } from '@/components/JIcon'
+
+type HeaderItem = {
+  label: string
+  key: string
+  sortable?: boolean
+}
 
 export default defineComponent({
   name: 'JTableHeader',
@@ -41,7 +47,7 @@ export default defineComponent({
   props: {
     /** ヘッダーのカラムとなる配列を指定します */
     headers: {
-      type: Array,
+      type: Array as PropType<HeaderItem[]>,
       default: () => [],
       validator: (
         val: {

@@ -1,4 +1,4 @@
-import { JApp } from '@/components/JApp'
+import { JApp, JAppMain } from '@/components/JApp'
 import JInput from './JInput.vue'
 
 export default {
@@ -64,13 +64,15 @@ export default {
 }
 
 export const Basic = (args) => ({
-  components: { JApp, JInput },
+  components: { JApp, JAppMain, JInput },
   setup() {
     return { args }
   },
   template: `
     <j-app no-stretch>
-      <j-input v-bind="args" />
+      <j-app-main>
+        <j-input v-bind="args" />
+      </j-app-main>
     </j-app>
   `,
 })

@@ -18,7 +18,9 @@
           <component
             :is="item.tag"
             :class="item.class"
-            @click="item.tag === 'button' ? input(item.label) : null"
+            @click="
+              typeof item.label === 'number' ? input(item.label) : undefined
+            "
           >
             {{ item.label }}
           </component>

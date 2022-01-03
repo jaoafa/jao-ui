@@ -9,7 +9,7 @@
 |`align`|`string`|`'start'`|上下方向の配置を指定します。|
 |`justify`|`string`|`'start'`|左右方向の配置を指定します。|
 |`no-gap`|`boolean`|`false`|アイテム間の隙間を削除します。|
-|`tag`|`string`|`'button'`|指定されたタグをコンポーネントに適用します。|
+|`tag`|`string`|`'div'`|指定されたタグをコンポーネントに適用します。|
 
 ### Slots
 

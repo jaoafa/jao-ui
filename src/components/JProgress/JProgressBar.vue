@@ -2,7 +2,7 @@
   <div :class="classes" :style="styles">
     <div class="j-progress-bar__background" />
     <div
-      :style="{ width: indeterminate ? null : `${percentage}%` }"
+      :style="{ width: indeterminate ? undefined : `${percentage}%` }"
       class="j-progress-bar__determinate"
     />
   </div>

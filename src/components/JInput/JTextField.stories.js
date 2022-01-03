@@ -1,5 +1,5 @@
 import { ref } from 'vue'
-import { JApp } from '@/components/JApp'
+import { JApp, JAppMain } from '@/components/JApp'
 import JTextField from './JTextField.vue'
 
 export default {
@@ -97,22 +97,24 @@ export default {
 }
 
 export const Basic = (args) => ({
-  components: { JApp, JTextField },
+  components: { JApp, JAppMain, JTextField },
   setup() {
     const value = ref('')
     return { args, value }
   },
   template: `
     <j-app no-stretch>
-      <j-text-field
-        v-model:value="value"
-        v-bind="args"
-        @input="args.input"
-        @click:prepend="args['click:prepend']"
-        @click:prepend-inner="args['click:prepend-inner']"
-        @click:append="args['click:append']"
-        @click:append-outer="args['click:append-outer']"
-      />
+      <j-app-main>
+        <j-text-field
+          v-model:value="value"
+          v-bind="args"
+          @input="args.input"
+          @click:prepend="args['click:prepend']"
+          @click:prepend-inner="args['click:prepend-inner']"
+          @click:append="args['click:append']"
+          @click:append-outer="args['click:append-outer']"
+        />
+      </j-app-main>
     </j-app>
   `,
 })

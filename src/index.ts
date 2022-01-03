@@ -1,9 +1,9 @@
 /* eslint-disable import/prefer-default-export */
-export { JApp } from '@/components/JApp'
+export { JApp, JAppHeader, JAppMain, JAppSidebar } from '@/components/JApp'
 export { JBreadcrumbs } from '@/components/JBreadcrumbs'
 export { JButton } from '@/components/JButton'
 export { JCard } from '@/components/JCard'
-export { JContainer, JRow, JCol } from '@/components/JGrid'
+export { JContainer, JRow, JCol, JSpacer } from '@/components/JGrid'
 export { JIcon } from '@/components/JIcon'
 export { JImage } from '@/components/JImage'
 export { JInput, JTextarea, JTextField } from '@/components/JInput'
