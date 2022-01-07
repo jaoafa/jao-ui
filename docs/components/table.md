@@ -1,8 +1,8 @@
-## Table
+# Table
 
 `j-table` コンポーネントは、表のコンポーネントです。
 
-### Props
+## Props
 
 |Name|Type|Default|Description|
 |:--|:--|:--|:--|
@@ -14,7 +14,7 @@
 |`loading`|`boolean`|`false`|ローディングアニメーションを表示します。|
 |`page`|`number`|`1`|現在選択しているページ番号を指定します。|
 
-### Slots
+## Slots
 
 |Name|Description|
 |:--|:--|

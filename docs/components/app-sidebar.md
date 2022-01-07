@@ -1,14 +1,14 @@
-## AppSidebar
+# AppSidebar
 
 `j-app-sidebar` コンポーネントは、画面のサイドバーのコンポーネントです。
 
-### Props
+## Props
 
 |Name|Type|Default|Description|
 |:--|:--|:--|:--|
 |`tag`|`string`|`aside`|指定されたタグをコンポーネントに適用します。|
 
-### Slots
+## Slots
 
 |Name|Description|
 |:--|:--|

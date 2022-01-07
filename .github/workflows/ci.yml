@@ -64,7 +64,6 @@ jobs:
         run: npm run test -- --coverage
       - name: Upload Coverage
         uses: codecov/codecov-action@v2.1.0
-        if: ${{ !contains(github.ref, 'renovate') && !contains(github.ref, 'dependabot') }}
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
 
@@ -94,14 +93,16 @@ jobs:
             ${{ runner.os }}-npm-
       - name: Install packages
         run: npm ci
+      - name: Build vitepress
+        run: npx vitepress build docs
       - name: Build storybook
-        run: npx build-storybook --output-dir ./docs/storybook
+        run: npx build-storybook --output-dir ./docs/.vitepress/dist/storybook
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3.8.0
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs
+          publish_dir: ./docs/.vitepress/dist
           enable_jekyll: true
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'

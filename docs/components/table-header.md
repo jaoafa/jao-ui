@@ -1,8 +1,8 @@
-## TableHeader
+# TableHeader
 
 `j-table-header` コンポーネントは、表のヘッダーのコンポーネントです。
 
-### Props
+## Props
 
 |Name|Type|Default|Description|
 |:--|:--|:--|:--|
@@ -10,13 +10,13 @@
 |`sort-by`|`string`|`''`|ソートする項目を指定します。|
 |`sort-order`|`string`|`'asc'`|ソートする順番を指定します。 `asc` 、 `desc` のどちらかを指定します。|
 
-### Events
+## Events
 
 |Name|Description|
 |:--|:--|
 |`click`|ソート可能な項目がクリックされたときに発生するイベントです。|
 
-### Slots
+## Slots
 
 |Name|Description|
 |:--|:--|

@@ -3,6 +3,7 @@ module.exports = {
     browser: true,
     es2021: true,
     node: true,
+    'vue/setup-compiler-macros': true,
     'jest/globals': true,
   },
   extends: ['plugin:vue/vue3-recommended', 'standard', 'prettier'],
@@ -11,7 +12,7 @@ module.exports = {
     parser: '@typescript-eslint/parser',
     sourceType: 'module',
   },
-  plugins: ['@typescript-eslint', 'jest'],
+  plugins: ['vue', '@typescript-eslint', 'jest'],
   rules: {
     'vue/component-tags-order': [
       'error',

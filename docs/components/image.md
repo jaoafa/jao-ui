@@ -1,8 +1,8 @@
-## Image
+# Image
 
 `j-image` コンポーネントは、画像のコンポーネントです。
 
-### Props
+## Props
 
 |Name|Type|Default|Description|
 |:--|:--|:--|:--|
@@ -19,7 +19,7 @@
 |`width`|`string`|`undefined`|指定された幅をコンポーネントに適用します。|
 
 
-### Events
+## Events
 
 |Name|Description|
 |:--|:--|

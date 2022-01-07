@@ -1,8 +1,8 @@
-## Col
+# Col
 
 `j-col` コンポーネントは、グリッドシステムの列のコンポーネントです。
 
-### Props
+## Props
 
 |Name|Type|Default|Description|
 |:--|:--|:--|:--|
@@ -13,7 +13,7 @@
 |`cols-xl`|`number`|`undefined`|画面幅が `1200px` 以上であるときの行数を `1` ～ `12` の数字で設定します。|
 |`tag`|`string`|`'div'`|指定されたタグをコンポーネントに適用します。|
 
-### Slots
+## Slots
 
 |Name|Description|
 |:--|:--|

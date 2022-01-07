@@ -1,8 +1,8 @@
-## Pagination
+# Pagination
 
 `j-pagination` コンポーネントは、ページネーションのコンポーネントです。
 
-### Props
+## Props
 
 |Name|Type|Default|Description|
 |:--|:--|:--|:--|
@@ -11,7 +11,7 @@
 |`page`|`number`|`0`|現在選択しているページ番号を指定します。|
 |`total-visible`|`number`|`0`|表示するページ番号の数を指定します。|
 
-### Events
+## Events
 
 |Name|Description|
 |:--|:--|
