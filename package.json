@@ -91,7 +91,7 @@
     "vite": "2.7.10",
     "vitepress": "0.21.3",
     "vue": "3.2.26",
-    "vue-loader": "16.8.3"
+    "vue-loader": "17.0.0"
   },
   "peerDependencies": {
     "vue": "^3.2.26"
