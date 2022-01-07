@@ -1,8 +1,8 @@
-## Input
+# Input
 
 `j-input` コンポーネントは、入力のコンポーネントです。
 
-### Props
+## Props
 
 |Name|Type|Default|Description|
 |:--|:--|:--|:--|
@@ -17,7 +17,7 @@
 |`success`|`boolean`|`false`|成功表示にします。|
 |`success-messages`|`array`|`[]`|指定されたテキストを成功メッセージとして表示します。|
 
-### Slots
+## Slots
 
 |Name|Description|
 |:--|:--|

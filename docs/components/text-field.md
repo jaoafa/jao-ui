@@ -1,8 +1,8 @@
-## TextField
+# TextField
 
 `j-text-field` コンポーネントは、テキスト入力のコンポーネントです。
 
-### Props
+## Props
 
 |Name|Type|Default|Description|
 |:--|:--|:--|:--|
@@ -22,7 +22,7 @@
 |`type`|`string`|`text`|指定された値を type 属性としてコンポーネントに適用します。|
 |`value`|`string\|number`|`''`|現在入力している値を指定します。|
 
-### Events
+## Events
 
 |Name|Description|
 |:--|:--|
@@ -32,7 +32,7 @@
 |`click:prepend-inner`|`prepend-inner` の内容がクリックされたときに発生するイベントです。|
 |`input`|テキストが入力されたときに発生するイベントです。|
 
-### Slots
+## Slots
 
 |Name|Description|
 |:--|:--|

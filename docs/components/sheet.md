@@ -1,8 +1,8 @@
-## Sheet
+# Sheet
 
 `j-sheet` コンポーネントは、シートのコンポーネントです。
 
-### Props
+## Props
 
 |Name|Type|Default|Description|
 |:--|:--|:--|:--|
@@ -17,7 +17,7 @@
 |`tile`|`boolean`|`false`|コンポーネントの角を角丸にしないようにします。|
 |`width`|`string`|`undefined`|指定された幅をコンポーネントに適用します。|
 
-### Slots
+## Slots
 
 |Name|Description|
 |:--|:--|

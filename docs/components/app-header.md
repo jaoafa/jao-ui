@@ -1,8 +1,8 @@
-## AppHeader
+# AppHeader
 
 `j-app-header` コンポーネントは、画面のヘッダーのコンポーネントです。
 
-### Props
+## Props
 
 |Name|Type|Default|Description|
 |:--|:--|:--|:--|
@@ -11,7 +11,7 @@
 |`fluid`|`boolean`|`false`|最大幅の制限を削除します。|
 |`tag`|`string`|`header`|指定されたタグをコンポーネントに適用します。|
 
-### Slots
+## Slots
 
 |Name|Description|
 |:--|:--|

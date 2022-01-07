@@ -1,6 +1,7 @@
 {
-  "typescript.tsdk": "node_modules\\typescript\\lib",
   "editor.formatOnSave": true,
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "stylelint.validate": ["css", "less", "postcss", "vue", "scss"],
   "[markdown]": {
     "editor.formatOnSave": false
   },

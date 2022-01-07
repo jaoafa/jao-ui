@@ -5,6 +5,7 @@
   "extends": ["config:base"],
   "labels": ["🤖dependencies"],
   "packageRules": [],
+  "schedule": "weekly",
   "separateMultipleMajor": true,
   "timezone": "Asia/Tokyo",
   "vulnerabilityAlerts": {

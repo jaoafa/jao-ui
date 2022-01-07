@@ -51,6 +51,7 @@ const baseConfig = {
     },
     postVue: [
       resolve({
+        browser: true,
         extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue'],
       }),
       // Process only `<style module>` blocks.

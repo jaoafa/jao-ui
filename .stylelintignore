@@ -1,3 +1,5 @@
-node_modules/*
+.husky/*
+coverage/*
 dist/*
+node_modules/*
 storybook-static/*

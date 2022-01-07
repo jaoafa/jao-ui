@@ -1,6 +1,7 @@
-// utils/typography
+// utils > typography
 
 @use '../includes' as *;
+@use 'sass:list';
 
 $scales: (
   (
@@ -38,7 +39,7 @@ $weights: (
 );
 
 @each $scale in $scales {
-  $i: index($scales, $scale);
+  $i: list.index($scales, $scale);
 
   .text-lv#{$i} {
     @each $property, $val in $scale {

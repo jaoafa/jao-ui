@@ -1,8 +1,8 @@
-## Breadcrumbs
+# Breadcrumbs
 
 `j-breadcrumbs` コンポーネントは、パンくずリストのコンポーネントです。
 
-### Props
+## Props
 
 |Name|Type|Default|Description|
 |:--|:--|:--|:--|

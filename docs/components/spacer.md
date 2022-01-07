@@ -1,14 +1,14 @@
-## Spacer
+# Spacer
 
 `j-spacer` コンポーネントは、グリッドシステムのスペーサーのコンポーネントです。
 
-### Props
+## Props
 
 |Name|Type|Default|Description|
 |:--|:--|:--|:--|
 |`tag`|`string`|`'div'`|指定されたタグをコンポーネントに適用します。|
 
-### Slots
+## Slots
 
 |Name|Description|
 |:--|:--|

@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 export { JApp, JAppHeader, JAppMain, JAppSidebar } from '@/components/JApp'
 export { JBreadcrumbs } from '@/components/JBreadcrumbs'
 export { JButton } from '@/components/JButton'
