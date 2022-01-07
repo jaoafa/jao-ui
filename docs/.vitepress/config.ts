@@ -15,7 +15,7 @@ export default defineConfig({
     nav: [
       {
         text: 'Storybook',
-        link: '/storybook/',
+        link: 'https://jaoafa.github.io/jao-ui/storybook/',
       },
       {
         text: 'Release Notes',
