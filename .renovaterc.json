@@ -2,10 +2,9 @@
   "branchConcurrentLimit": 5,
   "dependencyDashboard": false,
   "enabledManagers": ["npm"],
-  "extends": ["config:base"],
+  "extends": ["config:base", "schedule:earlyMondays"],
   "labels": ["🤖dependencies"],
   "packageRules": [],
-  "schedule": "weekly",
   "separateMultipleMajor": true,
   "timezone": "Asia/Tokyo",
   "vulnerabilityAlerts": {
