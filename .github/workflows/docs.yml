@@ -1,0 +1,52 @@
+name: Docs
+on:
+  push:
+    branches:
+      - main
+      - dev
+  pull_request:
+
+jobs:
+
+  # Build VitePress and Storybook, Deploy docs to GitHub Pages
+  deploy-docs:
+    name: Deploy Docs
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node: [16]
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+      - name: Install packages
+        run: npm ci
+
+      - name: Build vitepress
+        run: npm run build:docs
+      - name: Build storybook
+        run: npm run build:storybook -- --output-dir ./docs/.vitepress/dist/storybook
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3.8.0
+        if: ${{ github.ref == 'refs/heads/main' }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/.vitepress/dist
+          enable_jekyll: true
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
