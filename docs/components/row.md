@@ -1,8 +1,8 @@
-## Row
+# Row
 
 `j-row` コンポーネントは、グリッドシステムの行のコンポーネントです。
 
-### Props
+## Props
 
 |Name|Type|Default|Description|
 |:--|:--|:--|:--|
@@ -11,7 +11,7 @@
 |`no-gap`|`boolean`|`false`|アイテム間の隙間を削除します。|
 |`tag`|`string`|`'div'`|指定されたタグをコンポーネントに適用します。|
 
-### Slots
+## Slots
 
 |Name|Description|
 |:--|:--|

@@ -1,8 +1,8 @@
-## Card
+# Card
 
 `j-card` コンポーネントは、カードのコンポーネントです。
 
-### Props
+## Props
 
 |Name|Type|Default|Description|
 |:--|:--|:--|:--|
@@ -21,13 +21,13 @@
 |`to`|`string`|`undefined`|コンポーネントを `<router-link>` にし、指定された値を `to` として適用します。|
 |`width`|`string`|`undefined`|指定された幅をコンポーネントに適用します。|
 
-### Events
+## Events
 
 |Name|Description|
 |:--|:--|
 |`click`|コンポーネントがクリックされたときに発生するイベントです。|
 
-### Slots
+## Slots
 
 |Name|Description|
 |:--|:--|

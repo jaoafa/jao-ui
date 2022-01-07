@@ -1,8 +1,8 @@
-## Typography
+# Typography
 
 テキストのサイズ、太さなどを指定するヘルパークラスです。
 
-### Scales
+## Scales
 
 `.text-{value}` または `.text-{breakpoint}-{value}` クラスを用いることで、テキストのサイズを指定することができます。
 
@@ -14,7 +14,7 @@
   - `lg` （ `992px` ～ `1200px` ）
   - `xl` （ `1200px` ～ ）
 
-### Weight
+## Weight
 
 `.text-weight-{value}` クラスを用いることで、テキストの太さを指定することができます。
 

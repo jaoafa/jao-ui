@@ -10,9 +10,8 @@
 
 html {
   box-sizing: border-box;
-  -webkit-text-size-adjust: 100%; /* Prevent adjustments of font size after orientation changes in iOS */
+  text-size-adjust: 100%; /* Prevent adjustments of font size after orientation changes in iOS */
   word-break: normal;
-  -moz-tab-size: 4;
   tab-size: 4;
 }
 
@@ -134,12 +133,12 @@ input {
 }
 
 [type='search'] {
-  -webkit-appearance: textfield; /* Correct the odd appearance in Chrome and Safari */
+  appearance: textfield; /* Correct the odd appearance in Chrome and Safari */
   outline-offset: -2px; /* Correct the outline style in Safari */
 }
 
 [type='search']::-webkit-search-decoration {
-  -webkit-appearance: none; /* Remove the inner padding in Chrome and Safari on macOS */
+  appearance: none; /* Remove the inner padding in Chrome and Safari on macOS */
 }
 
 textarea {
@@ -182,7 +181,7 @@ button,
 html [type='button'], /* Prevent a WebKit bug where (2) destroys native `audio` and `video`controls in Android 4 */
 [type='reset'],
 [type='submit'] {
-  -webkit-appearance: button; /* Correct the inability to style clickable types in iOS */
+  appearance: button; /* Correct the inability to style clickable types in iOS */
 }
 
 /* Remove the default button styling in all browsers */
@@ -213,8 +212,7 @@ button:-moz-focusring,
 
 /* Style select like a standard input */
 select {
-  -moz-appearance: none; /* Firefox 36+ */
-  -webkit-appearance: none; /* Chrome 41+ */
+  appearance: none; /* Firefox 36+, Chrome 41+ */
 }
 
 a:focus,
@@ -243,7 +241,7 @@ legend {
 
 ::-webkit-file-upload-button {
   /* Correct the inability to style clickable types in iOS and Safari */
-  -webkit-appearance: button;
+  appearance: button;
   font: inherit; /* Change font properties to `inherit` in Chrome and Safari */
   color: inherit;
 }

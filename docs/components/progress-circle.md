@@ -1,8 +1,8 @@
-## ProgressCircle
+# ProgressCircle
 
 `j-progress-circle` コンポーネントは、読み込み中に表示する円形のコンポーネントです。
 
-### Props
+## Props
 
 |Name|Type|Default|Description|
 |:--|:--|:--|:--|

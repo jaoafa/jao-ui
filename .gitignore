@@ -110,3 +110,7 @@ dist
 
 # Storybook
 storybook-static/
+
+# Vite
+dist-ssr
+*.local

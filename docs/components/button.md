@@ -1,8 +1,8 @@
-## Button
+# Button
 
 `j-button` コンポーネントは、ボタンのコンポーネントです。
 
-### Props
+## Props
 
 |Name|Type|Default|Description|
 |:--|:--|:--|:--|
@@ -19,13 +19,13 @@
 |`target`|`string`|`undefined`|指定された値を `target` 属性としてコンポーネントに追加します。|
 |`to`|`string`|`undefined`|コンポーネントを `<router-link>` にし、指定された値を `to` として適用します。|
 
-### Events
+## Events
 
 |Name|Description|
 |:--|:--|
 |`click`|コンポーネントがクリックされたときに発生するイベントです。|
 
-### Slots
+## Slots
 
 |Name|Description|
 |:--|:--|

@@ -1,8 +1,8 @@
-## ProgressBar
+# ProgressBar
 
 `j-progress-bar` コンポーネントは、読み込み中に表示する線形のコンポーネントです。
 
-### Props
+## Props
 
 |Name|Type|Default|Description|
 |:--|:--|:--|:--|
