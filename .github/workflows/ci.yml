@@ -7,6 +7,8 @@ on:
   pull_request:
 
 jobs:
+
+  # Run build, ESLint, Stylelint
   lint:
     name: Lint
     runs-on: ${{ matrix.os }}
@@ -15,6 +17,7 @@ jobs:
         os: [ubuntu-latest]
         node: [16]
     timeout-minutes: 10
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -31,11 +34,13 @@ jobs:
             ${{ runner.os }}-npm-
       - name: Install packages
         run: npm ci
+
       - name: Run build
         run: npm run build
       - name: Run lint
         run: npm run lint
 
+  # Test on jest, Upload coverage to Codecov
   test:
     name: Test
     runs-on: ${{ matrix.os }}
@@ -44,6 +49,7 @@ jobs:
         os: [ubuntu-latest]
         node: [16]
     timeout-minutes: 10
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -60,6 +66,7 @@ jobs:
             ${{ runner.os }}-npm-
       - name: Install packages
         run: npm ci
+
       - name: Run test
         run: npm run test -- --coverage
       - name: Upload Coverage
@@ -67,16 +74,16 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
 
-  deploy-docs:
-    name: Deploy Docs
-    concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }}
+  # Visual test on Chromatic
+  chromatic:
+    name: Chromatic Deployment
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest]
         node: [16]
     timeout-minutes: 10
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -93,16 +100,9 @@ jobs:
             ${{ runner.os }}-npm-
       - name: Install packages
         run: npm ci
-      - name: Build vitepress
-        run: npx vitepress build docs
-      - name: Build storybook
-        run: npx build-storybook --output-dir ./docs/.vitepress/dist/storybook
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3.8.0
-        if: ${{ github.ref == 'refs/heads/main' }}
+
+      - name: Publish to Chromatic
+        uses: chromaui/action@v1
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs/.vitepress/dist
-          enable_jekyll: true
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}

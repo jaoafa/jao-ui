@@ -7,6 +7,8 @@ on:
       - closed
 
 jobs:
+
+  # Release new version
   release:
     name: Release
     if: github.event.pull_request.merged == true
@@ -16,6 +18,7 @@ jobs:
         os: [ubuntu-latest]
         node: [16]
     timeout-minutes: 10
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -35,6 +38,8 @@ jobs:
           custom_tag: ${{ steps.extract_version.outputs.current-version }}
           tag_prefix: v
           github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      # Publush to NPMJS
       - name: Setup node
         uses: actions/setup-node@v2
         with:
@@ -46,6 +51,8 @@ jobs:
         run: npx can-npm-publish --verbose && npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      # Publish to GitHub Packages
       - name: Setup node
         uses: actions/setup-node@v2
         with:
@@ -56,6 +63,8 @@ jobs:
         run: npx can-npm-publish --verbose && npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Create release note
       - name: Archive
         run: npm pack
       - name: Create release
