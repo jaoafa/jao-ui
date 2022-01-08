@@ -565,49 +565,10 @@
 </template>
 
 <script lang="ts">
-/* eslint-disable vue/no-unused-components */
 import { defineComponent } from 'vue'
-import { JApp, JAppHeader, JAppMain, JAppSidebar } from '@/components/JApp'
-import { JBreadcrumbs } from '@/components/JBreadcrumbs'
-import { JButton } from '@/components/JButton'
-import { JCard } from '@/components/JCard'
-import { JContainer, JRow, JCol, JSpacer } from '@/components/JGrid'
-import { JIcon } from '@/components/JIcon'
-import { JImage } from '@/components/JImage'
-import { JInput, JTextarea, JTextField } from '@/components/JInput'
-import { JPagination } from '@/components/JPagination'
-import { JProgressBar, JProgressCircle } from '@/components/JProgress'
-import { JSheet } from '@/components/JSheet'
-import { JTable, JTableHeader, JTableFooter } from '@/components/JTable'
 
 export default defineComponent({
   name: 'ServeDev',
-
-  components: {
-    JApp,
-    JAppHeader,
-    JAppMain,
-    JAppSidebar,
-    JBreadcrumbs,
-    JButton,
-    JCard,
-    JContainer,
-    JRow,
-    JCol,
-    JSpacer,
-    JIcon,
-    JImage,
-    JInput,
-    JTextarea,
-    JTextField,
-    JPagination,
-    JProgressBar,
-    JProgressCircle,
-    JSheet,
-    JTable,
-    JTableHeader,
-    JTableFooter,
-  },
 
   data() {
     return {
