@@ -186,7 +186,7 @@ export default defineComponent({
     }
 
     const selectCategory = (val?: string) => {
-      if (val) {
+      if (val && props.current.length < 2) {
         if (props.current.length) {
           context.emit('update:current', [...props.current, val])
         } else {
