@@ -29,7 +29,14 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, PropType, ref } from 'vue'
+import {
+  computed,
+  defineComponent,
+  nextTick,
+  onMounted,
+  PropType,
+  ref,
+} from 'vue'
 import { JIcon } from '@/components/JIcon'
 import JAppHeaderButton from './JAppHeaderButton.vue'
 
@@ -116,9 +123,23 @@ export default defineComponent({
 
     const root = ref<HTMLElement>()
     const headerHeight = ref<number>(0)
+    const resize = (): void => {
+      const getSize = (): void => {
+        headerHeight.value = root.value?.offsetHeight || 0
+      }
+      let time = 0
+      getSize()
+      window.addEventListener('resize', () => {
+        if (!time) {
+          time = window.setTimeout(() => {
+            time = 0
+            getSize()
+          }, 100)
+        }
+      })
+    }
     onMounted(() => {
-      console.log(root.value?.offsetHeight || 0)
-      headerHeight.value = root.value?.offsetHeight || 0
+      nextTick(resize)
     })
 
     return { classes, listStyles, root, computedItems, computedMobileExpanded }
