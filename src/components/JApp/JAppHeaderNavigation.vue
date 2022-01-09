@@ -14,6 +14,7 @@
             :to="item.to"
             v-bind="item.attrs"
             class="j-app-header-navigation__label"
+            @click="item.tag === 'span' ? selectCategory(item.id) : undefined"
           >
             {{ item.label }}
             <j-icon
@@ -23,6 +24,19 @@
               chevron_right
             </j-icon>
           </component>
+
+          <ul v-if="item.children" class="j-app-header-navigation__children">
+            <li class="j-app-header-navigation__item">
+              <span
+                class="j-app-header-navigation__label"
+                @click="selectCategory()"
+              >
+                <j-icon class="j-app-header-navigation__icon">
+                  chevron_left
+                </j-icon>
+              </span>
+            </li>
+          </ul>
         </li>
       </template>
     </ul>
@@ -90,6 +104,8 @@ export default defineComponent({
 
     const styles = computed((): { [key: string]: string } => ({
       top: `${headerHeight.value + 3}px`,
+      transform:
+        props.current.length >= 2 ? 'translateX(-100vw)' : 'translateX(0)',
       'min-height': props.current.length
         ? `calc(100vh - ${headerHeight.value + 3}px)`
         : '0px',
@@ -131,6 +147,14 @@ export default defineComponent({
       }
     }
 
+    const selectCategory = (val?: string) => {
+      if (val) {
+        context.emit('update:current', [...props.current, val])
+      } else {
+        context.emit('update:current', [...props.current.slice(0, -1)])
+      }
+    }
+
     const root = ref<HTMLElement>()
     const headerHeight = ref<number>(0)
     const resize = (): void => {
@@ -152,7 +176,14 @@ export default defineComponent({
       nextTick(resize)
     })
 
-    return { classes, styles, root, computedItems, mobileExpanded }
+    return {
+      classes,
+      styles,
+      root,
+      computedItems,
+      mobileExpanded,
+      selectCategory,
+    }
   },
 })
 </script>
@@ -184,28 +215,50 @@ $root: 'j-app-header-navigation';
   position: absolute;
   left: 0;
   z-index: 50;
-  width: 100%;
+  width: 200vw;
   max-height: 0;
   overflow: auto;
   font-size: 14px;
   font-weight: 700;
   list-style: none;
   background-color: $color-white;
-  transition: min-height 0.2s;
+  transition: min-height 0.2s, transform 0.2s;
 
   @include breakpoint(md) {
     position: static;
     display: flex;
     align-items: center;
+    width: 100%;
     height: 100%;
     min-height: auto !important;
     max-height: none;
     font-size: 13px;
+    transition: none;
+    transform: none !important;
+  }
+}
+
+.j-app-header-navigation__children {
+  position: absolute;
+  top: 0;
+  left: 100vw;
+  width: 100vw;
+  list-style: none;
+
+  & > :first-child {
+    @include breakpoint(md) {
+      display: none;
+    }
   }
 }
 
 .j-app-header-navigation__item {
   display: flex;
+  width: 100vw;
+
+  @include breakpoint(md) {
+    width: auto;
+  }
 }
 
 .j-app-header-navigation__label {
@@ -214,7 +267,8 @@ $root: 'j-app-header-navigation';
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 8px 16px;
+  height: 48px;
+  padding: 0 16px;
   color: inherit;
   cursor: pointer;
   background-color: transparent;
