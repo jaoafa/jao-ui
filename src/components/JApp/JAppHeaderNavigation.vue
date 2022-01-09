@@ -25,57 +25,59 @@
             </j-icon>
           </component>
 
-          <ul
-            v-if="item.children"
-            v-show="current[1] === item.id"
-            :style="childrenStyles"
-            class="j-app-header-navigation__children"
-          >
-            <li class="j-app-header-navigation__item">
-              <span
-                class="j-app-header-navigation__label"
-                @click="selectCategory()"
-              >
-                <j-icon class="j-app-header-navigation__icon">
-                  chevron_left
-                </j-icon>
-              </span>
-            </li>
-
-            <template v-for="childItem in item.children" :key="childItem.id">
+          <transition>
+            <ul
+              v-if="item.children"
+              v-show="current[1] === item.id"
+              :style="childrenStyles"
+              class="j-app-header-navigation__children"
+            >
               <li class="j-app-header-navigation__item">
-                <component
-                  :is="childItem.tag"
-                  :to="childItem.to"
-                  v-bind="childItem.attrs"
+                <span
                   class="j-app-header-navigation__label"
+                  @click="selectCategory()"
                 >
-                  {{ childItem.label }}
-                </component>
-
-                <ul
-                  v-if="childItem.children"
-                  class="j-app-header-navigation__grandchildren"
-                >
-                  <template
-                    v-for="grandchildItem in childItem.children"
-                    :key="grandchildItem.id"
-                  >
-                    <li class="j-app-header-navigation__item">
-                      <component
-                        :is="grandchildItem.tag"
-                        :to="grandchildItem.to"
-                        v-bind="grandchildItem.attrs"
-                        class="j-app-header-navigation__label"
-                      >
-                        {{ grandchildItem.label }}
-                      </component>
-                    </li>
-                  </template>
-                </ul>
+                  <j-icon class="j-app-header-navigation__icon">
+                    chevron_left
+                  </j-icon>
+                </span>
               </li>
-            </template>
-          </ul>
+
+              <template v-for="childItem in item.children" :key="childItem.id">
+                <li class="j-app-header-navigation__item">
+                  <component
+                    :is="childItem.tag"
+                    :to="childItem.to"
+                    v-bind="childItem.attrs"
+                    class="j-app-header-navigation__label"
+                  >
+                    {{ childItem.label }}
+                  </component>
+
+                  <ul
+                    v-if="childItem.children"
+                    class="j-app-header-navigation__grandchildren"
+                  >
+                    <template
+                      v-for="grandchildItem in childItem.children"
+                      :key="grandchildItem.id"
+                    >
+                      <li class="j-app-header-navigation__item">
+                        <component
+                          :is="grandchildItem.tag"
+                          :to="grandchildItem.to"
+                          v-bind="grandchildItem.attrs"
+                          class="j-app-header-navigation__label"
+                        >
+                          {{ grandchildItem.label }}
+                        </component>
+                      </li>
+                    </template>
+                  </ul>
+                </li>
+              </template>
+            </ul>
+          </transition>
         </li>
       </template>
     </ul>
@@ -292,15 +294,29 @@ $root: 'j-app-header-navigation';
   left: 100vw;
   z-index: 50;
   width: 100vw;
+  list-style: none;
   background-color: $color-white;
 
   @include breakpoint(md) {
     left: 0;
     display: flex;
     flex-wrap: wrap;
+    gap: 8px;
+    align-items: flex-start;
     padding: 24px;
     box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 12%);
+    opacity: 1;
+    transition: opacity 0.1s;
     transform: none !important;
+  }
+
+  @include breakpoint(xl) {
+    padding: 24px calc(24px + (100vw - #{$size-width-max}) / 2);
+  }
+
+  &.v-enter-from,
+  &.v-leave-to {
+    opacity: 0;
   }
 
   & > :first-child {
@@ -311,14 +327,18 @@ $root: 'j-app-header-navigation';
 }
 
 .j-app-header-navigation__grandchildren {
+  width: 100%;
   font-size: 12px;
   font-weight: 400;
   color: $color-gray-700;
+  list-style: none;
+
+  @include breakpoint(md) {
+    font-size: 13px;
+  }
 }
 
 .j-app-header-navigation__item {
-  display: flex;
-  flex-wrap: wrap;
   width: 100vw;
 
   @include breakpoint(md) {
@@ -336,6 +356,7 @@ $root: 'j-app-header-navigation';
   padding: 0 16px;
   color: inherit;
   cursor: pointer;
+  user-select: none;
   background-color: transparent;
   transition: background-color 0.1s;
 
