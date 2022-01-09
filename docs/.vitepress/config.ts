@@ -34,6 +34,11 @@ export default defineConfig({
           children: [
             { text: 'App', link: '/components/app' },
             { text: 'AppHeader', link: '/components/app-header' },
+            { text: 'AppHeaderButton', link: '/components/app-header-button' },
+            {
+              text: 'AppHeaderNavigation',
+              link: '/components/app-header-navigation',
+            },
             { text: 'AppMain', link: '/components/app-main' },
             { text: 'AppSidebar', link: '/components/app-sidebar' },
             { text: 'Breadcrumbs', link: '/components/breadcrumbs' },

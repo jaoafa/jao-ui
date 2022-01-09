@@ -59,6 +59,7 @@ export default defineComponent({
 $root: 'j-app-header';
 
 .j-app-header {
+  position: relative;
   grid-row: 1 / 2;
   grid-column: 1 / 3;
   border-bottom-style: solid;
@@ -69,12 +70,6 @@ $root: 'j-app-header';
   }
 
   &--dense {
-    border-bottom-width: 2px;
-
-    @include breakpoint(md) {
-      border-bottom-width: 4px;
-    }
-
     .#{$root}__body {
       height: 48px;
 
