@@ -25,7 +25,11 @@
             </j-icon>
           </component>
 
-          <ul v-if="item.children" class="j-app-header-navigation__children">
+          <ul
+            v-if="item.children"
+            v-show="current[1] === item.id"
+            class="j-app-header-navigation__children"
+          >
             <li class="j-app-header-navigation__item">
               <span
                 class="j-app-header-navigation__label"
@@ -36,6 +40,40 @@
                 </j-icon>
               </span>
             </li>
+
+            <template v-for="childItem in item.children" :key="childItem.id">
+              <li class="j-app-header-navigation__item">
+                <component
+                  :is="childItem.tag"
+                  :to="childItem.to"
+                  v-bind="childItem.attrs"
+                  class="j-app-header-navigation__label"
+                >
+                  {{ childItem.label }}
+                </component>
+
+                <ul
+                  v-if="childItem.children"
+                  class="j-app-header-navigation__grandchildren"
+                >
+                  <template
+                    v-for="grandchildItem in childItem.children"
+                    :key="grandchildItem.id"
+                  >
+                    <li class="j-app-header-navigation__item">
+                      <component
+                        :is="grandchildItem.tag"
+                        :to="grandchildItem.to"
+                        v-bind="grandchildItem.attrs"
+                        class="j-app-header-navigation__label"
+                      >
+                        {{ grandchildItem.label }}
+                      </component>
+                    </li>
+                  </template>
+                </ul>
+              </li>
+            </template>
           </ul>
         </li>
       </template>
@@ -243,7 +281,6 @@ $root: 'j-app-header-navigation';
   top: 0;
   left: 100vw;
   width: 100vw;
-  list-style: none;
 
   & > :first-child {
     @include breakpoint(md) {
@@ -252,8 +289,15 @@ $root: 'j-app-header-navigation';
   }
 }
 
+.j-app-header-navigation__grandchildren {
+  font-size: 12px;
+  font-weight: 400;
+  color: $color-gray-700;
+}
+
 .j-app-header-navigation__item {
   display: flex;
+  flex-wrap: wrap;
   width: 100vw;
 
   @include breakpoint(md) {
@@ -279,6 +323,7 @@ $root: 'j-app-header-navigation';
   }
 
   &:hover {
+    text-decoration: none;
     background-color: $color-gray-50;
   }
 }
