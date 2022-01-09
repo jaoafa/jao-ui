@@ -14,7 +14,13 @@
             :to="item.to"
             v-bind="item.attrs"
             class="j-app-header-navigation__label"
-            @click="item.tag === 'span' ? selectCategory(item.id) : undefined"
+            @click="
+              item.tag !== 'span'
+                ? undefined
+                : current.length === 2 && current.slice(-1)[0] === item.id
+                ? selectCategory()
+                : selectCategory(item.id)
+            "
           >
             {{ item.label }}
             <j-icon
@@ -25,59 +31,57 @@
             </j-icon>
           </component>
 
-          <transition>
-            <ul
-              v-if="item.children"
-              v-show="current[1] === item.id"
-              :style="childrenStyles"
-              class="j-app-header-navigation__children"
-            >
+          <ul
+            v-if="item.children"
+            v-show="current[1] === item.id"
+            :style="childrenStyles"
+            class="j-app-header-navigation__children"
+          >
+            <li class="j-app-header-navigation__item">
+              <span
+                class="j-app-header-navigation__label"
+                @click="selectCategory()"
+              >
+                <j-icon class="j-app-header-navigation__icon">
+                  chevron_left
+                </j-icon>
+              </span>
+            </li>
+
+            <template v-for="childItem in item.children" :key="childItem.id">
               <li class="j-app-header-navigation__item">
-                <span
+                <component
+                  :is="childItem.tag"
+                  :to="childItem.to"
+                  v-bind="childItem.attrs"
                   class="j-app-header-navigation__label"
-                  @click="selectCategory()"
                 >
-                  <j-icon class="j-app-header-navigation__icon">
-                    chevron_left
-                  </j-icon>
-                </span>
+                  {{ childItem.label }}
+                </component>
+
+                <ul
+                  v-if="childItem.children"
+                  class="j-app-header-navigation__grandchildren"
+                >
+                  <template
+                    v-for="grandchildItem in childItem.children"
+                    :key="grandchildItem.id"
+                  >
+                    <li class="j-app-header-navigation__item">
+                      <component
+                        :is="grandchildItem.tag"
+                        :to="grandchildItem.to"
+                        v-bind="grandchildItem.attrs"
+                        class="j-app-header-navigation__label"
+                      >
+                        {{ grandchildItem.label }}
+                      </component>
+                    </li>
+                  </template>
+                </ul>
               </li>
-
-              <template v-for="childItem in item.children" :key="childItem.id">
-                <li class="j-app-header-navigation__item">
-                  <component
-                    :is="childItem.tag"
-                    :to="childItem.to"
-                    v-bind="childItem.attrs"
-                    class="j-app-header-navigation__label"
-                  >
-                    {{ childItem.label }}
-                  </component>
-
-                  <ul
-                    v-if="childItem.children"
-                    class="j-app-header-navigation__grandchildren"
-                  >
-                    <template
-                      v-for="grandchildItem in childItem.children"
-                      :key="grandchildItem.id"
-                    >
-                      <li class="j-app-header-navigation__item">
-                        <component
-                          :is="grandchildItem.tag"
-                          :to="grandchildItem.to"
-                          v-bind="grandchildItem.attrs"
-                          class="j-app-header-navigation__label"
-                        >
-                          {{ grandchildItem.label }}
-                        </component>
-                      </li>
-                    </template>
-                  </ul>
-                </li>
-              </template>
-            </ul>
-          </transition>
+            </template>
+          </ul>
         </li>
       </template>
     </ul>
@@ -194,14 +198,23 @@ export default defineComponent({
     }
 
     const selectCategory = (val?: string) => {
-      if (val && props.current.length < 2) {
-        if (props.current.length) {
-          context.emit('update:current', [...props.current, val])
-        } else {
-          context.emit('update:current', ['root', val])
-        }
-      } else {
-        context.emit('update:current', [...props.current.slice(0, -1)])
+      switch (props.current.length) {
+        case 0:
+          if (val) {
+            context.emit('update:current', ['root', val])
+          }
+          break
+        case 1:
+          if (val) {
+            context.emit('update:current', [...props.current, val])
+          }
+          break
+        case 2:
+          if (val) {
+            context.emit('update:current', [...props.current.slice(0, -1), val])
+          } else {
+            context.emit('update:current', [...props.current.slice(0, -1)])
+          }
       }
     }
 
@@ -305,18 +318,11 @@ $root: 'j-app-header-navigation';
     align-items: flex-start;
     padding: 24px;
     box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 12%);
-    opacity: 1;
-    transition: opacity 0.1s;
     transform: none !important;
   }
 
   @include breakpoint(xl) {
     padding: 24px calc(24px + (100vw - #{$size-width-max}) / 2);
-  }
-
-  &.v-enter-from,
-  &.v-leave-to {
-    opacity: 0;
   }
 
   & > :first-child {
