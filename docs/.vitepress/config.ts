@@ -8,7 +8,7 @@ export default defineConfig({
   themeConfig: {
     repo: 'jaoafa/jao-ui',
     docsDir: 'docs',
-    docsBranch: 'main',
+    docsBranch: 'dev',
     editLinks: true,
     editLinkText: 'GitHubで編集を提案',
     lastUpdated: '最終更新',
