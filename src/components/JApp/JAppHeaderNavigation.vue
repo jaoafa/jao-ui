@@ -1,11 +1,12 @@
 <template>
   <nav ref="root" :class="classes">
     <j-app-header-button
-      v-model:value="computedMobileExpanded"
+      :value="!!current.length"
       class="j-app-header-navigation__toggle"
+      @click="mobileExpanded"
     />
 
-    <ul :style="listStyles" class="j-app-header-navigation__list">
+    <ul :style="styles" class="j-app-header-navigation__list">
       <template v-for="item in computedItems" :key="item.id">
         <li class="j-app-header-navigation__item">
           <component
@@ -57,15 +58,15 @@ export default defineComponent({
   },
 
   props: {
+    /** 現在の表示状態を指定します */
+    current: {
+      type: Array as PropType<string[]>,
+      default: () => [],
+    },
     /** コンポーネントに表示する項目を配列で指定します */
     items: {
       type: Array as PropType<NavigationItem[]>,
       default: () => [],
-    },
-    /** モバイル表示時にコンポーネントを展開します */
-    mobileExpanded: {
-      type: Boolean,
-      default: false,
     },
     /** リンクを <nuxt-link> にします */
     nuxt: {
@@ -74,17 +75,16 @@ export default defineComponent({
     },
   },
 
-  emits: ['update:mobileExpanded'],
+  emits: ['update:current'],
 
   setup(props, context) {
     const classes = computed((): { [key: string]: boolean } => ({
       'j-app-header-navigation': true,
-      'j-app-header-navigation--expanded': props.mobileExpanded,
     }))
 
-    const listStyles = computed((): { [key: string]: string } => ({
-      top: headerHeight.value + 3 + 'px',
-      'min-height': props.mobileExpanded
+    const styles = computed((): { [key: string]: string } => ({
+      top: `${headerHeight.value + 3}px`,
+      'min-height': props.current.length
         ? `calc(100vh - ${headerHeight.value + 3}px)`
         : '0px',
     }))
@@ -112,14 +112,13 @@ export default defineComponent({
       })
     })
 
-    const computedMobileExpanded = computed({
-      get: (): boolean => {
-        return props.mobileExpanded
-      },
-      set: (val: boolean): void => {
-        context.emit('update:mobileExpanded', val)
-      },
-    })
+    const mobileExpanded = () => {
+      if (props.current.length) {
+        context.emit('update:current', [])
+      } else {
+        context.emit('update:current', ['root'])
+      }
+    }
 
     const root = ref<HTMLElement>()
     const headerHeight = ref<number>(0)
@@ -142,7 +141,7 @@ export default defineComponent({
       nextTick(resize)
     })
 
-    return { classes, listStyles, root, computedItems, computedMobileExpanded }
+    return { classes, styles, root, computedItems, mobileExpanded }
   },
 })
 </script>
