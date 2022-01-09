@@ -49,6 +49,12 @@ type NavigationItem = {
   to?: undefined
 }
 
+type GeneratedNavigationItem = Omit<NavigationItem, 'children' | 'href'> & {
+  attrs: { [key: string]: string }
+  children?: GeneratedNavigationItem[]
+  tag: string
+}
+
 export default defineComponent({
   name: 'JAppHeaderNavigation',
 
@@ -90,26 +96,31 @@ export default defineComponent({
     }))
 
     const computedItems = computed(() => {
-      return props.items.map((item) => {
-        const res: { [key: string]: string } = {}
-        if (item.href) {
-          res.href = item.href
-        }
-        return {
-          attrs: res,
-          children: item.children,
-          id: item.id,
-          label: item.label,
-          tag: !(item.href || item.to)
-            ? 'span'
-            : !item.to
-            ? 'a'
-            : props.nuxt
-            ? 'nuxt-link'
-            : 'router-link',
-          to: item.to,
-        }
-      })
+      const generateItem = (
+        items: NavigationItem[]
+      ): GeneratedNavigationItem[] => {
+        return items.map((item) => {
+          const res: { [key: string]: string } = {}
+          if (item.href) {
+            res.href = item.href
+          }
+          return {
+            attrs: res,
+            children: item.children && generateItem(item.children),
+            id: item.id,
+            label: item.label,
+            tag: !(item.href || item.to)
+              ? 'span'
+              : !item.to
+              ? 'a'
+              : props.nuxt
+              ? 'nuxt-link'
+              : 'router-link',
+            to: item.to,
+          }
+        })
+      }
+      return generateItem(props.items)
     })
 
     const mobileExpanded = () => {
