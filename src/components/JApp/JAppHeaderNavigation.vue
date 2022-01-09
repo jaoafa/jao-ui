@@ -187,7 +187,11 @@ export default defineComponent({
 
     const selectCategory = (val?: string) => {
       if (val) {
-        context.emit('update:current', [...props.current, val])
+        if (props.current.length) {
+          context.emit('update:current', [...props.current, val])
+        } else {
+          context.emit('update:current', ['root', val])
+        }
       } else {
         context.emit('update:current', [...props.current.slice(0, -1)])
       }
