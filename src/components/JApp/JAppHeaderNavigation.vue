@@ -28,6 +28,7 @@
           <ul
             v-if="item.children"
             v-show="current[1] === item.id"
+            :style="childrenStyles"
             class="j-app-header-navigation__children"
           >
             <li class="j-app-header-navigation__item">
@@ -149,6 +150,11 @@ export default defineComponent({
         : '0px',
     }))
 
+    const childrenStyles = computed((): { [key: string]: string } => ({
+      top: `${headerHeight.value + 6}px`,
+      transform: `translateY(-${headerHeight.value + 6}px)`,
+    }))
+
     const computedItems = computed(() => {
       const generateItem = (
         items: NavigationItem[]
@@ -221,6 +227,7 @@ export default defineComponent({
     return {
       classes,
       styles,
+      childrenStyles,
       root,
       computedItems,
       mobileExpanded,
@@ -282,9 +289,19 @@ $root: 'j-app-header-navigation';
 
 .j-app-header-navigation__children {
   position: absolute;
-  top: 0;
   left: 100vw;
+  z-index: 50;
   width: 100vw;
+  background-color: $color-white;
+
+  @include breakpoint(md) {
+    left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 24px;
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 12%);
+    transform: none !important;
+  }
 
   & > :first-child {
     @include breakpoint(md) {
@@ -323,6 +340,7 @@ $root: 'j-app-header-navigation';
   transition: background-color 0.1s;
 
   @include breakpoint(md) {
+    height: 40px;
     text-decoration: none;
   }
 
