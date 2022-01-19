@@ -1,1 +1,0 @@
-import{_ as e,c as t,o as a,a as r}from"./app.74721cac.js";const u='{"title":"Introduction","description":"","frontmatter":{"title":"Introduction"},"headers":[],"relativePath":"index.md","lastUpdated":1641569267742}',o={},n=r("",2),s=[n];function c(_,i,d,p,h,l){return a(),t("div",null,s)}var m=e(o,[["render",c]]);export{u as __pageData,m as default};

@@ -1,0 +1,1 @@
+import{_ as e,c as t,o as a,a as r}from"./app.d9556b90.js";const u='{"title":"Introduction","description":"","frontmatter":{"title":"Introduction"},"headers":[],"relativePath":"index.md","lastUpdated":1642598819557}',o={},n=r("",2),s=[n];function _(c,i,d,p,h,l){return a(),t("div",null,s)}var m=e(o,[["render",_]]);export{u as __pageData,m as default};
