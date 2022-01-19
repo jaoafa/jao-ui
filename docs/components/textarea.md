@@ -1,4 +1,4 @@
-# TextField
+# Textarea
 
 `j-textarea` コンポーネントは、テキスト入力（複数行）のコンポーネントです。
 

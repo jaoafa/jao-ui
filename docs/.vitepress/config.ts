@@ -8,14 +8,14 @@ export default defineConfig({
   themeConfig: {
     repo: 'jaoafa/jao-ui',
     docsDir: 'docs',
-    docsBranch: 'main',
+    docsBranch: 'dev',
     editLinks: true,
     editLinkText: 'GitHubで編集を提案',
     lastUpdated: '最終更新',
     nav: [
       {
         text: 'Storybook',
-        link: '/storybook/',
+        link: 'https://jaoafa.github.io/jao-ui/storybook/',
       },
       {
         text: 'Release Notes',
@@ -34,6 +34,11 @@ export default defineConfig({
           children: [
             { text: 'App', link: '/components/app' },
             { text: 'AppHeader', link: '/components/app-header' },
+            { text: 'AppHeaderButton', link: '/components/app-header-button' },
+            {
+              text: 'AppHeaderNavigation',
+              link: '/components/app-header-navigation',
+            },
             { text: 'AppMain', link: '/components/app-main' },
             { text: 'AppSidebar', link: '/components/app-sidebar' },
             { text: 'Breadcrumbs', link: '/components/breadcrumbs' },

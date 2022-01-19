@@ -1,4 +1,11 @@
-export { JApp, JAppHeader, JAppMain, JAppSidebar } from '@/components/JApp'
+export {
+  JApp,
+  JAppHeader,
+  JAppHeaderButton,
+  JAppHeaderNavigation,
+  JAppMain,
+  JAppSidebar,
+} from '@/components/JApp'
 export { JBreadcrumbs } from '@/components/JBreadcrumbs'
 export { JButton } from '@/components/JButton'
 export { JCard } from '@/components/JCard'
