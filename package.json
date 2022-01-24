@@ -51,7 +51,6 @@
     "@vitejs/plugin-vue": "2.0.1",
     "@vue/babel-preset-app": "4.5.15",
     "@zerollup/ts-transform-paths": "1.7.18",
-    "babel-loader": "8.2.3",
     "can-npm-publish": "1.3.6",
     "chromatic": "6.3.4",
     "cross-env": "7.0.3",
@@ -90,8 +89,7 @@
     "typescript": "4.5.4",
     "vite": "2.7.13",
     "vitepress": "0.21.6",
-    "vue": "3.2.26",
-    "vue-loader": "17.0.0"
+    "vue": "3.2.26"
   },
   "peerDependencies": {
     "vue": "^3.2.26"
