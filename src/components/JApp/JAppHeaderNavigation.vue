@@ -1,9 +1,153 @@
+<script setup lang="ts">
+import { computed, nextTick, onMounted, ref } from 'vue'
+import { ComponentTagClasses, ComponentTagStyles } from '@/types'
+import { JIcon } from '@/components/JIcon'
+import JAppHeaderButton from './JAppHeaderButton.vue'
+
+// types
+type NavigationItem = {
+  children?: NavigationItem[]
+  href?: string
+  id: string
+  label: string
+  to?: string
+}
+type GeneratedNavigationItem = Omit<NavigationItem, 'children' | 'href'> & {
+  attrs: { [key: string]: string }
+  children?: GeneratedNavigationItem[]
+  tag: string
+}
+
+// props
+type Props = {
+  /** コンポーネントに表示する項目を配列で指定します */
+  items?: NavigationItem[]
+  /** リンクを <nuxt-link> にします */
+  nuxt?: boolean
+  /** 現在の表示状態を指定します */
+  value?: string[]
+}
+const props = withDefaults(defineProps<Props>(), {
+  items: () => [],
+  nuxt: false,
+  value: () => [],
+})
+
+// emit
+type Emits = {
+  (e: 'update:value', value: Required<Props>['value']): void
+}
+const emit = defineEmits<Emits>()
+
+// class
+const classes = computed(
+  (): ComponentTagClasses<'j-app-header-navigation'> => ({
+    'j-app-header-navigation': true,
+  })
+)
+
+// style
+const styles = computed(
+  (): ComponentTagStyles => ({
+    top: `${headerHeight.value + 3}px`,
+    transform: props.value.length >= 2 ? 'translateX(-100vw)' : 'translateX(0)',
+    minHeight: props.value.length
+      ? `calc(100vh - ${headerHeight.value + 3}px)`
+      : 0,
+  })
+)
+const childrenStyles = computed(
+  (): ComponentTagStyles => ({
+    top: `${headerHeight.value + 6}px`,
+    transform: `translateY(-${headerHeight.value + 6}px)`,
+  })
+)
+
+// get header height
+const root = ref<HTMLElement>()
+const headerHeight = ref<number>(0)
+const resize = (): void => {
+  const getSize = (): void => {
+    headerHeight.value = root.value?.offsetHeight || 0
+  }
+  let time = 0
+  window.addEventListener('resize', () => {
+    if (!time) {
+      time = window.setTimeout(() => {
+        time = 0
+        getSize()
+      }, 100)
+    }
+  })
+  getSize()
+}
+onMounted(() => {
+  nextTick(resize)
+})
+
+const computedItems = computed((): GeneratedNavigationItem[] => {
+  const generateItems = (
+    items: NavigationItem[]
+  ): GeneratedNavigationItem[] => {
+    return items.map((item) => {
+      const attrs: GeneratedNavigationItem['attrs'] = {}
+      if (item.href) {
+        attrs.href = item.href
+      }
+      return {
+        attrs,
+        children: item.children && generateItems(item.children),
+        id: item.id,
+        label: item.label,
+        tag: !(item.href || item.to)
+          ? 'span'
+          : !item.to
+          ? 'a'
+          : props.nuxt
+          ? 'nuxt-link'
+          : 'router-link',
+      }
+    })
+  }
+  return generateItems(props.items)
+})
+
+const handleClick = (): void => {
+  if (props.value.length) {
+    emit('update:value', [])
+  } else {
+    emit('update:value', ['root'])
+  }
+}
+
+const updateValue = (val?: string) => {
+  switch (props.value.length) {
+    case 0:
+      if (val) {
+        emit('update:value', ['root', val])
+      }
+      break
+    case 1:
+      if (val) {
+        emit('update:value', [...props.value, val])
+      }
+      break
+    case 2:
+      if (val) {
+        emit('update:value', [...props.value.slice(0, -1), val])
+      } else {
+        emit('update:value', [...props.value.slice(0, -1)])
+      }
+  }
+}
+</script>
+
 <template>
   <nav ref="root" :class="classes">
     <j-app-header-button
-      :value="!!current.length"
+      :value="!!props.value.length"
       class="j-app-header-navigation__toggle"
-      @click="mobileExpanded"
+      @click="handleClick"
     />
 
     <ul :style="styles" class="j-app-header-navigation__list">
@@ -17,9 +161,10 @@
             @click="
               item.tag !== 'span'
                 ? undefined
-                : current.length === 2 && current.slice(-1)[0] === item.id
-                ? selectCategory()
-                : selectCategory(item.id)
+                : props.value.length === 2 &&
+                  props.value.slice(-1)[0] === item.id
+                ? updateValue()
+                : updateValue(item.id)
             "
           >
             {{ item.label }}
@@ -33,14 +178,14 @@
 
           <ul
             v-if="item.children"
-            v-show="current[1] === item.id"
+            v-show="props.value[1] === item.id"
             :style="childrenStyles"
             class="j-app-header-navigation__children"
           >
             <li class="j-app-header-navigation__item">
               <span
                 class="j-app-header-navigation__label"
-                @click="selectCategory()"
+                @click="updateValue()"
               >
                 <j-icon class="j-app-header-navigation__icon">
                   chevron_left
@@ -64,17 +209,17 @@
                   class="j-app-header-navigation__grandchildren"
                 >
                   <template
-                    v-for="grandchildItem in childItem.children"
-                    :key="grandchildItem.id"
+                    v-for="grandChildItem in childItem.children"
+                    :key="grandChildItem.id"
                   >
                     <li class="j-app-header-navigation__item">
                       <component
-                        :is="grandchildItem.tag"
-                        :to="grandchildItem.to"
-                        v-bind="grandchildItem.attrs"
+                        :is="grandChildItem.tag"
+                        :to="grandChildItem.to"
+                        v-bind="grandChildItem.attrs"
                         class="j-app-header-navigation__label"
                       >
-                        {{ grandchildItem.label }}
+                        {{ grandChildItem.label }}
                       </component>
                     </li>
                   </template>
@@ -87,170 +232,6 @@
     </ul>
   </nav>
 </template>
-
-<script lang="ts">
-import {
-  computed,
-  defineComponent,
-  nextTick,
-  onMounted,
-  PropType,
-  ref,
-} from 'vue'
-import { JIcon } from '@/components/JIcon'
-import JAppHeaderButton from './JAppHeaderButton.vue'
-
-type NavigationItem = {
-  children?: NavigationItem[]
-  href?: undefined
-  id: string
-  label: string
-  to?: undefined
-}
-
-type GeneratedNavigationItem = Omit<NavigationItem, 'children' | 'href'> & {
-  attrs: { [key: string]: string }
-  children?: GeneratedNavigationItem[]
-  tag: string
-}
-
-export default defineComponent({
-  name: 'JAppHeaderNavigation',
-
-  components: {
-    JAppHeaderButton,
-    JIcon,
-  },
-
-  props: {
-    /** 現在の表示状態を指定します */
-    current: {
-      type: Array as PropType<string[]>,
-      default: () => [],
-    },
-    /** コンポーネントに表示する項目を配列で指定します */
-    items: {
-      type: Array as PropType<NavigationItem[]>,
-      default: () => [],
-    },
-    /** リンクを <nuxt-link> にします */
-    nuxt: {
-      type: Boolean,
-      default: false,
-    },
-  },
-
-  emits: ['update:current'],
-
-  setup(props, context) {
-    const classes = computed((): { [key: string]: boolean } => ({
-      'j-app-header-navigation': true,
-    }))
-
-    const styles = computed((): { [key: string]: string } => ({
-      top: `${headerHeight.value + 3}px`,
-      transform:
-        props.current.length >= 2 ? 'translateX(-100vw)' : 'translateX(0)',
-      'min-height': props.current.length
-        ? `calc(100vh - ${headerHeight.value + 3}px)`
-        : '0px',
-    }))
-
-    const childrenStyles = computed((): { [key: string]: string } => ({
-      top: `${headerHeight.value + 6}px`,
-      transform: `translateY(-${headerHeight.value + 6}px)`,
-    }))
-
-    const computedItems = computed(() => {
-      const generateItem = (
-        items: NavigationItem[]
-      ): GeneratedNavigationItem[] => {
-        return items.map((item) => {
-          const res: { [key: string]: string } = {}
-          if (item.href) {
-            res.href = item.href
-          }
-          return {
-            attrs: res,
-            children: item.children && generateItem(item.children),
-            id: item.id,
-            label: item.label,
-            tag: !(item.href || item.to)
-              ? 'span'
-              : !item.to
-              ? 'a'
-              : props.nuxt
-              ? 'nuxt-link'
-              : 'router-link',
-            to: item.to,
-          }
-        })
-      }
-      return generateItem(props.items)
-    })
-
-    const mobileExpanded = () => {
-      if (props.current.length) {
-        context.emit('update:current', [])
-      } else {
-        context.emit('update:current', ['root'])
-      }
-    }
-
-    const selectCategory = (val?: string) => {
-      switch (props.current.length) {
-        case 0:
-          if (val) {
-            context.emit('update:current', ['root', val])
-          }
-          break
-        case 1:
-          if (val) {
-            context.emit('update:current', [...props.current, val])
-          }
-          break
-        case 2:
-          if (val) {
-            context.emit('update:current', [...props.current.slice(0, -1), val])
-          } else {
-            context.emit('update:current', [...props.current.slice(0, -1)])
-          }
-      }
-    }
-
-    const root = ref<HTMLElement>()
-    const headerHeight = ref<number>(0)
-    const resize = (): void => {
-      const getSize = (): void => {
-        headerHeight.value = root.value?.offsetHeight || 0
-      }
-      let time = 0
-      getSize()
-      window.addEventListener('resize', () => {
-        if (!time) {
-          time = window.setTimeout(() => {
-            time = 0
-            getSize()
-          }, 100)
-        }
-      })
-    }
-    onMounted(() => {
-      nextTick(resize)
-    })
-
-    return {
-      classes,
-      styles,
-      childrenStyles,
-      root,
-      computedItems,
-      mobileExpanded,
-      selectCategory,
-    }
-  },
-})
-</script>
 
 <style lang="scss">
 @use 'src/styles/includes' as *;
