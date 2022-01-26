@@ -39,7 +39,7 @@ const styles = computed(
 </script>
 
 <template>
-  <component :is="tag" :class="classes" :style="styles">
+  <component :is="props.tag" :class="classes" :style="styles">
     <div class="j-app-header__body">
       <slot />
     </div>
