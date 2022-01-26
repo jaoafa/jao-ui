@@ -33,7 +33,7 @@ const classes = computed(
 // style
 const styles = computed(
   (): ComponentTagStyles => ({
-    'border-color': convertNameToHex(props.color),
+    borderColor: convertNameToHex(props.color),
   })
 )
 </script>
