@@ -19,6 +19,14 @@ export default {
         },
       },
     },
+    nuxt: {
+      description: 'リンクを <nuxt-link> にします。',
+      table: {
+        type: {
+          summary: 'boolean',
+        },
+      },
+    },
     // events
     // slots
   },

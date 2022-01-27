@@ -8,7 +8,6 @@ type BreadcrumbsItem = {
   disabled?: boolean
   href?: string
   label: string
-  nuxt?: boolean
   to?: string
 }
 type GeneratedBreadcrumbsItem = Omit<
@@ -24,9 +23,12 @@ type GeneratedBreadcrumbsItem = Omit<
 type Props = {
   /** パンくずリストに表示する項目を配列で指定します */
   items: BreadcrumbsItem[]
+  /** リンクを <nuxt-link> にします */
+  nuxt: boolean
 }
 const props = withDefaults(defineProps<Props>(), {
   items: () => [],
+  nuxt: false,
 })
 
 // class
@@ -51,7 +53,7 @@ const computedItems = computed((): GeneratedBreadcrumbsItem[] => {
           ? 'span'
           : !item.to
           ? 'a'
-          : item.nuxt
+          : props.nuxt
           ? 'nuxt-link'
           : 'router-link',
       to: item.to,

@@ -7,3 +7,4 @@
 |Name|Type|Default|Description|
 |:--|:--|:--|:--|
 |`items`|`array`|`[]`|パンくずリストに表示する項目を配列で指定します。|
+|`nuxt`|`boolean`|`false`|リンクを `<nuxt-link>` にします。|
