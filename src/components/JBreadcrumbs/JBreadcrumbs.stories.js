@@ -7,10 +7,12 @@ export default {
   argTypes: {
     // props
     items: {
+      description: 'パンくずリストに表示する項目を配列で指定します。',
       table: {
         type: {
+          summary: 'array',
           detail:
-            '{\n  disabled: boolean\n  href: string\n  label: string\n  nuxt: boolean\n  to: string\n}',
+            '{\n  disabled?: boolean\n  href?: string\n  label: string\n  nuxt?: boolean\n  to?: string\n}',
         },
         defaultValue: {
           summary: '[]',

@@ -1,3 +1,65 @@
+<script setup lang="ts">
+import { computed } from 'vue'
+import { ComponentTagClasses } from '@/types'
+import { JIcon } from '@/components/JIcon'
+
+// types
+type BreadcrumbsItem = {
+  disabled?: boolean
+  href?: string
+  label: string
+  nuxt?: boolean
+  to?: string
+}
+type GeneratedBreadcrumbsItem = Omit<
+  BreadcrumbsItem,
+  'disabled' | 'href' | 'nuxt'
+> & {
+  attrs: { [key: string]: string }
+  id: number
+  tag: string
+}
+
+// props
+type Props = {
+  /** パンくずリストに表示する項目を配列で指定します */
+  items: BreadcrumbsItem[]
+}
+const props = withDefaults(defineProps<Props>(), {
+  items: () => [],
+})
+
+// class
+const classes = computed(
+  (): ComponentTagClasses<'j-breadcrumbs'> => ({
+    'j-breadcrumbs': true,
+  })
+)
+
+const computedItems = computed((): GeneratedBreadcrumbsItem[] => {
+  return props.items.map((item, id) => {
+    const attrs: GeneratedBreadcrumbsItem['attrs'] = {}
+    if (item.href) {
+      attrs.href = item.href
+    }
+    return {
+      attrs,
+      id,
+      label: item.label,
+      tag:
+        item.disabled || !(item.href || item.to)
+          ? 'span'
+          : !item.to
+          ? 'a'
+          : item.nuxt
+          ? 'nuxt-link'
+          : 'router-link',
+      to: item.to,
+    }
+  })
+})
+</script>
+
 <template>
   <div :class="classes">
     <ol class="j-breadcrumbs__body">
@@ -17,64 +79,6 @@
     </ol>
   </div>
 </template>
-
-<script lang="ts">
-import { computed, defineComponent, PropType } from 'vue'
-import { JIcon } from '@/components/JIcon'
-
-type BreadcrumbsItem = {
-  disabled?: boolean
-  href?: string
-  label: string
-  nuxt?: boolean
-  to?: string
-}
-
-export default defineComponent({
-  name: 'JBreadcrumbs',
-
-  components: {
-    JIcon,
-  },
-
-  props: {
-    /** パンくずリストに表示する項目を配列で指定します */
-    items: {
-      type: Array as PropType<BreadcrumbsItem[]>,
-      default: () => [],
-    },
-  },
-
-  setup(props) {
-    const classes = computed((): { [key: string]: boolean } => ({
-      'j-breadcrumbs': true,
-    }))
-    const computedItems = computed(() => {
-      return props.items.map((item, index) => {
-        const res: { [key: string]: string } = {}
-        if (item.href) {
-          res.href = item.href
-        }
-        return {
-          attrs: res,
-          id: index,
-          label: item.label,
-          tag:
-            item.disabled || !(item.href || item.to)
-              ? 'span'
-              : !item.to
-              ? 'a'
-              : item.nuxt
-              ? 'nuxt-link'
-              : 'router-link',
-          to: item.to,
-        }
-      })
-    })
-    return { classes, computedItems }
-  },
-})
-</script>
 
 <style lang="scss">
 @use 'src/styles/includes' as *;
