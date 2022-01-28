@@ -1,31 +1,29 @@
+<script setup lang="ts">
+import { computed } from 'vue'
+import { ComponentTagClasses } from '@/types'
+
+// props
+type Props = {
+  /** 指定されたタグをコンポーネントに適用します */
+  tag?: string
+}
+const props = withDefaults(defineProps<Props>(), {
+  tag: 'div',
+})
+
+// class
+const classes = computed(
+  (): ComponentTagClasses<'j-spacer'> => ({
+    'j-spacer': true,
+  })
+)
+</script>
+
 <template>
-  <component :is="tag" :class="classes">
+  <component :is="props.tag" :class="classes">
     <slot />
   </component>
 </template>
-
-<script lang="ts">
-import { computed, defineComponent } from 'vue'
-
-export default defineComponent({
-  name: 'JSpacer',
-
-  props: {
-    /** 指定されたタグをコンポーネントに適用します */
-    tag: {
-      type: String,
-      default: 'div',
-    },
-  },
-
-  setup() {
-    const classes = computed((): { [key: string]: boolean } => ({
-      'j-spacer': true,
-    }))
-    return { classes }
-  },
-})
-</script>
 
 <style lang="scss">
 @use 'src/styles/includes' as *;
