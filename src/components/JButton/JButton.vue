@@ -1,13 +1,126 @@
+<script setup lang="ts">
+import { computed } from 'vue'
+import { ComponentTagClasses, ComponentTagStyles } from '@/types'
+import { colors, convertNameToHex, getContrastColor } from '@/utils/colors'
+import { JProgressCircle } from '@/components/JProgress'
+
+// props
+type Props = {
+  /** 指定された色をコンポーネントに適用します */
+  color?: string
+  /** コンポーネントをクリックできないようにします */
+  disabled?: boolean
+  /** コンポーネントをアンカーにして href 属性を追加します */
+  href?: string
+  /** コンポーネントをアイコンとして指定し、形状を円形にします */
+  icon?: boolean
+  /** ローディングアニメーションを表示します */
+  loading?: boolean
+  /** 装飾を削除します */
+  noDecoration?: boolean
+  /** コンポーネントを <nuxt-link> にします */
+  nuxt?: boolean
+  /** 背景を透明にし、枠線を追加します */
+  outlined?: boolean
+  /** 指定された大きさをコンポーネントに適用します */
+  size?: 'large' | 'medium' | 'small'
+  /** 指定されたタグをコンポーネントに適用します */
+  tag?: string
+  /** 指定された値を target 属性としてコンポーネントに追加します */
+  target?: string
+  /** コンポーネントを <router-link> にし、指定された値を to として適用します */
+  to?: string
+}
+const props = withDefaults(defineProps<Props>(), {
+  color: 'primary',
+  disabled: false,
+  href: undefined,
+  icon: false,
+  loading: false,
+  noDecoration: false,
+  nuxt: false,
+  outlined: false,
+  size: 'medium',
+  tag: 'button',
+  target: undefined,
+  to: undefined,
+})
+
+// emit
+type Emits = {
+  (e: 'click'): void
+}
+const emit = defineEmits<Emits>()
+
+// class
+const classes = computed(
+  (): ComponentTagClasses<'j-button'> => ({
+    'j-button': true,
+    'j-button--large': props.size === 'large',
+    'j-button--medium': props.size === 'medium',
+    'j-button--small': props.size === 'small',
+    'j-button--disabled': props.disabled,
+    'j-button--outlined': props.outlined,
+    'j-button--loading': props.loading,
+    'j-button--icon': props.icon,
+    'j-button--no-decoration': props.noDecoration,
+  })
+)
+
+// style
+const styles = computed(
+  (): ComponentTagStyles => ({
+    backgroundColor: backgroundColor.value,
+    color: textColor.value,
+  })
+)
+
+const textColor = computed((): string =>
+  props.disabled
+    ? colors['gray-200']
+    : props.outlined
+    ? convertNameToHex(props.color)
+    : getContrastColor(props.color)
+)
+const backgroundColor = computed((): string =>
+  props.outlined
+    ? 'transparent'
+    : props.disabled
+    ? colors['gray-100']
+    : convertNameToHex(props.color)
+)
+
+const computedTag = computed(
+  (): string =>
+    (props.to && (props.nuxt ? 'nuxt-link' : 'router-link')) ||
+    (props.href && 'a') ||
+    props.tag ||
+    'button'
+)
+
+const attrs = computed((): { [key: string]: string } => {
+  const res: { [key: string]: string } = {}
+  if (props.href) {
+    res.href = props.href
+  }
+  return res
+})
+
+const handleClick = (): void => {
+  emit('click')
+}
+</script>
+
 <template>
   <component
     :is="computedTag"
     :class="classes"
     :style="styles"
-    :to="to"
-    :target="target"
-    :disabled="disabled"
+    :to="props.to"
+    :target="props.target"
+    :disabled="props.disabled"
     v-bind="attrs"
-    @click="click"
+    @click="handleClick"
   >
     <span class="j-button__body">
       <slot />
@@ -22,156 +135,6 @@
     </span>
   </component>
 </template>
-
-<script lang="ts">
-import { computed, defineComponent, PropType } from 'vue'
-import {
-  colors,
-  convertNameToHex,
-  getContrastColor,
-  validateColor,
-} from '@/utils/colors'
-import { JProgressCircle } from '@/components/JProgress'
-
-export default defineComponent({
-  name: 'JButton',
-
-  components: {
-    JProgressCircle,
-  },
-
-  props: {
-    /** 指定された色をコンポーネントに適用します */
-    color: {
-      type: String,
-      default: 'primary',
-      validator: (val: string): boolean => {
-        return validateColor(val)
-      },
-    },
-    /** コンポーネントをクリックできないようにします */
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
-    /** コンポーネントをアンカーにして href 属性を追加します */
-    href: {
-      type: String,
-      default: undefined,
-    },
-    /** コンポーネントをアイコンとして指定し、形状を円形にします */
-    icon: {
-      type: Boolean,
-      default: false,
-    },
-    /** ローディングアニメーションを表示します */
-    loading: {
-      type: Boolean,
-      default: false,
-    },
-    /** 装飾を削除します */
-    noDecoration: {
-      type: Boolean,
-      default: false,
-    },
-    /** コンポーネントを <nuxt-link> にします */
-    nuxt: {
-      type: Boolean,
-      default: false,
-    },
-    /** 背景を透明にし、枠線を追加します */
-    outlined: {
-      type: Boolean,
-      default: false,
-    },
-    /**
-     * 指定された大きさをコンポーネントに適用します
-     * @values large, medium, small
-     */
-    size: {
-      type: String as PropType<'large' | 'medium' | 'small'>,
-      default: 'medium',
-      validator: (val: string): boolean => {
-        return ['large', 'medium', 'small'].includes(val)
-      },
-    },
-    /** 指定されたタグをコンポーネントに適用します */
-    tag: {
-      type: String,
-      default: 'button',
-    },
-    /** 指定された値を target 属性としてコンポーネントに追加します */
-    target: {
-      type: String,
-      default: undefined,
-    },
-    /** コンポーネントを <router-link> にし、指定された値を to として適用します */
-    to: {
-      type: String,
-      default: undefined,
-    },
-  },
-
-  emits: ['click'],
-
-  setup(props, context) {
-    const classes = computed((): { [key: string]: boolean } => ({
-      'j-button': true,
-      'j-button--large': props.size === 'large',
-      'j-button--medium': props.size === 'medium',
-      'j-button--small': props.size === 'small',
-      'j-button--disabled': props.disabled,
-      'j-button--outlined': props.outlined,
-      'j-button--loading': props.loading,
-      'j-button--icon': props.icon,
-      'j-button--no-decoration': props.noDecoration,
-    }))
-
-    const styles = computed((): { [key: string]: string } => ({
-      color: textColor.value,
-      'background-color': backgroundColor.value,
-    }))
-
-    const attrs = computed((): { [key: string]: string } => {
-      const res: { [key: string]: string } = {}
-      if (props.href) {
-        res.href = props.href
-      }
-      return res
-    })
-
-    const computedTag = computed(
-      (): string =>
-        (props.to && (props.nuxt ? 'nuxt-link' : 'router-link')) ||
-        (props.href && 'a') ||
-        props.tag ||
-        'button'
-    )
-
-    const textColor = computed((): string =>
-      props.disabled
-        ? colors['gray-200']
-        : props.outlined
-        ? convertNameToHex(props.color)
-        : getContrastColor(props.color)
-    )
-
-    const backgroundColor = computed((): string =>
-      props.outlined
-        ? 'transparent'
-        : props.disabled
-        ? colors['gray-100']
-        : convertNameToHex(props.color)
-    )
-
-    const click = (e: Event): void => {
-      context.emit('click', e)
-    }
-
-    return { attrs, classes, computedTag, styles, textColor, click }
-  },
-})
-</script>
 
 <style lang="scss">
 @use 'src/styles/includes' as *;
