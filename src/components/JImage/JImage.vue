@@ -90,10 +90,10 @@ onMounted(() => {
     <transition>
       <img
         v-show="isLoaded"
-        :src="src"
-        :srcset="srcset"
-        :sizes="sizes"
-        :alt="alt"
+        :src="props.src"
+        :srcset="props.srcset"
+        :sizes="props.sizes"
+        :alt="props.alt"
         class="j-image__body"
         loading="lazy"
       />
