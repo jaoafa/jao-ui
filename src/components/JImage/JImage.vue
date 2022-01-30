@@ -136,7 +136,7 @@ $root: 'j-image';
     transition-property: opacity;
   }
 
-  &.v-enter,
+  &.v-enter-from,
   &.v-leave-to {
     opacity: 0;
   }
@@ -160,7 +160,7 @@ $root: 'j-image';
     transition-property: opacity;
   }
 
-  &.v-enter,
+  &.v-enter-from,
   &.v-leave-to {
     opacity: 0;
   }
