@@ -1,3 +1,36 @@
+<script setup lang="ts">
+import { computed } from 'vue'
+import { ComponentTagClasses, ComponentTagStyles } from '@/types'
+import { convertNameToHex } from '@/utils/colors'
+
+// props
+type Props = {
+  /** 指定された色をコンポーネントに適用します */
+  color?: string
+  /** 指定された大きさをコンポーネントに適用します */
+  size?: number
+}
+const props = withDefaults(defineProps<Props>(), {
+  color: undefined,
+  size: undefined,
+})
+
+// class
+const classes = computed(
+  (): ComponentTagClasses<'j-icon'> => ({
+    'j-icon': true,
+  })
+)
+
+// style
+const styles = computed(
+  (): ComponentTagStyles => ({
+    color: props.color ? convertNameToHex(props.color) : 'inherit',
+    fontSize: props.size ? `${props.size}px` : 'inherit',
+  })
+)
+</script>
+
 <template>
   <span :class="classes" :style="styles">
     <i class="material-icons j-icon__icon">
@@ -5,47 +38,6 @@
     </i>
   </span>
 </template>
-
-<script lang="ts">
-import { computed, defineComponent } from 'vue'
-import { convertNameToHex, validateColor } from '@/utils/colors'
-
-export default defineComponent({
-  name: 'JIcon',
-
-  props: {
-    /** 指定された色をコンポーネントに適用します */
-    color: {
-      type: String,
-      default: undefined,
-      validator: (val: string): boolean => {
-        return validateColor(val)
-      },
-    },
-    /** 指定された大きさをコンポーネントに適用します */
-    size: {
-      type: Number,
-      default: undefined,
-      validator: (val: number): boolean => {
-        return val >= 0
-      },
-    },
-  },
-
-  setup(props) {
-    const classes = computed((): { [key: string]: boolean } => ({
-      'j-icon': true,
-    }))
-
-    const styles = computed((): { [key: string]: string } => ({
-      color: props.color ? convertNameToHex(props.color) : 'inherit',
-      'font-size': props.size ? `${props.size}px` : 'inherit',
-    }))
-
-    return { classes, styles }
-  },
-})
-</script>
 
 <style lang="scss">
 @use 'src/styles/includes' as *;
