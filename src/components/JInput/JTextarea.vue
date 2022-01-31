@@ -1,20 +1,136 @@
+<script setup lang="ts">
+import { computed, onMounted, ref, useSlots } from 'vue'
+import { nanoid } from 'nanoid'
+import { ComponentTagClasses } from '@/types'
+import JInput from './JInput.vue'
+
+// props
+type Props = {
+  /** 指定された色を装飾に適用します */
+  color?: string
+  /** 文字数カウンタを表示します */
+  counter?: boolean
+  /** 指定された長さを文字数カウンタに適用します */
+  counterLength?: number
+  /** 入力を無効にします */
+  disabled?: boolean
+  /** エラー表示にします */
+  error?: boolean
+  /** 指定されたテキストをエラーメッセージとして表示します */
+  errorMessages?: string[]
+  /** 指定されたテキストをヒントメッセージとして表示します */
+  hint?: string[]
+  /** 指定されたラベルをコンポーネントに適用します */
+  label?: string
+  /** ローディングアニメーションを表示します */
+  loading?: boolean
+  /** 読み取り専用状態にします */
+  readonly?: boolean
+  /** 必須マークを表示します */
+  required?: boolean
+  /** 表示サイズ変更を有効にします */
+  resize?: boolean
+  /** コンポーネントを指定された行数分表示できる高さに設定します */
+  rows?: number
+  /** 成功表示にします */
+  success?: boolean
+  /** 指定されたテキストを成功メッセージとして表示します */
+  successMessages?: string[]
+  /** 現在入力している値を指定します */
+  value?: string
+}
+const props = withDefaults(defineProps<Props>(), {
+  color: 'primary',
+  counter: false,
+  counterLength: undefined,
+  disabled: false,
+  error: false,
+  errorMessages: () => [],
+  hint: () => [],
+  label: undefined,
+  loading: false,
+  readonly: false,
+  required: false,
+  resize: false,
+  rows: 3,
+  success: false,
+  successMessages: () => [],
+  value: '',
+})
+
+// emit
+type Emits = {
+  (e: 'input', value: Required<Props>['value']): void
+  (e: 'update:value', value: Required<Props>['value']): void
+  (e: 'click:prepend'): void
+  (e: 'click:prepend-inner'): void
+  (e: 'click:append'): void
+  (e: 'click:append-outer'): void
+}
+const emit = defineEmits<Emits>()
+
+// class
+const classes = computed(
+  (): ComponentTagClasses<'j-textarea'> => ({
+    'j-textarea': true,
+    'j-textarea--disabled': props.disabled,
+    'j-textarea--error': props.error,
+    'j-textarea--readonly': props.readonly,
+    'j-textarea--resize': props.resize,
+    'j-textarea--success': props.success,
+  })
+)
+
+const inputValue = computed({
+  get: (): string => props.value,
+  set: (val: string): void => {
+    emit('input', val)
+    emit('update:value', val)
+  },
+})
+
+const id = ref<string>('')
+onMounted(() => (id.value = nanoid()))
+
+const slots = useSlots()
+const isSlots = computed((): { [key: string]: boolean } => ({
+  prepend: !!slots.prepend,
+  prependInner: !!slots['prepend-inner'],
+  append: !!slots.append,
+  appendOuter: !!slots['append-outer'],
+}))
+
+const clickPrepend = (): void => {
+  emit('click:prepend')
+}
+const clickPrependInner = (): void => {
+  emit('click:prepend-inner')
+}
+const clickAppend = (): void => {
+  emit('click:append')
+}
+const clickAppendOuter = (): void => {
+  emit('click:append-outer')
+}
+</script>
+
 <template>
   <j-input
     :id="id"
     :class="classes"
-    :color="color"
-    :error="error"
-    :error-messages="errorMessages"
-    :hint="hint"
-    :label="label"
-    :loading="loading"
-    :required="required"
-    :success="success"
-    :success-messages="successMessages"
+    :color="props.color"
+    :error="props.error"
+    :error-messages="props.errorMessages"
+    :hint="props.hint"
+    :label="props.label"
+    :loading="props.loading"
+    :required="props.required"
+    :success="props.success"
+    :success-messages="props.successMessages"
   >
     <div class="j-textarea__body">
       <span
-        v-if="slots.prepend"
+        v-if="isSlots.prepend"
         class="j-textarea__prepend"
         @click="clickPrepend"
       >
@@ -23,7 +139,7 @@
 
       <div class="j-textarea__slot">
         <span
-          v-if="slots.prependInner"
+          v-if="isSlots.prependInner"
           class="j-textarea__prepend-inner"
           @click="clickPrependInner"
         >
@@ -33,15 +149,15 @@
         <textarea
           :id="id"
           v-model="inputValue"
-          :disabled="disabled"
-          :readonly="readonly"
-          :required="required"
-          :rows="rows"
+          :disabled="props.disabled"
+          :readonly="props.readonly"
+          :required="props.required"
+          :rows="props.rows"
           class="j-textarea__input"
         />
 
         <span
-          v-if="slots.append"
+          v-if="isSlots.append"
           class="j-textarea__append"
           @click="clickAppend"
         >
@@ -50,7 +166,7 @@
       </div>
 
       <span
-        v-if="slots.appendOuter"
+        v-if="isSlots.appendOuter"
         class="j-textarea__append-outer"
         @click="clickAppendOuter"
       >
@@ -58,180 +174,14 @@
       </span>
     </div>
 
-    <template v-if="counter" #footer-append>
+    <template v-if="props.counter" #footer-append>
       <span class="j-textarea__counter">
-        {{ inputValue.length }} {{ counterLength ? `/ ${counterLength}` : '' }}
+        {{ inputValue.length }}
+        {{ props.counterLength ? `/ ${props.counterLength}` : '' }}
       </span>
     </template>
   </j-input>
 </template>
-
-<script lang="ts">
-import { computed, defineComponent, onMounted, PropType, ref } from 'vue'
-import { nanoid } from 'nanoid'
-import { validateColor } from '@/utils/colors'
-import JInput from './JInput.vue'
-
-export default defineComponent({
-  name: 'JTextarea',
-
-  components: {
-    JInput,
-  },
-
-  props: {
-    /** 指定された色を装飾に適用します */
-    color: {
-      type: String,
-      default: 'primary',
-      validator: (val: string): boolean => {
-        return validateColor(val)
-      },
-    },
-    /** 文字数カウンタを表示します */
-    counter: {
-      type: Boolean,
-      default: false,
-    },
-    /** 指定された長さを文字数カウンタに適用します */
-    counterLength: {
-      type: Number,
-      default: undefined,
-    },
-    /** 入力を無効にします */
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
-    /** エラー表示にします */
-    error: {
-      type: Boolean,
-      default: false,
-    },
-    /** 指定されたテキストをエラーメッセージとして表示します */
-    errorMessages: {
-      type: Array as PropType<string[]>,
-      default: () => [],
-    },
-    /** 指定されたテキストをヒントメッセージとして表示します */
-    hint: {
-      type: Array as PropType<string[]>,
-      default: () => [],
-    },
-    /** 指定されたラベルをコンポーネントに適用します */
-    label: {
-      type: String,
-      default: '',
-    },
-    /** ローディングアニメーションを表示します */
-    loading: {
-      type: Boolean,
-      default: false,
-    },
-    /** 読み取り専用状態にします */
-    readonly: {
-      type: Boolean,
-      default: false,
-    },
-    /** 必須マークを表示します */
-    required: {
-      type: Boolean,
-      default: false,
-    },
-    /** 表示サイズ変更を有効にします */
-    resize: {
-      type: Boolean,
-      default: false,
-    },
-    /** コンポーネントを指定された行数分表示できる高さに設定します */
-    rows: {
-      type: Number,
-      default: 3,
-    },
-    /** 成功表示にします */
-    success: {
-      type: Boolean,
-      default: false,
-    },
-    /** 指定されたテキストを成功メッセージとして表示します */
-    successMessages: {
-      type: Array as PropType<string[]>,
-      default: () => [],
-    },
-    /** 現在入力している値を指定します */
-    value: {
-      type: String,
-      default: '',
-    },
-  },
-
-  emits: [
-    'input',
-    'click:prepend',
-    'click:prepend-inner',
-    'click:append',
-    'click:append-outer',
-    'update:value',
-  ],
-
-  setup(props, context) {
-    const classes = computed((): { [key: string]: boolean } => ({
-      'j-textarea': true,
-      'j-textarea--disabled': props.disabled,
-      'j-textarea--error': props.error,
-      'j-textarea--readonly': props.readonly,
-      'j-textarea--resize': props.resize,
-      'j-textarea--success': props.success,
-    }))
-
-    const inputValue = computed({
-      get: (): string => {
-        return props.value
-      },
-      set: (val: string): void => {
-        context.emit('input', val)
-        context.emit('update:value', val)
-      },
-    })
-
-    const id = ref<string>('')
-    onMounted(() => {
-      id.value = nanoid()
-    })
-
-    const slots = computed((): { [key: string]: boolean } => ({
-      prepend: !!context.slots.prepend,
-      prependInner: !!context.slots['prepend-inner'],
-      append: !!context.slots.append,
-      appendOuter: !!context.slots['append-outer'],
-    }))
-
-    const clickPrepend = (e: Event): void => {
-      context.emit('click:prepend', e)
-    }
-    const clickPrependInner = (e: Event): void => {
-      context.emit('click:prepend-inner', e)
-    }
-    const clickAppend = (e: Event): void => {
-      context.emit('click:append', e)
-    }
-    const clickAppendOuter = (e: Event): void => {
-      context.emit('click:append-outer', e)
-    }
-
-    return {
-      classes,
-      inputValue,
-      id,
-      slots,
-      clickPrepend,
-      clickPrependInner,
-      clickAppend,
-      clickAppendOuter,
-    }
-  },
-})
-</script>
 
 <style lang="scss">
 @use 'src/styles/includes' as *;
