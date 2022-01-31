@@ -82,8 +82,8 @@ const classes = computed(
 )
 
 const inputValue = computed({
-  get: (): string => props.value,
-  set: (val: string): void => {
+  get: (): Required<Props>['value'] => props.value,
+  set: (val: Required<Props>['value']): void => {
     emit('input', val)
     emit('update:value', val)
   },
