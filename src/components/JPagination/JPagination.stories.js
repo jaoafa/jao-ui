@@ -7,9 +7,24 @@ export default {
   component: JPagination,
   argTypes: {
     // props
-    color: {},
-    length: {},
+    color: {
+      description: '指定された色を現在選択しているページ番号に適用します。',
+      table: {
+        type: {
+          summary: 'string',
+        },
+      },
+    },
+    length: {
+      description: 'ページ番号の最大値を指定します。',
+      table: {
+        type: {
+          summary: 'number',
+        },
+      },
+    },
     page: {
+      description: '現在選択しているページ番号を指定します。',
       table: {
         category: 'props',
         type: {
@@ -20,7 +35,14 @@ export default {
         },
       },
     },
-    totalVisible: {},
+    totalVisible: {
+      description: '表示するページ番号の数を指定します。',
+      table: {
+        type: {
+          summary: 'number',
+        },
+      },
+    },
     'v-model': {
       table: {
         disable: true,
@@ -28,7 +50,11 @@ export default {
     },
     // events
     input: {
+      description: 'ページが選択されたときに発生するイベントです。',
       action: 'input',
+      table: {
+        category: 'events',
+      },
     },
     'update:page': {
       table: {
