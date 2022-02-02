@@ -1,127 +1,72 @@
+<script setup lang="ts">
+import { computed } from 'vue'
+import { ComponentTagClasses, ComponentTagStyles } from '@/types'
+import { convertNameToHex } from '@/utils/colors'
+
+// props
+type Props = {
+  /** 指定された色をコンポーネントに適用します */
+  color?: string
+  /** コンポーネントの外側の影を削除します */
+  flat?: boolean
+  /** 指定された高さをコンポーネントに適用します */
+  height?: string
+  /** 指定された高さの最大値をコンポーネントに適用しま */
+  maxHeight?: string
+  /** 指定された幅の最大値をコンポーネントに適用します */
+  maxWidth?: string
+  /** 指定された高さの最小値をコンポーネントに適用します */
+  minHeight?: string
+  /** 指定された幅の最小値をコンポーネントに適用します */
+  minWidth?: string
+  /** 指定されたタグをコンポーネントに適用します */
+  tag?: string
+  /** コンポーネントの角を角丸にしないようにします */
+  tile?: boolean
+  /** 指定された幅をコンポーネントに適用します */
+  width?: string
+}
+const props = withDefaults(defineProps<Props>(), {
+  color: 'white',
+  flat: false,
+  height: undefined,
+  maxHeight: undefined,
+  maxWidth: undefined,
+  minHeight: undefined,
+  minWidth: undefined,
+  tag: 'div',
+  tile: false,
+  width: undefined,
+})
+
+// class
+const classes = computed(
+  (): ComponentTagClasses<'j-sheet'> => ({
+    'j-sheet': true,
+    'j-sheet--flat': props.flat,
+    'j-sheet--tile': props.tile,
+  })
+)
+
+// style
+const styles = computed(
+  (): ComponentTagStyles => ({
+    backgroundColor: convertNameToHex(props.color),
+    width: props.width,
+    height: props.height,
+    maxWidth: props.maxWidth,
+    maxHeight: props.maxHeight,
+    minWidth: props.minWidth,
+    minHeight: props.minHeight,
+  })
+)
+</script>
+
 <template>
-  <component :is="tag" :class="classes" :style="styles">
+  <component :is="props.tag" :class="classes" :style="styles">
     <slot />
   </component>
 </template>
-
-<script lang="ts">
-import { computed, defineComponent } from 'vue'
-import { convertNameToHex, validateColor } from '@/utils/colors'
-import { validateSize } from '@/utils/sizes'
-
-export default defineComponent({
-  name: 'JSheet',
-
-  props: {
-    /** 指定された色をコンポーネントに適用します */
-    color: {
-      type: String,
-      default: 'white',
-      validator: (val: string): boolean => {
-        return validateColor(val)
-      },
-    },
-    /** コンポーネントの外側の影を削除します */
-    flat: {
-      type: Boolean,
-      default: false,
-    },
-    /** 指定された高さをコンポーネントに適用します */
-    height: {
-      type: String,
-      default: undefined,
-      validator: (val: string): boolean => {
-        return validateSize(val)
-      },
-    },
-    /** 指定された高さの最大値をコンポーネントに適用します */
-    maxHeight: {
-      type: String,
-      default: undefined,
-      validator: (val: string): boolean => {
-        return validateSize(val)
-      },
-    },
-    /** 指定された幅の最大値をコンポーネントに適用します */
-    maxWidth: {
-      type: String,
-      default: undefined,
-      validator: (val: string): boolean => {
-        return validateSize(val)
-      },
-    },
-    /** 指定された高さの最小値をコンポーネントに適用します */
-    minHeight: {
-      type: String,
-      default: undefined,
-      validator: (val: string): boolean => {
-        return validateSize(val)
-      },
-    },
-    /** 指定された幅の最小値をコンポーネントに適用します */
-    minWidth: {
-      type: String,
-      default: undefined,
-      validator: (val: string): boolean => {
-        return validateSize(val)
-      },
-    },
-    /** 指定されたタグをコンポーネントに適用します */
-    tag: {
-      type: String,
-      default: 'div',
-    },
-    /** コンポーネントの角を角丸にしないようにします */
-    tile: {
-      type: Boolean,
-      default: false,
-    },
-    /** 指定された幅をコンポーネントに適用します */
-    width: {
-      type: String,
-      default: undefined,
-      validator: (val: string): boolean => {
-        return validateSize(val)
-      },
-    },
-  },
-
-  setup(props) {
-    const classes = computed((): { [key: string]: boolean } => ({
-      'j-sheet': true,
-      'j-sheet--flat': props.flat,
-      'j-sheet--tile': props.tile,
-    }))
-
-    const styles = computed((): { [key: string]: string } => {
-      const res: { [key: string]: string } = {
-        'background-color': convertNameToHex(props.color),
-      }
-      if (props.width) {
-        res.width = props.width
-      }
-      if (props.height) {
-        res.height = props.height
-      }
-      if (props.maxWidth) {
-        res['max-width'] = props.maxWidth
-      }
-      if (props.maxHeight) {
-        res['max-height'] = props.maxHeight
-      }
-      if (props.minWidth) {
-        res['min-width'] = props.minWidth
-      }
-      if (props.minHeight) {
-        res['min-height'] = props.minHeight
-      }
-      return res
-    })
-
-    return { classes, styles }
-  },
-})
-</script>
 
 <style lang="scss">
 @use 'src/styles/includes' as *;
