@@ -631,6 +631,7 @@
             <j-row>
               <j-col :cols="12" :cols-sm="10" :cols-md="8" :cols-lg="6">
                 <j-table
+                  v-model:page="tablePageFirst"
                   :headers="tableHeaders"
                   :items="tableItems"
                   :item-per-page="2"
@@ -640,6 +641,7 @@
             <j-row>
               <j-col :cols="12" :cols-sm="10" :cols-md="8" :cols-lg="6">
                 <j-table
+                  v-model:page="tablePageSecond"
                   :headers="tableHeaders"
                   :items="tableItems"
                   :item-per-page="4"
@@ -686,6 +688,8 @@ export default defineComponent({
       textFieldShowPassword: false,
       textarea: '',
       pagination: 5,
+      tablePageFirst: 1,
+      tablePageSecond: 1,
       tableHeaders: [
         { label: 'Name', key: 'name', sortable: true },
         { label: 'Minecraft', key: 'minecraft', sortable: true },
