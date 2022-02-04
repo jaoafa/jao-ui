@@ -1,15 +1,112 @@
+<script setup lang="ts">
+import { computed, useSlots } from 'vue'
+import { ComponentTagClasses, ComponentTagStyles } from '@/types'
+import { convertNameToHex, getContrastColor } from '@/utils/colors'
+import { JProgressCircle } from '@/components/JProgress'
+
+// props
+type Props = {
+  /** 指定された色を装飾に適用します */
+  color?: string
+  /** エラー表示にします */
+  error?: boolean
+  /** 指定されたテキストをエラーメッセージとして表示します */
+  errorMessages?: string[]
+  /** 指定されたテキストをヒントメッセージとして表示します */
+  hint?: string[]
+  /** 指定された id をラベルに適用します */
+  id?: string
+  /** 指定されたラベルをコンポーネントに適用します */
+  label?: string
+  /** ローディングアニメーションを表示します */
+  loading?: boolean
+  /** 必須マークを表示します */
+  required?: boolean
+  /** 成功表示にします */
+  success?: boolean
+  /** 指定されたテキストを成功メッセージとして表示します */
+  successMessages?: string[]
+}
+const props = withDefaults(defineProps<Props>(), {
+  color: 'primary',
+  error: false,
+  errorMessages: () => [],
+  hint: () => [],
+  id: undefined,
+  label: undefined,
+  loading: false,
+  required: false,
+  success: false,
+  successMessages: () => [],
+})
+
+// class
+const classes = computed(
+  (): ComponentTagClasses<'j-input'> => ({
+    'j-input': true,
+    'j-input--error': props.error,
+    'j-input--success': props.success,
+  })
+)
+
+// style
+const requiredMarkStyles = computed(
+  (): ComponentTagStyles => ({
+    color: getContrastColor(convertNameToHex(props.color)),
+    backgroundColor: convertNameToHex(props.color),
+  })
+)
+
+const messages = computed(
+  (): {
+    hint: { id: number; text: string }[]
+    success: { id: number; text: string }[]
+    error: { id: number; text: string }[]
+  } => ({
+    hint: props.hint.map((item, index) => ({ id: index, text: item })),
+    success: props.successMessages.map((item, index) => ({
+      id: index,
+      text: item,
+    })),
+    error: props.errorMessages.map((item, index) => ({
+      id: index,
+      text: item,
+    })),
+  })
+)
+
+const slots = useSlots()
+const showFooter = computed((): boolean => {
+  return (
+    !!props.hint.length ||
+    !!props.errorMessages.length ||
+    !!props.successMessages.length ||
+    !!slots['footer-prepend'] ||
+    !!slots['footer-append']
+  )
+})
+</script>
+
 <template>
   <div :class="classes">
-    <div v-show="label" class="j-input__header">
-      <component :is="id ? 'label' : 'span'" :for="id" class="j-input__label">
-        {{ label }}
+    <div v-show="props.label" class="j-input__header">
+      <component
+        :is="props.id ? 'label' : 'span'"
+        :for="props.id"
+        class="j-input__label"
+      >
+        {{ props.label }}
       </component>
-      <span v-show="required" :style="requiredStyles" class="j-input__required">
+      <span
+        v-show="props.required"
+        :style="requiredMarkStyles"
+        class="j-input__required"
+      >
         必須
       </span>
       <j-progress-circle
-        v-show="loading"
-        :color="color"
+        v-show="props.loading"
+        :color="props.color"
         :size="18"
         :stroke="2"
         indeterminate
@@ -40,123 +137,6 @@
     </div>
   </div>
 </template>
-
-<script lang="ts">
-import { computed, defineComponent, PropType } from 'vue'
-import {
-  convertNameToHex,
-  getContrastColor,
-  validateColor,
-} from '@/utils/colors'
-import { JProgressCircle } from '@/components/JProgress'
-
-export default defineComponent({
-  name: 'JInput',
-
-  components: {
-    JProgressCircle,
-  },
-
-  props: {
-    /** 指定された色を装飾に適用します */
-    color: {
-      type: String,
-      default: 'primary',
-      validator: (val: string): boolean => {
-        return validateColor(val)
-      },
-    },
-    /** エラー表示にします */
-    error: {
-      type: Boolean,
-      default: false,
-    },
-    /** 指定されたテキストをエラーメッセージとして表示します */
-    errorMessages: {
-      type: Array as PropType<string[]>,
-      default: () => [],
-    },
-    /** 指定されたテキストをヒントメッセージとして表示します */
-    hint: {
-      type: Array as PropType<string[]>,
-      default: () => [],
-    },
-    /** 指定された id をラベルに適用します */
-    id: {
-      type: String,
-      default: undefined,
-    },
-    /** 指定されたラベルをコンポーネントに適用します */
-    label: {
-      type: String,
-      default: undefined,
-    },
-    /** ローディングアニメーションを表示します */
-    loading: {
-      type: Boolean,
-      default: false,
-    },
-    /** 必須マークを表示します */
-    required: {
-      type: Boolean,
-      default: false,
-    },
-    /** 成功表示にします */
-    success: {
-      type: Boolean,
-      default: false,
-    },
-    /** 指定されたテキストを成功メッセージとして表示します */
-    successMessages: {
-      type: Array as PropType<string[]>,
-      default: () => [],
-    },
-  },
-
-  setup(props, context) {
-    const classes = computed((): { [key: string]: boolean } => ({
-      'j-input': true,
-      'j-input--error': props.error,
-      'j-input--success': props.success,
-    }))
-
-    const requiredStyles = computed((): { [key: string]: string } => ({
-      color: getContrastColor(convertNameToHex(props.color)),
-      'background-color': convertNameToHex(props.color),
-    }))
-
-    const messages = computed(
-      (): {
-        hint: { id: number; text: string }[]
-        success: { id: number; text: string }[]
-        error: { id: number; text: string }[]
-      } => ({
-        hint: props.hint.map((item, index) => ({ id: index, text: item })),
-        success: props.successMessages.map((item, index) => ({
-          id: index,
-          text: item,
-        })),
-        error: props.errorMessages.map((item, index) => ({
-          id: index,
-          text: item,
-        })),
-      })
-    )
-
-    const showFooter = computed((): boolean => {
-      return (
-        !!props.hint.length ||
-        !!props.errorMessages.length ||
-        !!props.successMessages.length ||
-        !!context.slots['footer-prepend'] ||
-        !!context.slots['footer-append']
-      )
-    })
-
-    return { classes, requiredStyles, messages, showFooter }
-  },
-})
-</script>
 
 <style lang="scss">
 @use 'src/styles/includes' as *;

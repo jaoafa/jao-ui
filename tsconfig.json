@@ -1,28 +1,17 @@
 {
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "declaration": true,
     "declarationDir": "dist/types",
+    "emitDeclarationOnly": true,
     "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "importHelpers": true,
     "jsx": "preserve",
-    "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
+    "lib": ["esnext", "dom"],
     "module": "esnext",
     "moduleResolution": "node",
-    "newLine": "lf",
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
     "paths": {
       "@/*": ["src/*"]
     },
-    "plugins": [
-      {
-        "transform": "@zerollup/ts-transform-paths",
-        "exclude": ["*"]
-      }
-    ],
     "resolveJsonModule": true,
     "sourceMap": true,
     "strict": true,
@@ -30,5 +19,6 @@
     "types": ["node", "vue", "jest"],
     "useDefineForClassFields": true
   },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
   "exclude": ["node_modules", "dist"]
 }

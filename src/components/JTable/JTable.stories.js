@@ -1,14 +1,19 @@
 import { JApp, JAppMain } from '@/components/JApp'
 import JTable from './JTable.vue'
+import JTableHeader from './JTableHeader.vue'
+import JTableFooter from './JTableFooter.vue'
 
 export default {
   title: 'Components/Table',
   component: JTable,
+  subcomponents: { JTableHeader, JTableFooter },
   argTypes: {
     // props
     headers: {
+      description: 'ヘッダーのカラムとなる配列を指定します。',
       table: {
         type: {
+          summary: 'array',
           detail: '{\n  label: string\n  key: string\n  sortable: boolean\n}',
         },
         defaultValue: {
@@ -16,13 +21,67 @@ export default {
         },
       },
     },
-    hideFooter: {},
-    hideHeader: {},
-    items: {},
-    itemPerPage: {},
-    loading: {},
-    page: {},
+    hideFooter: {
+      description: '表のフッターを非表示にします。',
+      table: {
+        type: {
+          summary: 'boolean',
+        },
+      },
+    },
+    hideHeader: {
+      description: '表のヘッダーを非表示にします。',
+      table: {
+        type: {
+          summary: 'boolean',
+        },
+      },
+    },
+    items: {
+      description: '表に表示する項目を配列で指定します。',
+      table: {
+        type: {
+          summary: 'array',
+        },
+      },
+    },
+    itemPerPage: {
+      description: '1ページあたりに表示する項目の数を指定します。',
+      table: {
+        type: {
+          summary: 'number',
+        },
+      },
+    },
+    loading: {
+      description: 'ローディングアニメーションを表示します。',
+      table: {
+        type: {
+          summary: 'boolean',
+        },
+      },
+    },
+    page: {
+      description: '現在選択しているページ番号を指定します。',
+      table: {
+        type: {
+          summary: 'number',
+        },
+      },
+    },
     // events
+    input: {
+      description: 'ページが選択されたときに発生するイベントです。',
+      action: 'input',
+      table: {
+        category: 'events',
+      },
+    },
+    'update:page': {
+      table: {
+        disable: true,
+      },
+    },
     // slots
     body: {
       description: 'テーブルの `tbody` を置き換えるスロットです。',

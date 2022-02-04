@@ -1,57 +1,50 @@
+<script setup lang="ts">
+import { computed } from 'vue'
+import { ComponentTagClasses, ComponentTagStyles } from '@/types'
+import { convertNameToHex } from '@/utils/colors'
+
+// props
+type Props = {
+  /** 指定された色を装飾に適用します */
+  color?: string
+  /** コンポーネントの高さを減らします */
+  dense?: boolean
+  /** 最大幅の制限を削除します */
+  fluid?: boolean
+  /** 指定されたタグをコンポーネントに適用します */
+  tag?: string
+}
+const props = withDefaults(defineProps<Props>(), {
+  color: 'primary',
+  dense: false,
+  fluid: false,
+  tag: 'header',
+})
+
+// class
+const classes = computed(
+  (): ComponentTagClasses<'j-app-header'> => ({
+    'j-app-header': true,
+    'j-app-header--dense': props.dense,
+    'j-app-header--fluid': props.fluid,
+  })
+)
+
+// style
+const styles = computed(
+  (): ComponentTagStyles => ({
+    borderColor: convertNameToHex(props.color),
+  })
+)
+</script>
+
 <template>
-  <component :is="tag" :class="classes" :style="styles">
+  <component :is="props.tag" :class="classes" :style="styles">
     <div class="j-app-header__body">
       <slot />
     </div>
   </component>
 </template>
-
-<script lang="ts">
-import { computed, defineComponent } from 'vue'
-import { convertNameToHex, validateColor } from '@/utils/colors'
-
-export default defineComponent({
-  name: 'JAppHeader',
-
-  props: {
-    /** 指定された色を装飾に適用します */
-    color: {
-      type: String,
-      default: 'primary',
-      validator: (val: string): boolean => {
-        return validateColor(val)
-      },
-    },
-    /** コンポーネントの高さを減らします */
-    dense: {
-      type: Boolean,
-      default: false,
-    },
-    /** 最大幅の制限を削除します */
-    fluid: {
-      type: Boolean,
-      default: false,
-    },
-    /** 指定されたタグをコンポーネントに適用します */
-    tag: {
-      type: String,
-      default: 'header',
-    },
-  },
-
-  setup(props) {
-    const classes = computed((): { [key: string]: boolean } => ({
-      'j-app-header': true,
-      'j-app-header--dense': props.dense,
-      'j-app-header--fluid': props.fluid,
-    }))
-    const styles = computed((): { [key: string]: string } => ({
-      'border-color': convertNameToHex(props.color),
-    }))
-    return { classes, styles }
-  },
-})
-</script>
 
 <style lang="scss">
 @use 'src/styles/includes' as *;

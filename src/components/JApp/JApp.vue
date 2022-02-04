@@ -1,33 +1,30 @@
+<script setup lang="ts">
+import { computed } from 'vue'
+import { ComponentTagClasses } from '@/types'
+
+// props
+type Props = {
+  /** コンポーネントの高さを auto にします */
+  noStretch?: boolean
+}
+const props = withDefaults(defineProps<Props>(), {
+  noStretch: false,
+})
+
+// class
+const classes = computed(
+  (): ComponentTagClasses<'j-app'> => ({
+    'j-app': true,
+    'j-app--no-stretch': props.noStretch,
+  })
+)
+</script>
+
 <template>
   <div :class="classes">
     <slot />
   </div>
 </template>
-
-<script lang="ts">
-import { computed, defineComponent } from 'vue'
-
-export default defineComponent({
-  name: 'JApp',
-
-  props: {
-    /** コンポーネントの高さを auto にします */
-    noStretch: {
-      type: Boolean,
-      default: false,
-    },
-  },
-
-  setup(props) {
-    const classes = computed((): { [key: string]: boolean } => ({
-      'j-app': true,
-      'j-app--no-stretch': props.noStretch,
-    }))
-
-    return { classes }
-  },
-})
-</script>
 
 <style lang="scss">
 @use 'src/styles/includes' as *;

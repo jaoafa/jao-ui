@@ -1,22 +1,64 @@
+<script setup lang="ts">
+import { computed } from 'vue'
+import { ComponentTagClasses } from '@/types'
+import { JIcon } from '@/components/JIcon'
+
+// types
+type HeaderItem = {
+  label: string
+  key: string
+  sortable?: boolean
+}
+
+// props
+type Props = {
+  /** ヘッダーのカラムとなる配列を指定します */
+  headers?: HeaderItem[]
+  /** ソートする項目を指定します */
+  sortBy?: string
+  /** ソートする順番を指定します */
+  sortOrder?: 'asc' | 'desc'
+}
+const props = withDefaults(defineProps<Props>(), {
+  headers: () => [],
+  sortBy: '',
+  sortOrder: 'asc',
+})
+
+// emit
+type Emits = {
+  (e: 'click', value: Required<Props>['sortBy']): void
+}
+const emit = defineEmits<Emits>()
+
+// class
+const classes = computed(
+  (): ComponentTagClasses<'j-table-header'> => ({
+    'j-table-header': true,
+  })
+)
+
+const handleClick = (key: string): void => {
+  emit('click', key)
+}
+</script>
+
 <template>
   <thead :class="classes">
     <slot>
       <tr>
-        <template v-for="item in headers" :key="item.key">
+        <template v-for="item in props.headers" :key="item.key">
           <th
             :class="{
               'j-table-header__item--sortable': item.sortable,
-              'j-table-header__item--active': sortBy === item.key,
-              'j-table-header__item--asc': sortOrder === 'asc',
-              'j-table-header__item--desc': sortOrder === 'desc',
+              'j-table-header__item--active': props.sortBy === item.key,
+              'j-table-header__item--asc': props.sortOrder === 'asc',
+              'j-table-header__item--desc': props.sortOrder === 'desc',
             }"
             class="j-table-header__item"
-            @click="item.sortable ? click(item.key) : null"
+            @click="item.sortable ? handleClick(item.key) : undefined"
           >
-            <span class="j-table-header__label">
-              {{ item.label }}
-            </span>
-
+            <span class="j-table-header__label">{{ item.label }}</span>
             <span class="j-table-header__sort">
               <j-icon>arrow_upward</j-icon>
             </span>
@@ -26,72 +68,6 @@
     </slot>
   </thead>
 </template>
-
-<script lang="ts">
-import { computed, defineComponent, PropType } from 'vue'
-import { JIcon } from '@/components/JIcon'
-
-type HeaderItem = {
-  label: string
-  key: string
-  sortable?: boolean
-}
-
-export default defineComponent({
-  name: 'JTableHeader',
-
-  components: {
-    JIcon,
-  },
-
-  props: {
-    /** ヘッダーのカラムとなる配列を指定します */
-    headers: {
-      type: Array as PropType<HeaderItem[]>,
-      default: () => [],
-      validator: (
-        val: {
-          label: string
-          key: string
-          sortable?: boolean
-        }[]
-      ): boolean => {
-        return val.every((item) => item.label && item.key)
-      },
-    },
-    /** ソートする項目を指定します */
-    sortBy: {
-      type: String,
-      default: () => '',
-    },
-    /**
-     * ソートする順番を指定します
-     * @values asc, desc
-     */
-    sortOrder: {
-      type: String,
-      default: () => 'asc',
-      validator: (val: string): boolean => {
-        return ['asc', 'desc'].includes(val)
-      },
-    },
-  },
-
-  emits: ['click'],
-
-  setup(_, context) {
-    const classes = computed((): { [key: string]: boolean } => ({
-      'j-table-header': true,
-    }))
-
-    const click = (key: string) => {
-      context.emit('click', key)
-    }
-
-    return { classes, click }
-  },
-})
-</script>
 
 <style lang="scss">
 @use 'src/styles/includes' as *;

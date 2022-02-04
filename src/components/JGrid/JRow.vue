@@ -1,76 +1,49 @@
+<script setup lang="ts">
+import { computed } from 'vue'
+import { ComponentTagClasses } from '@/types'
+
+// props
+type Props = {
+  /** 上下方向の配置を指定します */
+  align?: 'start' | 'center' | 'end' | 'baseline' | 'stretch'
+  /** 左右方向の配置を指定します */
+  justify?: 'start' | 'center' | 'end' | 'space-between' | 'space-around'
+  /** アイテム間の隙間を削除します */
+  noGap?: boolean
+  /** 指定されたタグをコンポーネントに適用します */
+  tag?: string
+}
+const props = withDefaults(defineProps<Props>(), {
+  align: 'start',
+  justify: 'start',
+  noGap: false,
+  tag: 'div',
+})
+
+// class
+const classes = computed(
+  (): ComponentTagClasses<'j-row'> => ({
+    'j-row': true,
+    'j-row--align-start': props.align === 'start',
+    'j-row--align-center': props.align === 'center',
+    'j-row--align-end': props.align === 'end',
+    'j-row--align-baseline': props.align === 'baseline',
+    'j-row--align-stretch': props.align === 'stretch',
+    'j-row--justify-start': props.justify === 'start',
+    'j-row--justify-center': props.justify === 'center',
+    'j-row--justify-end': props.justify === 'end',
+    'j-row--justify-between': props.justify === 'space-between',
+    'j-row--justify-around': props.justify === 'space-around',
+    'j-row--no-gap': props.noGap,
+  })
+)
+</script>
+
 <template>
-  <component :is="tag" :class="classes">
+  <component :is="props.tag" :class="classes">
     <slot />
   </component>
 </template>
-
-<script lang="ts">
-import { computed, defineComponent } from 'vue'
-
-export default defineComponent({
-  name: 'JRow',
-
-  props: {
-    /**
-     * 上下方向の配置を指定します
-     * @values start, center, end, baseline, stretch
-     */
-    align: {
-      type: String,
-      default: 'start',
-      validator: (val: string): boolean => {
-        return ['start', 'center', 'end', 'baseline', 'stretch'].includes(val)
-      },
-    },
-    /**
-     * 左右方向の配置を指定します
-     * @values start, center, end, space-between, space-around
-     */
-    justify: {
-      type: String,
-      default: 'start',
-      validator: (val: string): boolean => {
-        return [
-          'start',
-          'center',
-          'end',
-          'space-between',
-          'space-around',
-        ].includes(val)
-      },
-    },
-    /** アイテム間の隙間を削除します */
-    noGap: {
-      type: Boolean,
-      default: false,
-    },
-    /** 指定されたタグをコンポーネントに適用します */
-    tag: {
-      type: String,
-      default: 'div',
-    },
-  },
-
-  setup(props) {
-    const classes = computed((): { [key: string]: boolean } => ({
-      'j-row': true,
-      'j-row--align-start': props.align === 'start',
-      'j-row--align-center': props.align === 'center',
-      'j-row--align-end': props.align === 'end',
-      'j-row--align-baseline': props.align === 'baseline',
-      'j-row--align-stretch': props.align === 'stretch',
-      'j-row--justify-start': props.justify === 'start',
-      'j-row--justify-center': props.justify === 'center',
-      'j-row--justify-end': props.justify === 'end',
-      'j-row--justify-between': props.justify === 'space-between',
-      'j-row--justify-around': props.justify === 'space-around',
-      'j-row--no-gap': props.noGap,
-    }))
-
-    return { classes }
-  },
-})
-</script>
 
 <style lang="scss">
 @use 'src/styles/includes' as *;

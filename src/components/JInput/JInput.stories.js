@@ -6,29 +6,90 @@ export default {
   component: JInput,
   argTypes: {
     // props
-    color: {},
-    error: {},
-    errorMessages: {
+    color: {
+      description: '指定された色を装飾に適用します。',
       table: {
+        type: {
+          summary: 'string',
+        },
+      },
+    },
+    error: {
+      description: 'エラー表示にします。',
+      table: {
+        type: {
+          summary: 'boolean',
+        },
+      },
+    },
+    errorMessages: {
+      description: '指定されたテキストをエラーメッセージとして表示します。',
+      table: {
+        type: {
+          summary: 'string[]',
+        },
         defaultValue: {
           summary: '[]',
         },
       },
     },
     hint: {
+      description: '指定されたテキストをヒントメッセージとして表示します。',
       table: {
+        type: {
+          summary: 'string[]',
+        },
         defaultValue: {
           summary: '[]',
         },
       },
     },
-    id: {},
-    label: {},
-    loading: {},
-    required: {},
-    success: {},
-    successMessages: {
+    id: {
+      description: '指定された id をラベルに適用します。',
       table: {
+        type: {
+          summary: 'string',
+        },
+      },
+    },
+    label: {
+      description: '指定されたラベルをコンポーネントに適用します。',
+      table: {
+        type: {
+          summary: 'string',
+        },
+      },
+    },
+    loading: {
+      description: 'ローディングアニメーションを表示します。',
+      table: {
+        type: {
+          summary: 'boolean',
+        },
+      },
+    },
+    required: {
+      description: '必須マークを表示します。',
+      table: {
+        type: {
+          summary: 'boolean',
+        },
+      },
+    },
+    success: {
+      description: '成功表示にします。',
+      table: {
+        type: {
+          summary: 'boolean',
+        },
+      },
+    },
+    successMessages: {
+      description: '指定されたテキストを成功メッセージとして表示します。',
+      table: {
+        type: {
+          summary: 'string[]',
+        },
         defaultValue: {
           summary: '[]',
         },
@@ -37,6 +98,7 @@ export default {
     // events
     // slots
     default: {
+      description: 'コンポーネントの中に表示するコンテンツです。',
       table: {
         type: {
           summary: 'any',
@@ -44,6 +106,7 @@ export default {
       },
     },
     'footer-append': {
+      description: 'フッターの右側に表示するコンテンツです。',
       table: {
         type: {
           summary: 'any',
@@ -51,6 +114,7 @@ export default {
       },
     },
     'footer-prepend': {
+      description: 'フッターの左側に表示するコンテンツです。',
       table: {
         type: {
           summary: 'any',

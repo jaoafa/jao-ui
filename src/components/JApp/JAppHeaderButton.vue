@@ -1,42 +1,42 @@
-<template>
-  <button :class="classes" @click="click">
-    <j-icon :size="20">{{ value ? 'close' : 'menu' }}</j-icon>
-  </button>
-</template>
-
-<script lang="ts">
-import { computed, defineComponent } from 'vue'
+<script setup lang="ts">
+import { computed } from 'vue'
+import { ComponentTagClasses } from '@/types'
 import { JIcon } from '@/components/JIcon'
 
-export default defineComponent({
-  name: 'JAppHeaderButton',
-
-  components: {
-    JIcon,
-  },
-
-  props: {
-    /** 現在の状態を指定します */
-    value: {
-      type: Boolean,
-      default: false,
-    },
-  },
-
-  emits: ['click', 'update:value'],
-
-  setup(props, context) {
-    const classes = computed((): { [key: string]: boolean } => ({
-      'j-app-header-button': true,
-    }))
-    const click = (e: Event): void => {
-      context.emit('click', e)
-      context.emit('update:value', !props.value)
-    }
-    return { classes, click }
-  },
+// props
+type Props = {
+  /** 現在の状態を指定します */
+  value?: boolean
+}
+const props = withDefaults(defineProps<Props>(), {
+  value: false,
 })
+
+// emit
+type Emits = {
+  (e: 'click'): void
+  (e: 'update:value', value: Required<Props>['value']): void
+}
+const emit = defineEmits<Emits>()
+
+// class
+const classes = computed(
+  (): ComponentTagClasses<'j-app-header-button'> => ({
+    'j-app-header-button': true,
+  })
+)
+
+const handleClick = (): void => {
+  emit('click')
+  emit('update:value', !props.value)
+}
 </script>
+
+<template>
+  <button :class="classes" @click="handleClick">
+    <j-icon :size="20">{{ props.value ? 'close' : 'menu' }}</j-icon>
+  </button>
+</template>
 
 <style lang="scss">
 @use 'src/styles/includes' as *;

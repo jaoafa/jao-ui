@@ -6,11 +6,26 @@ export default {
   component: JIcon,
   argTypes: {
     // props
-    color: {},
-    size: {},
+    color: {
+      description: '指定された色をコンポーネントに適用します。',
+      table: {
+        type: {
+          summary: 'string',
+        },
+      },
+    },
+    size: {
+      description: '指定された大きさをコンポーネントに適用します。',
+      table: {
+        type: {
+          summary: 'number',
+        },
+      },
+    },
     // events
     // slots
     default: {
+      description: '表示するアイコンの名前です。',
       control: {
         type: 'text',
       },
