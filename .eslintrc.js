@@ -14,13 +14,13 @@ module.exports = {
   },
   plugins: ['vue', '@typescript-eslint', 'jest'],
   rules: {
-    'no-unused-vars': 'off',
-    '@typescript-eslint/no-unused-vars': ['error'],
     'vue/component-tags-order': [
       'error',
       {
         order: ['script', 'template', 'style'],
       },
     ],
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': ['error'],
   },
 }

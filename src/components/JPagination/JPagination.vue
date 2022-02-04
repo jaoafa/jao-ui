@@ -221,7 +221,7 @@ $root: 'j-pagination';
   height: 100%;
   appearance: none;
   font: inherit;
-  color: currentColor;
+  color: currentcolor;
   cursor: pointer;
   background-color: inherit;
   border: none;

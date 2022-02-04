@@ -210,11 +210,11 @@ $root: 'j-button';
   }
 
   &--outlined {
-    border: solid 2px currentColor;
+    border: solid 2px currentcolor;
 
     &::before,
     &::after {
-      background-color: currentColor;
+      background-color: currentcolor;
     }
   }
 
@@ -290,7 +290,7 @@ $root: 'j-button';
     left: 0;
     pointer-events: none;
     content: '';
-    background-color: currentColor;
+    background-color: currentcolor;
     border-radius: inherit;
     opacity: 0;
     transition-duration: 0.1s;
@@ -306,7 +306,7 @@ $root: 'j-button';
     clip-path: polygon(0 0, 0% 100%, 100% 0);
     pointer-events: none;
     content: '';
-    background-color: currentColor;
+    background-color: currentcolor;
   }
 }
 
