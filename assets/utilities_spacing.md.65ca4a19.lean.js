@@ -1,0 +1,1 @@
+import{_ as e,c,o,a as d}from"./app.bc31c55d.js";const h='{"title":"Spacing","description":"","frontmatter":{},"headers":[],"relativePath":"utilities/spacing.md","lastUpdated":1643988442262}',i={},l=d("",4),p=[l];function n(a,t,x,r,s,_){return o(),c("div",null,p)}var g=e(i,[["render",n]]);export{h as __pageData,g as default};
