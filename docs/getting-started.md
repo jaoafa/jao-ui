@@ -30,6 +30,7 @@ $ yarn add @jaoafa/jao-ui
 import { createApp } from 'vue'
 import jaoUI from '@jaoafa/jao-ui'
 import App from './App.vue'
+import '@jaoafa/jao-ui/dist/style.css'
 
 // createApp(App).mount('#app')
 const app = createApp(App)
@@ -71,6 +72,7 @@ $ yarn add @jaoafa/jao-ui
 import { createApp } from 'vue'
 import jaoUI from '@jaoafa/jao-ui'
 import App from './App.vue'
+import '@jaoafa/jao-ui/dist/style.css'
 
 // createApp(App).mount('#app')
 const app = createApp(App)
