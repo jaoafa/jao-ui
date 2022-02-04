@@ -1,12 +1,99 @@
+<script setup lang="ts">
+import { computed, onMounted, ref } from 'vue'
+import { ComponentTagClasses, ComponentTagStyles } from '@/types'
+import { JProgressCircle } from '@/components/JProgress'
+
+// props
+type Props = {
+  /** 画像の代替テキストを設定します */
+  alt?: string
+  /** 画像が指定された大きさに収まらない場合にトリミングされないようにします */
+  contain?: boolean
+  /** 指定された高さをコンポーネントに適用します */
+  height?: string
+  /** 指定された高さの最大値をコンポーネントに適用します */
+  maxHeight?: string
+  /** 指定された幅の最大値をコンポーネントに適用します */
+  maxWidth?: string
+  /** 指定された高さの最小値をコンポーネントに適用します */
+  minHeight?: string
+  /** 指定された幅の最小値をコンポーネントに適用します */
+  minWidth?: string
+  /**
+   * srcset で複数の画像サイズが与えられている場合に
+   * 画像の表示サイズを指定するためのカンマ区切りの文字列をコンポーネントに適用します
+   */
+  sizes?: string
+  /** 画像のURLを適用します。この項目は必須です */
+  src: string
+  /** 使用可能なソース画像のセットを示すカンマ区切りのリストです */
+  srcset?: string
+  /** 指定された幅をコンポーネントに適用します */
+  width?: string
+}
+const props = withDefaults(defineProps<Props>(), {
+  alt: '',
+  contain: false,
+  height: undefined,
+  maxHeight: undefined,
+  maxWidth: undefined,
+  minHeight: undefined,
+  minWidth: undefined,
+  sizes: undefined,
+  src: '',
+  srcset: undefined,
+  width: undefined,
+})
+
+// emit
+type Emits = {
+  (e: 'load'): void
+}
+const emit = defineEmits<Emits>()
+
+// class
+const classes = computed(
+  (): ComponentTagClasses<'j-image'> => ({
+    'j-image': true,
+    'j-image--contain': props.contain,
+  })
+)
+
+// style
+const styles = computed(
+  (): ComponentTagStyles => ({
+    width: props.width,
+    height: props.height,
+    maxWidth: props.maxWidth,
+    maxHeight: props.maxHeight,
+    minWidth: props.minWidth,
+    minHeight: props.minHeight,
+  })
+)
+
+const isLoaded = ref(false)
+const loadImage = (): void => {
+  const image = new Image()
+  image.onload = (): void => {
+    isLoaded.value = true
+    emit('load')
+  }
+  image.src = props.src
+}
+onMounted(() => {
+  loadImage()
+})
+</script>
+
 <template>
   <div :class="classes" :style="styles">
     <transition>
       <img
         v-show="isLoaded"
-        :src="src"
-        :srcset="srcset"
-        :sizes="sizes"
-        :alt="alt"
+        :src="props.src"
+        :srcset="props.srcset"
+        :sizes="props.sizes"
+        :alt="props.alt"
         class="j-image__body"
         loading="lazy"
       />
@@ -14,154 +101,11 @@
 
     <transition>
       <div v-show="!isLoaded" class="j-image__loader">
-        <j-progress-circle :size="40" :indeterminate="true" color="gray-300" />
+        <j-progress-circle :size="40" color="gray-300" indeterminate />
       </div>
     </transition>
   </div>
 </template>
-
-<script lang="ts">
-import { computed, defineComponent, onMounted, ref } from 'vue'
-import { validateSize } from '@/utils/sizes'
-import { JProgressCircle } from '@/components/JProgress'
-
-export default defineComponent({
-  name: 'JImage',
-
-  components: {
-    JProgressCircle,
-  },
-
-  props: {
-    /** 画像の代替テキストを設定します */
-    alt: {
-      type: String,
-      default: '',
-    },
-    /** 画像が指定された大きさに収まらない場合にトリミングされないようにします */
-    contain: {
-      type: Boolean,
-      default: false,
-    },
-    /** 指定された高さをコンポーネントに適用します */
-    height: {
-      type: String,
-      default: undefined,
-      validator: (val: string): boolean => {
-        return validateSize(val)
-      },
-    },
-    /** 指定された高さの最大値をコンポーネントに適用します */
-    maxHeight: {
-      type: String,
-      default: undefined,
-      validator: (val: string): boolean => {
-        return validateSize(val)
-      },
-    },
-    /** 指定された幅の最大値をコンポーネントに適用します */
-    maxWidth: {
-      type: String,
-      default: undefined,
-      validator: (val: string): boolean => {
-        return validateSize(val)
-      },
-    },
-    /** 指定された高さの最小値をコンポーネントに適用します */
-    minHeight: {
-      type: String,
-      default: undefined,
-      validator: (val: string): boolean => {
-        return validateSize(val)
-      },
-    },
-    /** 指定された幅の最小値をコンポーネントに適用します */
-    minWidth: {
-      type: String,
-      default: undefined,
-      validator: (val: string): boolean => {
-        return validateSize(val)
-      },
-    },
-    /**
-     * srcset で複数の画像サイズが与えられている場合に
-     * 画像の表示サイズを指定するためのカンマ区切りの文字列をコンポーネントに適用します
-     */
-    sizes: {
-      type: String,
-      default: undefined,
-    },
-    /** 画像のURLを適用します。この項目は必須です */
-    src: {
-      type: String,
-      default: '',
-      require: true,
-    },
-    /** 使用可能なソース画像のセットを示すカンマ区切りのリストです */
-    srcset: {
-      type: String,
-      default: undefined,
-    },
-    /** 指定された幅をコンポーネントに適用します */
-    width: {
-      type: String,
-      default: undefined,
-      validator: (val: string): boolean => {
-        return validateSize(val)
-      },
-    },
-  },
-
-  emits: ['load'],
-
-  setup(props, context) {
-    const classes = computed((): { [key: string]: boolean } => ({
-      'j-image': true,
-      'j-image--contain': props.contain,
-    }))
-
-    const styles = computed((): { [key: string]: string } => {
-      const res: { [key: string]: string } = {}
-      if (props.width) {
-        res.width = props.width
-      }
-      if (props.height) {
-        res.height = props.height
-      }
-      if (props.maxWidth) {
-        res['max-width'] = props.maxWidth
-      }
-      if (props.maxHeight) {
-        res['max-height'] = props.maxHeight
-      }
-      if (props.minWidth) {
-        res['min-width'] = props.minWidth
-      }
-      if (props.minHeight) {
-        res['min-height'] = props.minHeight
-      }
-      return res
-    })
-
-    const isLoaded = ref(false)
-
-    const loadImage = (): void => {
-      const image = new Image()
-      image.onload = (e: Event): void => {
-        isLoaded.value = true
-        context.emit('load', e)
-      }
-      image.src = props.src
-    }
-
-    onMounted(() => {
-      loadImage()
-    })
-
-    return { classes, styles, isLoaded }
-  },
-})
-</script>
 
 <style lang="scss">
 @use 'src/styles/includes' as *;
@@ -192,7 +136,7 @@ $root: 'j-image';
     transition-property: opacity;
   }
 
-  &.v-enter,
+  &.v-enter-from,
   &.v-leave-to {
     opacity: 0;
   }
@@ -216,7 +160,7 @@ $root: 'j-image';
     transition-property: opacity;
   }
 
-  &.v-enter,
+  &.v-enter-from,
   &.v-leave-to {
     opacity: 0;
   }

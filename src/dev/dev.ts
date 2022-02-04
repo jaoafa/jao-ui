@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import jaoUI from '../entry.esm'
+import jaoUI from '../build'
 import App from './dev.vue'
 
 const app = createApp(App)

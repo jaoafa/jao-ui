@@ -6,11 +6,46 @@ export default {
   component: JProgressBar,
   argTypes: {
     // props
-    absolute: {},
-    color: {},
-    indeterminate: {},
-    percentage: {},
-    stroke: {},
+    absolute: {
+      description: 'コンポーネントに position:absolute; を適用します。',
+      table: {
+        type: {
+          summary: 'boolean',
+        },
+      },
+    },
+    color: {
+      description: '指定された色をコンポーネントに適用します。',
+      table: {
+        type: {
+          summary: 'string',
+        },
+      },
+    },
+    indeterminate: {
+      description: 'アニメーションを適用します。',
+      table: {
+        type: {
+          summary: 'boolean',
+        },
+      },
+    },
+    percentage: {
+      description: 'パーセントの値を指定します。',
+      table: {
+        type: {
+          summary: 'number',
+        },
+      },
+    },
+    stroke: {
+      description: '図形の線の太さを指定します。',
+      table: {
+        type: {
+          summary: 'number',
+        },
+      },
+    },
     // events
     // slots
   },

@@ -1,56 +1,47 @@
+<script setup lang="ts">
+import { computed } from 'vue'
+import { ComponentTagClasses, ComponentTagStyles } from '@/types'
+import { convertNameToHex } from '@/utils/colors'
+
+// props
+type Props = {
+  /** 指定された色をコンポーネントに適用します */
+  color?: string
+  /** 最大幅の制限を削除します */
+  fluid?: boolean
+  /** コンポーネントに id 属性を追加します */
+  id?: string
+  /** 指定されたタグをコンポーネントに適用します */
+  tag?: string
+}
+const props = withDefaults(defineProps<Props>(), {
+  color: 'transparent',
+  fluid: false,
+  id: undefined,
+  tag: 'div',
+})
+
+// class
+const classes = computed(
+  (): ComponentTagClasses<'j-container'> => ({
+    'j-container': true,
+    'j-container--fluid': props.fluid,
+  })
+)
+
+// style
+const styles = computed(
+  (): ComponentTagStyles => ({
+    backgroundColor: convertNameToHex(props.color),
+  })
+)
+</script>
+
 <template>
-  <component :is="tag" :id="id" :class="classes" :style="styles">
+  <component :is="props.tag" :id="props.id" :class="classes" :style="styles">
     <slot />
   </component>
 </template>
-
-<script lang="ts">
-import { computed, defineComponent } from 'vue'
-import { convertNameToHex, validateColor } from '@/utils/colors'
-
-export default defineComponent({
-  name: 'JContainer',
-
-  props: {
-    /** 指定された色をコンポーネントに適用します */
-    color: {
-      type: String,
-      default: 'transparent',
-      validator: (val: string): boolean => {
-        return validateColor(val) || val === 'transparent'
-      },
-    },
-    /** 最大幅の制限を削除します */
-    fluid: {
-      type: Boolean,
-      default: false,
-    },
-    /** コンポーネントに id 属性を追加します */
-    id: {
-      type: String,
-      default: undefined,
-    },
-    /** 指定されたタグをコンポーネントに適用します */
-    tag: {
-      type: String,
-      default: 'div',
-    },
-  },
-
-  setup(props) {
-    const classes = computed((): { [key: string]: boolean } => ({
-      'j-container': true,
-      'j-container--fluid': props.fluid,
-    }))
-
-    const styles = computed((): { [key: string]: string } => ({
-      'background-color': convertNameToHex(props.color),
-    }))
-
-    return { classes, styles }
-  },
-})
-</script>
 
 <style lang="scss">
 @use 'src/styles/includes' as *;

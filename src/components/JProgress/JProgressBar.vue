@@ -1,75 +1,60 @@
+<script setup lang="ts">
+import { computed } from 'vue'
+import { ComponentTagClasses, ComponentTagStyles } from '@/types'
+import { convertNameToHex } from '@/utils/colors'
+
+// props
+type Props = {
+  /** コンポーネントに position:absolute; を適用します */
+  absolute?: boolean
+  /** 指定された色をコンポーネントに適用します */
+  color?: string
+  /** アニメーションを適用します */
+  indeterminate?: boolean
+  /** パーセントの値を指定します */
+  percentage?: number
+  /** 図形の線の太さを指定します */
+  stroke?: number
+}
+const props = withDefaults(defineProps<Props>(), {
+  absolute: false,
+  color: 'primary',
+  indeterminate: false,
+  percentage: 0,
+  stroke: 4,
+})
+
+// class
+const classes = computed(
+  (): ComponentTagClasses<'j-progress-bar'> => ({
+    'j-progress-bar': true,
+    'j-progress-bar--absolute': props.absolute,
+    'j-progress-bar--indeterminate': props.indeterminate,
+  })
+)
+
+// style
+const styles = computed(
+  (): ComponentTagStyles => ({
+    color: convertedColor.value,
+    height: `${props.stroke}px`,
+  })
+)
+
+const convertedColor = computed((): string => convertNameToHex(props.color))
+</script>
+
 <template>
   <div :class="classes" :style="styles">
     <div class="j-progress-bar__background" />
     <div
-      :style="{ width: indeterminate ? undefined : `${percentage}%` }"
+      :style="{
+        width: props.indeterminate ? undefined : `${props.percentage}%`,
+      }"
       class="j-progress-bar__determinate"
     />
   </div>
 </template>
-
-<script lang="ts">
-import { computed, defineComponent } from 'vue'
-import { convertNameToHex, validateColor } from '@/utils/colors'
-
-export default defineComponent({
-  name: 'JProgressBar',
-
-  props: {
-    /** コンポーネントに position:absolute; を適用します */
-    absolute: {
-      type: Boolean,
-      default: false,
-    },
-    /** 指定された色をコンポーネントに適用します */
-    color: {
-      type: String,
-      default: 'primary',
-      validator: (val: string): boolean => {
-        return validateColor(val)
-      },
-    },
-    /** アニメーションを適用します */
-    indeterminate: {
-      type: Boolean,
-      default: false,
-    },
-    /** パーセントの値を指定します */
-    percentage: {
-      type: Number,
-      default: 0,
-      validator: (val: number): boolean => {
-        return val >= 0 && val <= 100
-      },
-    },
-    /** 図形の線の太さを指定します */
-    stroke: {
-      type: Number,
-      default: 4,
-      validator: (val: number): boolean => {
-        return val > 0
-      },
-    },
-  },
-
-  setup(props) {
-    const classes = computed((): { [key: string]: boolean } => ({
-      'j-progress-bar': true,
-      'j-progress-bar--absolute': props.absolute,
-      'j-progress-bar--indeterminate': props.indeterminate,
-    }))
-
-    const styles = computed((): { [key: string]: string } => ({
-      color: convertedColor.value,
-      height: `${props.stroke}px`,
-    }))
-
-    const convertedColor = computed((): string => convertNameToHex(props.color))
-
-    return { classes, styles }
-  },
-})
-</script>
 
 <style lang="scss">
 @use 'src/styles/includes' as *;
@@ -96,7 +81,7 @@ $root: 'j-progress-bar';
 .j-progress-bar__background {
   width: 100%;
   height: 100%;
-  background-color: currentColor;
+  background-color: currentcolor;
   opacity: 0.25;
   transition: inherit;
 }
@@ -107,7 +92,7 @@ $root: 'j-progress-bar';
   bottom: 0;
   left: 0;
   height: 100%;
-  background-color: currentColor;
+  background-color: currentcolor;
   transition: inherit;
 }
 

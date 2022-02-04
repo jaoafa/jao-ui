@@ -14,6 +14,12 @@
 |`loading`|`boolean`|`false`|ローディングアニメーションを表示します。|
 |`page`|`number`|`1`|現在選択しているページ番号を指定します。|
 
+## Events
+
+|Name|Description|
+|:--|:--|
+|`input`|ページが選択されたときに発生するイベントです。|
+
 ## Slots
 
 |Name|Description|

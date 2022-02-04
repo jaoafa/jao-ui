@@ -6,11 +6,46 @@ export default {
   component: JProgressCircle,
   argTypes: {
     // props
-    color: {},
-    indeterminate: {},
-    percentage: {},
-    size: {},
-    stroke: {},
+    color: {
+      description: '指定された色をコンポーネントに適用します。',
+      table: {
+        type: {
+          summary: 'string',
+        },
+      },
+    },
+    indeterminate: {
+      description: 'アニメーションを適用します。',
+      table: {
+        type: {
+          summary: 'boolean',
+        },
+      },
+    },
+    percentage: {
+      description: 'パーセントの値を指定します。',
+      table: {
+        type: {
+          summary: 'number',
+        },
+      },
+    },
+    size: {
+      description: 'コンポーネントの大きさを指定します。',
+      table: {
+        type: {
+          summary: 'number',
+        },
+      },
+    },
+    stroke: {
+      description: '図形の線の太さを指定します。',
+      table: {
+        type: {
+          summary: 'number',
+        },
+      },
+    },
     // events
     // slots
   },

@@ -6,6 +6,6 @@
 
 |Name|Type|Default|Description|
 |:--|:--|:--|:--|
-|`current`|`array`|`[]`|現在の表示状態を指定します。|
 |`items`|`array`|`[]`|コンポーネントに表示する項目を配列で指定します。|
 |`nuxt`|`boolean`|`false`|リンクを `<nuxt-link>` にします。|
+|`value`|`array`|`[]`|現在の表示状態を指定します。|

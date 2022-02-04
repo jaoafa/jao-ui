@@ -12,28 +12,53 @@ export default {
   argTypes: {
     // props
     color: {
+      description: '指定された色をコンポーネントに適用します。',
       control: {
         type: null,
+      },
+      table: {
+        type: {
+          summary: 'string',
+        },
       },
     },
     fluid: {
+      description: '最大幅の制限を削除します。',
       control: {
         type: null,
+      },
+      table: {
+        type: {
+          summary: 'boolean',
+        },
       },
     },
     id: {
+      description: 'コンポーネントに id 属性を追加します。',
       control: {
         type: null,
       },
+      table: {
+        type: {
+          summary: 'string',
+        },
+      },
     },
     tag: {
+      description: '指定されたタグをコンポーネントに適用します。',
       control: {
         type: null,
+      },
+      table: {
+        type: {
+          summary: 'string',
+        },
       },
     },
     // events
     // slots
     default: {
+      description: 'コンポーネントの中に表示するコンテンツです。',
       table: {
         type: {
           summary: 'any',
