@@ -21,7 +21,7 @@
   "main": "./dist/jao-ui.umd.js",
   "module": "./dist/jao-ui.es.js",
   "unpkg": "./dist/jao-ui.umd.js",
-  "types": "./dist/build.d.ts",
+  "types": "./dist/types/build.d.ts",
   "exports": {
     ".": {
       "import": "./dist/jao-ui.es.js",
