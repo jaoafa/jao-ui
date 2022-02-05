@@ -36,15 +36,15 @@ $root: 'j-app';
   position: relative;
   display: grid;
   grid-template-rows: auto 1fr;
-  grid-template-columns: auto 1fr auto;
-  height: 100vh;
+  grid-template-columns: auto 1fr;
+  min-height: 100vh;
   overflow: hidden;
   font-family: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic UI', sans-serif;
   line-height: 1.8;
   color: $color-gray-900;
 
   &--no-stretch {
-    height: auto;
+    min-height: auto;
   }
 }
 </style>

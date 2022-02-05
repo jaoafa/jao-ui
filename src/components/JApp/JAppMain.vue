@@ -34,9 +34,6 @@ $root: 'j-app-main';
   position: relative;
   grid-row: 2 / 3;
   grid-column: 2 / 3;
-  max-width: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
-  scrollbar-width: thin;
+  max-width: 100vw;
 }
 </style>

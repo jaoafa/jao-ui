@@ -52,30 +52,33 @@ const styles = computed(
 $root: 'j-app-header';
 
 .j-app-header {
+  --app-header-width: #{$size-width-max};
+  --app-header-height: 64px;
+  --app-header-border-width: 3px;
+
   position: relative;
   grid-row: 1 / 2;
   grid-column: 1 / 3;
+  max-width: 100vw;
+  height: var(--app-header-height, 0);
   border-bottom-style: solid;
-  border-bottom-width: 3px;
+  border-bottom-width: var(--app-header-border-width);
 
   @include breakpoint(md) {
-    border-bottom-width: 6px;
+    --app-header-height: 72px;
+    --app-header-border-width: 6px;
   }
 
   &--dense {
-    .#{$root}__body {
-      height: 48px;
+    --app-header-height: 48px;
 
-      @include breakpoint(md) {
-        height: 56px;
-      }
+    @include breakpoint(md) {
+      --app-header-height: 56px;
     }
   }
 
   &--fluid {
-    .#{$root}__body {
-      max-width: none;
-    }
+    --app-header-width: none;
   }
 }
 
@@ -84,14 +87,13 @@ $root: 'j-app-header';
   gap: 16px;
   align-items: center;
   width: 100%;
-  max-width: $size-width-max;
-  height: 64px;
+  max-width: var(--app-header-width, 0);
+  height: 100%;
   padding: 0 16px;
   margin: auto;
 
   @include breakpoint(md) {
     gap: 24px;
-    height: 72px;
     padding: 0 24px;
   }
 }
