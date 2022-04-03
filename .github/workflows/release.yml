@@ -41,7 +41,7 @@ jobs:
 
       # Publush to NPMJS
       - name: Setup node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3.1.0
         with:
           node-version: ${{ matrix.node }}
           registry-url: 'https://registry.npmjs.org'
@@ -54,7 +54,7 @@ jobs:
 
       # Publish to GitHub Packages
       - name: Setup node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3.1.0
         with:
           node-version: ${{ matrix.node }}
           registry-url: 'https://npm.pkg.github.com'
