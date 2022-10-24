@@ -42,7 +42,7 @@ jobs:
       - name: Build storybook
         run: npm run build:storybook -- --output-dir ./docs/.vitepress/dist/storybook
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3.8.0
+        uses: peaceiris/actions-gh-pages@v3.9.0
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
