@@ -41,7 +41,7 @@
     "vue": "^3.2.25"
   },
   "devDependencies": {
-    "@babel/core": "7.21.4",
+    "@babel/core": "7.22.1",
     "@commitlint/cli": "16.3.0",
     "@commitlint/config-conventional": "16.2.4",
     "@storybook/addon-essentials": "6.5.16",
