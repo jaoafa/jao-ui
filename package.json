@@ -84,7 +84,7 @@
     "vite": "2.9.16",
     "vitepress": "0.22.4",
     "vue-loader": "16.8.3",
-    "vue-tsc": "0.31.2"
+    "vue-tsc": "0.40.13"
   },
   "engines": {
     "node": "16.x"
